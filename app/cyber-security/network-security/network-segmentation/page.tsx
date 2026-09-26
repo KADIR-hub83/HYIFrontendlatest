@@ -1,0 +1,2 @@
+import Header from "@/components/section/general/header"; import Footer from "@/components/section/general/footer"; import NetworkSecurityClient from "@/components/section/cyber-security/network-security/NetworkSecurityClient"; import {getNetworkSecurityPage} from "@/components/section/cyber-security/network-security/networkSecurityData";
+export default function Page(){const page=getNetworkSecurityPage("network-segmentation");return <main className="min-h-screen bg-black text-white"><Header/><NetworkSecurityClient page={page}/><Footer/></main>}
