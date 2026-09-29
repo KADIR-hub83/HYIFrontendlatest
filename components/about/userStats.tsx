@@ -156,13 +156,24 @@ const peakMonth =
                   dy={10}
                 />
 
-                <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
-                  tickFormatter={formatYAxis}
-                  domain={[0, "dataMax + 1000"]}
-                />
+               <YAxis
+  axisLine={false}
+  tickLine={false}
+  tick={{
+    fill: "rgba(255,255,255,0.6)",
+    fontSize: 12,
+  }}
+  tickFormatter={formatYAxis}
+  domain={[0, 15000]}
+  ticks={[
+    0,
+    3000,
+    6000,
+    9000,
+    12000,
+    15000,
+  ]}
+/>
 
                 <Tooltip
                   content={<CustomTooltip />}

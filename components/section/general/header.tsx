@@ -26,6 +26,7 @@ import {
   ForTechnologiesPageAPI,
 } from "@/lib/services/api";
 import HeaderLogin from "@/components/sub-modules/header/headerLogin";
+import HeaderScrollWrapper from "@/components/section/general/headerScrollWrapper";
 
 interface LinkItem {
   label: string;
@@ -154,7 +155,7 @@ export default async function Header() {
   // );
 
   return (
-    <header className="w-full flex justify-center px-8 pt-6 pb-5 z-100">
+   <HeaderScrollWrapper>
       <section className="w-full max-w-[1280px] flex justify-between items-center">
         {/* ----------Logo Section---------- */}
         <section className="relative z-10">
@@ -300,14 +301,17 @@ export default async function Header() {
   </HeaderLinks> */}
 
   {/* AI Training Program */}
-  {/* <HeaderLinks
+  <HeaderLinks
     navItems={headerData.nav[4]}
     gapBetweendropDown="gap-0.5"
-    gridColumn="grid-cols-2"
-    css="right-0 lg:max-w-[650px]"
+    gridColumn="grid-cols-3"
+    css=" w-[1050px]
+    max-w-[calc(100vw-80px)]
+    max-h-[550px]
+    overflow-hidden"
   >
     {headerData.nav[4].title}
-  </HeaderLinks> */}
+  </HeaderLinks>
 
   {/* Resources */}
   <HeaderLinks
@@ -323,18 +327,18 @@ export default async function Header() {
         {/* ----------SignUp and SignIn Section---------- */}
         <HeaderLogin />
         {/* ----------Mobile and Tab navigation Section---------- */}
-        <section className="flex min-[1360px]:hidden">
-          <MobileNav
-            companyData={[
-              { ...headerData.nav[0], links: companyDynamicLinks } as NavProps,
-              headerData.nav[1],
-              headerData.nav[2],
-              consultingHeaderItems,
-              headerData.nav[4],
-            ]}
-          />
-        </section>
+       <section className="flex min-[1360px]:hidden">
+  <MobileNav
+    companyData={[
+      headerData.nav[0],
+      headerData.nav[1],
+      headerData.nav[2],
+      headerData.nav[4],
+      headerData.nav[5],
+    ]}
+  />
+</section>
       </section>
-    </header>
+   </HeaderScrollWrapper>
   );
 }

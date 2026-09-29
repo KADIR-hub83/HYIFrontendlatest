@@ -52,7 +52,7 @@ export default async function Footer() {
       <section>
         <CustomSeparator margin_Y="my-0" from="from-0%" to="to-100%" />
         <div className="w-full flex flex-col gap-4 py-5 md:gap-8 md:pb-10 md:pt-6">
-          <section className="w-full grid grid-cols-7 gap-y-6 gap-x-4 md:gap-6 md:grid-cols-3 lg:grid-cols-5">
+          <section className="w-full grid grid-cols-7 gap-y-6 gap-x-4 md:gap-6 md:grid-cols-3 lg:grid-cols-6">
             {footer.dynamicLinks.map((key, index) => {
               const section =
                 footerData[key as keyof typeof footerSections];
@@ -89,9 +89,9 @@ export default async function Footer() {
               <div className="w-fit h-fit">
                 <Image src={Logo} alt="Logo" />
               </div>
-              <p className="text-sm font-normal cursor-default text-dark_mode-100">
-                © 2025 HYI.AI All rights reserved.
-              </p>
+            <p className="text-sm font-normal cursor-default text-dark_mode-100">
+               © {new Date().getFullYear()} HYI.AI All rights reserved.
+            </p>
               <ul className="flex items-center gap-4 lg:gap-8">
                 <li className="hover:scale-120 transition duration-500 ease-in-out will-change-contents">
                   <Link href="https://www.x.com/HyiAiOfficial" target="_blank">

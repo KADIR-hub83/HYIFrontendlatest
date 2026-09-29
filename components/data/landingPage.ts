@@ -14,12 +14,19 @@ import CaseStudy_01 from "@/assets/landingPage/images/CaseStudy-01.png";
 import CaseStudy_02 from "@/assets/landingPage/images/CaseStudy-02.png";
 import CaseStudy_03 from "@/assets/landingPage/images/CaseStudy-03.png";
 
-import testimonials_01 from "@/assets/landingPage/images/testimonials-01.png";
-import testimonials_02 from "@/assets/landingPage/images/testimonials-02.png";
-import testimonials_03 from "@/assets/landingPage/images/testimonials-03.png";
-import testimonials_04 from "@/assets/landingPage/images/testimonials-04.png";
+// import testimonials_01 from "@/assets/landingPage/images/testimonials-01.png";
+// import testimonials_02 from "@/assets/landingPage/images/testimonials-02.png";
+// import testimonials_03 from "@/assets/landingPage/images/testimonials-03.png";
+// import testimonials_04 from "@/assets/landingPage/images/testimonials-04.png";
+// import testimonials_05 from "@/assets/landingPage/images/testimonials-05.png";
+// import testimonials_06 from "@/assets/landingPage/images/testimonials-06.png";
+
+import testimonials_01 from "@/assets/landingPage/images/test-01.png";
+import testimonials_02 from "@/assets/landingPage/images/test-02.png";
+import testimonials_03 from "@/assets/landingPage/images/test-03.png";
+import testimonials_04 from "@/assets/landingPage/images/test-04.png";
 import testimonials_05 from "@/assets/landingPage/images/testimonials-05.png";
-import testimonials_06 from "@/assets/landingPage/images/testimonials-06.png";
+import testimonials_06 from "@/assets/landingPage/images/test-05.png";
 
 import python from "@/assets/landingPage/softwares/python.svg";
 import bitbucket from "@/assets/landingPage/softwares/bitbucket.svg";
@@ -261,42 +268,42 @@ export const testimonialsData = {
     {
       _id: "user-01",
       image: testimonials_01,
-      name: "Adithya M",
+      name: "Ryan Mitchell",
       designation: "Lead Developer",
       text: "“HYI.AI provided me with the level of freedom whether to have part time projects by the hour or pursue a full time job. The flexible contracts and the secured payments made the freelance journey stress free.”",
     },
     {
       _id: "user-02",
       image: testimonials_02,
-      name: "Kowshik",
+      name: "Samir Rahman",
       designation: "Full Stack Developer",
       text: "“I have been able to be connected to HIGH-IMPACT global projects as a certified developer with HYI.AI. I learned a very beneficial experience and my portfolio grew fast because of challenges I took in the real world.”",
     },
     {
       _id: "user-03",
       image: testimonials_03,
-      name: "Navya",
+      name: "Omar Farooq",
       designation: "Software Developer",
       text: "“The onboarding and verification process was quick and I was allocated to a marketable project shortly after certification- time was not wasted in trying to apply or waiting several months in the waiting list.”",
     },
     {
       _id: "user-04",
       image: testimonials_04,
-      name: "Rahul",
+      name: "Nathan Brooks",
       designation: "Front End Developer",
       text: "“The Mock tests and the interviews with experts at HYI.AI compelled me to improve my coding and designing capabilities. The feedback was very constructive and this made me have confidence to build even more.”",
     },
     {
       _id: "user-05",
       image: testimonials_05,
-      name: "Tonmoyee",
+      name: "Grace Wilson",
       designation: "Research Analyst",
       text: "“Cooperation with U.S. clients on the basis of HYI.AI introduced me to a different range of challenges and the newest technologies. Their expansiveness internationally changes the game of career advancement.”",
     },
     {
       _id: "user-06",
       image: testimonials_06,
-      name: "Shashidhara",
+      name: "Zayn Ahmed",
       designation: "Lead Developer",
       text: "“A relationship manager of their own really stood HYI.AI out. They continue to guide and give personal support that helps me direct my capabilities to projects that will be of interest and competence to me.”",
     },

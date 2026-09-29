@@ -31,6 +31,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "prod.spline.design",
       },
+       {
+        protocol: "https",
+        hostname: "fhucmdbprzuxqvtmgflv.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
   },
 };

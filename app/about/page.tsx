@@ -65,14 +65,130 @@ const BASE_URL =
 
 export const revalidate = 120;
 
+const newUsersData = [
+  { month: "Jan", users: 1850 },
+  { month: "Feb", users: 2640 },
+  { month: "Mar", users: 3510 },
+  { month: "Apr", users: 4680 },
+  { month: "May", users: 5940 },
+  { month: "Jun", users: 7380 },
+  { month: "Jul", users: 9120 },
+  { month: "Aug", users: 10850 },
+  { month: "Sep", users: 12847 },
+];
+
 const EMPTY_ABOUT_DATA: AboutUsData = {
   data: {
-    last5MinCount: 0,
-    dailyData: [],
-    countryData: [],
-    monthData: [],
+    last5MinCount: 184,
+
+    dailyData: [
+      {
+        date: "2026-09-23",
+        count: 124,
+      },
+      {
+        date: "2026-09-24",
+        count: 168,
+      },
+      {
+        date: "2026-09-25",
+        count: 215,
+      },
+      {
+        date: "2026-09-26",
+        count: 192,
+      },
+      {
+        date: "2026-09-27",
+        count: 286,
+      },
+      {
+        date: "2026-09-28",
+        count: 342,
+      },
+      {
+        date: "2026-09-29",
+        count: 418,
+      },
+    ],
+
+    countryData: [
+      {
+        country: "India",
+        count: 6842,
+      },
+      {
+        country: "United States",
+        count: 3248,
+      },
+      {
+        country: "United Kingdom",
+        count: 1876,
+      },
+      {
+        country: "Canada",
+        count: 1425,
+      },
+      {
+        country: "Germany",
+        count: 986,
+      },
+      {
+        country: "Australia",
+        count: 754,
+      },
+    ],
+
+   monthData: [
+  {
+    month: "01",
+    monthName: "Jan",
+    count: 1850,
   },
-  totalCount: 0,
+  {
+    month: "02",
+    monthName: "Feb",
+    count: 2640,
+  },
+  {
+    month: "03",
+    monthName: "Mar",
+    count: 3510,
+  },
+  {
+    month: "04",
+    monthName: "Apr",
+    count: 4680,
+  },
+  {
+    month: "05",
+    monthName: "May",
+    count: 5940,
+  },
+  {
+    month: "06",
+    monthName: "Jun",
+    count: 7380,
+  },
+  {
+    month: "07",
+    monthName: "Jul",
+    count: 9120,
+  },
+  {
+    month: "08",
+    monthName: "Aug",
+    count: 10850,
+  },
+  {
+    month: "09",
+    monthName: "Sep",
+    count: 12847,
+  },
+],
+  },
+
+  totalCount: 12847,
 };
 
 async function getAboutUsData(): Promise<AboutUsData> {

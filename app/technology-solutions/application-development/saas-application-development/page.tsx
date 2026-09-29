@@ -29,6 +29,7 @@ import {
   Users,
   Workflow,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
 
 const services = [
@@ -551,19 +552,21 @@ export default function SaaSApplicationDevelopmentPage() {
             <div className="mx-auto h-14 w-px bg-white/10" />
 
             <div className="grid gap-3 md:grid-cols-3">
-              {[
-                ["Database", Database],
-                ["Cloud", Cloud],
-                ["Security", ShieldCheck],
-              ].map(([title, Icon]: any) => (
-                <div
-                  key={title}
-                  className="rounded-2xl border border-white/[0.08] bg-black/20 p-6 text-center"
-                >
-                  <Icon className="mx-auto h-5 w-5 text-purple-300" />
-                  <p className="mt-3 text-sm">{title}</p>
-                </div>
-              ))}
+              {(
+  [
+    ["Database", Database],
+    ["Cloud", Cloud],
+    ["Security", ShieldCheck],
+  ] as [string, LucideIcon][]
+).map(([title, Icon]) => (
+  <div
+    key={title}
+    className="rounded-2xl border border-white/[0.08] bg-black/20 p-6 text-center"
+  >
+    <Icon className="mx-auto h-5 w-5 text-purple-300" />
+    <p className="mt-3 text-sm">{title}</p>
+  </div>
+))}
             </div>
           </div>
         </div>

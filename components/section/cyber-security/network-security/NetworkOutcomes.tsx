@@ -1,2 +1,64 @@
-"use client"; import {motion} from "framer-motion"; import type {NetworkSecurityPage} from "./networkSecurityData";
-export default function NetworkOutcomes({page}:{page:NetworkSecurityPage}){const items=page.outcomes;return <section  className="border-b border-white/[0.06] bg-black px-5 py-24 md:px-8"><div className="mx-auto max-w-[1280px]"><p className="font-mono text-[8px] tracking-[.28em] text-white/25">OPERATIONAL OUTCOMES</p><div className="mt-10 grid md:grid-cols-2 gap-px overflow-hidden rounded-[28px] border border-white/[0.07] bg-white/[0.07]">{items.map((item:any,i:number)=><motion.article key={i} initial={{opacity:0,y:18}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.04}} className="bg-[#050505] p-7"><div className="mb-8 flex justify-between"><span className="font-mono text-[8px] text-white/20">{String(i+1).padStart(2,"0")}</span><i className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]"/></div><h3 className="text-[15px] text-white/80">{item.title||item.signal}</h3><p className="mt-3 text-[12px] leading-6 text-white/38">{item.description||item.purpose}</p>{(item.detail||item.context)&&<p className="mt-4 border-t border-white/[0.06] pt-4 text-[10px] leading-5 text-white/24">{item.detail||item.context}</p>}</motion.article>)}</div></div></section>}
+"use client";
+
+import { motion } from "framer-motion";
+
+import type { NetworkSecurityPage } from "./networkSecurityData";
+
+interface NetworkOutcomesProps {
+  page: NetworkSecurityPage;
+}
+
+export default function NetworkOutcomes({
+  page,
+}: NetworkOutcomesProps) {
+  const items = page.outcomes;
+
+  return (
+    <section className="border-b border-white/[0.06] bg-black px-5 py-24 md:px-8">
+      <div className="mx-auto max-w-[1280px]">
+        <p className="font-mono text-[8px] tracking-[.28em] text-white/25">
+          OPERATIONAL OUTCOMES
+        </p>
+
+        <div className="mt-10 grid gap-px overflow-hidden rounded-[28px] border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+          {items.map((item, index) => (
+            <motion.article
+              key={`${item.metric}-${index}`}
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: index * 0.04,
+              }}
+              className="bg-[#050505] p-7"
+            >
+              <div className="mb-8 flex justify-between">
+                <span className="font-mono text-[8px] text-white/20">
+                  {item.metric}
+                </span>
+
+                <i className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]" />
+              </div>
+
+              <h3 className="text-[15px] text-white/80">
+                {item.title}
+              </h3>
+
+              <p className="mt-3 text-[12px] leading-6 text-white/38">
+                {item.description}
+              </p>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

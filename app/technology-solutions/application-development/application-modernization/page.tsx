@@ -22,6 +22,7 @@ import {
   Sparkles,
   Workflow,
   Zap,
+    type LucideIcon,
 } from "lucide-react";
 
 const modernizationServices = [
@@ -404,22 +405,24 @@ export default function ApplicationModernizationPage() {
 
               {/* modern */}
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  ["Frontend", Code2],
-                  ["API Services", Network],
-                  ["Cloud", Cloud],
-                  ["Data", Database],
-                  ["Automation", Workflow],
-                  ["Security", ShieldCheck],
-                ].map(([title, Icon]: any) => (
-                  <div
-                    key={title}
-                    className="rounded-[24px] border border-purple-400/15 bg-purple-500/[0.05] p-6 text-center"
-                  >
-                    <Icon className="mx-auto h-5 w-5 text-purple-300" />
-                    <p className="mt-4 text-sm">{title}</p>
-                  </div>
-                ))}
+               {(
+  [
+    ["Frontend", Code2],
+    ["API Services", Network],
+    ["Cloud", Cloud],
+    ["Data", Database],
+    ["Automation", Workflow],
+    ["Security", ShieldCheck],
+  ] as [string, LucideIcon][]
+).map(([title, Icon]) => (
+  <div
+    key={title}
+    className="rounded-[24px] border border-purple-400/15 bg-purple-500/[0.05] p-6 text-center"
+  >
+    <Icon className="mx-auto h-5 w-5 text-purple-300" />
+    <p className="mt-4 text-sm">{title}</p>
+  </div>
+))}
               </div>
             </div>
           </div>

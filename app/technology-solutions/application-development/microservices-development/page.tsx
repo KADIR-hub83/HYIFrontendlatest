@@ -23,6 +23,7 @@ import {
   Sparkles,
   Workflow,
   Zap,
+    type LucideIcon,
 } from "lucide-react";
 
 const microservices = [
@@ -409,20 +410,22 @@ export default function MicroservicesDevelopmentPage() {
             <div className="mx-auto h-12 w-px bg-purple-400/30" />
 
             <div className="grid gap-3 md:grid-cols-4">
-              {[
-                ["Users", Server],
-                ["Orders", Boxes],
-                ["Payments", Database],
-                ["Notifications", Activity],
-              ].map(([title, Icon]: any) => (
-                <div
-                  key={title}
-                  className="rounded-[24px] border border-white/[0.08] bg-white/[0.025] p-6 text-center"
-                >
-                  <Icon className="mx-auto h-5 w-5 text-purple-300" />
-                  <p className="mt-4 text-sm">{title}</p>
-                </div>
-              ))}
+            {(
+  [
+    ["Users", Server],
+    ["Orders", Boxes],
+    ["Payments", Database],
+    ["Notifications", Activity],
+  ] as [string, LucideIcon][]
+).map(([title, Icon]) => (
+  <div
+    key={title}
+    className="rounded-[24px] border border-white/[0.08] bg-white/[0.025] p-6 text-center"
+  >
+    <Icon className="mx-auto h-5 w-5 text-purple-300" />
+    <p className="mt-4 text-sm">{title}</p>
+  </div>
+))}
             </div>
 
             <div className="mx-auto h-12 w-px bg-white/10" />

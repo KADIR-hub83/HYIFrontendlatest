@@ -2019,12 +2019,12 @@ export const headerData: HeaderDataProps = {
         },
         {
           label: "Grievance and Compliances",
-          href: "/compliances",
+          href: "/documents/privacy-policy",
           text: "",
         },
         {
           label: "Contact Us",
-          href: "/contact-us",
+          href: "/talk-to-our-expert",
           text: "",
         },
       ],

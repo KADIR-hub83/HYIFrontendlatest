@@ -575,10 +575,10 @@ export default async function BlogPage({
                 lg:grid-cols-3
               "
             >
-              {pagination.data.map((blog: BlogDetail) => (
+              {pagination.data.map((blog) => (
   <CustomBlogCard
     key={blog._id}
-    blogItem={blog as any}
+    blogItem={blog}
   />
 ))}
             </div>

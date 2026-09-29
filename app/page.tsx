@@ -36,31 +36,10 @@ export default function Home() {
       {/* HERO AREA */}
       {/* ------------------------------------------------ */}
 
-      <section
-        className="
-          flex
-          w-full
-          flex-col
-          items-center
-          justify-center
-          overflow-hidden
-          md:px-6
-        "
-      >
+      <section className=" flex w-full flex-col items-center justify-center overflow-hidden md:px-6">
         {/* MOBILE HERO */}
 
-        <div
-          className="
-            flex
-            w-full
-            items-center
-            justify-center
-            bg-[url('/Hero-map.png')]
-            bg-cover
-            bg-no-repeat
-            lg:hidden
-          "
-        >
+        <div className=" flex w-full items-center justify-center bg-[url('/Hero-map.png')] bg-cover bg-no-repeat lg:hidden " >
           <MotionReveal y={25} duration={0.8} className="w-full">
             <HeroSection />
           </MotionReveal>
@@ -176,10 +155,7 @@ export default function Home() {
 
       <MotionReveal y={55} duration={0.85} className="w-full">
         <CybersecurityLanding />
-            <AITrainingLanding/>
-
-        <ClientSection />
-        <TestimonialSection />
+        <AITrainingLanding />
       </MotionReveal>
 
       {/* ------------------------------------------------ */}
@@ -204,6 +180,7 @@ export default function Home() {
 
       <MotionReveal y={50} duration={0.85} className="w-full">
         <SecondSection />
+        <TestimonialSection />
       </MotionReveal>
 
       {/* ------------------------------------------------ */}
@@ -219,6 +196,7 @@ export default function Home() {
       {/* ------------------------------------------------ */}
 
       <MotionReveal y={45} duration={0.8} className="w-full">
+        <ClientSection />
         <Technologies />
       </MotionReveal>
 

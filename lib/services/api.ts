@@ -1549,51 +1549,72 @@ export const ForCompaniesPageAPI = {
       throw error;
     }
   },
-  getAllSkills: async (query: string) => {
-    try {
-      const response = await apiRequest(`/skills?q=${query}`, {
+getAllSkills: async (query: string) => {
+  try {
+    const response = await apiRequest(
+      `/get-skills?q=${encodeURIComponent(query)}`,
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      });
-      if (!response) {
-        throw new Error("Skills are not fetched");
       }
-      return response;
-    } catch (error) {
-      throw error;
+    );
+
+    if (!response) {
+      throw new Error("Skills are not fetched");
     }
-  },
-  getAllCountriesList: async (query: string) => {
-    try {
-      const response = await apiRequest(`/country-cities?country=${query}`, {
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+},
+getAllCountriesList: async (query: string) => {
+  try {
+    const response = await apiRequest(
+      `/get-countries?q=${encodeURIComponent(query)}`,
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      });
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  },
-  getAllTimeZones: async (query: string) => {
-    try {
-      const response = await apiRequest(`/timeZones?q=${query}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response) {
-        throw new Error("Time Zones are not fetched");
       }
-      return response;
-    } catch (error) {
-      throw error;
+    );
+
+    if (!response) {
+      throw new Error("Countries are not fetched");
     }
-  },
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+},
+  
+getAllTimeZones: async (query: string) => {
+  try {
+    const response = await apiRequest(
+      `/get-timezones?q=${encodeURIComponent(query)}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response) {
+      throw new Error(
+        "Time zones are not fetched"
+      );
+    }
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+},
 };
 
 let technologyRoutesCache: DynamicRoutes[] | null = null;
