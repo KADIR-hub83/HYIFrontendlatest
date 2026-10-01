@@ -21,8 +21,8 @@ import CaseStudy_03 from "@/assets/landingPage/images/CaseStudy-03.png";
 // import testimonials_05 from "@/assets/landingPage/images/testimonials-05.png";
 // import testimonials_06 from "@/assets/landingPage/images/testimonials-06.png";
 
-import testimonials_01 from "@/assets/landingPage/images/test-01.png";
-import testimonials_02 from "@/assets/landingPage/images/test-02.png";
+import testimonials_01 from "@/assets/landingPage/images/test-01.avif";
+import testimonials_02 from "@/assets/landingPage/images/test-02.avif";
 import testimonials_03 from "@/assets/landingPage/images/test-03.png";
 import testimonials_04 from "@/assets/landingPage/images/test-04.png";
 import testimonials_05 from "@/assets/landingPage/images/testimonials-05.png";
