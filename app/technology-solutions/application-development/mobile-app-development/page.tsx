@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, type ReactNode } from "react";
+
+import {
+  motion,
+  AnimatePresence,
+  type Variants,
+} from "framer-motion";
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 
@@ -353,47 +358,103 @@ const developerCategories = [
 ];
 
 /* =========================================================
-   Motion variants
+   MOTION VARIANTS
 ========================================================= */
-const easeOut = [0.16, 1, 0.3, 1];
 
-const heroContainer = {
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+const heroContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
 };
 
-const heroItem = {
-  hidden: { opacity: 0, y: 26 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: easeOut } },
+const heroItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 26,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: easeOut,
+    },
+  },
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easeOut,
+    },
+  },
 };
 
-const staggerGrid = {
+const staggerGrid: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
 };
 
-const gridItem = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easeOut } },
+const gridItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 22,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: easeOut,
+    },
+  },
 };
 
-function Reveal({ children, className, variants = fadeUp, as = "div" }) {
-  const Comp = motion[as] ?? motion.div;
+/* =========================================================
+   REVEAL COMPONENT
+========================================================= */
+
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  variants?: Variants;
+}
+
+function Reveal({
+  children,
+  className,
+  variants = fadeUp,
+}: RevealProps) {
   return (
-    <Comp
+    <motion.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{
+        once: true,
+        margin: "-80px",
+      }}
       variants={variants}
     >
       {children}
-    </Comp>
+    </motion.div>
   );
 }
 
@@ -1173,7 +1234,7 @@ export default function MobileAppDevelopmentPage() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl leading-8 text-white/45">
-            Whether it's one specialist for a single sprint or a full team for
+            Whether it&apos;s one specialist for a single sprint or a full team for
             an entire product, every discipline is available to hire on a
             dedicated, project or hourly basis.
           </p>
@@ -1250,10 +1311,10 @@ export default function MobileAppDevelopmentPage() {
         <Reveal className="mt-14 flex flex-col items-center justify-between gap-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-8 text-center sm:flex-row sm:text-left md:p-10">
           <div>
             <p className="text-lg font-medium">
-              Don't see the exact role you need?
+              Don&apos;t see the exact role you need?
             </p>
             <p className="mt-2 text-sm text-white/40">
-              Tell us what the project needs and we'll put the right
+              Tell us what the project needs and we&apos;ll put the right
               specialist, or team, in front of you.
             </p>
           </div>

@@ -1507,7 +1507,7 @@ export default function DevOpsCICDPage() {
           <div className="relative z-10">
             <div className="mx-auto mb-6 w-fit">
               <SectionBadge>
-                Let's Build
+                Let&apos;s Build
               </SectionBadge>
             </div>
 

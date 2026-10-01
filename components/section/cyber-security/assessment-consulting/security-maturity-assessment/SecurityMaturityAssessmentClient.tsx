@@ -2083,7 +2083,7 @@ function MaturityPrinciples() {
             </h2>
 
             <p className="mt-7 max-w-[500px] text-[12px] leading-7 text-white/[0.47]">
-              Maturity should describe the organization's ability to manage
+              Maturity should describe the organization&apos;s ability to manage
               security consistently — not simply count technologies,
               documents or individual controls.
             </p>

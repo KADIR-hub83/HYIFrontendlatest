@@ -956,7 +956,7 @@ function AuditOverview() {
               security controls and understand whether relevant safeguards are
               appropriately designed, implemented and supported by evidence.
               The objective is not simply to produce a list of findings, but to
-              create a clearer picture of the organization's security control
+              create a clearer picture of the organization&apos;s security control
               environment.
             </p>
 
@@ -1245,7 +1245,7 @@ function AuditDomains() {
 
             <p className="mt-7 max-w-[500px] text-[13px] leading-8 text-white/[0.50]">
               Audit scope can span multiple security domains depending on the
-              organization's environment, assessment objectives and relevant
+              organization&apos;s environment, assessment objectives and relevant
               business requirements.
             </p>
           </div>

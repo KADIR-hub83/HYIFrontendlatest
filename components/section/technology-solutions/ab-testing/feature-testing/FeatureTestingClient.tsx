@@ -1593,7 +1593,7 @@ function MetricsSection() {
 
         <p className="mt-8 max-w-[760px] text-[13px] leading-8 text-white/[0.52]">
           The goal is not to search through every available dashboard
-          until one number looks positive. HYI defines the experiment's
+          until one number looks positive. HYI defines the experiment&apos;s
           measurement logic before interpretation begins.
         </p>
 

@@ -410,7 +410,7 @@ export default function EnterpriseApplicationDevelopmentPage() {
           <h2 className="mt-7 text-4xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl">
             Your business is complex.
             <span className="block text-white/25">
-              Your technology shouldn't be.
+              Your technology shouldn&apos;t be.
             </span>
           </h2>
 

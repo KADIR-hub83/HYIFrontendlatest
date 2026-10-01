@@ -801,12 +801,8 @@ export default function CybersecurityLanding() {
 
           <div className="mt-auto pt-10">
             <h3
-              className="
-                text-[18px]
-                font-bold
-                tracking-[-0.02em]
-                text-white
-              "
+              className=" hyi-h4 text-dark_mode-100
+               "
             >
               {item.title}
             </h3>
@@ -815,12 +811,7 @@ export default function CybersecurityLanding() {
               className="
                 mt-2
                 max-w-[280px]
-                text-[14px]
-                leading-[1.55]
-                text-white/55
-                transition-colors
-                duration-300
-                group-hover:text-white/70
+                text-sm text-dark_mode-300
               "
             >
               {item.description}

@@ -24,7 +24,7 @@ export default function DataCatalogSection() {
 
             <p className="mt-7 max-w-[610px] text-[11px] leading-7 text-white/47">
               A data catalog provides an organized, searchable view of an
-              organization's data assets and the metadata needed to understand
+              organization data assets and the metadata needed to understand
               them. A useful catalog connects technical metadata with business
               meaning, ownership, classification, quality and lineage.
             </p>

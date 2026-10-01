@@ -56,7 +56,7 @@ export default function DesignerCTA() {
 
           <div className="mt-12 flex flex-col gap-7 border-t border-white/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-[400px] text-[12px] leading-6 text-white/35">
-              Tell us what you're building. We'll connect you with a designer
+              Tell us what you&apos;re building. We&apos;ll connect you with a designer
               who can help turn it into an exceptional product.
             </p>
 

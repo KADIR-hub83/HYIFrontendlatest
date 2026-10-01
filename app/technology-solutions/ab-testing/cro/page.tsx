@@ -965,7 +965,7 @@ function DiagnosticSystem() {
           </h2>
 
           <p className="self-end text-[13px] leading-8 text-white/[0.52]">
-            HYI's CRO workflow is designed to reduce random testing.
+            HYI&apos;s CRO workflow is designed to reduce random testing.
             Research creates evidence. Evidence creates hypotheses.
             Hypotheses create experiments. Experiments create new
             evidence.
@@ -2592,7 +2592,7 @@ function Manifesto() {
           </span>
 
           <h2 className="mt-10 max-w-[1300px] text-[clamp(3.8rem,7.5vw,8.5rem)] font-semibold leading-[0.82] tracking-[-0.09em]">
-            Don't optimize
+            Don&apos;t optimize
             <span className="block text-white/20">
               pages.
             </span>

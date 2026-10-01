@@ -77,7 +77,7 @@ export default function HYIQualityFramework() {
 
           <div className="lg:pt-12">
             <p className="max-w-[650px] text-[11px] leading-8 text-white/48">
-              HYI's proposed delivery approach treats data quality as an
+              HYI proposed delivery approach treats data quality as an
               operational capability rather than a one-time cleansing
               exercise. The framework connects business expectations with
               profiling, automated validation, monitoring and accountable
@@ -131,7 +131,7 @@ export default function HYIQualityFramework() {
         <p className="mt-6 max-w-[800px] text-[7px] leading-5 text-white/22">
           This section describes a proposed HYI.AI delivery methodology.
           Specific controls, technologies, quality dimensions and operating
-          processes should be adapted to each organization's data environment
+          processes should be adapted to each organization data environment
           and business requirements.
         </p>
       </div>

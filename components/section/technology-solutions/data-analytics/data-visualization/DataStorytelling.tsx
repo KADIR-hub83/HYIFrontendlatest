@@ -46,7 +46,7 @@ export default function DataStorytelling() {
             </span>
 
             <h2 className="mt-7 text-5xl font-medium tracking-[-0.055em] md:text-7xl">
-              Don't show data.
+              Dont show data.
               <span className="block text-white/55">Tell its story.</span>
             </h2>
 

@@ -73,7 +73,7 @@ export default function HYIGovernanceFramework() {
 
           <div className="lg:pt-14">
             <p className="max-w-[640px] text-[12px] leading-8 text-white/52">
-              HYI's proposed governance delivery approach connects business
+              HYI proposed governance delivery approach connects business
               accountability with technical implementation. Instead of treating
               governance as a static policy document, the framework is designed
               around discoverable metadata, measurable quality, clear ownership,
@@ -119,7 +119,7 @@ export default function HYIGovernanceFramework() {
         <p className="mt-6 max-w-[800px] text-[8px] leading-5 text-white/24">
           The framework shown here describes a proposed HYI.AI delivery model.
           Specific governance controls, responsibilities and technology are
-          adapted to each organization's regulatory, operational and data
+          adapted to each organization regulatory, operational and data
           environment.
         </p>
       </div>

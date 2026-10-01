@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
+  Link,
   Orbit,
 } from "lucide-react";
 
@@ -86,7 +87,7 @@ export default function PredictiveAICTA() {
         </p>
 
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
+          <Link
             href="/contact-us"
             className="group flex h-14 items-center gap-3 rounded-full bg-[#F5F0FF] px-8 text-sm font-medium text-black transition duration-300 hover:scale-105"
           >
@@ -95,14 +96,14 @@ export default function PredictiveAICTA() {
               size={16}
               className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
             />
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/technology-solutions/artificial-intelligence"
             className="flex h-14 items-center rounded-full border border-white/10 bg-white/[0.03] px-8 text-sm text-[#E4DDEC]/65 backdrop-blur-xl transition hover:border-violet-400/30 hover:text-white"
           >
             Explore AI Solutions
-          </a>
+          </Link>
         </div>
       </div>
     </section>

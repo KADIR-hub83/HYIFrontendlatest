@@ -8,6 +8,7 @@ import {
   Clock3,
   Radio,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
 
 const activity = [
@@ -16,6 +17,35 @@ const activity = [
   "Support case classified",
   "ERP record synchronized",
   "Approval workflow initiated",
+];
+
+interface AutomationStat {
+  value: string;
+  label: string;
+  Icon: LucideIcon;
+}
+
+const automationStats: AutomationStat[] = [
+  {
+    value: "128",
+    label: "ACTIVE FLOWS",
+    Icon: Zap,
+  },
+  {
+    value: "48",
+    label: "AI AGENTS",
+    Icon: Bot,
+  },
+  {
+    value: "99.8%",
+    label: "SUCCESS",
+    Icon: CircleCheck,
+  },
+  {
+    value: "18ms",
+    label: "RESPONSE",
+    Icon: Clock3,
+  },
 ];
 
 export default function AutomationCommandCenter() {
@@ -34,12 +64,17 @@ export default function AutomationCommandCenter() {
         </h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
           whileInView={{
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           className="mt-20 overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#060609]"
         >
           <div className="flex flex-wrap items-center justify-between gap-5 border-b border-white/[0.07] px-6 py-5">
@@ -64,12 +99,7 @@ export default function AutomationCommandCenter() {
           <div className="grid lg:grid-cols-[1fr_360px]">
             <div className="border-white/[0.07] p-6 md:p-9 lg:border-r">
               <div className="grid gap-3 md:grid-cols-4">
-                {[
-                  ["128", "ACTIVE FLOWS", Zap],
-                  ["48", "AI AGENTS", Bot],
-                  ["99.8%", "SUCCESS", CircleCheck],
-                  ["18ms", "RESPONSE", Clock3],
-                ].map(([value, label, Icon]: any) => (
+                {automationStats.map(({ value, label, Icon }) => (
                   <div
                     key={label}
                     className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5"

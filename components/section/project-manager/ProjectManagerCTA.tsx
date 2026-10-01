@@ -50,8 +50,8 @@ export default function ProjectManagerCTA() {
 
           <div className="mt-12 flex flex-col gap-8 border-t border-white/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-[420px] hyi-p hyi-gray leading-6 text-white/35">
-              Tell us what you're delivering and where the complexity is.
-              We'll connect you with project leadership built for the challenge.
+              Tell us what you&apos;re delivering and where the complexity is.
+              We&apos;ll connect you with project leadership built for the challenge.
             </p>
 
             <button className="group flex h-14 w-fit items-center gap-5 rounded-full bg-white pl-7 pr-3 text-[11px] font-semibold text-black transition hover:bg-[#a78bfa]">

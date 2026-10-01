@@ -2,11 +2,11 @@
 "use client";
 
 // React Imports
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 // Next Imports
 import Link from "next/link";
-import Image from "next/image";
+
 
 // Lib Import
 import { cn } from "@/lib/utils";
@@ -250,15 +250,57 @@ const LinkList = ({
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Check if any menu item has children
   const hasAnyChildren = links.some(
     (item) => item.children && item.children.length > 0
   );
+
+  useEffect(() => {
+    if (!hasAnyChildren) {
+      setShowScrollHint(false);
+      return;
+    }
+
+    const element = scrollRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const checkScroll = () => {
+      const hasOverflow =
+        element.scrollHeight > element.clientHeight;
+
+      const isAtBottom =
+        element.scrollTop + element.clientHeight >=
+        element.scrollHeight - 8;
+
+      setShowScrollHint(hasOverflow && !isAtBottom);
+    };
+
+    checkScroll();
+
+    element.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+
+    return () => {
+      element.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [hasAnyChildren, links]);
+
+  // ======================================================
+  // EMPTY LINKS
+  // ======================================================
+
+  if (!links.length) {
+    return null;
+  }
 
   // ======================================================
   // DIRECT LINKS — HIRE TALENT
   // 4 LEFT + 4 RIGHT
   // ======================================================
+
   if (!hasAnyChildren) {
     const splitIndex = Math.ceil(links.length / 2);
 
@@ -266,9 +308,9 @@ const LinkList = ({
     const rightLinks = links.slice(splitIndex);
 
     return (
-      <div className="w-full grid grid-cols-2 gap-x-8">
+      <div className="grid w-full grid-cols-2 gap-x-8">
         {/* LEFT COLUMN */}
-        <div className="flex flex-col gap-1 pr-5 border-r border-white/10">
+        <div className="flex flex-col gap-1 border-r border-white/10 pr-5">
           {leftLinks.map((link, index) => (
             <NavLink
               key={`${link.label}-left-${index}`}
@@ -296,75 +338,25 @@ const LinkList = ({
   // CHILD MENU — TECHNOLOGY / CYBER SECURITY ETC.
   // ======================================================
 
-  React.useEffect(() => {
-    const element = scrollRef.current;
-
-    if (!element) return;
-
-    const checkScroll = () => {
-      const hasOverflow =
-        element.scrollHeight > element.clientHeight;
-
-      const isAtBottom =
-        element.scrollTop + element.clientHeight >=
-        element.scrollHeight - 8;
-
-      setShowScrollHint(hasOverflow && !isAtBottom);
-    };
-
-    checkScroll();
-
-    element.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-
-    return () => {
-      element.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, [links]);
-
-  if (!links.length) return null;
-
   return (
-    <div
-      className="
-        w-full
-        grid
-        grid-cols-[320px_minmax(0,1fr)]
-        gap-5
-
-        h-[390px]
-        max-h-[390px]
-      "
-    >
+    <div className="grid h-[390px] max-h-[390px] w-full grid-cols-[320px_minmax(0,1fr)] gap-5">
       {/* ==================================================
           LEFT SIDE
       ================================================== */}
-      <div
-        className="
-          relative
-          h-full
-          min-h-0
 
-          border-r
-          border-white/10
-
-          pr-4
-        "
-      >
+      <div className="relative h-full min-h-0 border-r border-white/10 pr-4">
         {/* SCROLLABLE MENU */}
+
         <div
           ref={scrollRef}
           className="
             h-full
-            overflow-y-auto
             overflow-x-hidden
-
+            overflow-y-auto
             pr-1
-
             scrollbar-thin
-            scrollbar-thumb-white/20
             scrollbar-track-transparent
+            scrollbar-thumb-white/20
           "
         >
           <ul
@@ -379,9 +371,7 @@ const LinkList = ({
                 key={`${link.label}-${index}`}
                 link={link}
                 className={linksItemClassName}
-                isActive={
-                  activeParent?.href === link.href
-                }
+                isActive={activeParent?.href === link.href}
                 onActivate={setActiveParent}
               />
             ))}
@@ -389,30 +379,25 @@ const LinkList = ({
         </div>
 
         {/* SCROLL INDICATOR */}
+
         {showScrollHint && (
           <div
             className="
               pointer-events-none
-
               absolute
               bottom-0
               left-0
               right-4
-
-              h-[75px]
-
+              z-20
               flex
+              h-[75px]
               items-end
               justify-center
-
-              pb-2
-
               bg-gradient-to-t
               from-black
               via-black/95
               to-transparent
-
-              z-20
+              pb-2
             "
           >
             <div
@@ -420,33 +405,24 @@ const LinkList = ({
                 flex
                 items-center
                 gap-1.5
-
-                px-3
-                py-1.5
-
                 rounded-full
-
                 border
                 border-white/10
-
                 bg-white/[0.06]
-                backdrop-blur-md
-
+                px-3
+                py-1.5
                 text-[11px]
                 font-medium
                 text-white/60
-
                 shadow-lg
+                backdrop-blur-md
               "
             >
               <span>Scroll for more</span>
 
               <ChevronDown
                 size={14}
-                className="
-                  text-white/60
-                  animate-bounce
-                "
+                className="animate-bounce text-white/60"
               />
             </div>
           </div>
@@ -456,13 +432,8 @@ const LinkList = ({
       {/* ==================================================
           RIGHT SIDE CHILDREN
       ================================================== */}
-      <div
-        className="
-          h-full
-          min-w-0
-          overflow-hidden
-        "
-      >
+
+      <div className="h-full min-w-0 overflow-hidden">
         <ChildPanel parent={activeParent} />
       </div>
     </div>

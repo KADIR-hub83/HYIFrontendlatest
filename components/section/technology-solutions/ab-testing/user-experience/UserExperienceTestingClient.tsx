@@ -1306,8 +1306,8 @@ function UXIntroduction() {
 
 
             <p className="mt-6 text-[14px] leading-8 text-white/[0.48]">
-              This matters because the product team's mental model is not
-              automatically the user's mental model. Designers and
+              This matters because the product team&apos;s mental model is not
+              automatically the user&apos;s mental model. Designers and
               engineers know how the system was built. Users arrive with
               expectations created by previous experiences, language,
               context and their immediate goal.
@@ -1507,7 +1507,7 @@ function UXDimensions() {
         <p className="mt-8 max-w-[780px] text-[13px] leading-8 text-white/[0.52]">
           A beautiful interface can still be difficult to understand.
           User experience testing evaluates whether the product supports
-          the user's goal across multiple dimensions.
+          the user&apos;s goal across multiple dimensions.
         </p>
 
 
@@ -1576,7 +1576,7 @@ function TaskJourney() {
 
           <p className="self-end text-[13px] leading-8 text-white/[0.5]">
             A product may be organized around internal features while a
-            user thinks in goals. Task-based testing follows the user's
+            user thinks in goals. Task-based testing follows the user&apos;s
             objective across the interface.
           </p>
 

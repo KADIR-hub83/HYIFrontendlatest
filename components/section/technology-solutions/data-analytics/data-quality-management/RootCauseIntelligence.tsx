@@ -60,7 +60,7 @@ export default function RootCauseIntelligence() {
             </h2>
 
             <p className="mt-7 max-w-[500px] text-[10px] leading-7 text-white/42">
-              Correcting a bad record may solve today's problem while leaving
+              Correcting a bad record may solve today problem while leaving
               the underlying defect untouched. Sustainable quality management
               investigates where problems originate and how they propagate
               through the data estate.

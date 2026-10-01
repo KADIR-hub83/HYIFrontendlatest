@@ -50,7 +50,7 @@ export default function DeliveryWorkflow() {
 
           <div className="flex items-end lg:justify-end">
             <p className="max-w-[400px] hyi-p">
-              Good project management isn't more meetings. It's the right
+              Good project management isn&apos;t more meetings. It&apos;s the right
               information, decisions and people connecting at the right time.
             </p>
           </div>

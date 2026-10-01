@@ -76,7 +76,7 @@ export default function AITrainingLanding() {
             transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 hyi-h1 hyi-white"
           >
-            <span className="block">Don't just learn AI.</span>
+            <span className="block">Don&apos;t just learn AI.</span>
             <span
               className="block"
             >
@@ -213,83 +213,250 @@ export default function AITrainingLanding() {
       {/* =====================================================
           LARGE IMAGE / MESSAGE SECTION
       \====================================================== */}
-      <section
-        className="relative  overflow-hidden "
-      >
-        {/* Managed talent background */}
-        <img
-          src="/managed-talent-pool.png"
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-100"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#030304] via-[#030304]/70 to-[#030304]/35"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#030304] via-transparent to-[#030304]"
-        />
-        <div
-          className="relative z-10 mx-auto flex min-h-[720px] max-w-[1500px] items-center px-5 sm:px-8 lg:px-12 xl:px-16"
-        >
-     <motion.div
-  initial={{ opacity: 0, y: 30 }}
+{/* =====================================================
+    FROM UNDERSTANDING AI TO BUILDING WITH IT
+====================================================== */}
+<section className="relative overflow-hidden bg-[#030304]">
+  {/* Background glow */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046ff]/[0.07] blur-[180px]" />
+
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:80px_80px]" />
+  </div>
+
+  <div className="relative z-10 mx-auto max-w-[1500px] px-5 py- sm:px-10 lg:px-20">
+    {/* Section heading */}
+<motion.div
+  initial={{ opacity: 0, y: 25 }}
   whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.3 }}
-  transition={{ duration: 0.8 }}
-  className="max-w-[1000px]"
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.7 }}
+  className="mb-14 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16"
 >
-  <h2 className="mt-7 font-bold hyi-h1 hyi-white">
-    From understanding AI
-    <span className="block">to building with it.</span>
-  </h2>
+  {/* Left - Heading */}
+  <div className="w-full lg:w-[45%]">
+    <h2 className="hyi-h1 hyi-white">
+      From understanding AI
+      <span className="block text-white/30">
+        to building with it.
+      </span>
+    </h2>
+  </div>
 
-  <p className="mt-8 max-w-[900px] hyi-p">
-    Artificial Intelligence is no longer just an emerging technology — it is
-    becoming a fundamental part of how businesses operate, developers build,
-    professionals work, and organizations solve complex problems. Understanding
-    AI is important, but understanding alone is not enough. The real opportunity
-    begins when you learn how to apply AI to practical challenges, workflows,
-    products, and real-world ideas.
-  </p>
-
-  <p className="mt-6 max-w-[900px] hyi-p">
-    Our AI training is designed to take learners beyond basic concepts and
-    introduce them to a practical, application-focused learning experience.
-    You will explore how modern AI systems work, how Generative AI can be used
-    effectively, how better prompts can produce better outcomes, and how AI can
-    become part of everyday digital workflows.
-  </p>
-
-  <p className="mt-6 max-w-[900px] hyi-p">
-    The learning journey moves progressively from fundamentals to practical
-    implementation. Instead of simply reading about Artificial Intelligence,
-    learners work with modern AI tools, experiment with different approaches,
-    understand their capabilities and limitations, and discover how AI can be
-    applied across technology, productivity, automation, research, creativity,
-    business operations, and digital innovation.
-  </p>
-
-  <p className="mt-6 max-w-[900px] hyi-p">
-    Through hands-on exercises and practical projects, learners develop the
-    confidence to move from asking AI simple questions to using it as a powerful
-    tool for problem solving. You will learn how to structure effective prompts,
-    improve AI-generated results, automate repetitive processes, analyze
-    information, accelerate workflows, and transform ideas into practical
-    AI-powered solutions.
-  </p>
-
-
-
-
-
-  <p className="mt-8 max-w-[900px] text-[18px] font-medium leading-[1.8] text-white/80 sm:text-[20px]">
-    Learn the technology. Understand its possibilities. Build practical skills.
-    Experiment with real tools. Create meaningful solutions. And prepare
-    yourself to build with the technology shaping what comes next.
-  </p>
+  {/* Right - Description */}
+  <div className="w-full lg:flex lg:w-[48%] lg:justify-end">
+    <p className="max-w-[680px] hyi-p">
+      Move beyond understanding Artificial Intelligence and learn how
+      to apply it across real workflows, products, automation,
+      creativity, research and digital innovation.
+    </p>
+  </div>
 </motion.div>
+
+    {/* Main grid */}
+    <div className="grid gap-4 lg:grid-cols-2">
+      {/* Large visual card */}
+      <motion.div
+        initial={{ opacity: 0, x: -25 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7 }}
+        className="group relative min-h-[520px] overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#08080b]"
+      >
+        {/* Image */}
+        <img
+          src="/KPI-Bg.png"
+          alt="AI training and practical learning"
+          className="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+
+        {/* Image overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/45 to-transparent" />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#7046ff]/10 to-transparent" />
+
+        {/* Content */}
+        <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8 lg:p-10">
+          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.1] bg-black/40 backdrop-blur-md">
+            <ArrowUpRight
+              size={18}
+              className="text-[#9d80ff]"
+            />
+          </div>
+
+          <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#9d80ff]/70">
+            Learn • Experiment • Build
+          </p>
+
+          <h3 className="max-w-[500px] hyi-h2 hyi-white font-bold">
+            Turn AI knowledge into
+            <span className="block ">
+              practical experience.
+            </span>
+          </h3>
+
+          <p className="mt-5 max-w-[540px] hyi-p">
+            Work with modern AI tools, explore their capabilities and
+            limitations, and learn how Artificial Intelligence can
+            solve practical problems across real-world environments.
+          </p>
         </div>
-      </section>
+      </motion.div>
+
+      {/* Right cards */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        {/* Card 01 */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="group relative min-h-[250px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-[#10101a] via-[#09090e] to-[#050507] p-6 transition-all duration-300 hover:border-[#7046ff]/30 sm:p-7"
+        >
+          <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#7046ff]/20 blur-[70px]" />
+
+          <div className="relative z-10 flex h-full flex-col justify-between">
+            <span className="font-mono text-[9px] text-white/25">
+              01
+            </span>
+
+            <div>
+              <h3 className="text-[21px] font-bold hyi-h2 hyi-white">
+                Understand Modern AI
+              </h3>
+
+              <p className="mt-4 hyi-p">
+                Explore how modern AI systems and Generative AI work,
+                where they are useful, and how they can become part of
+                everyday digital workflows.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Card 02 */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.08 }}
+          className="group relative min-h-[250px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-[#10101a] via-[#09090e] to-[#050507] p-6 transition-all duration-300 hover:border-[#7046ff]/30 sm:p-7"
+        >
+          <div className="pointer-events-none absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-[#7046ff]/15 blur-[70px]" />
+
+          <div className="relative z-10 flex h-full flex-col justify-between">
+            <span className="font-mono text-[9px] text-white/25">
+              02
+            </span>
+
+            <div>
+              <h3 className="font-bold  hyi-white hyi-h3">
+                Learn By Doing
+              </h3>
+
+              <p className="mt-4 hyi-p">
+                Move from theory to implementation through hands-on
+                exercises, experiments and practical challenges using
+                modern AI tools.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Card 03 */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.12 }}
+          className="group relative min-h-[250px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-[#10101a] via-[#09090e] to-[#050507] p-6 transition-all duration-300 hover:border-[#7046ff]/30 sm:p-7"
+        >
+          <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-full bg-[#7046ff]/10 blur-[60px]" />
+
+          <div className="relative z-10 flex h-full flex-col justify-between">
+            <span className="font-mono text-[9px] text-white/25">
+              03
+            </span>
+
+            <div>
+              <h3 className="font-bold hyi-h3 hyi-white">
+                Build Smarter Workflows
+              </h3>
+
+              <p className="mt-4 hyi-p">
+                Structure better prompts, automate repetitive
+                processes, analyze information and accelerate
+                everyday workflows with AI.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Card 04 */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.16 }}
+          className="group relative min-h-[250px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-[#151124] via-[#0c0a13] to-[#050507] p-6 transition-all duration-300 hover:border-[#7046ff]/40 sm:p-7"
+        >
+          <div className="pointer-events-none absolute bottom-[-50px] right-[-30px] h-44 w-44 rounded-full bg-[#7046ff]/25 blur-[75px]" />
+
+          <div className="relative z-10 flex h-full flex-col justify-between">
+            <span className="font-mono text-[9px] text-[#9d80ff]/60">
+              04
+            </span>
+
+            <div>
+              <h3 className="font-bold hyi-h3 hyi-white">
+                Create Real Solutions
+              </h3>
+
+              <p className="mt-4 hyi-p">
+                Transform ideas into practical AI-powered solutions
+                across technology, productivity, research,
+                creativity and business operations.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+
+    {/* Bottom statement */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7 }}
+      className="mt-4 overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.025]"
+    >
+      <div className="grid lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="p-6 sm:p-8 lg:p-10">
+          <p className="max-w-[950px] font-bold hyi-h3">
+            Learn the technology. Understand its possibilities. Build
+            practical skills. Experiment with real tools. Create
+            meaningful solutions.
+            <span className="">
+              {" "}
+              And prepare yourself to build with the technology
+              shaping what comes next.
+            </span>
+          </p>
+        </div>
+
+        <div className="hidden h-full w-[180px] border-l border-white/[0.07] lg:flex lg:items-center lg:justify-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#7046ff]/25 bg-[#7046ff]/10">
+            <ArrowUpRight
+              size={20}
+              className="text-[#9d80ff]"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
       {/* =====================================================
           STATS
       \====================================================== */}

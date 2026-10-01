@@ -1,48 +1,52 @@
 "use client";
 
-import { useEffect } from "react";
+import {
+  createElement,
+  useEffect,
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+} from "react";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "model-viewer": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        src?: string;
-        alt?: string;
-        loading?: "auto" | "lazy" | "eager";
-        "camera-controls"?: boolean;
-        "auto-rotate"?: boolean;
-        "auto-rotate-delay"?: string;
-        "rotation-per-second"?: string;
-        "interaction-prompt"?: "auto" | "none";
-        "shadow-intensity"?: string;
-        "shadow-softness"?: string;
-        exposure?: string;
-        "environment-image"?: string;
-        "camera-orbit"?: string;
-        "field-of-view"?: string;
-      };
-    }
-  }
+interface ModelViewerProps
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLElement>,
+    HTMLElement
+  > {
+  src?: string;
+  alt?: string;
+  loading?: "auto" | "lazy" | "eager";
+  "camera-controls"?: boolean;
+  "auto-rotate"?: boolean;
+  "auto-rotate-delay"?: string;
+  "rotation-per-second"?: string;
+  "interaction-prompt"?: "auto" | "none";
+  "shadow-intensity"?: string;
+  "shadow-softness"?: string;
+  exposure?: string;
+  "environment-image"?: string;
+  "camera-orbit"?: string;
+  "field-of-view"?: string;
+}
+
+function ModelViewer(props: ModelViewerProps) {
+  return createElement("model-viewer", props);
 }
 
 export default function UiUx3DModel() {
   useEffect(() => {
-    import("@google/model-viewer");
+    void import("@google/model-viewer");
   }, []);
 
   return (
     <div className="relative min-h-[620px] w-full overflow-hidden sm:min-h-[700px] lg:min-h-[780px]">
-      {/* background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-[#07070A]" />
 
       <div className="absolute left-1/2 top-[48%] h-[500px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[150px]" />
 
       <div className="absolute left-[8%] top-[18%] h-[260px] w-[260px] rounded-full bg-violet-600/10 blur-[110px]" />
 
-      <div className="absolute right-[8%] bottom-[8%] h-[280px] w-[280px] rounded-full bg-fuchsia-600/10 blur-[130px]" />
+      <div className="absolute bottom-[8%] right-[8%] h-[280px] w-[280px] rounded-full bg-fuchsia-600/10 blur-[130px]" />
 
       <div
         className="absolute inset-0 opacity-[0.07]"
@@ -56,8 +60,9 @@ export default function UiUx3DModel() {
       {/* ======================================================
           3D LAPTOP
       ====================================================== */}
+
       <div className="absolute inset-0 z-10">
-        <model-viewer
+        <ModelViewer
           src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Assets/Models/Laptop/glTF-Binary/Laptop.glb"
           alt="Interactive 3D laptop for UI UX and coding"
           camera-controls
@@ -81,17 +86,24 @@ export default function UiUx3DModel() {
 
       {/* ======================================================
           FAKE SCREEN CONTENT - CODING + UI/UX
-          Positioned over laptop display
       ====================================================== */}
+
       <div
         className="
           pointer-events-none
-          absolute left-1/2 top-[42%] z-20
+          absolute
+          left-1/2
+          top-[42%]
+          z-20
           hidden
-          h-[250px] w-[410px]
-          -translate-x-1/2 -translate-y-1/2
-          overflow-hidden rounded-[14px]
-          border border-white/10
+          h-[250px]
+          w-[410px]
+          -translate-x-1/2
+          -translate-y-1/2
+          overflow-hidden
+          rounded-[14px]
+          border
+          border-white/10
           bg-[#090A10]/95
           shadow-[0_0_80px_rgba(124,58,237,.25)]
           lg:block
@@ -101,7 +113,8 @@ export default function UiUx3DModel() {
             "translate(-50%, -50%) perspective(900px) rotateX(1deg)",
         }}
       >
-        {/* editor top bar */}
+        {/* Editor Top Bar */}
+
         <div className="flex h-9 items-center border-b border-white/[0.07] bg-[#11121A] px-3">
           <div className="flex gap-1.5">
             <span className="h-2 w-2 rounded-full bg-red-400" />
@@ -121,7 +134,8 @@ export default function UiUx3DModel() {
         </div>
 
         <div className="grid h-[calc(100%-36px)] grid-cols-[42%_58%]">
-          {/* code editor */}
+          {/* Code Editor */}
+
           <div className="border-r border-white/[0.06] bg-[#090A0F] p-3 font-mono text-[7px] leading-[1.7]">
             <p className="text-purple-300">
               const <span className="text-blue-300">Dashboard</span> = () =&gt;{" "}
@@ -160,17 +174,20 @@ export default function UiUx3DModel() {
             <p className="text-purple-300">{"};"}</p>
 
             <div className="mt-4 space-y-1.5">
-              {[82, 62, 75, 48].map((w) => (
+              {[82, 62, 75, 48].map((width) => (
                 <div
-                  key={w}
+                  key={width}
                   className="h-[3px] rounded-full bg-white/[0.05]"
-                  style={{ width: `${w}%` }}
+                  style={{
+                    width: `${width}%`,
+                  }}
                 />
               ))}
             </div>
           </div>
 
-          {/* UI UX preview */}
+          {/* UI / UX Preview */}
+
           <div className="bg-gradient-to-br from-[#171022] to-[#08080B] p-3">
             <div className="flex items-center justify-between">
               <div>
@@ -187,10 +204,15 @@ export default function UiUx3DModel() {
             </div>
 
             <div className="mt-4 rounded-xl border border-purple-400/15 bg-purple-500/10 p-3">
-              <p className="text-[6px] text-white/35">Engagement</p>
+              <p className="text-[6px] text-white/35">
+                Engagement
+              </p>
 
               <div className="mt-1 flex items-end justify-between">
-                <span className="text-xl font-semibold">87%</span>
+                <span className="text-xl font-semibold">
+                  87%
+                </span>
+
                 <span className="text-[6px] text-green-300">
                   +12.8%
                 </span>
@@ -200,9 +222,11 @@ export default function UiUx3DModel() {
                 {[30, 48, 39, 60, 53, 77, 66, 91].map(
                   (height, index) => (
                     <div
-                      key={index}
+                      key={`${height}-${index}`}
                       className="flex-1 rounded-t-sm bg-gradient-to-t from-purple-700 to-purple-300"
-                      style={{ height: `${height}%` }}
+                      style={{
+                        height: `${height}%`,
+                      }}
                     />
                   )
                 )}
@@ -211,20 +235,31 @@ export default function UiUx3DModel() {
 
             <div className="mt-3 grid grid-cols-2 gap-2">
               <div className="rounded-lg bg-white/[0.04] p-2">
-                <p className="text-[6px] text-white/25">Users</p>
-                <p className="mt-1 text-[10px] font-semibold">12.8K</p>
+                <p className="text-[6px] text-white/25">
+                  Users
+                </p>
+
+                <p className="mt-1 text-[10px] font-semibold">
+                  12.8K
+                </p>
               </div>
 
               <div className="rounded-lg bg-white/[0.04] p-2">
-                <p className="text-[6px] text-white/25">Rating</p>
-                <p className="mt-1 text-[10px] font-semibold">4.9</p>
+                <p className="text-[6px] text-white/25">
+                  Rating
+                </p>
+
+                <p className="mt-1 text-[10px] font-semibold">
+                  4.9
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* top-left glass card */}
+      {/* Top Left Glass Card */}
+
       <div className="pointer-events-none absolute left-5 top-10 z-30 hidden rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-xl md:block lg:left-10">
         <p className="text-[9px] uppercase tracking-[0.25em] text-purple-300">
           UI / UX Workspace
@@ -241,7 +276,8 @@ export default function UiUx3DModel() {
         </div>
       </div>
 
-      {/* right glass card */}
+      {/* Right Glass Card */}
+
       <div className="pointer-events-none absolute right-5 top-16 z-30 hidden rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-xl md:block lg:right-10">
         <p className="text-[9px] uppercase tracking-[0.25em] text-white/30">
           Development
@@ -260,7 +296,8 @@ export default function UiUx3DModel() {
         </div>
       </div>
 
-      {/* bottom-left */}
+      {/* Bottom Left */}
+
       <div className="pointer-events-none absolute bottom-14 left-5 z-30 hidden rounded-2xl border border-white/10 bg-black/40 px-5 py-4 backdrop-blur-xl md:block lg:left-10">
         <p className="text-[9px] uppercase tracking-[0.25em] text-white/30">
           Live workflow
@@ -271,7 +308,8 @@ export default function UiUx3DModel() {
         </p>
       </div>
 
-      {/* bottom-right */}
+      {/* Bottom Right */}
+
       <div className="pointer-events-none absolute bottom-14 right-5 z-30 hidden rounded-2xl border border-white/10 bg-black/40 px-5 py-4 backdrop-blur-xl md:block lg:right-10">
         <p className="text-[9px] uppercase tracking-[0.25em] text-white/30">
           Interactive model

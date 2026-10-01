@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
@@ -53,7 +54,7 @@ export default function SecurityCTA({
             {service.closing.description}
           </p>
 
-          <a
+          <Link
             href="/talk-to-our-expert"
             className="group mx-auto mt-10 inline-flex items-center gap-4 rounded-full bg-[#7046e6] px-7 py-4 text-[13px] font-medium text-white transition hover:bg-[#8059eb]"
           >
@@ -63,7 +64,7 @@ export default function SecurityCTA({
               size={15}
               className="transition-transform group-hover:translate-x-1"
             />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

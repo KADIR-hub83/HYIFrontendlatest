@@ -24,7 +24,7 @@ export default function StreamingEngine() {
           </span>
 
           <h2 className="mx-auto mt-7 max-w-[1100px] text-5xl font-medium tracking-[-0.055em] md:text-8xl">
-            Data doesn't wait.
+            Data doesn&apos;t wait.
             <span className="block text-white/50">Neither should your systems.</span>
           </h2>
         </div>

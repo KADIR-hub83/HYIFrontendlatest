@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+
 import type { EndpointService } from "./endpointServices";
 
 export default function EndpointCTA({
@@ -50,14 +52,14 @@ export default function EndpointCTA({
             {service.ctaText}
           </p>
 
-          <a
+          <Link
             href="/talk-to-our-expert"
             className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-[11px] font-medium text-black"
           >
             Talk to our experts
 
             <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

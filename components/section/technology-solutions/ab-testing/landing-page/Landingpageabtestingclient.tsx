@@ -1173,31 +1173,40 @@ function useReducedMotion(): boolean {
 }
 
 /** Fires once when the element first enters the viewport. */
+/** Fires once when the element first enters the viewport. */
 function useInView<T extends HTMLElement>(
   threshold = 0.25
-): [React.RefObject<T>, boolean] {
-  const ref = useRef<T>(null);
+): [React.RefObject<T | null>, boolean] {
+  const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
+
     if (!node || typeof IntersectionObserver === "undefined") {
       setInView(true);
       return;
     }
-    const obs = new IntersectionObserver(
+
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setInView(true);
-            obs.disconnect();
+            observer.disconnect();
           }
         });
       },
-      { threshold }
+      {
+        threshold,
+      }
     );
-    obs.observe(node);
-    return () => obs.disconnect();
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
   }, [threshold]);
 
   return [ref, inView];

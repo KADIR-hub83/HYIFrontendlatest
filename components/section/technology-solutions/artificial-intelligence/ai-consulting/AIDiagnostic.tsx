@@ -36,7 +36,7 @@ export default function AIDiagnostic() {
 
           <p className="max-w-[540px] text-[14px] leading-7 text-white/34 lg:justify-self-end">
             Before investing in models and platforms, understand the
-            organization's strategy, data, technology, governance, talent and
+            organization&apos;s strategy, data, technology, governance, talent and
             operating-model readiness.
           </p>
         </div>

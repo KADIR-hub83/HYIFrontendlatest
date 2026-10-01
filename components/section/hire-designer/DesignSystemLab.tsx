@@ -20,7 +20,7 @@ export default function DesignSystemLab() {
             </h2>
 
             <p className="mt-7 max-w-[380px] text-[12px] leading-6 text-white/40">
-              Your designer doesn't stop at beautiful screens. They create the
+              Your designer doesn&apos;t stop at beautiful screens. They create the
               tokens, components and rules your entire product team can build
               from.
             </p>
