@@ -19,7 +19,7 @@ export default function HeaderLogin() {
         onMouseLeave={() => setDropDownSignup(false)}
       >
         <CustomButton otherCSSProperty="flex items-center gap-1.5 py-2.5 mb-2">
-          Get Started <ChevronDown size={20} className="text-white" />
+          Get Started <ChevronDown size={17} className="text-white" />
         </CustomButton>
         {dropDownSignup && (
           <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black/20 backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">
@@ -95,7 +95,7 @@ export default function HeaderLogin() {
         onMouseLeave={() => setDropDownLogin(false)}
       >
         <ShimmerButton className="flex items-center gap-1.5 px-6 mb-2">
-          Login <ChevronDown size={20} className="text-white" />
+          Login <ChevronDown size={17} className="text-white" />
         </ShimmerButton>
         {dropDownLogin && (
           <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black/20 backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">

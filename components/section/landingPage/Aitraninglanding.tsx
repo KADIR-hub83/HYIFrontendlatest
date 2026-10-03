@@ -113,110 +113,505 @@ export default function AITrainingLanding() {
       {/* =====================================================
           INTRO / LEARNING PHILOSOPHY
       \====================================================== */}
-      <section className="relative overflow-hidden">
-        {/* KPI background */}
-        <img
-          src="/KPI-Bg.png"
-          alt=""
-          className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover opacity-50"
-        />
-        <div
-          className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-10 lg:px-20 mt-10"
+{/* =========================================================
+    SECTION 01 — AI INTELLIGENCE
+========================================================= */}
+
+<section className="relative overflow-hidden bg-black ">
+
+  {/* Background */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5b3df5]/[0.07] blur-[160px]" />
+
+    <div
+      className="absolute inset-0 opacity-[0.12]"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)
+        `,
+        backgroundSize: "80px 80px",
+        maskImage:
+          "radial-gradient(circle at center, black 0%, transparent 72%)",
+        WebkitMaskImage:
+          "radial-gradient(circle at center, black 0%, transparent 72%)",
+      }}
+    />
+  </div>
+
+  <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-10 lg:px-20">
+
+
+
+
+    {/* Main layout */}
+    <div className="grid items-center gap-20 lg:grid-cols-[0.9fr_1.1fr]">
+
+      {/* =====================================================
+          LEFT — BIG TYPOGRAPHY
+      ===================================================== */}
+
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+
+        <span className="text-sm hyi-blue font-bold">
+           Intelligence starts with understanding
+        </span>
+
+        <h2 className="mt-3 hyi-h1 hyi-white font-bold max-w-[800px]">
+          Think
+          <br />
+
+          <span className="opacity-30">
+            beyond
+          </span>{" "}
+
+          <span className="relative">
+            prompts.
+            <span className="absolute bottom-0 left-0 h-[2px] w-full bg-[#7861ff]" />
+          </span>
+        </h2>
+
+        <p className="mt-3 max-w-[570px] hyi-p">
+          Artificial intelligence is more than a tool.
+          It is a new layer of computation, creativity and
+          decision making — and learning how it works changes
+          what you can build with it.
+        </p>
+
+
+        {/* Mini metrics */}
+        {/* <div className="mt-12 grid max-w-[570px] grid-cols-3 border-y border-white/[0.08]">
+
+          {[
+            ["01", "Understand"],
+            ["02", "Experiment"],
+            ["03", "Create"],
+          ].map(([number, title]) => (
+            <div
+              key={number}
+              className="border-r border-white/[0.08] px-4 py-5 first:pl-0 last:border-r-0"
+            >
+              <span className="text-sm hyi-blue">
+                {number}
+              </span>
+
+              <p className="mt-2 text-sm hyi-white">
+                {title}
+              </p>
+            </div>
+          ))}
+
+        </div> */}
+
+      </motion.div>
+
+
+      {/* =====================================================
+          RIGHT — AI CORE
+      ===================================================== */}
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative flex min-h-[520px] items-center justify-center"
+      >
+
+        {/* Large orbit */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 35,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute h-[330px] w-[330px] rounded-full border border-white/[0.08] sm:h-[460px] sm:w-[460px]"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7 }}
-            className="grid gap-12 lg:grid-cols-[0.4fr_1.6fr]"
-          >
-            <div>
-              <p
-                className="font-mono text-[8px] uppercase tracking-[0.22em] text-[#9d80ff]/60"
+          <span className="absolute left-1/2 top-[-4px] h-2 w-2 -translate-x-1/2 rounded-full bg-[#8b6cff] shadow-[0_0_18px_#8b6cff]" />
+
+          <span className="absolute bottom-[12%] right-[4%] h-1.5 w-1.5 rounded-full bg-white/60" />
+        </motion.div>
+
+
+        {/* Second orbit */}
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute h-[250px] w-[250px] rounded-full border border-[#7861ff]/20 sm:h-[360px] sm:w-[360px]"
+        >
+          <span className="absolute right-[-3px] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#7861ff] shadow-[0_0_15px_#7861ff]" />
+        </motion.div>
+
+
+        {/* Core glow */}
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute h-[250px] w-[250px] rounded-full bg-[#6848ff]/20 blur-[100px]"
+        />
+
+
+        {/* Core */}
+        <motion.div
+          animate={{
+            boxShadow: [
+              "0 0 50px rgba(104,72,255,.05)",
+              "0 0 120px rgba(104,72,255,.20)",
+              "0 0 50px rgba(104,72,255,.05)",
+            ],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+          }}
+          className="relative flex h-[190px] w-[190px] items-center justify-center rounded-full border border-white/[0.12] bg-black/90 backdrop-blur-2xl sm:h-[230px] sm:w-[230px]"
+        >
+
+          <div className="absolute inset-6 rounded-full border border-[#7861ff]/20" />
+
+          <div className="relative text-center">
+
+            <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-[#7861ff]/30 bg-[#7861ff]/10">
+              <svg
+                className="h-5 w-5 hyi-bule-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
               >
-                / The learning philosophy
-              </p>
+                <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+                <circle cx="12" cy="12" r="4" />
+              </svg>
             </div>
-            <div>
-              <h2
-                className="max-w-[1100px] text-[48px] font-medium leading-[0.98] tracking-[-0.055em] sm:text-[65px] lg:text-[82px] xl:text-[92px]"
-              >
-                Learn.
-                <span className="text-white/20"> Experiment.</span>
-                <br />
-                <span>
-                  Build. Apply.
-                </span>
-              </h2>
-              <p
-                className="mt-9 max-w-[700px] hyi-p"
-              >
-                AI is best understood by working with it. Every stage of the
-                learning journey moves from understanding concepts to
-                experimenting, building and applying those skills in practical
-                situations.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
+            <p className="text-sm hyi-blue font-bold">
+              AI CORE
+            </p>
+
+            <p className="mt-2 text-sm hyi-white font-bold">
+              Intelligence
+            </p>
+
+          </div>
+
+        </motion.div>
+
+
+        {/* =================================================
+            FLOATING NODE 01
+        ================================================= */}
+
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+          }}
+          className="absolute left-[0%] top-[18%] hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 backdrop-blur-xl sm:block"
+        >
+          <span className="text-sm hyi-blue font-bold">
+            INPUT
+          </span>
+
+          <p className="mt-2 text-sm hyi-white font-bold">
+            Human Intent
+          </p>
+
+          <div className="mt-3 h-1 w-24 overflow-hidden rounded-full bg-white/[0.08]">
+            <motion.div
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="h-full w-1/2 bg-[#7861ff]"
+            />
+          </div>
+        </motion.div>
+
+
+        {/* =================================================
+            FLOATING NODE 02
+        ================================================= */}
+
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+          }}
+          className="absolute bottom-[15%] right-[0%] hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 backdrop-blur-xl sm:block"
+        >
+          <span className="text-sm hyi-blue font-bold">
+            OUTPUT
+          </span>
+
+          <p className="mt-2 text-sm hyi-white font-bold">
+            Useful Intelligence
+          </p>
+
+          <div className="mt-3 flex gap-1">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <motion.span
+                key={item}
+                animate={{
+                  opacity: [0.2, 1, 0.2],
+                }}
+                transition={{
+                  duration: 1.5,
+                  delay: item * 0.12,
+                  repeat: Infinity,
+                }}
+                className="h-1.5 w-1.5 rounded-full bg-[#7861ff]"
+              />
+            ))}
+          </div>
+        </motion.div>
+
+
+
+      </motion.div>
+
+    </div>
+  </div>
+</section>
       {/* =====================================================
           WHAT YOU WILL LEARN
       \====================================================== */}
-      <section className="relative">
-        <div
-          className="mx-auto max-w-[1500px] px-5 py-10 sm:px-10 lg:px-20"
+{/* =========================================================
+    SECTION 02 — AI CAPABILITY MATRIX
+========================================================= */}
+
+<section className="relative overflow-hidden bg-black ">
+
+  <div className="mx-auto max-w-[1500px] px-5 sm:px-10 lg:px-20">
+
+    {/* =====================================================
+        HEADER
+    ===================================================== */}
+
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+      className="grid gap-10  lg:grid-cols-[0.8fr_1.2fr]"
+    >
+
+      <div>
+        <h2 className="mt-3 hyi-h1 hyi-white">
+          Build your
+          <br />
+
+          <span className="opacity-25">
+            AI advantage.
+          </span>
+        </h2>
+
+      </div>
+
+
+      <div className="flex items-end">
+
+        <p className="max-w-[650px] hyi-p">
+          A practical path through the technologies,
+          systems and skills that are shaping the next
+          generation of digital work.
+        </p>
+
+      </div>
+
+    </motion.div>
+
+
+    {/* =====================================================
+        CAPABILITY GRID
+    ===================================================== */}
+
+    <div className="mt-10 grid gap-px overflow-hidden border border-white/[0.08] bg-white/[0.08] md:grid-cols-2 lg:grid-cols-3">
+
+      {[
+        {
+          number: "01",
+          title: "AI Foundations",
+          label: "UNDERSTAND",
+          description:
+            "Build a strong mental model of artificial intelligence, machine learning and modern AI systems.",
+          icon: "brain",
+        },
+        {
+          number: "02",
+          title: "Generative AI",
+          label: "CREATE",
+          description:
+            "Explore models that generate text, images, code and ideas — and learn how to work with them.",
+          icon: "spark",
+        },
+        {
+          number: "03",
+          title: "Prompt Engineering",
+          label: "DIRECT",
+          description:
+            "Learn how to communicate with intelligent systems through structured and reliable instructions.",
+          icon: "command",
+        },
+        {
+          number: "04",
+          title: "AI Automation",
+          label: "AUTOMATE",
+          description:
+            "Connect AI with workflows, tools and processes to eliminate repetitive digital work.",
+          icon: "flow",
+        },
+        {
+          number: "05",
+          title: "Hands-on Learning",
+          label: "EXPERIMENT",
+          description:
+            "Move beyond theory through practical challenges, experiments and real implementation.",
+          icon: "layers",
+        },
+        {
+          number: "06",
+          title: "Real-World Projects",
+          label: "DEPLOY",
+          description:
+            "Turn everything you learn into useful systems inspired by real products and businesses.",
+          icon: "arrow",
+        },
+      ].map((item, index) => (
+
+        <motion.div
+          key={item.number}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.55,
+            delay: index * 0.05,
+          }}
+          className="group relative min-h-[30px] overflow-hidden bg-black p-7 transition-all duration-500 hover:bg-[#08070d] sm:p-9 lg:p-8"
         >
-          {/* Heading */}
-          <div
-            className="grid gap-10 border-b border-white/[0.07] pb-10 lg:grid-cols-2"
-          >
-           
-            <h2
-              className="max-w-[650px] hyi-h1 hyi-white"
-            >
-              Skills designed for
-              <span className="text-white/25"> what comes next.</span>
-            </h2>
-          </div>
-          {/* Topics */}
-          <div>
-            {topics.map((topic, index) => (
-              <motion.div
-                key={topic.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.04 }}
-                className="group grid gap-5 border-b border-white/[0.065] py-8 transition-colors duration-300 hover:border-white/[0.13] sm:grid-cols-[70px_1fr] lg:grid-cols-[100px_0.8fr_1.2fr] lg:items-center lg:py-10"
+
+          {/* Hover glow */}
+          <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[#6848ff]/0 blur-[80px] transition-all duration-700 group-hover:bg-[#6848ff]/10" />
+
+          {/* Number */}
+          <div className="flex items-start justify-between">
+
+            <span className="text-sm hyi-white">
+              {item.number}
+            </span>
+
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] transition-all duration-500 group-hover:border-[#7861ff]/40 group-hover:bg-[#7861ff]/10">
+
+              <svg
+                className="h-4 w-4 hyi-white-icon opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
               >
-                <p
-                  className="font-mono text-[8px] hyi-white"
-                >
-                   {topic.number}
-                </p>
-                <h3
-                  className="text-[25px] font-medium tracking-[-0.035em] hyi-white transition-colors duration-300 group-hover:text-white "
-                >
-                  {topic.title}
-                </h3>
-                <p
-                  className="max-w-[600px] hyi-p"
-                >
-                  {topic.description}
-                </p>
-              </motion.div>
-            ))}
+                {item.icon === "brain" && (
+                  <>
+                    <path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 3 3 3 0 0 0 2 3v2a3 3 0 0 0 3 3" />
+                    <path d="M15 3a3 3 0 0 1 3 3v1a3 3 0 0 1 2 3 3 3 0 0 1-2 3v2a3 3 0 0 1-3 3" />
+                    <path d="M9 3v18M15 3v18M9 8h6M9 16h6" />
+                  </>
+                )}
+
+                {item.icon === "spark" && (
+                  <>
+                    <path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3Z" />
+                    <path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" />
+                  </>
+                )}
+
+                {item.icon === "command" && (
+                  <>
+                    <rect x="5" y="5" width="6" height="6" rx="2" />
+                    <rect x="13" y="13" width="6" height="6" rx="2" />
+                    <path d="M11 8h2M8 11v2M16 11v2M11 16h2" />
+                  </>
+                )}
+
+                {item.icon === "flow" && (
+                  <>
+                    <rect x="4" y="4" width="6" height="6" rx="1" />
+                    <rect x="14" y="14" width="6" height="6" rx="1" />
+                    <path d="M10 7h4v10M14 17h-4" />
+                  </>
+                )}
+
+                {item.icon === "layers" && (
+                  <>
+                    <path d="m12 4 8 4-8 4-8-4 8-4Z" />
+                    <path d="m4 12 8 4 8-4M4 16l8 4 8-4" />
+                  </>
+                )}
+
+                {item.icon === "arrow" && (
+                  <>
+                    <path d="M5 12h13" />
+                    <path d="m13 6 6 6-6 6" />
+                  </>
+                )}
+              </svg>
+
+            </div>
+
           </div>
-        </div>
-      </section>
+
+
+          {/* Content */}
+          <div className="mt-5">
+
+            {/* <span className="text-sm hyi-blue">
+              {item.label}
+            </span> */}
+
+            <h3 className="mt-3 hyi-h4 hyi-white">
+              {item.title}
+            </h3>
+
+            <p className="mt-4 max-w-[430px] hyi-p">
+              {item.description}
+            </p>
+
+          </div>
+        </motion.div>
+
+      ))}
+
+    </div>
+</div>
+
+</section>
       {/* =====================================================
           LARGE IMAGE / MESSAGE SECTION
       \====================================================== */}
 {/* =====================================================
     FROM UNDERSTANDING AI TO BUILDING WITH IT
 ====================================================== */}
-<section className="relative overflow-hidden bg-[#030304]">
+<section className="relative overflow-hidden bg-[#030304] mt-10">
   {/* Background glow */}
   <div className="pointer-events-none absolute inset-0">
     <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046ff]/[0.07] blur-[180px]" />
@@ -321,7 +716,7 @@ export default function AITrainingLanding() {
             </span>
 
             <div>
-              <h3 className="text-[21px] font-bold hyi-h2 hyi-white">
+              <h3 className="hyi-h4 hyi-white font-bold">
                 Understand Modern AI
               </h3>
 
@@ -350,7 +745,7 @@ export default function AITrainingLanding() {
             </span>
 
             <div>
-              <h3 className="font-bold  hyi-white hyi-h3">
+              <h3 className="font-bold  hyi-white hyi-h4">
                 Learn By Doing
               </h3>
 
@@ -379,7 +774,7 @@ export default function AITrainingLanding() {
             </span>
 
             <div>
-              <h3 className="font-bold hyi-h3 hyi-white">
+              <h3 className="font-bold hyi-h4 hyi-white">
                 Build Smarter Workflows
               </h3>
 
@@ -408,7 +803,7 @@ export default function AITrainingLanding() {
             </span>
 
             <div>
-              <h3 className="font-bold hyi-h3 hyi-white">
+              <h3 className="font-bold hyi-h4 hyi-white">
                 Create Real Solutions
               </h3>
 
@@ -422,52 +817,15 @@ export default function AITrainingLanding() {
         </motion.div>
       </div>
     </div>
-
-    {/* Bottom statement */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7 }}
-      className="mt-4 overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.025]"
-    >
-      <div className="grid lg:grid-cols-[1fr_auto] lg:items-center">
-        <div className="p-6 sm:p-8 lg:p-10">
-          <p className="max-w-[950px] font-bold hyi-h3">
-            Learn the technology. Understand its possibilities. Build
-            practical skills. Experiment with real tools. Create
-            meaningful solutions.
-            <span className="">
-              {" "}
-              And prepare yourself to build with the technology
-              shaping what comes next.
-            </span>
-          </p>
-        </div>
-
-        <div className="hidden h-full w-[180px] border-l border-white/[0.07] lg:flex lg:items-center lg:justify-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#7046ff]/25 bg-[#7046ff]/10">
-            <ArrowUpRight
-              size={20}
-              className="text-[#9d80ff]"
-            />
-          </div>
-        </div>
-      </div>
-    </motion.div>
   </div>
 </section>
-      {/* =====================================================
-          STATS
-      \====================================================== */}
-
+     
       {/* =====================================================
           FINAL CTA
       \====================================================== */}
-      <section
+      {/* <section
         className="relative overflow-hidden "
       >
-        {/* support bg reused very subtly */}
         <img
           src="/support-bg.png"
           alt=""
@@ -484,7 +842,7 @@ export default function AITrainingLanding() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7 }}
-            className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between"
+            className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between "
           >
             <div>
             
@@ -498,12 +856,7 @@ export default function AITrainingLanding() {
                   starts here.
                 </span>
               </h2>
-              <p
-                className="mt-7 max-w-[620px] hyi-p"
-              >
-                Learn the technology shaping tomorrow and develop the practical
-                skills to become part of what comes next.
-              </p>
+            
             </div>
             <button
               type="button"
@@ -517,7 +870,7 @@ export default function AITrainingLanding() {
             </button>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </section>
   );
 }

@@ -80,7 +80,7 @@ export default function HeaderButtons() {
                     <div className="w-full h-fit gap-3 sm:gap-4 flex flex-col">
                       <div className="flex gap-2 items-center">
                         {/* <div className="w-6 h-6">{option.icon}</div> */}
-                        <p className="text-lg sm:text-xl bg-gradient-to-b from-[#B6B3C9] to-[#7046E6] bg-clip-text text-transparent font-semibold">
+                        <p className="text-lg sm:text-xl bg-gradient-to-b from-[#B6B3C9] to-[#7046E6] bg-clip-text text-transparent font-bold">
                           {option.id === 1
                             ? "Talent"
                             : "Companies / Individuals"}
@@ -104,7 +104,7 @@ export default function HeaderButtons() {
                           );
                         }}
                       >
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-[13px] font-medium text-white">
                           Get started
                         </span>
                         <ChevronRight width={16} height={16} />
@@ -149,13 +149,13 @@ export default function HeaderButtons() {
                     <div className="w-full h-fit gap-3 sm:gap-4 flex flex-col">
                       <div className="flex gap-2 items-center">
                         {/* <div className="w-6 h-6">{option.icon}</div> */}
-                        <p className="text-lg sm:text-xl bg-gradient-to-b from-[#B6B3C9] to-[#7046E6] bg-clip-text text-transparent font-semibold">
+                        <p className="text-lg sm:text-xl bg-gradient-to-b from-[#B6B3C9] to-[#7046E6] bg-clip-text text-transparent font-bold">
                           {option.id === 1
                             ? "Talent"
                             : "Companies / Individuals"}
                         </p>
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-semibold text-white capitalize">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white capitalize">
                         {option.title}
                       </h3>
                       <ul className="text-xs sm:text-sm font-normal text-dark_mode-300 space-y-1.5 sm:space-y-2 list-disc list-outside pl-4 sm:pl-5">
@@ -173,7 +173,7 @@ export default function HeaderButtons() {
                           );
                         }}
                       >
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-[13px] font-medium text-white">
                           Get started
                         </span>
                         <ChevronRight width={16} height={16} />

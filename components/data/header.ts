@@ -1692,8 +1692,8 @@ export const headerData: HeaderDataProps = {
 
   {
   value: "ai-training",
-  title: "AI Training Program",
-  heading: "AI Training Program",
+  title: "AI Mastery",
+  heading: "AI Mastery",
   paragraph:
     "AI training, certification and workforce development programs for organizations, institutions and individuals.",
   outerPadding: "large",

@@ -137,7 +137,7 @@ const NavLink = ({
       >
         <span
           className="
-            text-[15px]
+            text-[13px]
             font-medium
             text-white/90
             whitespace-normal
@@ -211,7 +211,7 @@ const ChildPanel = ({
               px-3
               py-2.5
 
-              text-[15px]
+              text-[13px]
               font-medium
               leading-5
               text-white/90
@@ -461,7 +461,7 @@ const SectionHeader = ({
 
   const content = (
     <>
-      <h2 className="text-base font-semibold text-dark_mode-100 capitalize">
+      <h2 className="text-sm font-bold text-dark_mode-100 capitalize">
         {heading}
       </h2>
 
@@ -654,7 +654,7 @@ export default function HeaderLinks({
         onMouseEnter={() => setDropDown(true)}
         onMouseLeave={() => setDropDown(false)}
       >
-        <span className="w-fit flex text-base font-medium text-dark_mode-300">
+        <span className="w-fit flex text-sm font-medium text-dark_mode-300">
           {children}
         </span>
 

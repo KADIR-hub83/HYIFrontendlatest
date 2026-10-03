@@ -371,15 +371,16 @@ export default function Header() {
         {/* =========================================================
             LOGO
         ========================================================= */}
-        <section className="relative z-10">
-          <Link href="/" aria-label="HYI.AI Home">
-            <Image
-              src={logo}
-              alt="HYI.AI Logo"
-              priority
-            />
-          </Link>
-        </section>
+   <section className="relative z-10">
+  <Link href="/" aria-label="HYI.AI Home">
+    <Image
+      src={logo}
+      alt="HYI.AI Logo"
+      priority
+      className="w-[80px] h-auto"
+    />
+  </Link>
+</section>
 
         {/* =========================================================
             DESKTOP NAVIGATION
