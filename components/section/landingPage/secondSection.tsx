@@ -12,7 +12,7 @@ const GCC = dynamic(() => import("@/components/section/landingPage/gcc"), {
 export default function SecondSection() {
   return (
     <>
-      <ResumeBuilder />
+      {/* <ResumeBuilder /> */}
       <GCC />
     </>
   );

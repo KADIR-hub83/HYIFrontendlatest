@@ -41,6 +41,7 @@
 
 
 
+
 import React from "react";
 import CustomUserCard from "@/components/shared/customUserCard";
 import CustomSwiper from "@/components/shared/customSlider";
@@ -56,26 +57,114 @@ interface FeaturedUser {
   }>;
 }
 
-export default async function HeroUserSlider() {
-  const data: FeaturedUser[] =
-    await PublicProfileAPI.getFeaturedUsers();
+interface SliderUser {
+  userId: string;
+  talentId: string;
+  profilePicture?: string | null;
+  fullName: string;
+  designation: string;
+  slug: string;
+}
 
-  const users = data.map((user) => ({
-    userId: user.user,
-    talentId: user.user,
-
-    profilePicture: user.profilePicture,
-
-    fullName: user.fullName,
-
-    designation:
-      user.experience?.length
-        ? user.experience[user.experience.length - 1]
-            ?.designation || ""
-        : "",
-
+// Demo profiles are temporary placeholders, not real verified talent.
+const DEMO_USERS: SliderUser[] = [
+  {
+    userId: "demo-talent-01",
+    talentId: "demo-talent-01",
+    profilePicture: null,
+    fullName: "AI Specialist",
+    designation: "Demo Profile",
     slug: "",
-  }));
+  },
+  {
+    userId: "demo-talent-02",
+    talentId: "demo-talent-02",
+    profilePicture: null,
+    fullName: "Software Developer",
+    designation: "Demo Profile",
+    slug: "",
+  },
+  {
+    userId: "demo-talent-03",
+    talentId: "demo-talent-03",
+    profilePicture: null,
+    fullName: "Cloud Engineer",
+    designation: "Demo Profile",
+    slug: "",
+  },
+  {
+    userId: "demo-talent-04",
+    talentId: "demo-talent-04",
+    profilePicture: null,
+    fullName: "ML Engineer",
+    designation: "Demo Profile",
+    slug: "",
+  },
+];
+
+const MIN_VISIBLE_USERS = 4;
+
+export default async function HeroUserSlider() {
+  let apiUsers: FeaturedUser[] = [];
+
+  try {
+    const response = await PublicProfileAPI.getFeaturedUsers();
+
+    apiUsers = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Failed to load featured users:", error);
+  }
+
+  // Keep only one record per actual user.
+  // `user` identifies the account; `_id` is the fallback.
+  const uniqueUsers = new Map<string, FeaturedUser>();
+
+  for (const user of apiUsers) {
+    const uniqueId = String(user.user || user._id || "").trim();
+
+    if (!uniqueId || uniqueUsers.has(uniqueId)) {
+      continue;
+    }
+
+    // Skip incomplete API records.
+    if (!user.fullName?.trim()) {
+      continue;
+    }
+
+    uniqueUsers.set(uniqueId, user);
+  }
+
+  const realUsers: SliderUser[] = Array.from(
+    uniqueUsers.values()
+  ).map((user) => {
+    const uniqueId = String(user.user || user._id);
+
+    return {
+      userId: uniqueId,
+      talentId: uniqueId,
+      profilePicture: user.profilePicture || null,
+      fullName: user.fullName,
+      designation:
+        user.experience?.length
+          ? user.experience[
+              user.experience.length - 1
+            ]?.designation || ""
+          : "",
+      slug: "",
+    };
+  });
+
+  // Add demo cards only when real profiles are insufficient.
+  // Every additional real profile removes one demo card.
+  const remainingSlots = Math.max(
+    0,
+    MIN_VISIBLE_USERS - realUsers.length
+  );
+
+  const users: SliderUser[] = [
+    ...realUsers,
+    ...DEMO_USERS.slice(0, remainingSlots),
+  ];
 
   return (
     <div className="flex flex-col gap-5">

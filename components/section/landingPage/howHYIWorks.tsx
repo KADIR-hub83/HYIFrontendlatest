@@ -2,8 +2,8 @@
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 import banner1 from "@/assets/landingPage/images/videobanner-01.webp";
-import banner2 from "@/assets/landingPage/images/videobanner-02.jpg";
-import banner3 from "@/assets/landingPage/images/videobanner-03.jpg";
+import banner2 from "@/assets/landingPage/images/videobanner-02.webp";
+import banner3 from "@/assets/landingPage/images/videobanner-03.webp";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const videos = [

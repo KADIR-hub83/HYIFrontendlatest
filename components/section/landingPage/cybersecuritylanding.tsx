@@ -80,7 +80,7 @@ export default function CybersecurityLanding() {
 
       <div className="pointer-events-none absolute inset-0">
         {/* main purple glow */}
-{/* 
+        {/* 
         <div
           className="
             absolute left-[58%] top-[48%]
@@ -170,7 +170,7 @@ export default function CybersecurityLanding() {
                 hyi-h1 hyi-white
               "
             >
-             Security Built for What Comes Next 
+              Security Built for What Comes Next
               <br />
               <span
                 className="
@@ -186,25 +186,26 @@ export default function CybersecurityLanding() {
             <p
               className="
                 mt-6 max-w-[570px]
-               hyi-p hyi-gray
+               hyi-p text-white/70
               "
             >
-             Stay Ahead Of Evolving Cyber Threats With Intelligent, Resilient, And Future-Ready Security Solutions Designed For Today’s Complex Digital World. We help Organizations Protect Critical Systems, Sensitive Data,
-             
-           
+              Stay Ahead Of Evolving Cyber Threats With Intelligent, Resilient,
+              And Future-Ready Security Solutions Designed For Today’s Complex
+              Digital World. We help Organizations Protect Critical Systems,
+              Sensitive Data,
             </p>
-            <p className="mt-6 max-w-[570px]
-               hyi-p hyi-gray">
-               Cloud Environments, Applications, And Digital Infrastructure Through A Security-First Approach Built Around Prevention, Detection, Response, And Continuous Improvement.
+            <p
+              className="mt-6 max-w-[570px]
+               hyi-p text-white/70"
+            >
+              Cloud Environments, Applications, And Digital Infrastructure
+              Through A Security-First Approach Built Around Prevention,
+              Detection, Response, And Continuous Improvement.
             </p>
 
             {/* buttons */}
 
-
-
             {/* small metrics */}
-
-
           </motion.div>
 
           {/* =====================================================
@@ -348,8 +349,6 @@ export default function CybersecurityLanding() {
 
                     <div className="mt-1.5 flex items-end gap-2">
                       <p className="text-[20px] font-bold hyi-white">98.7%</p>
-
-                    
                     </div>
                   </div>
 
@@ -645,174 +644,104 @@ export default function CybersecurityLanding() {
           </motion.div>
         </div>
 
-
-
-
-{/* =========================================================
+        {/* =========================================================
     BOTTOM CAPABILITY CARDS
 ========================================================= */}
 
-<div
-  className="
-    mt-10 grid gap-3
-    sm:grid-cols-2
-    lg:grid-cols-4
-  "
->
+{/* =====================================================
+    CAPABILITY GRID (1 glass · 2 colour · 3 glass · 4 colour)
+===================================================== */}
+
+<div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
   {capabilities.map((item, index) => {
     const Icon = item.icon;
+
+    // 0 = transparent, 1 = purple, 2 = transparent, 3 = blue-pink
+    const isGlass = index % 2 === 0;
+    const isPurple = index === 1;
 
     return (
       <motion.div
         key={item.title}
-        initial={{
-          opacity: 0,
-          y: 25,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: 0.55,
-          delay: index * 0.08,
-        }}
-        whileHover={{
-          y: -6,
-        }}
-        className="
-          group relative
-          min-h-[200px]
-          overflow-hidden
-          rounded-[18px]
-          border border-white/[0.08]
-          transition-all
-          duration-500
-          hover:border-[#8d70ff]/30
-          hover:shadow-[0_20px_60px_rgba(80,50,180,0.12)]
-        "
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55, delay: index * 0.08 }}
+        whileHover={{ y: -6 }}
+        className={`group relative min-h-[200px] overflow-hidden rounded-[18px] border transition-all duration-500
+          ${
+            isGlass
+              ? "border-white/[0.12] bg-white/[0.03] backdrop-blur-xl hover:border-white/25 hover:bg-white/[0.06] hover:shadow-[0_20px_60px_rgba(255,255,255,0.06)]"
+              : isPurple
+              ? "border-[#8d70ff]/30 hover:border-[#a58bff]/60 hover:shadow-[0_20px_60px_rgba(121,88,255,0.35)]"
+              : "border-[#5b8cff]/30 hover:border-[#7aa2ff]/60 hover:shadow-[0_20px_60px_rgba(70,120,255,0.35)]"
+          }`}
       >
-        {/* ================================
-            CARD BACKGROUND IMAGE
-        ================================= */}
+        {/* ---------- COLOURED CARDS: background image + colour layers ---------- */}
+        {!isGlass && (
+          <>
+            <img
+              src={item.background}
+              alt=""
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+            />
 
-        <img
-          src={item.background}
-          alt=""
-          className="
-            pointer-events-none
-            absolute inset-0
-            h-full w-full
-            object-cover
-            transition-transform
-            duration-700
-            group-hover:scale-[1.04]
-          "
-        />
+            {/* Colour wash */}
+            <div
+              className={`pointer-events-none absolute inset-0 ${
+                isPurple
+                  ? "bg-gradient-to-br from-[#7c4dff]/70 via-[#4b2fd6]/50 to-[#0b0720]/90"
+                  : "bg-gradient-to-br from-[#3b82f6]/65 via-[#8b3dff]/45 to-[#0b0720]/90"
+              }`}
+            />
 
-        {/* ================================
-            DARK OVERLAY
-        ================================= */}
+            {/* Top glow */}
+            <div
+              className={`pointer-events-none absolute -right-16 -top-16 h-[200px] w-[200px] rounded-full blur-[70px] ${
+                isPurple ? "bg-[#a78bff]/40" : "bg-[#ff5ad1]/30"
+              }`}
+            />
+          </>
+        )}
 
-        <div
-          className="
-            pointer-events-none
-            absolute inset-0
-            bg-black/30
-          "
-        />
+        {/* ---------- GLASS CARDS: soft shine ---------- */}
+        {isGlass && (
+          <>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.06] via-transparent to-transparent" />
+            <div className="pointer-events-none absolute -right-20 -top-20 h-[180px] w-[180px] rounded-full bg-[#7958ff]/0 blur-[55px] transition-all duration-500 group-hover:bg-[#7958ff]/15" />
+          </>
+        )}
 
-        {/* Bottom dark gradient for text readability */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute inset-0
-            bg-gradient-to-b
-            from-black/5
-            via-[#050509]/25
-            to-[#050509]/90
-          "
-        />
-
-        {/* Extra subtle purple hover glow */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute -right-20 -top-20
-            h-[180px] w-[180px]
-            rounded-full
-            bg-[#7958ff]/0
-            blur-[55px]
-            transition-all
-            duration-500
-            group-hover:bg-[#7958ff]/10
-          "
-        />
-
-        {/* ================================
-            CONTENT
-        ================================= */}
-
-        <div
-          className="
-            relative z-10
-            flex min-h-[200px]
-            flex-col
-            p-4
-          "
-        >
-          {/* Icon */}
-
+        {/* ---------- CONTENT ---------- */}
+        <div className="relative z-10 flex min-h-[200px] flex-col p-4">
           <div className="flex items-start justify-between">
             <div
-              className="
-                flex h-9 w-9
-                items-center justify-center
-                rounded-xl
-                border border-white/[0.09]
-                bg-black/20
-                backdrop-blur-md
-                transition-all
-                duration-300
-                group-hover:border-[#9c80ff]/25
-                group-hover:bg-[#7658ff]/[0.08]
-              "
+              className={`flex h-9 w-9 items-center justify-center rounded-xl border backdrop-blur-md transition-all duration-300
+                ${
+                  isGlass
+                    ? "border-white/15 bg-white/[0.05] group-hover:border-[#9c80ff]/40 group-hover:bg-[#7658ff]/[0.12]"
+                    : "border-white/25 bg-white/15 group-hover:bg-white/25"
+                }`}
             >
               <Icon
                 size={15}
-                className="
-                  text-white/70
-                  transition-colors
-                  duration-300
-                  group-hover:text-[#b39cff]
-                "
+                className={`transition-colors duration-300 ${
+                  isGlass
+                    ? "text-white/70 group-hover:text-[#b39cff]"
+                    : "text-white"
+                }`}
               />
             </div>
-
-         
           </div>
 
           {/* Push content toward bottom */}
-
-          <div className="mt-auto pt-10">
-            <h3
-              className=" hyi-h4 text-dark_mode-100
-               "
-            >
-              {item.title}
-            </h3>
+          <div className=" pt-5 ">
+            <h3 className="text-base font-bold text-white">{item.title}</h3>
 
             <p
-              className="
-                mt-2
-                max-w-[280px]
-                text-sm text-dark_mode-300
-              "
+              className={`mt-2 max-w-[280px] text-sm text-white ${
+                isGlass ? "text-dark_mode-300" : "text-white"
+              }`}
             >
               {item.description}
             </p>
@@ -820,22 +749,7 @@ export default function CybersecurityLanding() {
         </div>
 
         {/* Bottom highlight */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute bottom-0 left-1/2
-            h-px w-[75%]
-            -translate-x-1/2
-            bg-gradient-to-r
-            from-transparent
-            via-[#8b6aff]/0
-            to-transparent
-            transition-all
-            duration-500
-            group-hover:via-[#8b6aff]/50
-          "
-        />
+        <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[75%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#8b6aff]/0 to-transparent transition-all duration-500 group-hover:via-[#8b6aff]/60" />
       </motion.div>
     );
   })}
