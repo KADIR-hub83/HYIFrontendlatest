@@ -8,7 +8,7 @@ import CustomAutoSlider from "@/components/shared/customAutoSlider";
 
 export default function GCC() {
   return (
-    <section className="w-full flex flex-col items-center justify-center py-6 lg:py-8">
+    <section className="w-full flex flex-col items-center justify-center py-0 lg:py-">
       {/* <div className="flex md:hidden">
         <Image src={GCCHeroImage} alt="Gradient globe Image" />
       </div> */}
@@ -17,14 +17,17 @@ export default function GCC() {
         <span className="w-fit text-base label-gradient text-white/70 px-3.5 py-1.5">
           {GCCData.label}
         </span>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 px-5">
           <h2 className="hyi-h2">{GCCData.heading}</h2>
           <p className="hyi-p">{GCCData.text}</p>
         </div>
       </div>
 
       <div
-        className={`w-full flex items-center justify-center px-4 pb-6 bg-[url('/GCC-Bg.webp')] bg-no-repeat bg-contain md:bg-cover md:px-6 lg:pb-8 md:mt-0`}
+      className="relative isolate w-full flex items-center  justify-center px-4 pb-6 md:px-6 lg:pb-8 md:mt-0
+  before:pointer-events-none before:absolute before:inset-0 before:-z-10
+  before:bg-[url('/GCC-Bg.webp')] before:bg-center before:bg-cover before:bg-no-repeat
+  before:content-['']"
       >
         <div
           className={`w-full max-w-[1280px] flex flex-col gap-5 z-10 md:gap-10`}

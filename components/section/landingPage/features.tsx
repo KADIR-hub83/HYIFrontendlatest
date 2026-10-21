@@ -52,7 +52,7 @@ export default function Features() {
   const currentBlock = featureData.featureBlock[currentIndex];
 
   return (
-    <div className="flex flex-col text-center lg:flex-row lg:text-start lg:items-center lg:gap-10">
+    <div className="flex flex-col text-center lg:flex-row lg:text-start lg:items-center lg:gap-10 ">
       {/* Hero Images */}
       <div className="flex items-center justify-center lg:hidden">
         <Image
@@ -73,7 +73,7 @@ export default function Features() {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col cursor-default -mt-20 gap-8 md:mt-0">
+      <div className="flex flex-col cursor-default mt-20 gap-8 ">
         <div className="flex flex-col items-center gap-5 lg:items-start">
           <span className="w-fit flex items-center text-sm font-semibold text-dark_mode-100 rounded-full bg-white/10 border border-white/5 px-2.5 py-1.5 gap-2.5">
             <Image
@@ -90,10 +90,7 @@ export default function Features() {
         </div>
 
         {/* Animated Feature Block */}
-        <div
-          className="relative w-full overflow-hidden"
-          style={{ minHeight: maxHeight }}
-        >
+     <div className="relative z-10 w-full min-h-[200px] lg:min-h-[320px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentBlock._id}
@@ -106,8 +103,7 @@ export default function Features() {
               ref={(el) => {
                 if (el) blocksRef.current[currentIndex] = el;
               }}
-              className="absolute top-0 left-0 border border-dark_mode-500 bg-[linear-gradient(135deg,rgba(255,255,255,0.012),rgba(255,255,255,0.04))] backdrop-blur-md shadow-lg p-4 rounded-xl w-full grid gap-y-4 lg:bg-none lg:p-0 lg:border-none"
-            >
+           className="relative w-full border border-white/15  backdrop-blur-xl shadow-[0_12px_50px_rgba(100,30,220,0.14)] p-4 sm:p-5 rounded-2xl grid gap-y-5 lg:bg-transparent lg:p-0 lg:border-none lg:shadow-none lg:backdrop-blur-none">
               {currentBlock.features.map((feature) => (
                 <div
                   key={feature._id}

@@ -930,7 +930,7 @@ export default function AITrainingLanding() {
                   {/* Number + Icon */}
                   <div className="flex items-start justify-between">
                     <span className="text-sm hyi-white">
-                      {item.number} · {item.tag}
+                       {item.tag}
                     </span>
 
                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10">
@@ -967,8 +967,8 @@ export default function AITrainingLanding() {
                   style={{ backgroundImage: `url("${item.bg}")` }}
                 >
                   {/* Number + Icon */}
-                  <div className="flex items-start justify-between">
-                    <span className="text-sm hyi-white">{item.number}</span>
+                  <div className="flex items-start justify-end">
+                    {/* <span className="text-sm hyi-white">{item.number}</span> */}
 
                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02]">
                       <svg

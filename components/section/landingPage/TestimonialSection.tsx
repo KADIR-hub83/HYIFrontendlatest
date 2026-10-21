@@ -454,7 +454,7 @@ export default function TestimonialSection() {
     : `${-index * 100}%`;
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#030304] py-16 text-white">
+    <section className="relative w-full overflow-hidden bg-[#030304]  text-white">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046ff]/[0.08] blur-[170px]" />
@@ -467,55 +467,30 @@ export default function TestimonialSection() {
         {/* =================================================
             HEADING + LIVE COUNTER
         ================================================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
-        >
-          <div className="max-w-[760px]">
-         
+       <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="flex flex-col items-center justify-center gap-8 text-center"
+>
+  <div className="flex w-full flex-col items-center text-center">
+    <h2 className="mt-5 font-bold hyi-h1 hyi-white">
+      Client satisfaction is
+      <span className="block text-white/30">
+        our achievement.
+      </span>
+    </h2>
 
-            <h2 className="mt-5 font-bold hyi-h1 hyi-white">
-              Client satisfaction
-              <span className="block text-white/30">is our achievement.</span>
-            </h2>
+    <p className="mx-auto mt-5 w-full max-w-[650px] hyi-p text-center">
+      We build meaningful partnerships by combining technology,
+      collaboration and a commitment to delivering real value.
+    </p>
+  </div>
 
-            <p className="mt-5 max-w-[620px] hyi-p">
-              We build meaningful partnerships by combining technology,
-              collaboration and a commitment to delivering real value.
-            </p>
-          </div>
-
-          {/* Counter + direction */}
-          <div className="flex items-end gap-5">
-            <div className="flex items-baseline gap-2 font-mono">
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="text-6xl font-bold leading-none text-white"
-              >
-                0{index + 1}
-              </motion.span>
-              <span className="text-lg text-white/30">/ 0{TOTAL}</span>
-            </div>
-
-            <div className="mb-1 flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-white/70 backdrop-blur-md">
-              <motion.span
-                key={dir}
-                initial={{ opacity: 0, x: dir * -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="text-[#b39cff]"
-              >
-                {dir === 1 ? "→" : "←"}
-              </motion.span>
-              {dir === 1 ? "Forward" : "Reverse"}
-            </div>
-          </div>
-        </motion.div>
+  {/* Counter + direction */}
+  {/* Existing commented code remains unchanged */}
+</motion.div>
 
         {/* =================================================
             SLIDING TRACK
@@ -746,10 +721,7 @@ export default function TestimonialSection() {
             })}
           </div>
 
-          {/* Status */}
-          <p className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-white/35 md:block">
-            {paused ? "Paused" : "Auto-playing"}
-          </p>
+       
         </div>
       </div>
     </section>
