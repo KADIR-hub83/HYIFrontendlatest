@@ -9,6 +9,8 @@ import {
   type Variants,
 } from "framer-motion";
 import { useRef } from "react";
+import Header from "@/components/section/general/header";
+import Footer from "@/components/section/general/footer";
 
 const fadeUp: Variants = {
   hidden: {
@@ -165,6 +167,7 @@ export default function ApplicationMaintenanceSupportPage() {
 
   return (
     <main className="overflow-hidden bg-[#030303] text-white">
+      <Header/>
 
       {/* HERO */}
       <section
@@ -747,6 +750,7 @@ export default function ApplicationMaintenanceSupportPage() {
           </div>
         </motion.div>
       </section>
+      <Footer/>
     </main>
   );
 }

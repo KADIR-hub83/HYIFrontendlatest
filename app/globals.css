@@ -957,3 +957,153 @@ body {
     animation-play-state: paused;
   }
 }
+
+
+.hx-world-map {
+  object-fit: contain !important;
+  object-position: 28% center !important;
+  transform: translateX(-5%) scale(1.42) !important;
+  transform-origin: 30% center;
+  opacity: 0.78 !important;
+  filter: saturate(1.5) hue-rotate(8deg);
+}
+
+.hx-center-talent {
+  animation: hx-portrait-float 7s ease-in-out infinite;
+}
+
+@keyframes hx-portrait-float {
+  0%, 100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -8px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hx-world-map {
+    object-position: 35% center !important;
+    transform: translateX(-2%) scale(1.25) !important;
+    opacity: 0.45 !important;
+  }
+
+  .hx-center-talent {
+    left: 50%;
+    top: 36%;
+    height: 280px;
+    width: 230px;
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 639px) {
+  .hx-world-map {
+    object-position: center !important;
+    transform: scale(1.1) !important;
+    opacity: 0.3 !important;
+  }
+
+  .hx-center-talent {
+    top: 30%;
+    height: 230px;
+    width: 190px;
+    opacity: 0.55;
+  }
+}
+
+
+.hx-glass-panel {
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(139, 92, 246, 0.20),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(35, 25, 49, 0.88),
+      rgba(12, 9, 19, 0.96)
+    ) !important;
+
+  border: 1px solid rgba(196, 181, 253, 0.22) !important;
+  border-radius: 30px !important;
+  box-shadow:
+    0 30px 100px -35px rgba(124, 58, 237, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+.hx-hiring-window > div > .group {
+  border-color: rgba(255, 255, 255, 0.09);
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(139, 92, 246, 0.055)
+  );
+  border-radius: 15px;
+  transition:
+    border-color 250ms ease,
+    background 250ms ease,
+    transform 250ms ease;
+}
+
+.hx-hiring-window > div > .group:hover {
+  border-color: rgba(167, 139, 250, 0.48);
+  background: rgba(139, 92, 246, 0.12);
+  transform: translateX(3px);
+}
+
+
+
+
+/* 3D chrome text: back layer = extrusion, ::after = glossy white face */
+.chrome-3d {
+  position: relative;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+
+  /* thin blue outline around the face */
+  -webkit-text-stroke: 0.035em #1c8fd1;
+
+  /* blue metallic extrusion */
+  text-shadow:
+    0.010em 0.014em 0 #2fa3e0,
+    0.020em 0.028em 0 #2a98d6,
+    0.030em 0.042em 0 #258dcc,
+    0.040em 0.056em 0 #2082c2,
+    0.050em 0.070em 0 #1b77b8,
+    0.060em 0.084em 0 #176cae,
+    0.070em 0.098em 0 #1362a4,
+    0.080em 0.112em 0 #0f589a,
+    0.090em 0.126em 0 #0c4e8f,
+    0.100em 0.140em 0 #094585,
+    0.110em 0.154em 0 #073c7a,
+    0.120em 0.168em 0 #053470,
+    0.14em 0.22em 0.12em rgba(0, 30, 70, 0.55),
+    0.2em 0.32em 0.35em rgba(0, 30, 70, 0.35);
+}
+
+/* glossy white face on top */
+.chrome-3d::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f4f6f8 40%,
+    #e4e8ec 55%,
+    #f7f9fa 80%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

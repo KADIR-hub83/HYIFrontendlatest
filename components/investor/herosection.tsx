@@ -4,7 +4,7 @@ import HeroImage from "@/assets/investor/investorHeroImage.png";
 
 export default function InvestorHeroSection() {
   return (
-    <section className="relative w-full flex justify-center items-start overflow-hidden min-h-[40vh] md:min-h-screen">
+    <section className="relative w-full flex justify-center items-start overflow-hidden min-h-[40vh] md:min-h-screen md:pt-20 pt-10 max-md:min-h-[45vh] max-sm:min-h-[55vh]">
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(184,0,227,0.4)_0%,_transparent_20%)] blur-3xl z-0"></div>
       <div className="absolute inset-0 top-50 hidden md:flex justify-center items-start z-0">
         <Image
@@ -18,7 +18,7 @@ export default function InvestorHeroSection() {
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 mt-16 md:mt-20">
         <div className="flex flex-col items-center justify-center gap-4 max-w-3xl">
-          <div className="text-white text-lg md:text-xl lg:text-3xl font-bold">
+          <div className="text-white text-2xl md:text-xl lg:text-3xl font-bold">
             Investing in the Future of <br />
             <span className="text-brand-500">Human + AI Collaboration</span>
           </div>

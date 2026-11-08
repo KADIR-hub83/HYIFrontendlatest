@@ -1371,7 +1371,7 @@ function FinalHeroContent() {
     flex-col
     items-center
     text-center
-    lg:-translate-y-12
+    lg:-translate-y-12 pt-20
   "
 >
 

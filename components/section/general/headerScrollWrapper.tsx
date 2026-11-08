@@ -41,7 +41,7 @@ export default function HeaderScrollWrapper({
   return (
     <>
       {/* Keeps the original header space */}
-      <div className="h-[92px] w-full" />
+      <div className=" w-full" />
 
       <header
         className={`
@@ -53,7 +53,7 @@ export default function HeaderScrollWrapper({
           w-full
           justify-center
           px-8
-          pb-5
+          pb-3
           pt-3
           transition-[background-color,box-shadow,border-color,backdrop-filter]
           duration-300

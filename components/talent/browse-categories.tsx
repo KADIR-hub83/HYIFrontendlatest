@@ -108,7 +108,7 @@ export default function BrowseCategories({
             avatars={sampleAvatars}
             extraCount={99}
             isFeatured={i === 0 ? true : c.isFeatured}
-            href="https://va.hyi.ai/talent-signup"
+            href="https://hyi-nine.vercel.app/signup"
           />
         ))}
       </div>

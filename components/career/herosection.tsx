@@ -26,7 +26,7 @@ const techIcons = [
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full flex justify-center px-4 py-4 md:px-8 md:py-0 lg:items-center">
+    <section className="relative w-full flex justify-center px-4 py-4 md:px-8 md:py-0 lg:items-center ">
       {/* Floating icons background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <CustomFloatableIcons
@@ -37,8 +37,8 @@ export default function HeroSection() {
       </div>
       {/* Content */}
       <div className="relative z-10">
-        <div className="flex flex-col items-center justify-center gap-4 pt-12 pb-12 md:pt-16 md:pb-16 lg:pt-24 lg:pb-20">
-          <h1 className="text-white text-lg md:text-xl lg:text-2xl font-bold text-center">
+        <div className="flex flex-col items-center justify-center gap-4 pt-15 pb-12 md:pt-16 md:pb-16 lg:pt-34 lg:pb-20">
+          <h1 className="text-white text-2xl md:text-xl lg:text-2xl font-bold text-center">
             Join{" "}
             <span className="text-brand-600">
               Our HYI.AI Team

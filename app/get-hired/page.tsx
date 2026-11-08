@@ -28,10 +28,10 @@ export default function GetHired() {
     { id: "useberry", src: Useberry, alt: "Useberry" },
   ];
   return (
-    <section className="w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 md:px-6">
+    <section className="w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 md:px-6 ">
       <Header />
 
-      <div className="w-full max-w-[1280px] flex flex-col items-center justify-center px-0 pt-0 pb-0 md:py-10">
+      <div className="w-full max-w-[1280px] flex flex-col items-center justify-center px-0 pt-0 pb-0 md:py-10 lg:py-30 py-15">
         {/* HERO */}
         <section className="relative w-full flex justify-center px-0 md:px-8 lg:items-center ">
           {/* floating icons overlay */}
@@ -45,21 +45,21 @@ export default function GetHired() {
 
           {/* hero content */}
           <div className="relative z-5 w-full">
-            <div className="flex flex-col items-center justify-center gap-4 py-8 sm:pt-20 sm:pb-8 md:pt-24 md:pb-16 lg:pt-24 lg:pb-20 px-2">
-              <h1 className="text-white font-semibold text-lg md:text-xl lg:text-3xl text-center leading-tight">
+            <div className="flex flex-col items-center justify-center gap-4 pt-30 sm:pt-20 sm:pb-8 md:pt-24 md:pb-16 lg:pt-24 lg:pb-20 px-2">
+              <h1 className="text-white font-semibold text-2xl md:text-xl lg:text-3xl text-center leading-tight">
                 Accelerate{" "}
                 <span className="text-brand-600">
                   Your Career With HYI.AI
                 </span>
               </h1>
 
-              <p className="text-[#D2D0DD] text-sm xs:text-base md:text-lg lg:text-lg text-center max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl px-2 xs:px-4 leading-relaxed">
+              <p className="text-[#D2D0DD] text-[18px] xs:text-base md:text-lg lg:text-lg text-center max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl px-2 xs:px-4 leading-relaxed">
                 Work remotely with global teams at leading U.S. Companies. Solve
                 cutting-edge challenges and advance AI.
               </p>
 
               <Link
-                href="https://va.hyi.ai/talent-signup"
+                href="https://hyi-nine.vercel.app/signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2"

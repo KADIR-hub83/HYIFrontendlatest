@@ -538,14 +538,14 @@ export default function AITrainingLanding() {
         {/* Dark fade over image */}
         {/* HERO CONTENT */}
         <div
-          className="relative z-10 mx-auto gap-20 justify-between px-5 sm:px-10 lg:px-20 mt-10 max-md:flex-col flex">
+          className="relative w-full max-w-[1350px] z-10 mx-auto md:gap-20 justify-between px-5 sm:px-10  mt-10 max-md:mt-0 max-md:flex-col flex">
           {/* Label */}
           {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 hyi-h1 hyi-white"
+            className="mt-10 hyi-h1 hyi-white max-md:mt-3"
           >
             <span className="block">Don&apos;t just learn AI.</span>
             <span
@@ -559,7 +559,7 @@ export default function AITrainingLanding() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-10 flex max-w-[680px] gap-5"
+            className="mt-10 flex max-w-[680px] gap-5 max-md:mt-3"
           >
             <div
               className="hidden h-[105px] w-px bg-gradient-to-b from-[#9878ff]/70 to-transparent sm:block"
@@ -610,13 +610,13 @@ export default function AITrainingLanding() {
     />
   </div>
 
-  <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-10 lg:px-20">
+  <div className="relative z-10 mx-auto max-w-[1350px] px-5 sm:px-10 ">
 
 
 
 
     {/* Main layout */}
-    <div className="grid items-center gap-20 lg:grid-cols-[0.9fr_1.1fr]">
+    <div className="grid items-center gap-20 lg:grid-cols-[0.9fr_1.1fr] max-md:gap-5 w-full ]">
 
       {/* =====================================================
           LEFT — BIG TYPOGRAPHY
@@ -691,7 +691,7 @@ export default function AITrainingLanding() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="relative flex min-h-[520px] items-center justify-center"
+        className="relative flex min-h-[520px] items-center justify-center max-md:min-h-[320px]"
       >
 
         {/* Large orbit */}
@@ -871,7 +871,7 @@ export default function AITrainingLanding() {
     SECTION 02 — AI CAPABILITY MATRIX
 ========================================================= */}
 
- <section className="relative w-full overflow-hidden bg-black flex flex-col items-center justify-center py-6 lg:py-8">
+ <section className="relative w-full overflow-hidden bg-black flex flex-col items-center justify-center py-0 lg:py-8">
       {/* =====================================================
           BACKGROUND WRAPPER (same as GCC)
       ===================================================== */}
@@ -895,7 +895,7 @@ export default function AITrainingLanding() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="grid  pt-6  text-center justify-center items-center "
+            className="grid  pt-6 max-md:pt-0  text-center justify-center items-center "
           >
             <div>
               <h2 className="mt-3 hyi-h1 hyi-white">
@@ -997,7 +997,7 @@ export default function AITrainingLanding() {
 {/* =====================================================
     FROM UNDERSTANDING AI TO BUILDING WITH IT
 ====================================================== */}
-    <section className="relative mt-10 overflow-hidden bg-[#030304]">
+    <section className="relative  overflow-hidden bg-[#030304]">
       {/* Background glow + grid */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046ff]/[0.09] blur-[180px]" />
@@ -1017,7 +1017,7 @@ export default function AITrainingLanding() {
           transition={{ duration: 0.7 }}
           className="flex flex-col text-center justify-center mx-auto mb-10"
         >
-          <div className="w-full ">
+          <div className="w-full mt-3">
             {/* <Tag text="From idea to impact" dot="bg-[#9d80ff]" className="mb-5" /> */}
 
             <h2 className="hyi-h1 hyi-white">

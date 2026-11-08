@@ -100,7 +100,7 @@ export default function ViewPublicProfile({
     return (
       <Dialog open={open} onOpenChange={onClose}>
         <DialogOverlay className="fixed inset-0 bg-black/80 backdrop-blur-3xl" />
-        <DialogContent className="fixed top-1/2 left-1/2 backdrop-blur-3xl transform -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1350px] max-h-[95vh] sm:max-h-[85vh] overflow-y-auto p-0 z-50">
+        <DialogContent className="fixed top-1/2 left-1/2 backdrop-blur-3xl transform -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1150px] max-h-[95vh] sm:max-h-[85vh] overflow-y-auto p-0 z-50">
           <DialogTitle></DialogTitle>
           <Image
             src={ViewProfileGradient}
@@ -124,7 +124,7 @@ export default function ViewPublicProfile({
     return (
       <Dialog open={open} onOpenChange={onClose}>
         <DialogOverlay className="fixed inset-0 bg-black/80 backdrop-blur-3xl" />
-        <DialogContent className="fixed top-1/2 left-1/2 backdrop-blur-3xl transform -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1350px] max-h-[95vh] sm:max-h-[85vh] overflow-y-auto p-0 z-50">
+        <DialogContent className="fixed top-1/2 left-1/2 backdrop-blur-3xl transform -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1150px] max-h-[95vh] sm:max-h-[85vh] overflow-y-auto p-0 z-50 mt-52">
           <DialogTitle></DialogTitle>
           <Image
             src={ViewProfileGradient}
@@ -163,17 +163,17 @@ export default function ViewPublicProfile({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogOverlay className="fixed inset-0 bg-black/80 backdrop-blur-3xl" />
+      <DialogOverlay className="fixed inset-0 bg-black/80 backdrop-blur-3xl " />
       <DialogContent
         showCloseButton={false}
-        className="fixed top-1/2 left-1/2 border border-white/10 backdrop-blur-3xl transform -translate-x-1/2 -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1350px] max-h-[95vh] sm:max-h-[82vh] overflow-y-auto p-0 z-50 gap-0"
+        className="fixed top-1/2 left-1/2 border border-white/10 backdrop-blur-3xl transform -translate-x-1/2 lg:mt-10 md:mt-15 max-md:mt-20  -translate-y-1/2 w-[95vw] sm:w-11/12 max-w-[1150px] max-h-[95vh] sm:max-h-[82vh] overflow-y-auto p-0 z-50 gap-0"
       >
         <div className="flex items-center justify-between pl-4 pr-4 pt-4 mb-4">
           <DialogTitle className="text-xl font-semibold bg-gradient-to-b from-dark_mode-300 to-dark_mode-400 bg-clip-text text-transparent">
             Public Profile
           </DialogTitle>
           <button onClick={onClose}>
-            <X className="w-5 h-5 text-dark_mode-400/70" />
+            <X className="w-5 h-5 text-white" />
           </button>
         </div>
         {/* Header Card */}
