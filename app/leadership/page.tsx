@@ -60,6 +60,7 @@ type Leader = {
   photo?: string;
   linkedin?: string;
   x?: string;
+  website?: string;
 };
 
 const portrait = (g: "men" | "women", n: number) =>
@@ -71,26 +72,28 @@ const FOUNDER: Leader = {
   id: "founder",
   role: "Founder",
   abbr: "FOUNDER",
-  name: "Rohit Malhotra",
-  bio: "Started HYI with one belief: great talent should never be limited by geography. He sets the long-term vision and keeps the company focused on one mission — connecting businesses with the best people, anywhere.",
-  focus: ["Vision", "Culture", "Global expansion"],
-  photo: portrait("men", 41),
-  linkedin: "#",
-  x: "#",
+  name: "Yakub Sheikh",
+  bio: "Founded HYI with a vision to connect businesses with exceptional talent and build technology-driven solutions. He leads the company's long-term vision, strategy, and growth.",
+  focus: ["Vision", "Leadership", "Business growth"],
+  photo: "/images/yakub-sheikh.jpg",
+  linkedin: "https://www.linkedin.com/in/yakub-s-281859240/",
+  x: "https://x.com/yk_sheikh",
+  website: "https://portfolio-web-two-lac.vercel.app/",
 };
 
 const EXECUTIVES: Leader[] = [
-  {
-    id: "ceo",
-    role: "Chief Executive Officer",
-    abbr: "CEO",
-    name: "Ananya Kapoor",
-    bio: "Runs day-to-day operations and turns the vision into a clear plan the whole company can execute.",
-    focus: ["Operations", "Partnerships", "Company growth"],
-    photo: portrait("women", 65),
-    linkedin: "#",
-    x: "#",
-  },
+{
+  id: "ceo",
+  role: "Chief Executive Officer",
+  abbr: "CEO",
+  name: "Yakub Sheikh",
+  bio: "Leads company operations, drives strategic initiatives, and transforms the company's vision into actionable plans for sustainable growth.",
+  focus: ["Operations", "Strategy", "Company growth"],
+  photo: "/images/yakub-sheikh.jpg",
+  linkedin: "https://www.linkedin.com/in/yakub-s-281859240/",
+  x: "https://x.com/yk_sheikh",
+  website: "https://portfolio-web-two-lac.vercel.app/",
+},
   {
     id: "cso",
     role: "Chief Strategy Officer",
@@ -100,6 +103,7 @@ const EXECUTIVES: Leader[] = [
     focus: ["Strategy", "New markets", "Planning"],
     photo: portrait("men", 52),
     linkedin: "#",
+     website: "https://portfolio-web-two-lac.vercel.app/",
   },
   {
     id: "cfo",
@@ -366,20 +370,49 @@ const XIcon = () => (
     <path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H2l8.1-9.3L1.5 2h7l4.9 6.4L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z" />
   </svg>
 );
+const WebsiteIcon = () => (
+  <Icon className="h-4 w-4">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M2 12h20" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
+  </Icon>
+);
 
 function Socials({ l }: { l: Leader }) {
   const items = [
-    l.linkedin && { href: l.linkedin, label: "LinkedIn", icon: <LinkedInIcon /> },
-    l.x && { href: l.x, label: "X", icon: <XIcon /> },
-  ].filter(Boolean) as { href: string; label: string; icon: ReactNode }[];
+    l.linkedin && l.linkedin !== "#" && {
+      href: l.linkedin,
+      label: "LinkedIn",
+      icon: <LinkedInIcon />,
+    },
+    l.x && l.x !== "#" && {
+      href: l.x,
+      label: "X",
+      icon: <XIcon />,
+    },
+    l.website && l.website !== "#" && {
+      href: l.website,
+      label: "Website",
+      icon: <WebsiteIcon />,
+    },
+  ].filter(Boolean) as {
+    href: string;
+    label: string;
+    icon: ReactNode;
+  }[];
+
   if (!items.length) return null;
+
   return (
     <div className="flex items-center gap-2">
       {items.map((s) => (
         <a
           key={s.label}
           href={s.href}
-          aria-label={`${l.name} on ${s.label}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${l.name} ${s.label}`}
+          title={s.label}
           className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/65 transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-400/60 hover:bg-violet-500/15 hover:text-white"
         >
           {s.icon}
