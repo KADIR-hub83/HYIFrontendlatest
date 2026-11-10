@@ -261,54 +261,101 @@ export const GCCData = {
   ],
 };
 
+
+
+
 export const testimonialsData = {
   heading: "Talent Testimonials",
   text: "At HYI.AI, we go beyond the ordinary by delivering innovative solutions, personalized experiences, and unparalleled support, ensuring your business achieves lasting success in a competitive landscape.",
+
   cards: [
     {
       _id: "user-01",
       image: testimonials_01,
       name: "Ryan Mitchell",
       designation: "Lead Developer",
-      text: "“HYI.AI provided me with the level of freedom whether to have part time projects by the hour or pursue a full time job. The flexible contracts and the secured payments made the freelance journey stress free.”",
+      text: "HYI.AI provided me with the freedom to choose part-time projects or pursue full-time opportunities. Flexible contracts and secure payments made my freelance journey stress-free.",
     },
     {
       _id: "user-02",
       image: testimonials_02,
       name: "Samir Rahman",
       designation: "Full Stack Developer",
-      text: "“I have been able to be connected to HIGH-IMPACT global projects as a certified developer with HYI.AI. I learned a very beneficial experience and my portfolio grew fast because of challenges I took in the real world.”",
+      text: "I got connected to high-impact global projects as a certified developer with HYI.AI. The real-world challenges helped me gain valuable experience and grow my portfolio.",
     },
     {
       _id: "user-03",
       image: testimonials_03,
       name: "Omar Farooq",
       designation: "Software Developer",
-      text: "“The onboarding and verification process was quick and I was allocated to a marketable project shortly after certification- time was not wasted in trying to apply or waiting several months in the waiting list.”",
+      text: "The onboarding and verification process was quick, and I was allocated to a project shortly after certification. It saved me valuable time.",
     },
     {
       _id: "user-04",
       image: testimonials_04,
       name: "Nathan Brooks",
       designation: "Front End Developer",
-      text: "“The Mock tests and the interviews with experts at HYI.AI compelled me to improve my coding and designing capabilities. The feedback was very constructive and this made me have confidence to build even more.”",
+      text: "The mock tests and interviews with experts at HYI.AI pushed me to improve my coding and design capabilities. The constructive feedback helped me build confidence.",
     },
     {
       _id: "user-05",
       image: testimonials_05,
       name: "Grace Wilson",
       designation: "Research Analyst",
-      text: "“Cooperation with U.S. clients on the basis of HYI.AI introduced me to a different range of challenges and the newest technologies. Their expansiveness internationally changes the game of career advancement.”",
+      text: "Working with international clients through HYI.AI introduced me to new challenges and modern technologies. The global exposure made a real difference to my career.",
     },
     {
       _id: "user-06",
       image: testimonials_06,
       name: "Zayn Ahmed",
       designation: "Lead Developer",
-      text: "“A relationship manager of their own really stood HYI.AI out. They continue to guide and give personal support that helps me direct my capabilities to projects that will be of interest and competence to me.”",
+      text: "Having a dedicated relationship manager really made HYI.AI stand out. Their personal guidance helped me find projects that matched my skills and interests.",
+    },
+    {
+      _id: "user-07",
+      image: testimonials_01,
+      name: "Alex Morgan",
+      designation: "UI/UX Designer",
+      text: "HYI.AI gave me opportunities to work on exciting digital projects. The collaborative environment helped me improve my design process and professional skills.",
+    },
+    {
+      _id: "user-08",
+      image: testimonials_02,
+      name: "Aisha Khan",
+      designation: "AI/ML Engineer",
+      text: "The opportunity to work on practical AI and machine learning projects helped me strengthen my technical knowledge and gain valuable industry exposure.",
+    },
+    {
+      _id: "user-09",
+      image: testimonials_03,
+      name: "Ethan Parker",
+      designation: "Cloud Engineer",
+      text: "The structured project allocation and professional support made it easier to focus on delivering quality work and developing my cloud engineering expertise.",
+    },
+    {
+      _id: "user-10",
+      image: testimonials_04,
+      name: "Sophia Martin",
+      designation: "Digital Marketing Specialist",
+      text: "HYI.AI connected me with opportunities that aligned with my expertise. The experience helped me collaborate with different teams and expand my professional network.",
+    },
+    {
+      _id: "user-11",
+      image: testimonials_05,
+      name: "Aditya Verma",
+      designation: "Backend Developer",
+      text: "The technical challenges and collaborative projects helped me become more confident in backend development and building scalable applications.",
+    },
+    {
+      _id: "user-12",
+      image: testimonials_06,
+      name: "Daniel Scott",
+      designation: "Project Manager",
+      text: "The professional coordination and clear communication made project collaboration smoother. HYI.AI provided an environment focused on learning and growth.",
     },
   ],
 };
+
 
 export const techSwiperOne = [
   {

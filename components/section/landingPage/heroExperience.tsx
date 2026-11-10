@@ -2480,7 +2480,7 @@ export default function HeroExperience({
             <div className="flex w-full flex-col items-center lg:items-start">
               <RolePills className=" w-full max-w-[560px] justify-center lg:justify-start" />
 
-              <div
+              {/* <div
                 className="hx-in flex mt-2 flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start"
                 style={{ animationDelay: "230ms" }}
               >
@@ -2498,7 +2498,7 @@ export default function HeroExperience({
                 >
                   Join as Talent
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

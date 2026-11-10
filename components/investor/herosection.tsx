@@ -29,8 +29,8 @@ export default function InvestorHeroSection() {
             at scale.
           </div>
           <a
-            href="https://hyvadata.s3.ap-south-1.amazonaws.com/Assets/Website_Invester_document.pdf"
-            download
+             href="/docs/HYI-Investor-Deck.pdf"
+  download="HYI-Investor-Deck.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >

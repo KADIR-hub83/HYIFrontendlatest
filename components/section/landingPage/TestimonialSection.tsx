@@ -349,6 +349,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 
+
 const testimonials = [
   {
     id: 1,
@@ -356,10 +357,8 @@ const testimonials = [
     role: "Technology Director",
     company: "Enterprise Technology",
     tag: "Execution",
-    avatar:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
-    quote:
-      "HYI brought clarity, technical depth and strong execution to our digital initiative. The team understood our requirements quickly and transformed complex challenges into practical solutions.",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
+    quote: "HYI brought clarity, technical depth and strong execution to our digital initiative. The team understood our requirements quickly and transformed complex challenges into practical solutions.",
   },
   {
     id: 2,
@@ -367,10 +366,8 @@ const testimonials = [
     role: "Head of Innovation",
     company: "Digital Systems",
     tag: "Collaboration",
-    avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop",
-    quote:
-      "The team combined strong technical expertise with a genuine understanding of our business requirements. The entire collaboration was transparent, responsive and professional.",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop",
+    quote: "The team combined strong technical expertise with a genuine understanding of our business requirements. The entire collaboration was transparent, responsive and professional.",
   },
   {
     id: 3,
@@ -378,10 +375,8 @@ const testimonials = [
     role: "VP — Technology",
     company: "Enterprise Solutions",
     tag: "Quality",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
-    quote:
-      "From planning to delivery, the team remained focused on quality and measurable outcomes. Their approach made the entire technology journey simple and effective.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+    quote: "From planning to delivery, the team remained focused on quality and measurable outcomes. Their approach made the entire technology journey simple and effective.",
   },
   {
     id: 4,
@@ -389,12 +384,83 @@ const testimonials = [
     role: "Chief Digital Officer",
     company: "Global Digital",
     tag: "Partnership",
-    avatar:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop",
-    quote:
-      "HYI worked like an extension of our internal team. Communication was clear, execution was consistent and every stage of the engagement was handled professionally.",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop",
+    quote: "HYI worked like an extension of our internal team. Communication was clear, execution was consistent and every stage of the engagement was handled professionally.",
+  },
+  {
+    id: 5,
+    name: "Emily Johnson",
+    role: "Product Manager",
+    company: "Technology Ventures",
+    tag: "Innovation",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop",
+    quote: "HYI helped us turn our product vision into a practical digital solution. Their innovative thinking and structured approach made a real difference.",
+  },
+  {
+    id: 6,
+    name: "Michael Anderson",
+    role: "Chief Technology Officer",
+    company: "Digital Enterprises",
+    tag: "Technology",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop",
+    quote: "Their understanding of modern technologies and ability to deliver scalable solutions made our development process much more efficient.",
+  },
+  {
+    id: 7,
+    name: "Priya Kapoor",
+    role: "Operations Director",
+    company: "Business Solutions",
+    tag: "Efficiency",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop",
+    quote: "The team understood our operational challenges and delivered solutions that helped streamline our workflows and improve productivity.",
+  },
+  {
+    id: 8,
+    name: "James Wilson",
+    role: "Founder & CEO",
+    company: "NextGen Innovations",
+    tag: "Growth",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+    quote: "Working with HYI gave us the technical direction and development support we needed to move our business forward with confidence.",
+  },
+  {
+    id: 9,
+    name: "Ananya Verma",
+    role: "Digital Strategy Lead",
+    company: "Future Technologies",
+    tag: "Strategy",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop",
+    quote: "HYI brought a thoughtful approach to digital transformation. Their ability to understand business goals and align technology with them was impressive.",
+  },
+  {
+    id: 10,
+    name: "David Thompson",
+    role: "IT Director",
+    company: "Global Tech Solutions",
+    tag: "Reliability",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+    quote: "We appreciated the team's commitment to reliable delivery, clear communication and technical quality throughout the project.",
+  },
+  {
+    id: 11,
+    name: "Neha Malhotra",
+    role: "Head of Business Operations",
+    company: "Enterprise Consulting",
+    tag: "Automation",
+    avatar: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=300&h=300&fit=crop",
+    quote: "Their automation-focused approach helped us rethink repetitive processes and identify opportunities to work smarter and more efficiently.",
+  },
+  {
+    id: 12,
+    name: "Christopher Lee",
+    role: "Managing Director",
+    company: "Advanced Digital Group",
+    tag: "Excellence",
+    avatar: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=300&h=300&fit=crop",
+    quote: "The overall experience was professional and collaborative. HYI demonstrated a strong commitment to understanding our needs and delivering practical results.",
   },
 ];
+
 
 const TOTAL = testimonials.length;
 const AUTOPLAY_MS = 2500;

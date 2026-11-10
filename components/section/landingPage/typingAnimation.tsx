@@ -287,39 +287,49 @@ import CustomMultiFlipHeadings, {
 // [white line, brand-colour line, subtitle]
 const textSets = [
   // Main Service — Virtual Assistant
+   [
+    "Transform Your AI",
+    "Coding Workflow With HYI.",
+    "Bringing AI Intelligence Into Every Step Of Development.",
+  ],
+
+  // AI-Powered Cybersecurity
   [
-    "Meet your smart",
-    "Global Talent.",
-    "Your AI-powered assistant. Automate tasks and grow your business.",
+    "Transform Your Cyber Defense",
+    "Capabilities With AI-Powered Intelligence.",
+    "Integrating AI/ML, Real-Time Threat Monitoring, and Intelligent Incident Response to Address Evolving Cybersecurity Challenges.",
+  ],
+
+  // Virtual Assistance
+  [
+    "Hire Top",
+    "Virtual Assistants.",
+    "Skilled virtual assistance to streamline operations, manage tasks, and help your business grow.",
   ],
 
   // Digital Transformation
   [
-    "Transform your",
-    "business digitally.",
+    "Transform Your",
+    "Business Digitally.",
     "Modern technology. Smarter workflows. Better results.",
   ],
 
   // Build Your LLM
   [
-    "Build your own",
-    "custom LLM.",
+    "Build your Own",
+    "Custom LLM.",
     "Powerful language models. Built around your business needs.",
   ],
 
   // Deploy Your Code
   [
-    "Deploy your code",
-    "with confidence.",
+    "Deploy Your Code",
+    "with Confidence.",
     "Secure, scalable apps. Seamless cloud integration.",
   ],
 
   // Build Your AI
-  [
-    "Build powerful",
-    "AI solutions.",
-    "Intelligent AI agents. Smarter automation. Faster growth.",
-  ],
+  
 ];
 
 export default function TypingAnimation() {
