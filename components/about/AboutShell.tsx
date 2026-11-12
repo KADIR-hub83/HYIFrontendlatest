@@ -82,7 +82,7 @@ export default function AboutShell({
       <span className="hyi-orb b" style={orb(-60, -0.16)} />
       <span className="hyi-orb c" style={orb(35, -0.06)} />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4  sm:px-6">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4  sm:px-6">
         <Header/>
         {/* Floating glass + neumorphic tab bar */}
         {/* <nav
@@ -126,7 +126,7 @@ export default function AboutShell({
         {children}
 
         {/* Next / Prev */}
-        <Reveal>
+        {/* <Reveal>
           <hr className="hyi-line my-10" />
           <div className="grid items-center gap-6 md:grid-cols-[auto_1fr]">
             {prev ? (
@@ -145,7 +145,7 @@ export default function AboutShell({
               </Card>
             </Link>
           </div>
-        </Reveal>
+        </Reveal> */}
        
       </div>
        <Footer/>

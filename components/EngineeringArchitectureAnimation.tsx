@@ -1,11 +1,29 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 
+// Lottie JSON ka minimum structure jo hum validate karte hain
+type LottieAnimationData = {
+  layers: unknown[];
+  fr: number;
+  op: number;
+  [key: string]: unknown;
+};
+
+const ANIMATION_URL = "/lotties/engineering-architecture.json";
+
+function isValidLottie(data: unknown): data is LottieAnimationData {
+  if (typeof data !== "object" || data === null) return false;
+
+  const d = data as Record<string, unknown>;
+
+  return Array.isArray(d.layers) && !!d.fr && !!d.op;
+}
+
 export default function EngineeringArchitectureAnimation() {
-  const [animationData, setAnimationData] = useState<any>(null);
+  const [animationData, setAnimationData] =
+    useState<LottieAnimationData | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -13,18 +31,15 @@ export default function EngineeringArchitectureAnimation() {
 
     async function loadAnimation() {
       try {
-      const response = await fetch(
-  "/lotties/engineering-architecture.json",
-  { cache: "no-store" }
-);
+        const response = await fetch(ANIMATION_URL, { cache: "no-store" });
 
         if (!response.ok) {
           throw new Error(`JSON loading failed: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: unknown = await response.json();
 
-        if (!data.layers || !data.fr || !data.op) {
+        if (!isValidLottie(data)) {
           throw new Error("Invalid Lottie JSON structure");
         }
 
@@ -33,9 +48,7 @@ export default function EngineeringArchitectureAnimation() {
         console.error("Lottie Error:", err);
 
         if (mounted) {
-          setError(
-            err instanceof Error ? err.message : "Animation failed"
-          );
+          setError(err instanceof Error ? err.message : "Animation failed");
         }
       }
     }
@@ -49,7 +62,7 @@ export default function EngineeringArchitectureAnimation() {
 
   if (error) {
     return (
-      <div className="h-full flex items-center justify-center text-red-400 text-sm">
+      <div className="flex h-full items-center justify-center text-sm text-red-400">
         Animation Error: {error}
       </div>
     );
@@ -57,7 +70,7 @@ export default function EngineeringArchitectureAnimation() {
 
   if (!animationData) {
     return (
-      <div className="h-full flex items-center justify-center text-white/50 text-sm">
+      <div className="flex h-full items-center justify-center text-sm text-white/50">
         Loading architecture...
       </div>
     );
@@ -68,7 +81,7 @@ export default function EngineeringArchitectureAnimation() {
       animationData={animationData}
       loop
       autoplay
-      className="w-full h-full"
+      className="h-full w-full"
     />
   );
 }

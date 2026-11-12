@@ -319,14 +319,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DM_Sans } from "next/font/google";
+import "@fontsource-variable/dm-sans";
 
-const headingFont = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  variable: "--font-hostinger",
-});
+const headingFont = {
+  className: "",
+  variable: "",
+};
 
 /**
  * Shared line styles (also used by the SSR fallback in typingAnimation.tsx)

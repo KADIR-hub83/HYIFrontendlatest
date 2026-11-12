@@ -231,7 +231,7 @@ export default function FooterNav({ sections, megaMenus }: Props) {
           {currentMenu && currentGroup && (
             // pb-3 = hover bridge, taaki button se popup tak mouse le jaane par band na ho
             <div className="absolute bottom-full left-0 right-0 z-50 pb-3">
-              <div className="flex h-[min(70vh,560px)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/95 shadow-2xl backdrop-blur-md">
+              <div className="flex h-[min(60vh,560px)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/95 shadow-2xl backdrop-blur-md">
                 {/* Fixed header (scroll nahi hota) */}
                 <div className="shrink-0 border-b border-white/10 px-6 py-5">
                   <h3 className="text-lg font-semibold text-dark_mode-100">

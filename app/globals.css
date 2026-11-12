@@ -44,6 +44,7 @@
 }
 
 :root {
+   --font-hostinger: "DM Sans Variable", sans-serif;
   --radius: 0.625rem;
   --background: rgb(255, 255, 255);
   --foreground: rgb(10, 10, 10);
@@ -428,6 +429,9 @@
   border: none;
   outline: none;
   box-shadow: none;
+}
+.font-fraunces {
+  font-family: "Fraunces Variable", serif;
 }
 
 .tabs-trigger {

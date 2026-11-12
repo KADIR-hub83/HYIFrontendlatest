@@ -243,8 +243,11 @@ import {
   footer,
   footerSections,
   footerMegaMenus,
+  type FooterLink,
+  type FooterSection,
 } from "@/components/data/footer";
 import { getTechnologiesSubMenuItems } from "@/components/data/header";
+
 
 // API Imports
 import { ForTechnologiesPageAPI } from "@/lib/services/api";
@@ -271,21 +274,22 @@ export default async function Footer() {
   const technologiesSubMenuItems =
     getTechnologiesSubMenuItems(technologiesDynamicLinks);
 
-  const footerData = {
+  const footerData: Record<string, FooterSection> = {
     ...footerSections,
     ConsultingAndSolutions: {
       heading: "Consulting & Solutions",
       links: technologiesSubMenuItems.links.map(
-        (item) => [item.label, item.href] as const
+        (item): FooterLink => [item.label, item.href]
       ),
     },
   };
 
   const sections = footer.dynamicLinks
-    .map((key) => ({
-      key,
-      heading: footerData[key].heading,
-      links: footerData[key].links,
+    .map((key) => footerData[key])
+    .map((section, i) => ({
+      key: footer.dynamicLinks[i] as string,
+      heading: section?.heading ?? "",
+      links: section?.links ?? [],
     }))
     .filter((s) => s.links.length > 0);
 

@@ -371,7 +371,7 @@
 // npm i framer-motion
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Fraunces } from "next/font/google";
+import "@fontsource-variable/fraunces";
 import {
   AnimatePresence, MotionConfig, animate, motion,
   useInView, useScroll, useTransform, type MotionValue,
@@ -379,7 +379,7 @@ import {
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
  
-const display = Fraunces({ subsets: ["latin"], weight: ["400", "600"] });
+const display = { className: "font-fraunces" };
 const grad = "bg-gradient-to-r from-[#FCCB90] to-[#D57EEB] bg-clip-text text-transparent";
 const ease = [0.22, 1, 0.36, 1] as const;
 const card = "rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur";
