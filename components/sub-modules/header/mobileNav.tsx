@@ -365,6 +365,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 // React Imports
@@ -406,7 +417,7 @@ import { SubMenuNavProps } from "./headerLinks";
 
 interface LinkItem {
   label: string;
-  href: string;
+  href?: string; 
   text?: string;
   icon?: string;
   children?: LinkItem[];
@@ -602,7 +613,7 @@ const mobileNavData: MobileNavItem[] = [
         <Button
           type="button"
           variant="default"
-          className="bg-background"
+          className="bg-background text-white"
           aria-label="Open mobile navigation"
         >
           <Image
@@ -618,9 +629,9 @@ const mobileNavData: MobileNavItem[] = [
           MOBILE NAVIGATION SHEET
       ================================================== */}
 
-      <SheetContent
+          <SheetContent
         className="
-          z-50
+          z-[9999]
           flex
           h-dvh
           flex-col
@@ -882,8 +893,8 @@ const mobileNavData: MobileNavItem[] = [
                                       NORMAL LINK
                                   ==================================== */
 
-                                  <Link
-                                    href={link.href}
+                                    <Link
+                                    href={link.href || "#"}
                                     onClick={
                                       closeMobileNav
                                     }
@@ -940,10 +951,10 @@ const mobileNavData: MobileNavItem[] = [
                                             child,
                                             childIndex
                                           ) => (
-                                            <Link
+                                              <Link
                                               key={`${child.label}-${childIndex}`}
                                               href={
-                                                child.href
+                                                child.href || "#"
                                               }
                                               onClick={
                                                 closeMobileNav
@@ -1124,7 +1135,7 @@ const mobileNavData: MobileNavItem[] = [
                                             >
                                               <Link
                                                 href={
-                                                  link.href
+                                                  link.href || "#"
                                                 }
                                                 onClick={
                                                   closeMobileNav

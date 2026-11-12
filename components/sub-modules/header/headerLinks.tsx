@@ -86,7 +86,8 @@ interface NavLinkProps {
   link: LinkItem;
   className?: string;
   isActive?: boolean;
-  onActivate?: (link: LinkItem) => void;
+  onActivate?: (link: LinkItem | null) => void;
+
 }
 
 const NavLink = ({

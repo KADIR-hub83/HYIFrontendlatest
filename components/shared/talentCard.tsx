@@ -797,6 +797,7 @@ export interface HeroTalent {
   github?: string | null;
   linkedin?: string | null;
   portfolio?: string | null;
+
 }
 
 export const initialsOf = (name?: string) => {
@@ -892,19 +893,17 @@ const Seal = () => (
 
 interface TalentCardProps {
   t: HeroTalent;
-  active: boolean;
-  width: number;
-  onClick: () => void;
+  onClick?: () => void;
+  active?: boolean;
+  width?: number;
   onOpenProfile?: () => void;
 }
 
 export default function TalentCard({
   t,
   onClick,
-}: {
-  t: HeroTalent;
-  onClick?: () => void;
-}) {
+  active = false,
+}: TalentCardProps) {
   const clickable = !t.demo;
 
   return (

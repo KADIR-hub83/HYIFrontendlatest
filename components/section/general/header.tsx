@@ -348,6 +348,9 @@
 
 
 
+
+
+
 // Next Imports
 import Image from "next/image";
 import Link from "next/link";
@@ -357,14 +360,24 @@ import HeaderLinks from "@/components/sub-modules/header/headerLinks";
 import MobileNav from "@/components/sub-modules/header/mobileNav";
 import HeaderLogin from "@/components/sub-modules/header/headerLogin";
 import HeaderScrollWrapper from "@/components/section/general/headerScrollWrapper";
-
+import type { ComponentProps } from "react";
 // Data Imports
 import { headerData } from "@/components/data/header";
 
 // Image Imports
 import logo from "@/assets/shared/logo.svg";
 
+type MobileNavProps = ComponentProps<typeof MobileNav>;
+
 export default function Header() {
+  const mobileItems = [
+    headerData.nav[0],
+    headerData.nav[1],
+    headerData.nav[2],
+    headerData.nav[4],
+    headerData.nav[5],
+  ] as unknown as MobileNavProps["companyData"];
+
   return (
     <HeaderScrollWrapper>
       <section className="flex w-full max-w-[1280px] items-center justify-between">
@@ -466,16 +479,8 @@ export default function Header() {
         {/* =========================================================
             MOBILE / TABLET NAVIGATION
         ========================================================= */}
-        <section className="flex min-[1360px]:hidden">
-          <MobileNav
-            companyData={[
-              headerData.nav[0],
-              headerData.nav[1],
-              headerData.nav[2],
-              headerData.nav[4],
-              headerData.nav[5],
-            ]}
-          />
+             <section className="flex min-[1360px]:hidden">
+          <MobileNav companyData={mobileItems} />
         </section>
       </section>
     </HeaderScrollWrapper>
