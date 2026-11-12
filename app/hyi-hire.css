@@ -1,0 +1,35 @@
+/* ===== Hire Talent extras — append to app/globals.css ===== */
+
+/* Rotating word (width = widest word, no layout jump) */
+.hyi-rotate-item{grid-area:1/1;white-space:nowrap;visibility:hidden;opacity:0;transform:translateY(110%);
+  transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s,visibility 0s .75s}
+.hyi-rotate-item.is-on{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+.hyi-rotate-item.is-out{visibility:visible;opacity:0;transform:translateY(-110%);transition-delay:0s}
+
+/* Shimmering gradient text (add together with hyi-blue) */
+.hyi-shimmer{background:linear-gradient(90deg,#4f9dff,#ffffff,#8b5cf6,#22d3ee,#4f9dff);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hyi-shim 6s linear infinite}
+@keyframes hyi-shim{to{background-position:-300% 0}}
+
+/* Claymorphic call-to-action button */
+.hyi-btn-clay{display:inline-block;background:linear-gradient(145deg,#4f9dff,#1d4ed8);color:#fff;font-weight:700;
+  padding:.95rem 1.7rem;border-radius:18px;
+  box-shadow:inset -4px -4px 10px rgba(0,0,60,.4),inset 4px 4px 10px rgba(255,255,255,.4),0 12px 28px rgba(37,99,235,.5);
+  transition:transform .2s ease,box-shadow .2s ease}
+.hyi-btn-clay:hover{transform:translateY(-3px);box-shadow:inset -4px -4px 10px rgba(0,0,60,.4),inset 4px 4px 10px rgba(255,255,255,.4),0 18px 36px rgba(79,157,255,.6)}
+
+/* Floating chips around the hero animation (follow the mouse) */
+.hyi-chipfloat{position:absolute;z-index:2;padding:.7rem 1.15rem;font-size:.85rem;font-weight:600;color:#fff;white-space:nowrap;
+  background:var(--hyi-navy-2);border-radius:9999px;box-shadow:6px 6px 14px #040817,-5px -5px 12px #1b2c61;
+  transform:translate(calc(var(--px,0)*var(--cx,18)*1px),calc(var(--py,0)*var(--cx,18)*1px));
+  animation:hyi-bob 5s ease-in-out infinite}
+@keyframes hyi-bob{50%{translate:0 -14px}}
+
+/* Tab content swap */
+.hyi-pop{animation:hyi-pop .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes hyi-pop{from{opacity:0;transform:translateY(18px) scale(.97)}}
+
+@media (prefers-reduced-motion:reduce){
+  .hyi-rotate-item{transition:none}
+  .hyi-shimmer,.hyi-chipfloat,.hyi-pop{animation:none}
+}

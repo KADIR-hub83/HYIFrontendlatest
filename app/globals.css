@@ -1107,3 +1107,128 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.hyi-eyebrow{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--hyi-blue);font-weight:600}
+.hyi-line{height:1px;border:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent)}
+ 
+/* ---------- Background (mouse + scroll parallax via --px --py --sy) ---------- */
+.hyi-bg{position:relative;overflow:clip;min-height:100vh;color:#fff;
+  background:radial-gradient(1200px 600px at 10% -10%,#16296b 0%,transparent 60%),
+             radial-gradient(900px 500px at 100% 25%,#0d3b8f55 0%,transparent 60%),
+             linear-gradient(180deg,var(--hyi-navy) 0%,#050914 100%)}
+.hyi-grid{position:absolute;inset:0;pointer-events:none;background-size:56px 56px;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 75%)}
+.hyi-orb{position:absolute;border-radius:9999px;filter:blur(80px);opacity:.42;pointer-events:none;
+  transform:translate3d(calc(var(--px,0)*var(--k,30)*1px),calc(var(--py,0)*var(--k,30)*1px + var(--sy,0)*var(--s,-.08)*1px),0);
+  animation:hyi-float 14s ease-in-out infinite}
+.hyi-orb.a{width:380px;height:380px;background:#2563eb;top:6%;left:-100px}
+.hyi-orb.b{width:340px;height:340px;background:#7c3aed;top:40%;right:-110px}
+.hyi-orb.c{width:300px;height:300px;background:#06b6d4;top:75%;left:15%}
+@keyframes hyi-float{0%,100%{translate:0 0}50%{translate:0 -40px}}
+ 
+/* ---------- Progress bar + cursor ---------- */
+.hyi-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:90;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,#4f9dff,#8b5cf6,#22d3ee);box-shadow:0 0 12px #4f9dff}
+.hyi-cursor-dot,.hyi-cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:100;border-radius:9999px;opacity:0;transition:opacity .3s}
+.hyi-cursor-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:#fff;mix-blend-mode:difference}
+.hyi-cursor-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid rgba(79,157,255,.85);
+  transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
+.hyi-cursor-ring.is-hover{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(79,157,255,.16)}
+.hyi-cursor-on{opacity:1}
+@media (hover:none){.hyi-cursor-dot,.hyi-cursor-ring{display:none}}
+ 
+/* ---------- Surfaces ---------- */
+.hyi-glass{background:rgba(255,255,255,.06);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.15);border-radius:30px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2)}
+.hyi-neu{background:var(--hyi-navy-2);border-radius:26px;box-shadow:10px 10px 22px #040817,-8px -8px 20px #1b2c61}
+.hyi-neu-in{background:var(--hyi-navy-2);border-radius:22px;box-shadow:inset 6px 6px 12px #040817,inset -6px -6px 12px #1b2c61}
+.hyi-clay{background:linear-gradient(145deg,#3b82f6,#1d4ed8 70%,#1e40af);border-radius:38px;
+  box-shadow:inset -10px -10px 20px rgba(0,0,60,.4),inset 10px 10px 20px rgba(255,255,255,.38),14px 18px 34px rgba(0,0,0,.5)}
+.hyi-clay-soft{background:linear-gradient(145deg,#22346f,#131d44);border-radius:34px;
+  box-shadow:inset -7px -7px 14px rgba(0,0,0,.38),inset 7px 7px 14px rgba(255,255,255,.12),12px 16px 30px rgba(0,0,0,.45)}
+.hyi-skeu{display:inline-block;background:linear-gradient(180deg,#2c3f75 0%,#17244f 100%);border:1px solid #4b5f9c;border-radius:14px;color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -3px 6px rgba(0,0,0,.5),0 4px 0 #0a1230,0 12px 20px rgba(0,0,0,.5);
+  transition:transform .15s ease,box-shadow .15s ease}
+.hyi-skeu:hover{transform:translateY(-2px)}
+.hyi-skeu:active,.hyi-skeu.is-active{transform:translateY(3px);background:linear-gradient(180deg,#3b82f6 0%,#1d4ed8 100%);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45),0 1px 0 #0a1230,0 0 18px rgba(79,157,255,.5)}
+ 
+/* ---------- Interactive card: 3D tilt + mouse spotlight ---------- */
+.hyi-card{position:relative;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .3s ease-out;will-change:transform}
+.hyi-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(130,185,255,.24),transparent 45%)}
+.hyi-card:hover::before{opacity:1}
+ 
+/* ---------- Scroll reveal ---------- */
+.hyi-reveal{opacity:0;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
+.hyi-reveal[data-from=up]{transform:translateY(44px)}
+.hyi-reveal[data-from=left]{transform:translateX(-70px)}
+.hyi-reveal[data-from=right]{transform:translateX(70px)}
+.hyi-reveal[data-from=zoom]{transform:scale(.86)}
+.hyi-reveal[data-from=blur]{transform:translateY(20px);filter:blur(10px)}
+.hyi-reveal.is-in{opacity:1;transform:none;filter:none}
+@media (max-width:767px){.hyi-reveal[data-from=left],.hyi-reveal[data-from=right]{transform:translateY(36px)}}
+ 
+/* ---------- Word-by-word heading ---------- */
+.hyi-word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em;margin-right:.26em}
+.hyi-word-in{display:inline-block;transform:translateY(118%) rotate(5deg);transition:transform .95s cubic-bezier(.2,.8,.2,1)}
+.hyi-word-in[data-on=true]{transform:none}
+ 
+/* ---------- Scroll-linked word highlight (--p set by JS, --i per word) ---------- */
+.hyi-sw{opacity:clamp(.16,calc(.16 + (var(--p,0) - var(--i,0)) * 14),1)}
+ 
+/* ---------- Marquee ---------- */
+.hyi-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.hyi-marquee-track{display:flex;width:max-content;animation:hyi-marq 32s linear infinite}
+.hyi-marquee-track.rev{animation-direction:reverse}
+.hyi-marquee:hover .hyi-marquee-track{animation-play-state:paused}
+.hyi-chip{margin-right:1.1rem;padding:.9rem 1.6rem;white-space:nowrap;font-weight:600;font-size:1.05rem;color:#fff;
+  background:var(--hyi-navy-2);border-radius:9999px;box-shadow:6px 6px 14px #040817,-5px -5px 12px #1b2c61}
+@keyframes hyi-marq{to{transform:translateX(-50%)}}
+ 
+/* ---------- Timeline (--p set by JS, --t per node) ---------- */
+.hyi-tl-fill{transform-origin:top;transform:scaleY(var(--p,0));background:linear-gradient(#4f9dff,#8b5cf6);box-shadow:0 0 16px #4f9dff}
+.hyi-tl-dot{width:16px;height:16px;border-radius:9999px;background:#4f9dff;box-shadow:0 0 0 6px rgba(79,157,255,.2),0 0 22px #4f9dff;
+  opacity:clamp(.25,calc(.25 + (var(--p,0) - var(--t,0)) * 20),1)}
+ 
+/* ---------- Misc ---------- */
+.hyi-pulse{animation:hyi-pulse 2s ease-in-out infinite}
+@keyframes hyi-pulse{0%,100%{box-shadow:0 0 0 0 rgba(79,157,255,.7)}50%{box-shadow:0 0 0 9px rgba(79,157,255,0)}}
+.hyi-mouse{width:24px;height:40px;border:2px solid rgba(255,255,255,.5);border-radius:14px;position:relative}
+.hyi-mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:8px;margin-left:-1.5px;border-radius:3px;background:#4f9dff;animation:hyi-wheel 1.6s infinite}
+@keyframes hyi-wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){
+  .hyi-reveal{opacity:1;transform:none;filter:none;transition:none}
+  .hyi-word-in{transform:none;transition:none}
+  .hyi-orb,.hyi-marquee-track,.hyi-pulse,.hyi-mouse::after{animation:none}
+  .hyi-sw{opacity:1}
+}
+ 
+/* ===== Portfolio extras — append to app/globals.css (after hyi-about.css) ===== */
+.hyi-input{width:100%;background:var(--hyi-navy-2);color:#fff;border:1px solid transparent;border-radius:18px;padding:15px 20px;outline:none;
+  box-shadow:inset 6px 6px 12px #040817,inset -6px -6px 12px #1b2c61;transition:border-color .25s,box-shadow .25s}
+.hyi-input::placeholder{color:rgba(255,255,255,.4)}
+.hyi-input:focus{border-color:#4f9dff;box-shadow:inset 6px 6px 12px #040817,inset -6px -6px 12px #1b2c61,0 0 0 4px rgba(79,157,255,.22)}
+.hyi-bar{background:linear-gradient(90deg,#4f9dff,#8b5cf6);box-shadow:0 0 14px rgba(79,157,255,.6);
+  transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+
+
+
+
+
+
+  

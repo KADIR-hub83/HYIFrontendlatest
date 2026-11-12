@@ -22,7 +22,7 @@ export default function HeaderLogin() {
           Get Started <ChevronDown size={17} className="text-white" />
         </CustomButton>
         {dropDownSignup && (
-          <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black/20 backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">
+          <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">
             <div
               className={
                 "w-full flex flex-col justify-center rounded-md border border-white/0 hover:bg-white/7 p-4 px-3 py-2.5 gap-2.5"
@@ -98,7 +98,7 @@ export default function HeaderLogin() {
           Login <ChevronDown size={17} className="text-white" />
         </ShimmerButton>
         {dropDownLogin && (
-          <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black/20 backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">
+          <div className="absolute top-full right-0 max-w-[85vw] flex flex-col bg-black backdrop-blur-md  rounded-lg border border-white/20 shadow-lg z-50 overflow-auto overflow-x-hidden transition-all duration-200 ease-out whitespace-nowrap">
             <div
               className={
                 "w-full flex flex-col justify-center rounded-md border border-white/0 hover:bg-white/7 p-4 px-3 py-2.5 gap-2.5"

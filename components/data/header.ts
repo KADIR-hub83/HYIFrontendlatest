@@ -255,7 +255,7 @@ import { DynamicRoutes } from "@/lib/services/api";
 
 interface LinkItem {
   label: string;
-  href: string;
+  href?: string;
   text?: string;
   children?: LinkItem[];
 }
@@ -361,22 +361,22 @@ export const headerData: HeaderDataProps = {
         },
         {
           label: "Product Designer",
-          href: "/product-designer",
+          href: "/hire/product-designer",
           text: "",
         },
         {
           label: "Hire Finance Consultant",
-          href: "/hire-finance-consultant",
+          href: "/hire/hire-finance-consultant",
           text: "",
         },
         {
           label: "Hire CXO",
-          href: "/hire-cxo",
+          href: "/hire/hire-cxo",
           text: "",
         },
         {
           label: "Build Your Team",
-          href: "/build-your-team",
+          href: "/hire/build-your-team",
           text: "",
         },
       ],
@@ -397,7 +397,7 @@ export const headerData: HeaderDataProps = {
   links: [
     {
       label: "Application Development",
-      href: "/technology-solutions/application-development",
+
       text: "",
       children: [
         {
@@ -450,9 +450,34 @@ export const headerData: HeaderDataProps = {
         },
       ],
     },
+{
+  label: "Integrate AI",
+  text: "Seamlessly integrate AI into your workflows to enhance efficiency, accuracy, and decision-making.",
+  children: [
+    {
+      label: "KPI & KRA",
+      href: "/integrate-AI/KPI&KRA",
+    },
+    {
+      label: "Price Tracking",
+      href: "/integrate-AI/price-tracking",
+    },
+    {
+      label: "Strategy & Planning",
+      href: "/integrate-AI/strategy&planning",
+    },
+    {
+      label: "Project Tracking",
+      href: "/integrate-AI/project-tracking",
+    },
+    {
+      label: "Talent Matching",
+      href: "/integrate-AI/talent-matching",
+    },
+  ],
+},
     {
   label: "Global Capability Center (GCC)",
-  href: "/gcc",
   text: "",
   children: [
     {
@@ -496,7 +521,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Artificial Intelligence",
-      href: "/technology-solutions/artificial-intelligence",
       text: "",
       children: [
         {
@@ -556,7 +580,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Data Analytics",
-      href: "/technology-solutions/data-analytics",
       text: "",
       children: [
         {
@@ -612,7 +635,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Cloud Infrastructure",
-      href: "/technology-solutions/cloud-infrastructure",
       text: "",
       children: [
         {
@@ -668,7 +690,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "AI Cloud",
-      href: "/technology-solutions/ai-cloud",
       text: "",
       children: [
         {
@@ -724,7 +745,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Digital Transformation",
-      href: "/technology-solutions/digital-transformation",
       text: "",
       children: [
         {
@@ -780,7 +800,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Robotic Design & Development",
-      href: "/technology-solutions/robotic-design-development",
       text: "",
       children: [
         {
@@ -836,7 +855,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "A/B Testing",
-      href: "/technology-solutions/ab-testing",
       text: "",
       children: [
         {
@@ -892,7 +910,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Finance & Risk Intelligence",
-      href: "/technology-solutions/finance-risk-intelligence",
       text: "",
       children: [
         {
@@ -948,7 +965,6 @@ export const headerData: HeaderDataProps = {
 
     {
   label: "AI-Powered Business Processes",
-  href: "/integrate-AI",
   text: "",
   children: [
     {
@@ -997,7 +1013,6 @@ export const headerData: HeaderDataProps = {
   links: [
     {
       label: "Cybersecurity Assessment & Consulting",
-      href: "/cyber-security/assessment-consulting",
       text: "",
       children: [
         {
@@ -1049,7 +1064,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Managed Security Services",
-      href: "/cyber-security/managed-security-services",
       text: "",
       children: [
         {
@@ -1101,7 +1115,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Security Operations Center (SOC)",
-      href: "/cyber-security/security-operations-center",
       text: "",
       children: [
         {
@@ -1153,7 +1166,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Endpoint Security",
-      href: "/cyber-security/endpoint-security",
       text: "",
       children: [
         {
@@ -1201,7 +1213,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Network Security",
-      href: "/cyber-security/network-security",
       text: "",
       children: [
         {
@@ -1253,7 +1264,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Cloud Security",
-      href: "/cyber-security/cloud-security",
       text: "",
       children: [
         {
@@ -1305,7 +1315,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Vulnerability Assessment & Penetration Testing",
-      href: "/cyber-security/vulnerability-assessment",
       text: "",
       children: [
         {
@@ -1357,7 +1366,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Finance and Risk Management",
-      href: "/cyber-security/finance-risk-management",
       text: "",
       children: [
         {
@@ -1409,7 +1417,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Threat Detection & Response",
-      href: "/cyber-security/threat-detection-response",
       text: "",
       children: [
         {
@@ -1461,7 +1468,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Security Compliance & Risk Management",
-      href: "/cyber-security/compliance-risk-management",
       text: "",
       children: [
         {
@@ -1517,7 +1523,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Incident Response & Digital Forensics",
-      href: "/cyber-security/incident-response-forensics",
       text: "",
       children: [
         {
@@ -1573,7 +1578,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Security Awareness & Training",
-      href: "/cyber-security/security-awareness-training",
       text: "",
       children: [
         {
@@ -1699,9 +1703,9 @@ export const headerData: HeaderDataProps = {
   outerPadding: "large",
 
   links: [
+       
     {
       label: "Corporate AI Training",
-      href: "/ai-training/corporate",
       text: "",
       children: [
         {
@@ -1734,10 +1738,27 @@ export const headerData: HeaderDataProps = {
         },
       ],
     },
+      {
+       label: "AI Advisory",
+      text: "",
+      children: [
+         {
+          label: "AI Lab",
+          href: "/ai/ai-lab",
+        },
+         {
+          label: "AI Governance",
+          href: "/ai/ai-governance",
+        },
+         {
+          label: "AI Responsible",
+          href: "/ai/ai-responsible",
+        },
+      ]
+    },
 
     {
       label: "College & University Programs",
-      href: "/ai-training/college-university",
       text: "",
       children: [
         {
@@ -1773,7 +1794,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "School AI Programs",
-      href: "/ai-training/school",
       text: "",
       children: [
         {
@@ -1809,7 +1829,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Rural & Urban AI Programs",
-      href: "/ai-training/rural-urban",
       text: "",
       children: [
         {
@@ -1845,7 +1864,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "Government & Public Sector",
-      href: "/ai-training/government",
       text: "",
       children: [
         {
@@ -1877,7 +1895,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "AI Certifications & Assessments",
-      href: "/ai-training/certifications",
       text: "",
       children: [
         {
@@ -1909,7 +1926,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "AI Labs & Innovation",
-      href: "/ai-training/labs-innovation",
       text: "",
       children: [
         {
@@ -1941,7 +1957,6 @@ export const headerData: HeaderDataProps = {
 
     {
       label: "AI Trainer & Faculty Development",
-      href: "/ai-training/trainer-faculty-development",
       text: "",
       children: [
         {
@@ -1973,61 +1988,86 @@ export const headerData: HeaderDataProps = {
     // 6. RESOURCES
     // ==================================================
 
-    {
-      value: "resources",
-      title: "Resources",
-      heading: "Resources",
-      paragraph:
-        "Explore company information, leadership, careers, media and other resources.",
-      outerPadding: "large",
+  {
+  value: "resources",
+  title: "Resources",
+  heading: "Resources",
+  paragraph:
+    "Explore company information, leadership, careers, media and other resources.",
+  outerPadding: "large",
 
-      links: [
+  links: [
+    {
+      label: "About Us",
+      text: "",
+      children: [
         {
-          label: "About Us",
-          href: "/about",
-          text: "",
+          label: "Who We Are",
+          href: "/about/who-we-are",
         },
         {
-          label: "Leadership",
-          href: "/leadership",
-          text: "",
+          label: "Our Story",
+          href: "/about/our-story",
         },
         {
-          label: "Investor",
-          href: "/investor",
-          text: "",
+          label: "Vision & Mission",
+          href: "/about/vision-mission",
         },
         {
-          label: "Finance",
-          href: "/finance",
-          text: "",
+          label: "Our Founder",
+          href: "/about/our-founder",
         },
         {
-          label: "Client",
-          href: "/client",
-          text: "",
+          label: "Our Values",
+          href: "/about/our-values",
         },
         {
-          label: "Career",
-          href: "/career",
-          text: "",
-        },
-        {
-          label: "Media",
-          href: "/media",
-          text: "",
-        },
-        {
-          label: "Grievance and Compliances",
-          href: "/documents/privacy-policy",
-          text: "",
-        },
-        {
-          label: "Contact Us",
-          href: "/talk-to-our-expert",
-          text: "",
+          label: "Our Future",
+          href: "/about/our-future",
         },
       ],
     },
+    {
+      label: "Leadership",
+      href: "/leadership",
+      text: "",
+    },
+    {
+      label: "Investor",
+      href: "/investor",
+      text: "",
+    },
+    {
+      label: "Finance",
+      href: "/finance",
+      text: "",
+    },
+    {
+      label: "Client",
+      href: "/client",
+      text: "",
+    },
+    {
+      label: "Career",
+      href: "/career",
+      text: "",
+    },
+    {
+      label: "Media",
+      href: "/media",
+      text: "",
+    },
+    {
+      label: "Grievance and Compliances",
+      href: "/documents/privacy-policy",
+      text: "",
+    },
+    {
+      label: "Contact Us",
+      href: "/talk-to-our-expert",
+      text: "",
+    },
+  ],
+},
   ],
 };

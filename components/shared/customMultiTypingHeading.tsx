@@ -336,11 +336,11 @@ const headingFont = DM_Sans({
  */
 export const getLineStyle = (i: number) => {
   if (i === 0)
-    return `${headingFont.className} text-[clamp(2.25rem,4.4vw,4rem)] font-bold leading-[1.06] tracking-[-0.035em] text-white`;
+    return `${headingFont.className} text-[clamp(2.25rem,4.4vw,3rem)] font-bold leading-[1.06] tracking-[-0.035em] hyi-white`;
   if (i === 1)
-    return `${headingFont.className} mt-2 text-[clamp(2.25rem,4.4vw,4rem)] font-bold leading-[1.01] tracking-[-0.035em] bg-gradient-to-r from-[#c4b5fd] via-[#8b5cf6] to-[#6366f1] bg-clip-text text-transparent`;
+    return `${headingFont.className} mt-2 text-[clamp(2.25rem,4.4vw,2.5rem)] font-bold leading-[1.01] tracking-[-0.035em] hyi-blue`;
   // return `${monoFont.className} mt-6 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.26em] text-white/60 sm:text-xs lg:justify-start before:h-px before:w-8 before:shrink-0 before:bg-gradient-to-r before:from-violet-400 before:to-transparent before:content-['']`;
-return "hyi-p mt-3 text-xl";
+return "hyi-p mt-3 text-[18px] w-[70%] max-lg:w-full font-medium text-white/70 sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px]";
 };
 
 interface MultiLineFlipProps {

@@ -1,38 +1,67 @@
-// // import React from "react";
-// // import CustomUserCard from "@/components/shared/customUserCard";
-// // import CustomSwiper from "@/components/shared/customSlider";
-// // import { StaticImageData } from "next/image";
-// // import { PublicProfileAPI } from "@/lib/services/api";
+// import React from "react";
+// import CustomUserCard from "@/components/shared/customUserCard";
+// import CustomSwiper from "@/components/shared/customSlider";
+// import { StaticImageData } from "next/image";
+// import { PublicProfileAPI } from "@/lib/services/api";
 
-// // interface User {
-// //   _id: string;
-// //   user: string;
-// //   profilePicture: StaticImageData | string | null;
-// //   fullName: string;
+// interface User {
+//   _id: string;
+//   user: string;
+//   profilePicture: StaticImageData | string | null;
+//   fullName: string;
 
-// //   experience?: {
-// //     designation?: string;
-// //   }[];
+//   experience?: {
+//     designation?: string;
+//   }[];
 
-// //   text?: string;
-// // }
+//   text?: string;
+// }
 
-// // export default async function HeroUserSlider() {
-// //   const data = await PublicProfileAPI.getFeaturedUsers();
-// //   return (
-// //     <div className="flex flex-col gap-5">
-// //       <h1 className="text-base font-semibold bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center capitalize md:text-xl md:font-bold  lg:text-2xl">
-// //         {"Verified Global Talents."}
-// //       </h1>
-// //       <CustomSwiper
-// //         items={data.map((user: User) => (
-// //           <CustomUserCard  key={user._id} user={user} />
-// //         ))}
-// //         height="h-[82px]"
-// //       />
-// //     </div>
-// //   );
-// // }
+// export default async function HeroUserSlider() {
+//   const data = await PublicProfileAPI.getFeaturedUsers();
+//   return (
+//     <div className="flex flex-col gap-5">
+//       <h1 className="text-base font-semibold bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center capitalize md:text-xl md:font-bold  lg:text-2xl">
+//         {"Verified Global Talents."}
+//       </h1>
+//       <CustomSwiper
+//         items={data.map((user: User) => (
+//           <CustomUserCard  key={user._id} user={user} />
+//         ))}
+//         height="h-[82px]"
+//       />
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,6 +75,8 @@
 // import CustomUserCard from "@/components/shared/customUserCard";
 // import CustomSwiper from "@/components/shared/customSlider";
 // import { PublicProfileAPI } from "@/lib/services/api";
+// import HeroExperience from "../landingPage/heroExperience";
+// import type { HeroTalent } from "@/components/shared/talentCard";
 
 // interface FeaturedUser {
 //   _id: string;
@@ -65,6 +96,8 @@
 //   designation: string;
 //   slug: string;
 // }
+
+
 
 // // Demo profiles are temporary placeholders, not real verified talent.
 // const DEMO_USERS: SliderUser[] = [
@@ -101,6 +134,8 @@
 //     slug: "",
 //   },
 // ];
+
+
 
 // const MIN_VISIBLE_USERS = 4;
 
@@ -139,6 +174,8 @@
 //   ).map((user) => {
 //     const uniqueId = String(user.user || user._id);
 
+
+
 //     return {
 //       userId: uniqueId,
 //       talentId: uniqueId,
@@ -166,25 +203,26 @@
 //     ...DEMO_USERS.slice(0, remainingSlots),
 //   ];
 
-//   return (
-//     <div className="flex flex-col gap-5">
-//       <h1 className="text-base font-semibold bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center capitalize md:text-xl md:font-bold lg:text-2xl">
-//         Verified Global Talents.
-//       </h1>
+//  return (
+//   <div className="flex flex-col gap-5">
 
-//       <CustomSwiper
-//         items={users.map((user) => (
-//           <CustomUserCard
-//             key={user.userId}
-//             user={user}
-//           />
-//         ))}
-//         height="h-[82px]"
-//       />
-//     </div>
-//   );
+
+//     <h1 className="text-base font-semibold bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent text-center capitalize md:text-xl md:font-bold lg:text-2xl">
+//       Verified Global Talents.
+//     </h1>
+
+//     <CustomSwiper
+//       items={users.map((user) => (
+//         <CustomUserCard
+//           key={user.userId}
+//           user={user}
+//         />
+//       ))}
+//       height="h-[82px]"
+//     />
+//   </div>
+// );
 // }
-
 
 
 
@@ -426,94 +464,6 @@
 
 
 
-// import React from "react";
-// import HeroExperience from "@/components/section/landingPage/heroExperience";
-// import type { HeroTalent } from "@/components/shared/talentCard";
-// import { PublicProfileAPI } from "@/lib/services/api";
-
-// /**
-//  * HeroUserSlider (server component = data layer)
-//  * ---------------------------------------------------------------------------
-//  * Fetches the featured users, removes duplicates / incomplete records, tops up
-//  * with clearly-labelled demo profiles when there are too few real ones, and
-//  * hands everything to the client-side <HeroExperience /> (the new landing hero).
-//  *
-//  * The data logic is the same as before, only the output changed.
-//  */
-
-// interface FeaturedUser {
-//   _id: string;
-//   user: string;
-//   profilePicture?: string | null;
-//   fullName: string;
-//   experience?: Array<{
-//     designation?: string;
-//   }>;
-// }
-
-// // Demo profiles are temporary placeholders, not real verified talent.
-// // They are shown as "Sample" and never open a profile.
-// const DEMO_USERS: HeroTalent[] = [
-//   { id: "demo-talent-01", name: "AI Specialist", designation: "Demo Profile", photo: null, demo: true },
-//   { id: "demo-talent-02", name: "Software Developer", designation: "Demo Profile", photo: null, demo: true },
-//   { id: "demo-talent-03", name: "Cloud Engineer", designation: "Demo Profile", photo: null, demo: true },
-//   { id: "demo-talent-04", name: "ML Engineer", designation: "Demo Profile", photo: null, demo: true },
-// ];
-
-// const MIN_VISIBLE_USERS = 4;
-// const MAX_USERS = 16; // keeps the carousel light
-
-// export default async function HeroUserSlider() {
-//   let apiUsers: FeaturedUser[] = [];
-
-//   try {
-//     const response = await PublicProfileAPI.getFeaturedUsers();
-//     apiUsers = Array.isArray(response) ? response : [];
-//   } catch (error) {
-//     console.error("Failed to load featured users:", error);
-//   }
-
-//   // Keep only one record per actual user.
-//   // `user` identifies the account; `_id` is the fallback.
-//   const uniqueUsers = new Map<string, FeaturedUser>();
-
-//   for (const user of apiUsers) {
-//     const uniqueId = String(user?.user || user?._id || "").trim();
-
-//     if (!uniqueId || uniqueUsers.has(uniqueId)) continue;
-
-//     // Skip incomplete API records.
-//     if (!user.fullName?.trim()) continue;
-
-//     uniqueUsers.set(uniqueId, user);
-//   }
-
-//   const realUsers: HeroTalent[] = Array.from(uniqueUsers.entries()).map(
-//     ([id, user]) => ({
-//       id,
-//       name: user.fullName.trim(),
-//       designation: user.experience?.length
-//         ? user.experience[user.experience.length - 1]?.designation?.trim() || ""
-//         : "",
-//       photo: user.profilePicture || null,
-//       demo: false,
-//     })
-//   );
-
-//   // Add demo cards only when real profiles are insufficient.
-//   // Every additional real profile removes one demo card.
-//   const remainingSlots = Math.max(0, MIN_VISIBLE_USERS - realUsers.length);
-
-//   const talents: HeroTalent[] = [
-//     ...realUsers,
-//     ...DEMO_USERS.slice(0, remainingSlots),
-//   ].slice(0, MAX_USERS);
-
-//   return <HeroExperience talents={talents} />;
-// }
-
-
-
 import React from "react";
 import HeroExperience from "@/components/section/landingPage/heroExperience";
 import type { HeroTalent } from "@/components/shared/talentCard";
@@ -533,8 +483,6 @@ interface FeaturedUser {
   _id: string;
   user: string;
   profilePicture?: string | null;
-  /** transparent PNG (background removed) - optional, comes from your API */
-  cutoutPicture?: string | null;
   fullName: string;
   experience?: Array<{
     designation?: string;
@@ -544,13 +492,65 @@ interface FeaturedUser {
 // Demo profiles are temporary placeholders, not real verified talent.
 // They are shown as "Sample" and never open a profile.
 const DEMO_USERS: HeroTalent[] = [
-  { id: "demo-talent-01", name: "AI Specialist", designation: "Demo Profile", photo: null, demo: true },
-  { id: "demo-talent-02", name: "Software Developer", designation: "Demo Profile", photo: null, demo: true },
-  { id: "demo-talent-03", name: "Cloud Engineer", designation: "Demo Profile", photo: null, demo: true },
-  { id: "demo-talent-04", name: "ML Engineer", designation: "Demo Profile", photo: null, demo: true },
+  {
+    id: "demo-talent-01",
+    name: "Alex Morgan",
+    designation: "AI / ML Engineer",
+    photo: "https://static.vecteezy.com/system/resources/thumbnails/057/936/076/small/confident-businessman-smiling-with-arms-crossed-conveying-professionalism-and-success-photo.jpg",
+    demo: true,
+  },
+  {
+    id: "demo-talent-02",
+    name: "Sophia Williams",
+    designation: "Full Stack Developer",
+    photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlZr3Dv-vvKrYaXA40mPsthdmp2A2rfY8G1OliFTdj_xB3ulpSpcZdXTg&s=10",
+    demo: true,
+  },
+  {
+    id: "demo-talent-03",
+    name: "Daniel Smith",
+    designation: "Cloud Architect",
+    photo: null,
+    demo: true,
+  },
+  {
+    id: "demo-talent-04",
+    name: "Olivia Johnson",
+    designation: "UI/UX Designer",
+    photo: "https://t3.ftcdn.net/jpg/20/77/22/08/360_F_2077220821_P4L8Cc2rENE76xxPHKtV1y0ffJsd6Hbw.jpg",
+    demo: true,
+  },
+  {
+    id: "demo-talent-05",
+    name: "Ethan Wilson",
+    designation: "Cybersecurity Expert",
+    photo: "https://img.magnific.com/premium-photo/photo-young-professional-gray-suit-standing-confidently-with-smile_763111-339007.jpg?w=360",
+    demo: true,
+  },
+  {
+    id: "demo-talent-06",
+    name: "Isabella Brown",
+    designation: "Data Scientist",
+    photo: null,
+    demo: true,
+  },
+  {
+    id: "demo-talent-07",
+    name: "Ryan Anderson",
+    designation: "DevOps Engineer",
+    photo: "https://static.vecteezy.com/system/resources/thumbnails/054/511/449/small/portrait-of-a-young-male-software-developer-in-his-office-photo.jpg",
+    demo: true,
+  },
+  {
+    id: "demo-talent-08",
+    name: "Emma Taylor",
+    designation: "Product Designer",
+    photo: null,
+    demo: true,
+  },
 ];
 
-const MIN_VISIBLE_USERS = 4;
+const MIN_VISIBLE_USERS = 16;
 const MAX_USERS = 16; // keeps the carousel light
 
 export default async function HeroUserSlider() {
@@ -586,7 +586,6 @@ export default async function HeroUserSlider() {
         ? user.experience[user.experience.length - 1]?.designation?.trim() || ""
         : "",
       photo: user.profilePicture || null,
-      cutout: user.cutoutPicture || null,
       demo: false,
     })
   );
@@ -602,3 +601,6 @@ export default async function HeroUserSlider() {
 
   return <HeroExperience talents={talents} />;
 }
+
+
+

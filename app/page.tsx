@@ -231,6 +231,7 @@ import MotionReveal from "@/components/shared/motionReveal";
 import { connectWithDeveloperData } from "@/components/data/landingPage";
 import ClientSection from "@/components/section/landingPage/clientSection";
 import TestimonialSection from "@/components/section/landingPage/TestimonialSection";
+import HeroExperience from "@/components/section/landingPage/heroExperience";
 
 const Technologies = dynamic(
   () => import("@/components/section/general/technologies"),
@@ -238,7 +239,7 @@ const Technologies = dynamic(
 
 export default function Home() {
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden ">
       {/* ------------------------------------------------ */}
       {/* HEADER */}
       {/* ------------------------------------------------ */}
@@ -251,6 +252,7 @@ export default function Home() {
       {/* carousel + trust strip. Rendered ONCE (the old   */}
       {/* page mounted <HeroSection /> twice).             */}
       {/* ------------------------------------------------ */}
+
 
       <HeroUserSlider />
 

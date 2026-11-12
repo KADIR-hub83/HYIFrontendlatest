@@ -32,7 +32,7 @@ export default function HeroSection({
   return (
     <section>
       <Header />
-      <CustomWrapper padding="px-4 pt-6 md:px-6 md:pt-6 lg:pt-8">
+      <CustomWrapper padding="px-4 pt-20 md:px-6 ">
         <div className="flex flex-col gap-6 md:gap-8">
           <div className="flex flex-col items-center justify-center gap-5">
             <CustomLabel icon={labelIcon}>{label}</CustomLabel>

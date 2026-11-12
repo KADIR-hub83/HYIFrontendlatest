@@ -18,7 +18,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 
 export interface LinkItem {
   label: string;
-  href: string;
+  href?: string;
   text?: string;
   icon?: string;
   children?: LinkItem[];
@@ -52,6 +52,7 @@ interface LinkListProps {
   grid?: boolean;
   gridColumn?: string;
   linksItemClassName?: string;
+  nestedHoverMenu?: boolean;
 }
 
 interface HeaderLinksProps {
@@ -81,7 +82,6 @@ interface MultipleSubMenuHeaderLinksProps {
 // ======================================================
 // NAV LINK
 // ======================================================
-
 interface NavLinkProps {
   link: LinkItem;
   className?: string;
@@ -98,65 +98,78 @@ const NavLink = ({
   const hasChildren =
     Array.isArray(link.children) && link.children.length > 0;
 
+  const linkContent = (
+    <>
+      <span
+        className="
+          text-[13px]
+          font-medium
+          text-white/90
+          whitespace-normal
+          leading-5
+          text-left
+        "
+      >
+        {link.label}
+      </span>
+
+      {hasChildren && (
+        <ChevronRight
+          size={17}
+          className={cn(
+            "shrink-0 ml-3 text-white/60 transition-transform",
+            isActive && "translate-x-0.5 text-white"
+          )}
+        />
+      )}
+    </>
+  );
+
+  const commonClassName = cn(
+    `
+      w-full
+      min-h-[46px]
+      flex
+      items-center
+      justify-between
+      rounded-md
+      border
+      border-transparent
+      px-3
+      py-2.5
+      transition-all
+      duration-200
+    `,
+    isActive
+      ? "bg-white/5 border-white/15"
+      : "hover:bg-white/5 hover:border-white/10",
+    className
+  );
+
   return (
     <li
       className="w-full list-none"
-      onMouseEnter={() => {
-        if (hasChildren) {
-          onActivate?.(link);
-        }
-      }}
+     onMouseEnter={() => {
+  onActivate?.(hasChildren ? link : null);
+}}
     >
-      <Link
-        href={link.href}
-        className={cn(
-          `
-            w-full
-            min-h-[46px]
-
-            flex
-            items-center
-            justify-between
-
-            rounded-md
-            border
-            border-transparent
-
-            px-3
-            py-2.5
-
-            transition-all
-            duration-200
-          `,
-          isActive
-            ? "bg-white/5 border-white/15"
-            : "hover:bg-white/5 hover:border-white/10",
-
-          className
-        )}
-      >
-        <span
-          className="
-            text-[13px]
-            font-medium
-            text-white/90
-            whitespace-normal
-            leading-5
-          "
+      {link.href ? (
+        <Link href={link.href} className={commonClassName}>
+          {linkContent}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            if (hasChildren) {
+              onActivate?.(link);
+            }
+          }}
+          className={commonClassName}
         >
-          {link.label}
-        </span>
-
-        {hasChildren && (
-          <ChevronRight
-            size={17}
-            className={cn(
-              "shrink-0 ml-3 text-white/60 transition-transform",
-              isActive && "translate-x-0.5 text-white"
-            )}
-          />
-        )}
-      </Link>
+          {linkContent}
+        </button>
+      )}
     </li>
   );
 };
@@ -194,39 +207,33 @@ const ChildPanel = ({
             : "grid-cols-1"
         )}
       >
-        {parent.children.map((child, index) => (
-          <Link
-            key={`${child.label}-${index}`}
-            href={child.href}
-            className="
-              min-h-[44px]
-
-              flex
-              items-center
-
-              rounded-md
-              border
-              border-transparent
-
-              px-3
-              py-2.5
-
-              text-[13px]
-              font-medium
-              leading-5
-              text-white/90
-              whitespace-normal
-
-              hover:bg-white/5
-              hover:border-white/10
-
-              transition-all
-              duration-200
-            "
-          >
-            {child.label}
-          </Link>
-        ))}
+    {parent.children.map((child, index) => (
+  <Link
+    key={`${child.label}-${index}`}
+    href={child.href || "#"}
+    className="
+      min-h-[44px]
+      flex
+      items-center
+      rounded-md
+      border
+      border-transparent
+      px-3
+      py-2.5
+      text-[13px]
+      font-medium
+      leading-5
+      text-white/90
+      whitespace-normal
+      hover:bg-white/5
+      hover:border-white/10
+      transition-all
+      duration-200
+    "
+  >
+    {child.label}
+  </Link>
+))}
       </div>
     </div>
   );
@@ -239,12 +246,15 @@ const LinkList = ({
   links = [],
   gap = "",
   linksItemClassName = "",
+  nestedHoverMenu = false,
 }: LinkListProps) => {
   const firstWithChildren =
     links.find((item) => item.children?.length) || null;
 
   const [activeParent, setActiveParent] =
-    useState<LinkItem | null>(firstWithChildren);
+    useState<LinkItem | null>(
+      nestedHoverMenu ? null : firstWithChildren
+    );
 
   const [showScrollHint, setShowScrollHint] = useState(false);
 
@@ -255,16 +265,14 @@ const LinkList = ({
   );
 
   useEffect(() => {
-    if (!hasAnyChildren) {
+    if (!hasAnyChildren || nestedHoverMenu) {
       setShowScrollHint(false);
       return;
     }
 
     const element = scrollRef.current;
 
-    if (!element) {
-      return;
-    }
+    if (!element) return;
 
     const checkScroll = () => {
       const hasOverflow =
@@ -286,19 +294,113 @@ const LinkList = ({
       element.removeEventListener("scroll", checkScroll);
       window.removeEventListener("resize", checkScroll);
     };
-  }, [hasAnyChildren, links]);
+  }, [hasAnyChildren, links, nestedHoverMenu]);
+
+  if (!links.length) return null;
 
   // ======================================================
-  // EMPTY LINKS
+  // RESOURCES — HOVER SUBMENU POPUP
   // ======================================================
 
-  if (!links.length) {
-    return null;
+  if (nestedHoverMenu) {
+    return (
+<div className="w-full">
+  <ul className="grid grid-cols-2 gap-x-6 gap-y-1">
+          {links.map((link, index) => {
+            const hasChildren =
+              !!link.children?.length;
+
+            const isActive =
+              activeParent?.label === link.label;
+
+            return (
+              <li
+                key={`${link.label}-${index}`}
+                className="relative list-none w-full"
+                onMouseEnter={() => {
+                  setActiveParent(
+                    hasChildren ? link : null
+                  );
+                }}
+                onMouseLeave={() => {
+                  if (hasChildren) {
+                    setActiveParent(null);
+                  }
+                }}
+              >
+                <NavLink
+                  link={link}
+                  isActive={isActive}
+                  className={linksItemClassName}
+                  onActivate={setActiveParent}
+                />
+
+                {/* ABOUT US POPUP */}
+                {hasChildren && isActive && (
+                  <div
+                    className="
+                      absolute
+                      left-full
+                      -top-17
+                      z-[100]
+                      -ml-20
+                      w-[260px]
+                      rounded-lg
+                      border
+                      border-white/15
+                      bg-black/95
+                      p-2
+                      shadow-2xl
+                      backdrop-blur-xl
+                    "
+                    onMouseEnter={() =>
+                      setActiveParent(link)
+                    }
+                  >
+                    <div className="mb-2 border-b border-white/10 px-3 py-2">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-white/50">
+                        {link.label}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      {link.children?.map(
+                        (child, childIndex) => (
+                          <Link
+                            key={`${child.label}-${childIndex}`}
+                            href={child.href || "#"}
+                            className="
+                              flex
+                              min-h-[42px]
+                              items-center
+                              rounded-md
+                              px-3
+                              py-2
+                              text-[13px]
+                              font-medium
+                              text-white/85
+                              transition-all
+                              hover:bg-white/10
+                              hover:text-white
+                            "
+                          >
+                            {child.label}
+                          </Link>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
   }
 
   // ======================================================
   // DIRECT LINKS — HIRE TALENT
-  // 4 LEFT + 4 RIGHT
   // ======================================================
 
   if (!hasAnyChildren) {
@@ -309,7 +411,6 @@ const LinkList = ({
 
     return (
       <div className="grid w-full grid-cols-2 gap-x-8">
-        {/* LEFT COLUMN */}
         <div className="flex flex-col gap-1 border-r border-white/10 pr-5">
           {leftLinks.map((link, index) => (
             <NavLink
@@ -320,7 +421,6 @@ const LinkList = ({
           ))}
         </div>
 
-        {/* RIGHT COLUMN */}
         <div className="flex flex-col gap-1 pl-3">
           {rightLinks.map((link, index) => (
             <NavLink
@@ -335,18 +435,12 @@ const LinkList = ({
   }
 
   // ======================================================
-  // CHILD MENU — TECHNOLOGY / CYBER SECURITY ETC.
+  // EXISTING TWO-PANEL MENUS
   // ======================================================
 
   return (
     <div className="grid h-[390px] max-h-[390px] w-full grid-cols-[320px_minmax(0,1fr)] gap-5">
-      {/* ==================================================
-          LEFT SIDE
-      ================================================== */}
-
       <div className="relative h-full min-h-0 border-r border-white/10 pr-4">
-        {/* SCROLLABLE MENU */}
-
         <div
           ref={scrollRef}
           className="
@@ -371,55 +465,26 @@ const LinkList = ({
                 key={`${link.label}-${index}`}
                 link={link}
                 className={linksItemClassName}
-                isActive={activeParent?.href === link.href}
+                isActive={activeParent?.label === link.label}
                 onActivate={setActiveParent}
               />
             ))}
           </ul>
         </div>
 
-        {/* SCROLL INDICATOR */}
-
         {showScrollHint && (
           <div
             className="
               pointer-events-none
-              absolute
-              bottom-0
-              left-0
-              right-4
-              z-20
-              flex
-              h-[75px]
-              items-end
-              justify-center
-              bg-gradient-to-t
-              from-black
-              via-black/95
-              to-transparent
-              pb-2
+              absolute bottom-0 left-0 right-4
+              z-20 flex h-[75px]
+              items-end justify-center
+              bg-gradient-to-t from-black
+              via-black/95 to-transparent pb-2
             "
           >
-            <div
-              className="
-                flex
-                items-center
-                gap-1.5
-                rounded-full
-                border
-                border-white/10
-                bg-white/[0.06]
-                px-3
-                py-1.5
-                text-[11px]
-                font-medium
-                text-white/60
-                shadow-lg
-                backdrop-blur-md
-              "
-            >
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-[11px] font-medium text-white/60 shadow-lg backdrop-blur-md">
               <span>Scroll for more</span>
-
               <ChevronDown
                 size={14}
                 className="animate-bounce text-white/60"
@@ -428,10 +493,6 @@ const LinkList = ({
           </div>
         )}
       </div>
-
-      {/* ==================================================
-          RIGHT SIDE CHILDREN
-      ================================================== */}
 
       <div className="h-full min-w-0 overflow-hidden">
         <ChildPanel parent={activeParent} />
@@ -645,7 +706,11 @@ export default function HeaderLinks({
   const [dropDown, setDropDown] = useState(false);
 
   return (
-    <div className="relative z-50 flex flex-col rounded">
+   <div
+  className="relative z-50 flex flex-col rounded"
+  onMouseEnter={() => setDropDown(true)}
+  onMouseLeave={() => setDropDown(false)}
+>
       {/* MAIN NAV LINK */}
       <Link
         href={mainLinkDestination}
@@ -727,12 +792,13 @@ export default function HeaderLinks({
             )}
           >
             {!navItems?.subMenu ? (
-              <LinkList
-                links={navItems?.links || []}
-                gap={gapBetweendropDown}
-                gridColumn={gridColumn}
-                linksItemClassName="justify-start"
-              />
+             <LinkList
+  links={navItems?.links || []}
+  gap={gapBetweendropDown}
+  gridColumn={gridColumn}
+  linksItemClassName="justify-start"
+  nestedHoverMenu={navItems?.value === "resources"}
+/>
             ) : (
               <MultipleSubMenuHeaderLinks
                 subMenu={navItems?.subMenu || []}

@@ -289,15 +289,15 @@ const textSets = [
   // Main Service — Virtual Assistant
    [
     "Transform Your AI",
-    "Coding Workflow With HYI.",
+    "Workflow With HYI.",
     "Bringing AI Intelligence Into Every Step Of Development.",
   ],
 
   // AI-Powered Cybersecurity
   [
-    "Transform Your Cyber Defense",
-    "Capabilities With AI-Powered Intelligence.",
-    "Integrating AI/ML, Real-Time Threat Monitoring, and Intelligent Incident Response to Address Evolving Cybersecurity Challenges.",
+  "Redefine Cyber Defense.",
+"Intelligent AI Security.",
+   "AI-Powered Cyber Defense & Real-Time Threat Response",
   ],
 
   // Virtual Assistance

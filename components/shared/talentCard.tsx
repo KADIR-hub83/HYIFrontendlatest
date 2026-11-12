@@ -757,6 +757,30 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import React, { useState } from "react";
@@ -876,130 +900,85 @@ interface TalentCardProps {
 
 export default function TalentCard({
   t,
-  active,
-  width,
   onClick,
-  onOpenProfile,
-}: TalentCardProps) {
-  const canOpen = !t.demo && !!onOpenProfile;
+}: {
+  t: HeroTalent;
+  onClick?: () => void;
+}) {
+  const clickable = !t.demo;
 
   return (
     <div
-      role="button"
-      tabIndex={0}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : -1}
       onClick={onClick}
       onKeyDown={(e) => {
-        if (e.target !== e.currentTarget) return;
-
-        if (e.key === "Enter" || e.key === " ") {
+        if (clickable && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          onClick();
+          onClick?.();
         }
       }}
-      aria-current={active}
-      aria-label={
-        t.demo
-          ? `Show ${t.name} (sample profile)`
-          : `${t.name}, ${t.designation || "verified talent"}. Open profile`
-      }
-      style={{ width }}
-      className={`group relative flex h-[132px] shrink-0 cursor-pointer overflow-hidden rounded-xl border text-left outline-none transition-all duration-500 focus-visible:ring-2 focus-visible:ring-violet-400 ${
-        active
-          ? "scale-100 border-violet-400/80 bg-[#130d22] opacity-100 shadow-[0_24px_70px_-24px_rgba(139,92,246,0.75)]"
-          : "scale-[0.95] border-white/10 bg-[#0c0914] opacity-55 hover:opacity-90"
+      className={`group relative flex h-[80px] w-[220px] shrink-0 items-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] px-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-all duration-300 ${
+        clickable
+          ? "cursor-pointer hover:-translate-y-0.5 hover:border-violet-400/40 hover:shadow-[0_8px_24px_-10px_rgba(139,92,246,0.55),inset_0_1px_0_rgba(255,255,255,0.12)]"
+          : "cursor-default"
       }`}
     >
-      {/* PHOTO */}
-      <div className="relative w-[114px] shrink-0 overflow-hidden bg-gradient-to-br from-violet-500/30 to-violet-950/60">
-        <TalentPhoto t={t} sizes="114px" />
+      {/* top shine line */}
+      <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#130d22]/40" />
-
-        <span
-          aria-hidden
-          className="absolute bottom-0 left-0 h-8 w-8 bg-violet-600"
-          style={{
-            clipPath: "polygon(0 30%, 70% 100%, 0 100%)",
-          }}
-        />
-
-        <svg
-          viewBox="0 0 24 24"
-          className="absolute bottom-[3px] left-[3px] h-3.5 w-3.5 text-white"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden
-        >
-          <path d="m5 13 4.5 4.5L19 7.5" />
-        </svg>
+      {/* avatar */}
+      <div className="relative shrink-0">
+        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-white/70 via-violet-300/60 to-indigo-500/70 p-[1.5px]">
+          <div className="relative h-full w-full overflow-hidden rounded-full bg-[#1a1233]">
+            <TalentPhoto t={t} sizes="40px" textClass="text-xs" />
+          </div>
+        </div>
+        <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-[#0d0916]">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-2.5 w-2.5 text-white/90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        </span>
       </div>
 
-      {/* DETAILS */}
-      <div className="flex min-w-0 flex-1 flex-col justify-between px-4 py-3.5">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <h3 className="min-w-0 flex-1 truncate text-[17px] font-semibold leading-tight tracking-tight text-white">
-              {t.name}
-            </h3>
+      {/* info */}
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-[14px] font-semibold leading-tight text-white">
+          {t.name}
+        </p>
 
-            {canOpen && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
+        <p className="mt-0.5 flex items-center gap-1.5 text-[10.5px] leading-tight text-white">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.9)]" />
+          {t.demo ? "Verified Profile" : "Verified Talent"}
+        </p>
 
-                  // OPEN PROFILE POPUP
-                  onOpenProfile?.();
-                }}
-                className={`group/see inline-flex max-w-0 shrink-0 items-center gap-1 overflow-hidden whitespace-nowrap rounded-full bg-violet-600 py-1 text-[11.5px] font-medium text-white opacity-0 outline-none transition-all duration-300 ease-out hover:bg-violet-500 group-hover:max-w-[110px] group-hover:px-2.5 group-hover:opacity-100 focus-visible:max-w-[110px] focus-visible:px-2.5 focus-visible:opacity-100 ${
-                  active
-                    ? "[@media(hover:none)]:max-w-[110px] [@media(hover:none)]:px-2.5 [@media(hover:none)]:opacity-100"
-                    : ""
-                }`}
-              >
-                See profile
-
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-3 w-3 shrink-0 transition-transform duration-300 group-hover/see:translate-x-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </button>
-            )}
-          </div>
-
-          {t.designation && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-[13.5px] text-white/65">
-              <Briefcase />
-              <span className="truncate capitalize">
-                {t.designation}
-              </span>
-            </p>
-          )}
-        </div>
-
-        {/* FOOTER */}
-        <div className="flex items-center justify-between border-t border-white/10 pt-2.5">
-          <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-violet-200/80">
-            <Seal />
-            {t.demo ? "Sample" : "Verified talent"}
+        <p className="mt-0.5 flex items-center gap-1.5 truncate text-[10.5px] leading-tight text-white/45">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-2.5 w-2.5 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <rect x="3" y="7" width="18" height="13" rx="2" />
+            <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+          </svg>
+          <span className="truncate capitalize text-[12px] font-bold text-white" >
+            {t.designation || "Software Engineer"}
           </span>
-
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
-            Remote
-          </span>
-        </div>
+        </p>
       </div>
     </div>
   );

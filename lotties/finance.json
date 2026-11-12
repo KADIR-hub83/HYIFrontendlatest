@@ -1,0 +1,60 @@
+{
+  "animation": {
+    "opacityFrom": 0,
+    "opacityTo": 100,
+    "durationMs": 700,
+    "wordStaggerMs": 55,
+    "sectionDelayMs": 120,
+    "threshold": 0.2
+  },
+  "hero": {
+    "eyebrow": "Public financial summary",
+    "title": "Profit & loss overview",
+    "text": "Financial-year figures for the periods supported by the documents provided."
+  },
+  "years": [
+    {
+      "year": "2017–2018",
+      "company": "AYN Infotech Private Limited",
+      "turnover": 3926629,
+      "profit": 156232,
+      "status": "Audited"
+    },
+    {
+      "year": "2018–2019",
+      "company": "AYN Infotech Private Limited",
+      "turnover": 240282696,
+      "profit": 3611891,
+      "status": "Audited"
+    },
+    {
+      "year": "2019–2020",
+      "company": "AYN Infotech Limited",
+      "turnover": 304353960,
+      "profit": 4511234,
+      "status": "Provisional"
+    },
+    {
+      "year": "2024–2025",
+      "company": "Hire Yoo Infotech Private Limited",
+      "turnover": 505700,
+      "profit": -6326195,
+      "status": "Tax computation"
+    },
+    {
+      "year": "2025–2026",
+      "company": "Hire Yoo Infotech Private Limited",
+      "turnover": null,
+      "profit": null,
+      "status": "Pending update"
+    }
+  ],
+  "notes": [
+    "FY 2017–18: Profit for the year ₹1,56,232; revenue from operations ₹39,26,629; audited statements supplied.",
+    "FY 2018–19: Profit for the year ₹36,11,891; revenue from operations ₹24,02,82,696; audited statements supplied.",
+    "FY 2019–20: Profit for the year ₹45,11,234; revenue from operations ₹30,43,53,960; source document is marked provisional.",
+    "FY 2024–25: Profit and loss account shows a loss of ₹63,26,195. The tax computation also reports a business/profession loss of ₹62,49,405, while the ITR acknowledgement reports a current-year business loss of ₹63,47,851. These measures have not been reconciled.",
+    "FY 2025–26: Figures will be added once the records are available."
+  ],
+  "disclaimer": "FY 2024–25 turnover is taken from the GST turnover detail. The loss is the “Profit as per Profit and Loss a/c” figure in the tax computation; it is not an audited annual statement figure."
+}

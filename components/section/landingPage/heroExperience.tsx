@@ -2013,7 +2013,7 @@ function RolePills({ className = "" }: { className?: string }) {
       aria-hidden="true"
     >
       {/* MOBILE: Turing-style staggered layout */}
-      <div className="flex flex-col items-center gap-2.5 md:hidden">
+      <div className="flex flex-col items-center gap-2.5 lg:hidden">
 
         <div className="flex items-center justify-start gap-2.5">
           {visible.slice(0, 2).map((r, i) => (
@@ -2049,7 +2049,7 @@ function RolePills({ className = "" }: { className?: string }) {
       </div>
 
       {/* DESKTOP: Existing flexible layout */}
-      <div className="hidden md:flex flex-wrap items-start justify-start gap-3">
+      <div className="hidden lg:flex flex-wrap items-start justify-start gap-3">
         {visible.map((r, i) => (
           <span
             key={r}
@@ -2079,256 +2079,53 @@ function TalentRail({
   onOpenProfile: (talent: HeroTalent) => void;
 }) {
   const n = talents.length;
-  const copies = n >= 6 ? 3 : 5;
-  const mid = (copies - 1) / 2;
 
-  const [pos, setPos] = useState(mid * n);
-  const [animate, setAnimate] = useState(true);
-  const [wrapW, setWrapW] = useState(0);
-
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const hovered = useRef(false);
-  const swipe = useRef({ x: 0, down: false, moved: false });
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-
-    const ro = new ResizeObserver(() => setWrapW(el.clientWidth));
-
-    ro.observe(el);
-    setWrapW(el.clientWidth);
-
-    return () => ro.disconnect();
-  }, []);
-
-  const gap = 16;
-
-  const cardW =
-    wrapW === 0
-      ? 340
-      : wrapW < 520
-        ? Math.max(250, Math.min(320, wrapW - 72))
-        : 340;
-
-  const x = wrapW / 2 - cardW / 2 - pos * (cardW + gap);
-
-  const active = n ? pos % n : 0;
-
-  const items = useMemo(
-    () => Array.from({ length: copies * n }, (_, i) => talents[i % n]),
-    [copies, n, talents]
-  );
-
-  const goBy = useCallback((d: number) => {
-    setAnimate(true);
-    setPos((p) => p + d);
-  }, []);
-
-  const handleProfileClick = useCallback(
-    (talent: HeroTalent) => {
-      if (talent.demo) return;
-
-      if (!talent.id) {
-        console.error("Talent ID missing:", talent);
-        return;
-      }
-
-      onOpenProfile(talent);
-    },
-    [onOpenProfile]
-  );
-
-  const onTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target !== e.currentTarget || e.propertyName !== "transform") {
-      return;
-    }
-
-    if (pos >= (mid + 1) * n) {
-      setAnimate(false);
-      setPos((p) => p - n);
-    } else if (pos < mid * n) {
-      setAnimate(false);
-      setPos((p) => p + n);
-    }
-  };
-
-  useEffect(() => {
-    if (animate) return;
-
-    const id = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setAnimate(true))
-    );
-
-    return () => cancelAnimationFrame(id);
-  }, [animate]);
-
-  useEffect(() => {
-    if (n < 2 || paused || prefersReducedMotion()) return;
-
-    const id = window.setInterval(() => {
-      if (hovered.current || document.hidden) return;
-      goBy(1);
-    }, 5200);
-
-    return () => window.clearInterval(id);
-  }, [n, paused, goBy]);
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      goBy(1);
-    }
-
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      goBy(-1);
-    }
-  };
+  // ek half me itne cards ki screen hamesha bhari rahe
+  const base = useMemo(() => {
+    if (!n) return [];
+    const reps = Math.max(1, Math.ceil(10 / n));
+    return Array.from({ length: reps * n }, (_, i) => talents[i % n]);
+  }, [talents, n]);
 
   if (!n) return null;
+
+  // 246px = card 230 + gap 16, speed ~ 45px/s
+  const seconds = Math.max(20, Math.round((base.length * 246) / 45));
+
+  const half = (copy: number) => (
+    <div key={copy} className="flex shrink-0 gap-4 pr-4" aria-hidden={copy === 1}>
+      {base.map((t, i) => (
+        <TalentCard
+          key={`${copy}-${t.id}-${i}`}
+          t={t}
+          onClick={() => onOpenProfile(t)}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <div
       role="region"
-      aria-roledescription="carousel"
       aria-label="Verified talents"
-      className="relative"
-      onKeyDown={onKeyDown}
+      className="relative overflow-hidden py- "
+      style={{
+        WebkitMaskImage:
+          "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+        maskImage:
+          "linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%)",
+      }}
     >
       <div
-        ref={wrapRef}
-        className={`relative h-[150px] touch-pan-y select-none overflow-hidden transition-opacity duration-700 ${
-          wrapW ? "opacity-100" : "opacity-0"
-        }`}
+        className="hx-marquee flex w-max"
         style={{
-          WebkitMaskImage:
-            "linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%)",
-          maskImage:
-            "linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%)",
-        }}
-        onPointerEnter={(e) => {
-          if (e.pointerType === "mouse") hovered.current = true;
-        }}
-        onPointerLeave={(e) => {
-          if (e.pointerType === "mouse") hovered.current = false;
-        }}
-        onPointerDown={(e) => {
-          swipe.current = {
-            x: e.clientX,
-            down: true,
-            moved: false,
-          };
-        }}
-        onPointerUp={(e) => {
-          const s = swipe.current;
-
-          if (!s.down) return;
-
-          s.down = false;
-
-          const dx = e.clientX - s.x;
-
-          if (Math.abs(dx) > 45) {
-            s.moved = true;
-            goBy(dx < 0 ? 1 : -1);
-          }
-        }}
-        onPointerCancel={() => {
-          swipe.current.down = false;
-        }}
-        onClickCapture={(e) => {
-          if (swipe.current.moved) {
-            e.stopPropagation();
-            e.preventDefault();
-            swipe.current.moved = false;
-          }
+          animationDuration: `${seconds}s`,
+          animationPlayState: paused ? "paused" : undefined,
         }}
       >
-        <div
-          className="absolute left-0 top-[9px] flex"
-          onTransitionEnd={onTransitionEnd}
-          style={{
-            gap,
-            transform: `translate3d(${x}px,0,0)`,
-            transition: animate
-              ? "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)"
-              : "none",
-            willChange: "transform",
-          }}
-        >
-          {items.map((t, i) => (
-            <TalentCard
-              key={`${t.id}-${i}`}
-              t={t}
-              width={cardW}
-              active={i === pos}
-              onOpenProfile={() => handleProfileClick(t)}
-              onClick={() => {
-                if (!t.demo) {
-                  handleProfileClick(t);
-                } else if (i !== pos) {
-                  setAnimate(true);
-                  setPos(i);
-                }
-              }}
-            />
-          ))}
-        </div>
+        {half(0)}
+        {half(1)}
       </div>
-
-      {n > 1 && (
-        <>
-          <button
-            type="button"
-            aria-label="Previous talent"
-            onClick={() => goBy(-1)}
-            className="absolute left-1 top-[75px] z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#0d0916]/85 text-white backdrop-blur transition-all duration-300 hover:border-violet-400/60 hover:bg-violet-600/30 sm:flex"
-          >
-            <Icon>
-              <path d="M15 5l-7 7 7 7" />
-            </Icon>
-          </button>
-
-          <button
-            type="button"
-            aria-label="Next talent"
-            onClick={() => goBy(1)}
-            className="absolute right-1 top-[75px] z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#0d0916]/85 text-white backdrop-blur transition-all duration-300 hover:border-violet-400/60 hover:bg-violet-600/30 sm:flex"
-          >
-            <Icon>
-              <path d="M9 5l7 7-7 7" />
-            </Icon>
-          </button>
-        </>
-      )}
-
-      {n > 1 && n <= 12 && (
-        <div
-          className="mt-3 flex items-center justify-center gap-2"
-          role="tablist"
-          aria-label="Choose talent"
-        >
-          {talents.map((t, i) => (
-            <button
-              key={t.id}
-              type="button"
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Show ${t.name}`}
-              onClick={() => {
-                setAnimate(true);
-                setPos(mid * n + i);
-              }}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === active
-                  ? "w-7 bg-violet-400"
-                  : "w-1.5 bg-white/25 hover:bg-white/45"
-              }`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
@@ -2441,6 +2238,24 @@ export default function HeroExperience({
             opacity: 1;
           }
         }
+
+        @keyframes hx-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.hx-marquee {
+  animation: hx-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.hx-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-marquee { animation: none; }
+}
       `}</style>
 
       {/* Dark background */}
@@ -2502,15 +2317,22 @@ export default function HeroExperience({
             </div>
           </div>
         </div>
-
         {/* Talent carousel */}
-        <div className="relative pb-6 pt-10">
-          <TalentRail
-            talents={talents}
-            paused={hiringOpen}
-            onOpenProfile={handleOpenTalentProfile}
-          />
-        </div>
+<div className="relative pt-10">
+  <h2
+    className="hx-in mb-5 text-center text-2xl font-bold tracking-tight hyi-white sm:text-3xl"
+    style={{ animationDelay: "150ms" }}
+  >
+    Verified Global Talents
+  </h2>
+
+  <TalentRail
+    talents={talents}
+    paused={hiringOpen}
+    onOpenProfile={handleOpenTalentProfile}
+  />
+</div>
+
       </div>
 
       {/* Hiring modal */}
