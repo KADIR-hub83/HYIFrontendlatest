@@ -15,7 +15,7 @@ const figtree = Figtree({
 
 export const metadata: Metadata = {
   title:
-    "HYI : Virtual Assistance | GenAI  Technology Solutions | Cybersecurity | Robetic",
+    "HYI : Virtual Assistance | GenAI |Technology Solutions | Cybersecurity",
   description:
     "HYI.AI is a Virtual Assistant Platform for Startups and Entrepreneur Offering Virtual  Engineers, Startup Mentors and Co-Founders For Seamless Team Scaling.",
 };
