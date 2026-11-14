@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ComponentProps } from "react";
 import Link from "next/link";
 import Card from "@/components/about/Card";
 import Counter from "@/components/about/Counter";
@@ -16,6 +16,7 @@ import HireShell from "./HireShell";
 import LottiePlayer from "./LottiePlayer";
 import RotatingWords from "./RotatingWords";
 import Scramble from "./Scramble";
+
 
 const ICONS = ["check", "team", "ripple", "bars"];
 const CHIP_POS = [
@@ -162,8 +163,9 @@ export default function HirePage({ id }: { id: HireId }) {
       {/* ───────── FAQ ───────── */}
       <StickySplit eyebrow="FAQ" title={common.faqTitle} accent={["Questions"]}>
         <Reveal>
-          <OfferAccordion items={common.faq} />
-        </Reveal>
+<OfferAccordion
+  items={common.faq as ComponentProps<typeof OfferAccordion>["items"]}
+/>        </Reveal>
       </StickySplit>
 
       {/* ───────── CTA ───────── */}

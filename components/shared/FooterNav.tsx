@@ -2,7 +2,20 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { FooterLink, MegaMenu } from "@/components/data/footer";
+
+type FooterLink = readonly [label: string, href: string];
+
+type MegaMenuGroup = {
+  heading: string;
+  links: readonly FooterLink[];
+};
+
+type MegaMenu = {
+  key: string;
+  heading: string;
+  paragraph?: string;
+  groups: readonly MegaMenuGroup[];
+};
 
 type Section = {
   key: string;
@@ -11,8 +24,8 @@ type Section = {
 };
 
 type Props = {
-  sections: Section[];
-  megaMenus: MegaMenu[];
+  sections: readonly Section[];
+  megaMenus: readonly MegaMenu[];
 };
 
 const Chevron = ({

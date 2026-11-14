@@ -1,7 +1,7 @@
-import type { CSSProperties } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import Card from "@/components/about/Card";
-import Counter from "@/components/about/Counter";
-import Marquee from "@/components/about/Marquee";
+// import Counter from "@/components/about/Counter";
+// import Marquee from "@/components/about/Marquee";
 import Reveal from "@/components/about/Reveal";
 import ScrollText from "@/components/about/Scrolltext";
 import SplitHeading from "@/components/about/Splitheading";
@@ -12,22 +12,22 @@ import OfferAccordion from "./OfferAccordion";
 import Together from "./Together";
 import OfferIcon from "./OfferIcon";
 
-const badge = {
-  display: "flex",
-  width: 48,
-  height: 48,
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: 22,
-  borderRadius: 14,
-} as const;
+// Types taken straight from the components, so no extra exports are needed.
+// aiContent.ts gives `icon` as a plain string, while OfferIcon / OfferAccordion
+// expect the narrower IconKey, which is what caused the build error.
+type IconName = ComponentProps<typeof OfferIcon>["name"];
+type AccordionItems = ComponentProps<typeof OfferAccordion>["items"];
 
 export default function ServicePage({ id }: { id: ServiceId }) {
   const s = services[id];
   const lead = s.intro.slice(0, -1);
   const last = s.intro[s.intro.length - 1];
 
-  const offerCard = (o: (typeof s.offers)[number], i: number, extra?: { style?: CSSProperties; cls?: string }) => (
+  const offerCard = (
+    o: (typeof s.offers)[number],
+    i: number,
+    extra?: { style?: CSSProperties; cls?: string }
+  ) => (
     <Card
       key={o.t}
       variant={i % 2 ? "neu" : "clay-soft"}
@@ -37,13 +37,14 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       <span className="pointer-events-none absolute -bottom-6 -right-1 select-none text-[7rem] font-black leading-none text-white/[0.045]">
         {String(i + 1).padStart(2, "0")}
       </span>
-<div className="relative flex items-center justify-between">
-  <span className="hyi-skeu !inline-flex !h-12 !w-12 shrink-0 items-center justify-center !p-0">
-    <OfferIcon name={o.icon} />
-  </span>
-</div>
 
-<h3 className="hyi-h3 hyi-white relative mt-6">{o.t}</h3>
+      <div className="relative flex items-center justify-between">
+        <span className="hyi-skeu !inline-flex !h-12 !w-12 shrink-0 items-center justify-center !p-0">
+          <OfferIcon name={o.icon as IconName} />
+        </span>
+      </div>
+
+      <h3 className="hyi-h3 hyi-white relative mt-6">{o.t}</h3>
       <p className="hyi-p relative mt-3">{o.d}</p>
     </Card>
   );
@@ -90,7 +91,7 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       {/* What we offer — layout differs per page */}
       {s.layout === "stack" && (
         <StickySplit eyebrow="Capabilities" title="What We Offer" accent={["Offer"]}>
-          <div className="space-y-10 pb-6 ">
+          <div className="space-y-10 pb-6">
             {s.offers.map((o, i) =>
               offerCard(o, i, {
                 cls: "min-h-[230px]",
@@ -104,8 +105,8 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       {s.layout === "grid" && (
         <section className="py-10">
           <div className="mb-5 text-center">
-            <p className="hyi-eyebrow mb-4 ">Capabilities</p>
-            <SplitHeading text="What We Offer" accent={["Offer"]} className="hyi-h2  hyi-white" />
+            <p className="hyi-eyebrow mb-4">Capabilities</p>
+            <SplitHeading text="What We Offer" accent={["Offer"]} className="hyi-h2 hyi-white" />
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {s.offers.map((o, i) => (
@@ -120,7 +121,7 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       {s.layout === "accordion" && (
         <StickySplit eyebrow="Capabilities" title="What We Offer" accent={["Offer"]}>
           <Reveal>
-            <OfferAccordion items={s.offers} />
+            <OfferAccordion items={s.offers as AccordionItems} />
           </Reveal>
         </StickySplit>
       )}
@@ -144,7 +145,15 @@ export default function ServicePage({ id }: { id: ServiceId }) {
               <Card variant="neu" className="flex h-full items-start gap-4 !p-6">
                 <span
                   className="hyi-skeu is-active shrink-0"
-                  style={{ display: "flex", width: 36, height: 36, alignItems: "center", justifyContent: "center", borderRadius: 12, fontWeight: 800 }}
+                  style={{
+                    display: "flex",
+                    width: 36,
+                    height: 36,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 12,
+                    fontWeight: 800,
+                  }}
                 >
                   ✓
                 </span>

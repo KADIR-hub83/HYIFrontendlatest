@@ -1,23 +1,56 @@
 "use client";
 
+import type { CSSProperties, ComponentType } from "react";
+
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
 } from "framer-motion";
+
+import type { Variants } from "framer-motion";
+
 import {
   ArrowUpRight,
-  Component,
+  Component as ComponentIcon,
   Layers3,
   MousePointer2,
   PenTool,
   Smartphone,
 } from "lucide-react";
 
+import type { LucideIcon } from "lucide-react";
+
 /* ------------------------------------------------------------------ */
 /*  Small building blocks                                              */
 /* ------------------------------------------------------------------ */
+
+interface CursorProps {
+  name: string;
+  color: string;
+  ink?: string;
+  className?: string;
+  delay?: number;
+}
+
+interface ServiceBlob {
+  c: string;
+  a: number;
+  s: number;
+  style: CSSProperties;
+}
+
+interface Service {
+  title: string;
+  text: string;
+  tags: string[];
+  icon: LucideIcon;
+  Visual: ComponentType;
+  glow: string;
+  blobs: ServiceBlob[];
+  className: string;
+}
 
 const NOISE = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`;
 
@@ -34,7 +67,13 @@ const KEYFRAMES = `
 `;
 
 // A collaborator cursor, like in a live design file
-function Cursor({ name, color, ink = "#fff", className = "", delay = 0 }) {
+function Cursor({
+  name,
+  color,
+  ink = "#fff",
+  className = "",
+  delay = 0,
+}: CursorProps) {
   return (
     <div
       className={`dsv-float pointer-events-none absolute z-30 flex items-start ${className}`}
@@ -118,7 +157,7 @@ function ProductVisual() {
 
 // A user flow drawn as three screens with a live path between them
 function UXVisual() {
-  const screen = (x, strong) => (
+const screen = (x: number, strong: boolean) => (
     <g>
       <rect
         x={x}
@@ -262,8 +301,7 @@ function StrategyVisual() {
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
-const services = [
-  {
+const services: Service[] = [  {
     title: "Product Design",
     text: "End-to-end product thinking from discovery and flows to polished interfaces.",
     tags: ["Discovery", "Flows", "Prototyping"],
@@ -293,7 +331,7 @@ const services = [
     title: "Design Systems",
     text: "Scalable foundations that keep your product consistent as teams grow.",
     tags: ["Tokens", "Components"],
-    icon: Component,
+icon: ComponentIcon,
     Visual: SystemVisual,
     glow: "70,230,190",
     blobs: [
@@ -318,18 +356,38 @@ const services = [
   },
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
-const item = {
-  hidden: { opacity: 0, y: 36, scale: 0.97 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const item: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 36,
+    scale: 0.97,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 /* ------------------------------------------------------------------ */
 /*  Card                                                               */
 /* ------------------------------------------------------------------ */
 
-function GlassCard({ service }) {
-  const { Visual, icon: Icon } = service;
+function GlassCard({ service }: { service: Service }) {
+    const { Visual, icon: Icon } = service;
 
   const mx = useMotionValue(-400);
   const my = useMotionValue(-400);
