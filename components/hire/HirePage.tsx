@@ -32,7 +32,7 @@ export default function HirePage({ id }: { id: HireId }) {
     <HireShell>
       {/* ───────── Hero ───────── */}
       <header
-        className="grid min-h-[86vh] items-center gap-12 py-16 lg:grid-cols-[1.1fr_.9fr]"
+        className="grid items-center gap-12 pt-26 lg:grid-cols-[1.1fr_.9fr] max-md:px-5"
         style={{
           transform: "translateY(calc(var(--sy,0) * 0.14px))",
           opacity: "calc(1 - var(--sy,0) * 0.0014)",
@@ -43,7 +43,7 @@ export default function HirePage({ id }: { id: HireId }) {
             <span className="hyi-pulse inline-block h-2.5 w-2.5 rounded-full bg-[#4f9dff]" />
             <Scramble text={`Hire Talent · ${p.nav}`} />
           </p>
-          <SplitHeading as="h1" text={p.title} accent={p.accent} className="hyi-h1 hyi-white" delay={100} />
+          <SplitHeading as="h1" text={p.title} accent={p.accent} className="hyi-h1 text-4xl hyi-white" delay={100} />
           <p className="hyi-h2 hyi-white mt-5">
             {p.rot.prefix} <RotatingWords words={p.rot.words} className="hyi-blue hyi-shimmer" /> {p.rot.suffix}
           </p>
@@ -67,8 +67,8 @@ export default function HirePage({ id }: { id: HireId }) {
         </div>
 
         <Reveal from="zoom" delay={250}>
-          <div className="relative mx-auto w-full max-w-[520px]">
-            <Card variant="glass" className="relative aspect-square !p-6">
+          <div className="relative mx-auto w-full ">
+            <Card variant="glass" className="relative aspect-squar !p-6">
               <LottiePlayer name={p.hero} className="h-full w-full" />
             </Card>
             {p.chips.map((c, i) => (
@@ -80,9 +80,9 @@ export default function HirePage({ id }: { id: HireId }) {
         </Reveal>
       </header>
 
-      <Marquee items={p.roles} />
+      {/* <Marquee items={p.roles} />
 
-      {/* ───────── Stats ───────── */}
+
       <div className="mt-14 grid gap-6 sm:grid-cols-3">
         {common.stats.map((s, i) => (
           <Reveal key={s.label} from="zoom" delay={i * 100}>
@@ -94,13 +94,13 @@ export default function HirePage({ id }: { id: HireId }) {
             </Card>
           </Reveal>
         ))}
-      </div>
+      </div> */}
 
       {/* ───────── Statement ───────── */}
-      <section className="py-20">
+      <section className="pt-10">
         <Reveal from="zoom">
           <Card variant="clay" className="text-center">
-            <ScrollText text={p.statement} className="hyi-h2 hyi-white mx-auto max-w-4xl" />
+            <ScrollText text={p.statement} className="hyi-h3 hyi-white mx-auto max-w-4xl" />
           </Card>
         </Reveal>
       </section>
@@ -108,13 +108,13 @@ export default function HirePage({ id }: { id: HireId }) {
       {/* ───────── Highlights with Lottie icons ───────── */}
       <section className="py-6">
         <div className="mb-10 text-center">
-          <SplitHeading text="Why HYI.AI" accent={["HYI.AI"]} className="hyi-h2 hyi-white" />
+          <SplitHeading text="Why HYI.AI" accent={["HYI.AI"]} className="hyi-h2 font-bold hyi-white" />
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
           {p.highlights.map((h, i) => (
             <Reveal key={h.t} from={i % 2 ? "right" : "left"} className="h-full">
               <Card variant={i % 3 === 0 ? "clay-soft" : "neu"} className="flex h-full items-center gap-5">
-                <LottiePlayer name={ICONS[i % ICONS.length]} className="h-24 w-24 shrink-0 sm:h-28 sm:w-28" />
+                <LottiePlayer name={ICONS[i % ICONS.length]} className="h-18 w-18 shrink-0 sm:h-20 sm:w-20" />
                 <div>
                   <h3 className="hyi-h3 hyi-white">{h.t}</h3>
                   <p className="hyi-p mt-2 text-sm">{h.d}</p>
@@ -129,12 +129,12 @@ export default function HirePage({ id }: { id: HireId }) {
       <StickySplit eyebrow="Specialists" title={p.rolesTitle} accent={[p.rolesTitle.split(" ").pop() as string]}>
         <div className="grid gap-5 sm:grid-cols-2">
           {p.roles.map((r, i) => (
-            <Reveal key={r} from="zoom" delay={(i % 2) * 90} className="h-full">
-              <Card variant={i % 2 ? "clay-soft" : "neu"} className="relative h-full min-h-[130px] overflow-hidden">
+            <Reveal key={r} from="zoom" delay={(i % 2) * 20} className="h-full">
+              <Card variant={i % 2 ? "clay-soft" : "neu"} className="relative h-full min-h-[80px] overflow-hidden">
                 <span className="pointer-events-none absolute -bottom-5 -right-1 select-none text-[5.5rem] font-black leading-none text-white/[0.05]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="hyi-eyebrow">{String(i + 1).padStart(2, "0")}</span>
+                {/* <span className="hyi-eyebrow">{String(i + 1).padStart(2, "0")}</span> */}
                 <h3 className="hyi-h3 hyi-white relative mt-3">
                   <Scramble text={r} />
                 </h3>
@@ -152,8 +152,8 @@ export default function HirePage({ id }: { id: HireId }) {
       </StickySplit>
 
       {/* ───────── Process ───────── */}
-      <section className="py-14">
-        <div className="mb-12 text-center">
+      <section className="py-">
+        <div className="mb-1 text-center">
           <SplitHeading text={common.stepsTitle} accent={["Works"]} className="hyi-h2 hyi-white" />
         </div>
         <Timeline items={common.steps} />

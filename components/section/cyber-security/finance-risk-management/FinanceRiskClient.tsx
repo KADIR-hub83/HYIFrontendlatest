@@ -1607,22 +1607,11 @@ function Hero({ page }: { page: PageConfig }) {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative mx-auto flex py-10 flex-col justify-center px-5  md:px-10 lg:px-20"
+        className="relative mx-auto flex pt-30 max-md:pt-20 flex-col justify-center px-5  md:px-10 lg:px-20"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="flex items-center justify-between"
-        >
-          <Label>{page.eyebrow}</Label>
+   
 
-          <span className="hidden font-mono text-[8px] tracking-[0.25em] text-white/15 md:block ">
-            {page.index}
-          </span>
-        </motion.div>
-
-        <div className="mt-10">
+        <div className="mt-3">
           {[page.heroLine1, page.heroLine2, page.heroLine3].map(
             (line, index) => (
               <div key={line} className="overflow-hidden">
@@ -1634,10 +1623,10 @@ function Hero({ page }: { page: PageConfig }) {
                     delay: 0.1 + index * 0.11,
                     ease,
                   }}
-                  className={`text-[52px] font-medium leading-[0.91] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[110px] ${
+                  className={`text-[52px] hyi-h1  leading-[0.91] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px] ${
                     index === 2
-                      ? "text-[#b9a5ef]/55"
-                      : "text-white"
+                      ? "hyi-blue"
+                      : "hyi-white"
                   }`}
                 >
                   {line}
@@ -1654,35 +1643,21 @@ function Hero({ page }: { page: PageConfig }) {
             delay: 0.55,
             duration: 0.8,
           }}
-          className="mt-12 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
+          className="mt-6 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
         >
           <div className="flex items-center gap-3">
-            <CircleDot className="h-4.5 w-4.5 text-[#a78bfa]" />
+            <CircleDot className="h-4.5 w-4.5 hyi-blue-icon" />
 
-            <span className="font-mono text-[12px] tracking-[0.2em] text-white">
+            <span className=" hyi-h3   hyi-white">
               HYI.AI / FINANCE + RISK
             </span>
           </div>
 
-          <p className="text-[18px] leading-7 text-white/[0.46]">
+          <p className="hyi-p">
             {page.intro}
           </p>
         </motion.div>
 
-        <motion.a
-          href="#overview"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          whileHover={{
-            y: -5,
-            borderColor: "rgba(167,139,250,.35)",
-          }}
-          className="mt-12 flex w-fit items-center gap-4 rounded-full border border-white/[0.09] px-5 py-3 text-[12px] text-white"
-        >
-          Explore risk approach
-          <ArrowDown className="h-3 w-3" />
-        </motion.a>
       </motion.div>
     </section>
   );
@@ -1729,29 +1704,29 @@ function Statement({ page }: { page: PageConfig }) {
   return (
     <section
       id="overview"
-      className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5  md:px-10 lg:px-20 py-10"
+      className="relative overflow-hidden  bg-black px-5  md:px-10 lg:px-20 "
     >
       <div className="absolute left-1/2 top-1/2 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7c3aed]/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-[1320px]">
+      <div className="relative mx-auto max-w-[1350px]">
         <Reveal>
           {/* <p className="font-mono text-[8px] tracking-[0.24em] text-[#a78bfa]/45">
             / POINT OF VIEW
           </p> */}
 
-          <h2 className="mt-12 max-w-[1100px] text-[42px] font-medium leading-[1.03] tracking-[-0.055em] text-white md:text-[66px] lg:text-[82px]">
+          <h2 className="mt-12 max-w-[1100px] text-[42px] hyi-h1 hyi-white font-medium leading-[1.03] tracking-[-0.055em]  md:text-[66px] lg:text-[72px]">
             {page.statement}
             <span className="block text-white/25">
               {page.statementAccent}
             </span>
           </h2>
 
-          <div className="mt-16 grid border-t border-white/[0.08] pt-8 lg:grid-cols-2">
-            <span className="font-mono text-[12px] tracking-[0.2em] text-white/80">
+          <div className="mt-8 grid border-t border-white/[0.08] pt-8 lg:grid-cols-2">
+            <span className="hyi-h3 ">
               RISK / CONTEXT / DECISION
             </span>
 
-            <p className="mt-7 max-w-[580px] text-[18px] leading-7 text-white/[0.6] lg:mt-0">
+            <p className=" max-w-[580px] hyi-p">
               {page.philosophy}
             </p>
           </div>
@@ -1767,12 +1742,12 @@ function Statement({ page }: { page: PageConfig }) {
 
 function Pillars({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20 ">
+    <section className=" bg-[#030303] px-5 py-10 md:px-10 lg:px-20 ">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <Label>RISK FOUNDATIONS</Label>
 
-          <h2 className="mt-8 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
+
+          <h2 className="mt-3 max-w-[750px] text-[38px] font-medium hyi-h1 leading-[1.06] tracking-[-0.05em] md:text-[55px]">
             Structure uncertainty
             <span className="block text-white/25">
               before making decisions.
@@ -1780,7 +1755,7 @@ function Pillars({ page }: { page: PageConfig }) {
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid border-l border-t border-white/[0.07] md:grid-cols-2">
+        <div className="mt-8 grid border-l border-t border-white/[0.07] md:grid-cols-2">
           {page.pillars.map((item, index) => (
             <motion.article
               key={item.number}
@@ -1795,7 +1770,7 @@ function Pillars({ page }: { page: PageConfig }) {
                 y: -8,
                 backgroundColor: "rgba(124,58,237,.04)",
               }}
-              className="group relative min-h-[160px] overflow-hidden border-b border-r border-white/[0.07] p-7 md:p-9"
+              className="group relative  overflow-hidden border-b border-r border-white/[0.07] p-7 md:p-9"
             >
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -1803,21 +1778,13 @@ function Pillars({ page }: { page: PageConfig }) {
                 className="absolute inset-x-0 top-0 h-px origin-left bg-gradient-to-r from-[#7c3aed] via-[#c4b5fd] to-transparent"
               />
 
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[12px] text-white/75">
-                  {item.number}
-                </span>
+            
 
-                <span className="font-mono text-[12px] tracking-[0.2em] text-[#a78bfa]/45">
-                  {item.label}
-                </span>
-              </div>
-
-              <h3 className="mt-10 text-3xl  font-bold tracking-[-0.03em] text-white/75 transition-colors group-hover:text-white">
+              <h3 className=" hyi-h3 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="mt-5 max-w-[480px] text-[18px] leading-7 text-white/[0.34]">
+              <p className="mt-2 max-w-[480px] hyi-p ">
                 {item.description}
               </p>
 
@@ -1825,7 +1792,7 @@ function Pillars({ page }: { page: PageConfig }) {
                 whileHover={{ x: 5 }}
                 className="absolute bottom-8 right-8"
               >
-                <ArrowRight className="h-6 w-6 text-white/12 group-hover:text-[#a78bfa]" />
+                <ArrowRight className="h-6 w-6 hyi-white-icon group-hover:text-[#a78bfa]" />
               </motion.div>
             </motion.article>
           ))}
@@ -1841,14 +1808,14 @@ function Pillars({ page }: { page: PageConfig }) {
 
 function Lifecycle({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5 py-10 md:px-10 lg:px-20">
+    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5  md:px-10 lg:px-20">
       <div className="absolute right-[-150px] top-[100px] h-[450px] w-[450px] rounded-full bg-[#6d28d9]/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-[1320px]">
+      <div className="relative mx-auto max-w-[1350px]">
         <Reveal>
-          <Label>RISK LIFECYCLE</Label>
+  
 
-          <h2 className="mt-5 text-[38px] font-medium tracking-[-0.05em] md:text-[55px]">
+          <h2 className="mt-3 text-[38px] font-medium hyi-h1 hyi-white tracking-[-0.05em] md:text-[50px]">
             A continuous process.
             <span className="block text-white/25">
               Not a one-time assessment.
@@ -1856,7 +1823,7 @@ function Lifecycle({ page }: { page: PageConfig }) {
           </h2>
         </Reveal>
 
-        <div className="mt-10">
+        <div className="mt-8">
           {page.lifecycle.map((item, index) => (
             <motion.article
               key={item.number}
@@ -1870,19 +1837,19 @@ function Lifecycle({ page }: { page: PageConfig }) {
               }}
               className="group grid gap-5 border-t border-white/[0.07] px-3 py-8 md:grid-cols-[80px_1fr_1.2fr_40px] md:items-center"
             >
-              <span className="font-mono text-[12px] text-[#a78bfa]/40">
+              <span className="font-mono text-[12px] text-[#a78bfa]">
                 {item.number}
               </span>
 
-              <h3 className="text-3xl font-bold text-white/65 group-hover:text-white">
+              <h3 className="hyi-h3 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="max-w-[520px] text-[18px] leading-6 text-white/[0.29]">
+              <p className="max-w-[520px] hyi-p">
                 {item.description}
               </p>
 
-              <ChevronRight className="h-6 w-6 text-white/10 transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
+              <ChevronRight className="h-6 w-6 hyi-white-icon transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
             </motion.article>
           ))}
 
@@ -1899,21 +1866,21 @@ function Lifecycle({ page }: { page: PageConfig }) {
 
 function FocusAreas({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
+    <section className=" bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <div className="grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
           <Reveal>
             <div className="lg:sticky lg:top-32">
-              <Label>FOCUS AREAS</Label>
+        
 
-              <h2 className="mt-8 max-w-[450px] text-[38px] font-medium leading-[1.07] tracking-[-0.05em] md:text-[55px]">
+              <h2 className=" max-w-[450px] text-[38px] font-medium hyi-h1 hyi-white leading-[1.07] tracking-[-0.05em] md:text-[50px]">
                 Focus on what
                 <span className="block text-white/25">
                   changes decisions.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-[430px] text-[18px] leading-6 text-white/[0.28]">
+              <p className="mt-3 max-w-[430px] hyi-p">
                 Risk programs become more useful when analysis is centered on
                 the information decision-makers genuinely need.
               </p>
@@ -1932,17 +1899,15 @@ function FocusAreas({ page }: { page: PageConfig }) {
                   y: -8,
                   backgroundColor: "rgba(124,58,237,.04)",
                 }}
-                className="group min-h-[80px] border border-white/[0.07] p-7"
+                className="group  border border-white/[0.07] p-7"
               >
-                <span className="font-mono text-[12px] text-white/70">
-                  0{index + 1}
-                </span>
+            
 
-                <h3 className="mt-10 text-3xl font-bold text-white/65 group-hover:text-white">
+                <h3 className=" hyi-h3 hyi-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[18px] leading-6 text-white/[0.28]">
+                <p className="mt-2 hyi-p">
                   {item.description}
                 </p>
               </motion.article>
@@ -1994,20 +1959,20 @@ function FocusAreas({ page }: { page: PageConfig }) {
 
 function Principles({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
+    <section className="border-b border-white/[0.06] bg-[#030303] px-5  md:px-10 lg:px-20">
       <div className="mx-auto max-w-[1100px]">
         <Reveal className="text-center">
-          <Label>OPERATING PRINCIPLES</Label>
 
-          <h2 className="mx-auto mt-8 max-w-[700px] text-[38px] font-medium leading-[1.07] tracking-[-0.05em] md:text-[55px]">
+
+          <h2 className="mx-auto  max-w-[700px] text-[38px] hyi-h1 hyi-white font-medium leading-[1.07] tracking-[-0.05em] md:text-[50px]">
             Better risk management
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               starts with better habits.
             </span>
           </h2>
         </Reveal>
 
-        <div className="mt-10">
+        <div className="mt-5">
           {page.principles.map((item, index) => (
             <motion.article
               key={item.number}
@@ -2021,15 +1986,15 @@ function Principles({ page }: { page: PageConfig }) {
               }}
               className="grid gap-5 border-t border-white/[0.07] px-3 py-8 md:grid-cols-[80px_1fr_1.3fr]"
             >
-              <span className="font-mono text-[12px] text-[#a78bfa]/70">
+              <span className="font-mono text-[12px] text-[#a78bfa]">
                 {item.number}
               </span>
 
-              <h3 className="text-3xl font-bold text-white/60">
+              <h3 className="hyi-h3 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="text-[18px] leading-6 text-white/[0.6]">
+              <p className="hyi-p">
                 {item.description}
               </p>
             </motion.article>
@@ -2053,41 +2018,38 @@ function Outcomes({ page }: { page: PageConfig }) {
 
       <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
-          <Label>BUSINESS OUTCOMES</Label>
 
-          <h2 className="mt-8 max-w-[680px] text-[38px] font-medium leading-[1.07] tracking-[-0.05em] md:text-[55px]">
+
+          <h2 className=" max-w-[680px] text-[38px] font-medium hyi-h1 hyi-white leading-[1.07] tracking-[-0.05em] md:text-[55px]">
             Turn risk understanding
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               into practical capability.
             </span>
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 lg:grid-cols-3">
           {page.outcomes.map((item, index) => (
             <motion.div
               key={item}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.055 }}
+          
               whileHover={{
                 y: -5,
                 backgroundColor: "rgba(124,58,237,.055)",
               }}
-              className="group flex min-h-[155px] items-end justify-between bg-black p-6"
+              className="group flex  items-end justify-between bg-black p-6"
             >
               <div>
-                <span className="font-mono text-[12px] text-white/70">
-                  0{index + 1}
-                </span>
-
-                <p className="mt-8 text-[22px] text-white/70 group-hover:text-white/75">
+              
+                <p className=" hyi-h3 hyi-white">
                   {item}
                 </p>
               </div>
 
-              <CheckCircle2 className="h-4.5 w-4.5 text-[#a78bfa]/70" />
+              <CheckCircle2 className="h-4.5 w-4.5 hyi-white-icon" />
             </motion.div>
           ))}
         </div>
@@ -2206,7 +2168,7 @@ export default function FinanceRiskClient({
 
       <Hero page={page} />
 
-      <Marquee words={page.keywords} />
+      {/* <Marquee words={page.keywords} /> */}
 
       <Statement page={page} />
 
@@ -2222,7 +2184,7 @@ export default function FinanceRiskClient({
 
       <Outcomes page={page} />
 
-      <FinalCTA page={page} />
+      {/* <FinalCTA page={page} /> */}
 
       <style jsx global>{`
         html {

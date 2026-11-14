@@ -2,86 +2,60 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import { CloudService } from "./cloudServices";
+import type { CloudService } from "./cloudServices";
 
-export default function CloudProcess({
-  service,
-}: {
-  service: CloudService;
-}) {
+export default function CloudProcess({ service }: { service: CloudService }) {
   return (
-    <section className="border-y border-white/[0.06] bg-[#080808] py-32">
-      <div className="mx-auto max-w-[1450px] px-5 md:px-10">
-        <div className="mx-auto max-w-[850px] text-center">
-          <p className="font-mono text-[7px] tracking-[0.25em] text-[#9675ed]">
-            03 / ENGINEERING PROCESS
-          </p>
+    <section className="bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
+      <div className="mx-auto max-w-[1320px]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="hyi-h3 hyi-blue">03 / ENGINEERING PROCESS</p>
 
-          <h2 className="mt-5 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
-            How {service.title}
-            <span className="block text-[#7046e6]"> is engineered.</span>
+          <h2 className="hyi-h1 mt-4 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">How {service.title}</span>
+            <span className="block hyi-blue">is engineered.</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="relative mx-auto mt-20 max-w-[1050px]">
-          <div className="absolute bottom-0 left-[27px] top-0 w-px bg-gradient-to-b from-[#7046e6] via-[#7046e6]/20 to-transparent" />
+        <div className="relative mt-8 max-w-[1100px]">
+          <div className="absolute bottom-0 left-[19px] top-0 w-px bg-gradient-to-b from-[#8b5cf6] via-[#8b5cf6]/20 to-transparent" />
 
-          <div className="space-y-5">
+          <div className="space-y-4">
             {service.process.map((item, index) => (
               <motion.div
                 key={item.step}
-                initial={{ opacity: 0, x: 40 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: index * 0.06 }}
-                className="relative grid grid-cols-[56px_1fr] gap-5"
+                className="relative grid grid-cols-[40px_1fr] gap-4"
               >
-                <motion.div
-                  whileInView={{
-                    boxShadow: [
-                      "0 0 0 rgba(112,70,230,0)",
-                      "0 0 35px rgba(112,70,230,.3)",
-                      "0 0 0 rgba(112,70,230,0)",
-                    ],
-                  }}
-                  transition={{ duration: 2 }}
-                  className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#7046e6]/35 bg-[#08060e]"
-                >
-                 <span className="font-mono text-[11px] text-[#a083ef]">
-        {item.step}
-      </span>
-                </motion.div>
+                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#8b5cf6]/50 bg-black font-mono text-[12px] text-white/80 shadow-[0_0_0_4px_#000]">
+                  {item.step}
+                </div>
 
-<div className="rounded-[24px] border border-white/[0.07] bg-[#050505] p-7">
-  <div className="grid items-center gap-6 md:grid-cols-[1fr_220px]">
-    
-    {/* LEFT */}
-    <div>
-      <h3 className="text-xl font-medium md:text-2xl">
-        {item.title}
-      </h3>
+                <div className="hyi-skeu p-6">
+                  <div className="grid items-center gap-4 md:grid-cols-[1fr_auto]">
+                    <div>
+                      <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                      <p className="hyi-p mt-2 max-w-[650px]">
+                        {item.description}
+                      </p>
+                    </div>
 
-      <p className="mt-4 max-w-[650px] text-[14px] leading-7 text-white/45">
-        {item.description}
-      </p>
-    </div>
-
-    {/* RIGHT */}
-    <div className="flex items-center justify-center">
-      <div className="flex items-center justify-center gap-2 rounded-full border border-[#7046e6]/15 bg-[#7046e6]/[0.05] px-4 py-2">
-        <CheckCircle2
-          size={13}
-          className="text-[#9878ef]"
-        />
-
-        <span className="font-mono text-[10px] text-white/30">
-          {item.output}
-        </span>
-      </div>
-    </div>
-
-  </div>
-</div>
+                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#8b5cf6]/25 bg-[#8b5cf6]/[0.06] px-4 py-2">
+                      <CheckCircle2 size={16} className="hyi-blue-icon" />
+                      <span className="font-mono text-[12px] text-white/70">
+                        {item.output}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

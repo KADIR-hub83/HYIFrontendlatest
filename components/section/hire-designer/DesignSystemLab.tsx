@@ -5,21 +5,19 @@ import { Check, ChevronDown, Plus } from "lucide-react";
 
 export default function DesignSystemLab() {
   return (
-    <section className="px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
+    <section className="px-5 py-10 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-[1450px]">
         <div className="grid gap-14 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#a78bfa]">
-              Design systems
-            </span>
+   
 
-            <h2 className="mt-5 text-[clamp(45px,5.5vw,82px)] font-medium leading-[0.92] tracking-[-0.065em]">
+            <h2 className="hyi-h1 hyi-white text-[clamp(45px,5vw,82px)] font-medium leading-[0.92] tracking-[-0.065em]">
               Design once.
               <br />
-              <span className="text-white/25">Scale everywhere.</span>
+              <span className="hyi-blue">Scale everywhere.</span>
             </h2>
 
-            <p className="mt-7 max-w-[380px] text-[12px] leading-6 text-white/40">
+            <p className="mt-7 max-w-[380px] hyi-p">
               Your designer doesn&apos;t stop at beautiful screens. They create the
               tokens, components and rules your entire product team can build
               from.

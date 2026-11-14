@@ -25,7 +25,7 @@ export default function SOCServicePage({
       <SOCProcess service={service} />
       <SOCUseCases service={service} />
       <SOCPrinciples service={service} />
-      <SOCCTA service={service} />
+      {/* <SOCCTA service={service} /> */}
     </>
   );
 }

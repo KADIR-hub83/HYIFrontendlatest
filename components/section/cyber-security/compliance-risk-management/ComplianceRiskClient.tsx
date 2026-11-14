@@ -2,13 +2,13 @@
 
 import {
   motion,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
 
 import {
-  ArrowDown,
   ArrowRight,
   CheckCircle2,
   ChevronRight,
@@ -16,7 +16,6 @@ import {
   Eye,
   FileText,
   Layers3,
-  RefreshCcw,
   ShieldCheck,
   Workflow,
 } from "lucide-react";
@@ -44,42 +43,18 @@ export type CompliancePageKey =
 type PageConfig = {
   number: string;
   eyebrow: string;
-
   heroLine1: string;
   heroLine2: string;
   heroLine3: string;
-
   description: string;
-
   ticker: string[];
-
   statementTitle: string;
   statementText: string;
-
-  pillars: {
-    code: string;
-    title: string;
-    text: string;
-  }[];
-
-  framework: {
-    number: string;
-    title: string;
-    text: string;
-  }[];
-
-  evidence: {
-    title: string;
-    text: string;
-  }[];
-
-  questions: {
-    question: string;
-    answer: string;
-  }[];
-
+  pillars: { code: string; title: string; text: string }[];
+  framework: { number: string; title: string; text: string }[];
+  evidence: { title: string; text: string }[];
+  questions: { question: string; answer: string }[];
   outcomes: string[];
-
   closingTitle: string;
   closingMuted: string;
   closingText: string;
@@ -111,8 +86,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "IMPROVEMENT",
     ],
 
-    statementTitle:
-      "ISO 27001 is not a document collection exercise.",
+    statementTitle: "ISO 27001 is not a document collection exercise.",
 
     statementText:
       "A useful information security management system connects business context, risk decisions, responsibilities, controls and evidence. Documentation supports the system, but governance and repeatable operation make it sustainable.",
@@ -141,72 +115,33 @@ const pages: Record<CompliancePageKey, PageConfig> = {
     ],
 
     framework: [
-      {
-        number: "01",
-        title: "Understand context",
-        text: "Establish organizational context, interested parties and information-security objectives.",
-      },
-      {
-        number: "02",
-        title: "Define scope",
-        text: "Document the boundaries and applicability of the information security management system.",
-      },
-      {
-        number: "03",
-        title: "Assess risk",
-        text: "Identify and evaluate information-security risks using a defined methodology.",
-      },
-      {
-        number: "04",
-        title: "Treat risk",
-        text: "Determine appropriate treatment options and relevant control requirements.",
-      },
-      {
-        number: "05",
-        title: "Operate controls",
-        text: "Assign ownership and integrate control operation into business processes.",
-      },
-      {
-        number: "06",
-        title: "Review evidence",
-        text: "Evaluate whether the management system operates as intended.",
-      },
+      { number: "01", title: "Understand context", text: "Establish organizational context, interested parties and information-security objectives." },
+      { number: "02", title: "Define scope", text: "Document the boundaries and applicability of the information security management system." },
+      { number: "03", title: "Assess risk", text: "Identify and evaluate information-security risks using a defined methodology." },
+      { number: "04", title: "Treat risk", text: "Determine appropriate treatment options and relevant control requirements." },
+      { number: "05", title: "Operate controls", text: "Assign ownership and integrate control operation into business processes." },
+      { number: "06", title: "Review evidence", text: "Evaluate whether the management system operates as intended." },
     ],
 
     evidence: [
-      {
-        title: "ISMS scope",
-        text: "Documented boundaries and organizational applicability.",
-      },
-      {
-        title: "Risk register",
-        text: "Structured record of information-security risks and treatment decisions.",
-      },
-      {
-        title: "Control evidence",
-        text: "Records supporting operation of relevant security controls.",
-      },
-      {
-        title: "Management review",
-        text: "Evidence of governance oversight and continual improvement.",
-      },
+      { title: "ISMS scope", text: "Documented boundaries and organizational applicability." },
+      { title: "Risk register", text: "Structured record of information-security risks and treatment decisions." },
+      { title: "Control evidence", text: "Records supporting operation of relevant security controls." },
+      { title: "Management review", text: "Evidence of governance oversight and continual improvement." },
     ],
 
     questions: [
       {
         question: "Is the ISMS scope explicit?",
-        answer:
-          "A clear boundary helps teams understand which systems, processes and organizational units are included.",
+        answer: "A clear boundary helps teams understand which systems, processes and organizational units are included.",
       },
       {
         question: "Can risk decisions be explained?",
-        answer:
-          "Treatment decisions should connect identified risks with accountable action.",
+        answer: "Treatment decisions should connect identified risks with accountable action.",
       },
       {
         question: "Can control operation be demonstrated?",
-        answer:
-          "Evidence should reflect how controls operate in practice rather than exist only for review periods.",
+        answer: "Evidence should reflect how controls operate in practice rather than exist only for review periods.",
       },
     ],
 
@@ -246,8 +181,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "ASSURANCE",
     ],
 
-    statementTitle:
-      "Audit readiness starts long before the audit window.",
+    statementTitle: "Audit readiness starts long before the audit window.",
 
     statementText:
       "Strong SOC 2 preparation depends on controls operating consistently throughout the relevant period. Evidence collection should reflect real processes, accountable owners and repeatable security practices.",
@@ -276,72 +210,33 @@ const pages: Record<CompliancePageKey, PageConfig> = {
     ],
 
     framework: [
-      {
-        number: "01",
-        title: "Define system",
-        text: "Clarify services, infrastructure, boundaries and supporting processes.",
-      },
-      {
-        number: "02",
-        title: "Map criteria",
-        text: "Identify Trust Services Criteria relevant to the engagement.",
-      },
-      {
-        number: "03",
-        title: "Map controls",
-        text: "Connect internal controls with applicable assurance requirements.",
-      },
-      {
-        number: "04",
-        title: "Assign owners",
-        text: "Establish accountability for operation and evidence.",
-      },
-      {
-        number: "05",
-        title: "Collect evidence",
-        text: "Maintain records demonstrating repeatable control operation.",
-      },
-      {
-        number: "06",
-        title: "Review readiness",
-        text: "Identify gaps before formal examination activities.",
-      },
+      { number: "01", title: "Define system", text: "Clarify services, infrastructure, boundaries and supporting processes." },
+      { number: "02", title: "Map criteria", text: "Identify Trust Services Criteria relevant to the engagement." },
+      { number: "03", title: "Map controls", text: "Connect internal controls with applicable assurance requirements." },
+      { number: "04", title: "Assign owners", text: "Establish accountability for operation and evidence." },
+      { number: "05", title: "Collect evidence", text: "Maintain records demonstrating repeatable control operation." },
+      { number: "06", title: "Review readiness", text: "Identify gaps before formal examination activities." },
     ],
 
     evidence: [
-      {
-        title: "Access governance",
-        text: "Evidence supporting identity and access control operation.",
-      },
-      {
-        title: "Change records",
-        text: "Traceable records supporting controlled system changes.",
-      },
-      {
-        title: "Security operations",
-        text: "Records demonstrating relevant monitoring and incident processes.",
-      },
-      {
-        title: "Vendor oversight",
-        text: "Evidence of relevant third-party governance activities.",
-      },
+      { title: "Access governance", text: "Evidence supporting identity and access control operation." },
+      { title: "Change records", text: "Traceable records supporting controlled system changes." },
+      { title: "Security operations", text: "Records demonstrating relevant monitoring and incident processes." },
+      { title: "Vendor oversight", text: "Evidence of relevant third-party governance activities." },
     ],
 
     questions: [
       {
         question: "Does each control have an owner?",
-        answer:
-          "Clear ownership helps prevent evidence gaps and inconsistent operation.",
+        answer: "Clear ownership helps prevent evidence gaps and inconsistent operation.",
       },
       {
         question: "Does evidence cover the required period?",
-        answer:
-          "Point-in-time screenshots alone may not demonstrate consistent operation across an examination period.",
+        answer: "Point-in-time screenshots alone may not demonstrate consistent operation across an examination period.",
       },
       {
         question: "Do written processes match actual practice?",
-        answer:
-          "Documentation should accurately reflect how teams operate security controls.",
+        answer: "Documentation should accurately reflect how teams operate security controls.",
       },
     ],
 
@@ -381,8 +276,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "ACCOUNTABILITY",
     ],
 
-    statementTitle:
-      "Data protection requires understanding how information moves.",
+    statementTitle: "Data protection requires understanding how information moves.",
 
     statementText:
       "Organizations need practical visibility into what personal data is processed, why it is processed, where it moves, who can access it and how security and governance responsibilities are maintained.",
@@ -411,72 +305,33 @@ const pages: Record<CompliancePageKey, PageConfig> = {
     ],
 
     framework: [
-      {
-        number: "01",
-        title: "Discover",
-        text: "Identify relevant personal-data processing activities.",
-      },
-      {
-        number: "02",
-        title: "Classify",
-        text: "Understand data categories and sensitivity.",
-      },
-      {
-        number: "03",
-        title: "Map",
-        text: "Document processing relationships and movement.",
-      },
-      {
-        number: "04",
-        title: "Govern",
-        text: "Establish ownership and processing expectations.",
-      },
-      {
-        number: "05",
-        title: "Protect",
-        text: "Apply appropriate security safeguards.",
-      },
-      {
-        number: "06",
-        title: "Review",
-        text: "Maintain accountability as systems and processing change.",
-      },
+      { number: "01", title: "Discover", text: "Identify relevant personal-data processing activities." },
+      { number: "02", title: "Classify", text: "Understand data categories and sensitivity." },
+      { number: "03", title: "Map", text: "Document processing relationships and movement." },
+      { number: "04", title: "Govern", text: "Establish ownership and processing expectations." },
+      { number: "05", title: "Protect", text: "Apply appropriate security safeguards." },
+      { number: "06", title: "Review", text: "Maintain accountability as systems and processing change." },
     ],
 
     evidence: [
-      {
-        title: "Processing records",
-        text: "Structured information describing relevant processing activities.",
-      },
-      {
-        title: "Access records",
-        text: "Evidence supporting controlled access to personal information.",
-      },
-      {
-        title: "Retention governance",
-        text: "Defined expectations around information lifecycle.",
-      },
-      {
-        title: "Security measures",
-        text: "Evidence of technical and organizational safeguards.",
-      },
+      { title: "Processing records", text: "Structured information describing relevant processing activities." },
+      { title: "Access records", text: "Evidence supporting controlled access to personal information." },
+      { title: "Retention governance", text: "Defined expectations around information lifecycle." },
+      { title: "Security measures", text: "Evidence of technical and organizational safeguards." },
     ],
 
     questions: [
       {
         question: "Where does personal data exist?",
-        answer:
-          "Visibility into processing locations is foundational to effective governance.",
+        answer: "Visibility into processing locations is foundational to effective governance.",
       },
       {
         question: "Why is the information being processed?",
-        answer:
-          "Processing should be understood within a clear business and governance context.",
+        answer: "Processing should be understood within a clear business and governance context.",
       },
       {
         question: "Who can access the information?",
-        answer:
-          "Access should align with defined responsibilities and appropriate safeguards.",
+        answer: "Access should align with defined responsibilities and appropriate safeguards.",
       },
     ],
 
@@ -516,8 +371,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "ASSURANCE",
     ],
 
-    statementTitle:
-      "Payment security begins with accurate scope.",
+    statementTitle: "Payment security begins with accurate scope.",
 
     statementText:
       "Understanding where account data is stored, processed or transmitted—and which connected systems can affect that environment—is essential before controls can be evaluated effectively.",
@@ -546,72 +400,33 @@ const pages: Record<CompliancePageKey, PageConfig> = {
     ],
 
     framework: [
-      {
-        number: "01",
-        title: "Map data flow",
-        text: "Understand relevant payment-data movement.",
-      },
-      {
-        number: "02",
-        title: "Establish scope",
-        text: "Identify systems and dependencies affecting the CDE.",
-      },
-      {
-        number: "03",
-        title: "Map requirements",
-        text: "Connect applicable requirements to controls.",
-      },
-      {
-        number: "04",
-        title: "Validate controls",
-        text: "Evaluate implementation and operation.",
-      },
-      {
-        number: "05",
-        title: "Organize evidence",
-        text: "Maintain traceable compliance records.",
-      },
-      {
-        number: "06",
-        title: "Maintain",
-        text: "Review scope and controls as environments change.",
-      },
+      { number: "01", title: "Map data flow", text: "Understand relevant payment-data movement." },
+      { number: "02", title: "Establish scope", text: "Identify systems and dependencies affecting the CDE." },
+      { number: "03", title: "Map requirements", text: "Connect applicable requirements to controls." },
+      { number: "04", title: "Validate controls", text: "Evaluate implementation and operation." },
+      { number: "05", title: "Organize evidence", text: "Maintain traceable compliance records." },
+      { number: "06", title: "Maintain", text: "Review scope and controls as environments change." },
     ],
 
     evidence: [
-      {
-        title: "Data-flow documentation",
-        text: "Payment-data movement and processing context.",
-      },
-      {
-        title: "Network boundaries",
-        text: "Documentation supporting segmentation and scope.",
-      },
-      {
-        title: "Access evidence",
-        text: "Records supporting relevant identity controls.",
-      },
-      {
-        title: "Security records",
-        text: "Operational evidence supporting applicable safeguards.",
-      },
+      { title: "Data-flow documentation", text: "Payment-data movement and processing context." },
+      { title: "Network boundaries", text: "Documentation supporting segmentation and scope." },
+      { title: "Access evidence", text: "Records supporting relevant identity controls." },
+      { title: "Security records", text: "Operational evidence supporting applicable safeguards." },
     ],
 
     questions: [
       {
         question: "Is the payment environment accurately scoped?",
-        answer:
-          "Incomplete scope can leave relevant systems and dependencies outside compliance activities.",
+        answer: "Incomplete scope can leave relevant systems and dependencies outside compliance activities.",
       },
       {
         question: "Are boundaries understood?",
-        answer:
-          "Connectivity and segmentation can materially affect the compliance environment.",
+        answer: "Connectivity and segmentation can materially affect the compliance environment.",
       },
       {
         question: "Can safeguards be demonstrated?",
-        answer:
-          "Controls should have evidence supporting their practical operation.",
+        answer: "Controls should have evidence supporting their practical operation.",
       },
     ],
 
@@ -651,8 +466,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "ACCOUNTABILITY",
     ],
 
-    statementTitle:
-      "Sensitive health information requires layered protection.",
+    statementTitle: "Sensitive health information requires layered protection.",
 
     statementText:
       "Security depends on understanding where electronic protected health information exists, who can access it, which systems support it and how safeguards are governed across the organization.",
@@ -747,8 +561,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "IMPROVE",
     ],
 
-    statementTitle:
-      "A framework creates a common language for cyber risk.",
+    statementTitle: "A framework creates a common language for cyber risk.",
 
     statementText:
       "NIST CSF can help technical teams, business leaders and risk stakeholders organize cybersecurity outcomes around shared priorities without prescribing a single technology architecture.",
@@ -843,8 +656,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "DEFENSE",
     ],
 
-    statementTitle:
-      "Security improvement becomes easier when priorities are explicit.",
+    statementTitle: "Security improvement becomes easier when priorities are explicit.",
 
     statementText:
       "A structured safeguard approach can help organizations focus resources on practical security outcomes while maintaining visibility into ownership, implementation and evidence.",
@@ -939,8 +751,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "STRATEGY",
     ],
 
-    statementTitle:
-      "Security governance defines how decisions get made.",
+    statementTitle: "Security governance defines how decisions get made.",
 
     statementText:
       "Controls and technologies are more effective when responsibilities, escalation paths, risk authority and reporting expectations are explicit across the organization.",
@@ -1035,8 +846,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "PRIORITY",
     ],
 
-    statementTitle:
-      "Assessment should explain more than pass or fail.",
+    statementTitle: "Assessment should explain more than pass or fail.",
 
     statementText:
       "Useful assessments show what was reviewed, what evidence exists, where uncertainty remains, how gaps affect risk and which improvements deserve attention.",
@@ -1131,8 +941,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "ROADMAP",
     ],
 
-    statementTitle:
-      "A gap only becomes useful when it leads to action.",
+    statementTitle: "A gap only becomes useful when it leads to action.",
 
     statementText:
       "Gap analysis should create a clear relationship between requirements, current practices, missing evidence, risk significance and practical remediation ownership.",
@@ -1227,8 +1036,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "RESPONSE",
     ],
 
-    statementTitle:
-      "Audit preparation is an operational readiness exercise.",
+    statementTitle: "Audit preparation is an operational readiness exercise.",
 
     statementText:
       "Teams should understand what will be reviewed, who owns each control, where supporting evidence lives and how questions will be coordinated before formal audit activities begin.",
@@ -1323,8 +1131,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
       "REVIEW",
     ],
 
-    statementTitle:
-      "Good documentation connects intent with execution.",
+    statementTitle: "Good documentation connects intent with execution.",
 
     statementText:
       "Policies should establish direction, standards should define mandatory expectations and procedures should explain repeatable operational activity. Each layer should have ownership and lifecycle governance.",
@@ -1400,7 +1207,7 @@ const pages: Record<CompliancePageKey, PageConfig> = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* MOTION                                                                     */
+/* MOTION HELPERS                                                             */
 /* -------------------------------------------------------------------------- */
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -1416,7 +1223,7 @@ function Reveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, delay, ease }}
@@ -1429,26 +1236,16 @@ function Reveal({
 
 function Label({ children }: { children: ReactNode }) {
   return (
-    <motion.div
-      whileHover={{ borderColor: "rgba(255,255,255,.22)" }}
-      className="inline-flex items-center gap-3 rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2 backdrop-blur-2xl"
-    >
+    <div className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2">
       <motion.span
-        animate={{
-          opacity: [0.25, 1, 0.25],
-          scale: [0.8, 1.25, 0.8],
-        }}
-        transition={{
-          duration: 2.2,
-          repeat: Infinity,
-        }}
-        className="h-1.5 w-1.5 rounded-full bg-white"
+        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.3, 0.8] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="h-1.5 w-1.5 rounded-full bg-[#a78bfa] shadow-[0_0_14px_rgba(167,139,250,.9)]"
       />
-
-      <span className="font-mono text-[8px] tracking-[0.24em] text-white/40">
+      <span className="font-mono text-[11px] tracking-[0.2em] text-white/60">
         {children}
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -1460,61 +1257,32 @@ function BackgroundField() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
-        animate={{
-          x: [-80, 100, -80],
-          y: [-50, 90, -50],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute -left-[180px] top-[15%] h-[520px] w-[520px] rounded-full bg-white/[0.045] blur-[160px]"
+        animate={{ x: [-100, 90, -100], y: [-50, 80, -50] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -left-24 top-32 h-[520px] w-[520px] rounded-full bg-[#6d28d9]/[0.13] blur-[160px]"
       />
 
       <motion.div
-        animate={{
-          x: [80, -80, 80],
-          y: [70, -50, 70],
-        }}
-        transition={{
-          duration: 26,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute right-[-200px] top-[25%] h-[520px] w-[520px] rounded-full bg-white/[0.035] blur-[170px]"
+        animate={{ x: [90, -80, 90], y: [50, -70, 50] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-[-100px] top-[20%] h-[480px] w-[480px] rounded-full bg-[#8b5cf6]/[0.1] blur-[170px]"
       />
 
       <div
-        className="absolute inset-0 opacity-[0.1]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,.72) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-          maskImage:
-            "linear-gradient(to bottom, black, transparent 96%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black, transparent 96%)",
-        }}
-      />
-
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px)",
-          backgroundSize: "88px 88px",
+            "radial-gradient(circle, rgba(196,181,253,.9) 1px, transparent 1px)",
+          backgroundSize: "42px 42px",
+          maskImage: "linear-gradient(to bottom, black, transparent 94%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 94%)",
         }}
       />
 
       <motion.div
-        animate={{ y: ["-20%", "120%"] }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+        animate={{ y: ["-10%", "110%"] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/25 to-transparent"
       />
     </div>
   );
@@ -1526,46 +1294,39 @@ function BackgroundField() {
 
 function Hero({ page }: { page: PageConfig }) {
   const { scrollY } = useScroll();
-
-  const y = useTransform(scrollY, [0, 850], [0, 130]);
-  const opacity = useTransform(scrollY, [0, 750], [1, 0.15]);
+  const y = useTransform(scrollY, [0, 900], [0, 120]);
+  const opacity = useTransform(scrollY, [0, 700], [1, 0.15]);
 
   return (
-    <section className="relative min-h-[950px] overflow-hidden border-b border-white/[0.07] bg-black">
+    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black">
       <BackgroundField />
 
       <motion.div
         style={{ y, opacity }}
-        className="relative mx-auto flex min-h-[930px] max-w-[1450px] flex-col justify-center px-5 pb-24 pt-40 md:px-8 lg:px-12"
+        className="relative mx-auto flex max-w-[1450px] flex-col justify-center px-5 pb-10 pt-30 max-md:pt-20 md:px-10 lg:px-20"
       >
-        <div className="flex items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <Label>{page.eyebrow}</Label>
+        </motion.div>
 
-          <span className="font-mono text-[8px] tracking-[0.25em] text-white/18">
-            {page.number}
-          </span>
-        </div>
-
-        <div className="mt-20">
+        <div className="mt-6">
           {[page.heroLine1, page.heroLine2, page.heroLine3].map(
             (line, index) => (
               <div key={line} className="overflow-hidden">
                 <motion.h1
-                  initial={{
-                    y: "115%",
-                    opacity: 0,
-                  }}
-                  animate={{
-                    y: 0,
-                    opacity: 1,
-                  }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
                   transition={{
                     duration: 1,
-                    delay: 0.08 + index * 0.12,
+                    delay: 0.1 + index * 0.11,
                     ease,
                   }}
-                  className={`text-[52px] font-medium leading-[0.91] tracking-[-0.065em] sm:text-[70px] md:text-[92px] lg:text-[108px] ${
-                    index === 2 ? "text-white/28" : "text-white"
+                  className={`hyi-h1 text-[52px] leading-[0.91] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px] ${
+                    index === 2 ? "hyi-blue" : "hyi-white"
                   }`}
                 >
                   {line}
@@ -1575,50 +1336,32 @@ function Hero({ page }: { page: PageConfig }) {
           )}
         </div>
 
-        <div className="mt-16 grid gap-10 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_.7fr]">
-          <div className="flex items-center gap-4">
-            <ShieldCheck className="h-4 w-4 text-white/40" />
-
-            <span className="font-mono text-[8px] tracking-[0.23em] text-white/20">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.8 }}
+          className="mt-6 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
+        >
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="h-4.5 w-4.5 hyi-blue-icon" />
+            <span className="hyi-h3 hyi-white">
               GOVERNANCE / CONTROL / ASSURANCE
             </span>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.6,
-              duration: 0.8,
-            }}
-          >
-            <p className="text-[13px] leading-7 text-white/[0.5]">
-              {page.description}
-            </p>
+          <div>
+            <p className="hyi-p">{page.description}</p>
 
             <motion.a
               href="#framework"
               whileHover={{ x: 6 }}
-              className="mt-7 inline-flex items-center gap-3 text-[10px] text-white/45"
+              className="hyi-white mt-6 inline-flex items-center gap-3 text-[14px] font-semibold"
             >
               Explore framework
-
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4" />
             </motion.a>
-          </motion.div>
-        </div>
-
-        <div className="mt-16 flex justify-end">
-          <motion.div
-            animate={{ y: [0, 7, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-            }}
-          >
-            <ArrowDown className="h-4 w-4 text-white/20" />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
@@ -1629,25 +1372,27 @@ function Hero({ page }: { page: PageConfig }) {
 /* -------------------------------------------------------------------------- */
 
 function Ticker({ items }: { items: string[] }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="overflow-hidden border-b border-white/[0.07] bg-[#030303]">
+    <section
+      className="overflow-hidden border-b border-white/[0.06] bg-[#030303]"
+      style={{
+        maskImage:
+          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+      }}
+    >
       <motion.div
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 28,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         className="flex w-max py-5"
       >
         {[...items, ...items].map((item, index) => (
-          <div
-            key={`${item}-${index}`}
-            className="flex items-center gap-7 px-9"
-          >
-            <CircleDot className="h-3 w-3 text-white/25" />
-
-            <span className="font-mono text-[8px] tracking-[0.25em] text-white/25">
+          <div key={`${item}-${index}`} className="flex items-center gap-4 px-8">
+            <CircleDot className="h-4 w-4 text-[#8b5cf6]" />
+            <span className="font-mono text-[12px] tracking-[0.24em] text-white/75">
               {item}
             </span>
           </div>
@@ -1663,33 +1408,25 @@ function Ticker({ items }: { items: string[] }) {
 
 function Statement({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.07] bg-black px-5 py-32 md:px-8 lg:px-12 lg:py-44">
-      <div className="absolute left-[20%] top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-white/[0.025] blur-[150px]" />
+    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
+      <div className="absolute left-[10%] top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-[#7c3aed]/10 blur-[150px]" />
 
-      <div className="relative mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[.45fr_1.55fr]">
+      <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
           <div className="flex items-center gap-3">
-            <Eye className="h-4 w-4 text-white/30" />
-
-            <span className="font-mono text-[8px] tracking-[0.23em] text-white/20">
-              CONTROL PERSPECTIVE
-            </span>
+            <Eye className="h-4.5 w-4.5 hyi-blue-icon" />
+            <span className="hyi-h3 hyi-white">CONTROL PERSPECTIVE</span>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.08}>
-          <h2 className="max-w-[920px] text-[42px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[68px]">
+          <h2 className="hyi-h1 hyi-white mt-6 max-w-[1000px] text-[40px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[60px] lg:text-[66px]">
             {page.statementTitle}
           </h2>
 
-          <div className="mt-12 grid gap-8 border-t border-white/[0.08] pt-8 md:grid-cols-[.7fr_1.3fr]">
-            <span className="font-mono text-[7px] tracking-[0.25em] text-white/18">
+          <div className="mt-8 grid gap-6 border-t border-white/[0.08] pt-8 lg:grid-cols-2">
+            <span className="hyi-h3 hyi-blue">
               REQUIREMENT → CONTROL → EVIDENCE
             </span>
-
-            <p className="text-[13px] leading-7 text-white/[0.45]">
-              {page.statementText}
-            </p>
+            <p className="hyi-p max-w-[600px]">{page.statementText}</p>
           </div>
         </Reveal>
       </div>
@@ -1703,54 +1440,43 @@ function Statement({ page }: { page: PageConfig }) {
 
 function Pillars({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.07] bg-[#030303] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+    <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <Label>CONTROL ARCHITECTURE</Label>
-
-          <h2 className="mt-8 max-w-[750px] text-[40px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[58px]">
-            Structure compliance around
-            <span className="block text-white/25">
-              accountable operation.
-            </span>
+          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
+            <span className="hyi-white">Structure compliance around</span>
+            <span className="block text-white/25">accountable operation.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-[26px] border border-white/[0.08] bg-white/[0.08] md:grid-cols-2">
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
           {page.pillars.map((item, index) => (
             <motion.article
               key={item.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.08,
-                duration: 0.7,
-              }}
-              whileHover={{
-                backgroundColor: "rgba(255,255,255,.035)",
-              }}
-              className="group min-h-[320px] bg-black p-8 md:p-10"
+              transition={{ delay: index * 0.08, duration: 0.7 }}
+              whileHover={{ y: -6 }}
+              className="hyi-skeu group relative overflow-hidden p-7 md:p-8"
             >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[8px] tracking-[0.22em] text-white/25">
+              <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-[#7c3aed]/10 blur-3xl" />
+
+              <div className="relative flex items-center justify-between">
+                <span className="font-mono text-[12px] tracking-[0.22em] text-[#a78bfa]">
                   {item.code}
                 </span>
-
-                <span className="font-mono text-[8px] text-white/12">
+                <span className="font-mono text-[12px] text-white/50">
                   0{index + 1}
                 </span>
               </div>
 
-              <div className="mt-24">
-                <h3 className="text-[24px] font-medium tracking-[-0.035em] text-white/75 transition-colors group-hover:text-white">
-                  {item.title}
-                </h3>
-
-                <p className="mt-5 max-w-[520px] text-[12px] leading-7 text-white/[0.38]">
-                  {item.text}
-                </p>
+              <div className="relative mt-8">
+                <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                <p className="hyi-p mt-2 max-w-[520px] pr-10">{item.text}</p>
               </div>
+
+              <ArrowRight className="hyi-white-icon absolute bottom-7 right-7 h-5 w-5 transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
             </motion.article>
           ))}
         </div>
@@ -1767,27 +1493,25 @@ function Framework({ page }: { page: PageConfig }) {
   return (
     <section
       id="framework"
-      className="relative overflow-hidden border-b border-white/[0.07] bg-black px-5 py-28 md:px-8 lg:px-12 lg:py-40"
+      className="relative overflow-hidden bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20"
     >
-      <BackgroundField />
+      <div className="absolute right-[-180px] top-[20%] h-[500px] w-[500px] rounded-full bg-[#8b5cf6]/10 blur-[170px]" />
 
       <div className="relative mx-auto max-w-[1320px]">
-        <div className="grid gap-16 lg:grid-cols-[.75fr_1.25fr]">
+        <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
           <Reveal>
             <div className="lg:sticky lg:top-32">
-              <Label>OPERATING FRAMEWORK</Label>
-
-              <h2 className="mt-8 max-w-[460px] text-[40px] font-medium leading-[1.05] tracking-[-0.05em] md:text-[55px]">
-                Move from requirement
+              <h2 className="hyi-h1 max-w-[460px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]">
+                <span className="hyi-white">Move from requirement</span>
                 <span className="block text-white/25">
                   to repeatable evidence.
                 </span>
               </h2>
 
-              <p className="mt-7 max-w-[420px] text-[12px] leading-7 text-white/[0.36]">
+              <p className="hyi-p mt-4 max-w-[430px]">
                 A sustainable compliance program makes responsibilities,
-                implementation and evidence part of normal security
-                operations rather than a temporary audit activity.
+                implementation and evidence part of normal security operations
+                rather than a temporary audit activity.
               </p>
             </div>
           </Reveal>
@@ -1796,34 +1520,18 @@ function Framework({ page }: { page: PageConfig }) {
             {page.framework.map((item, index) => (
               <motion.article
                 key={item.number}
-                initial={{
-                  opacity: 0,
-                  x: 35,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.07,
-                  duration: 0.65,
-                }}
-                className="group grid gap-5 border-t border-white/[0.08] py-9 md:grid-cols-[70px_190px_1fr_30px]"
+                transition={{ delay: index * 0.07, duration: 0.65 }}
+                className="group grid gap-3 border-t border-white/[0.08] py-7 md:grid-cols-[60px_190px_1fr_30px] md:items-center"
               >
-                <span className="font-mono text-[8px] text-white/20">
+                <span className="font-mono text-[12px] text-[#a78bfa]">
                   {item.number}
                 </span>
-
-                <h3 className="text-[16px] font-medium text-white/70 transition-colors group-hover:text-white">
-                  {item.title}
-                </h3>
-
-                <p className="text-[12px] leading-7 text-white/[0.36]">
-                  {item.text}
-                </p>
-
-                <ChevronRight className="h-4 w-4 text-white/10 transition-all group-hover:translate-x-1 group-hover:text-white/50" />
+                <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                <p className="hyi-p">{item.text}</p>
+                <ChevronRight className="hyi-white-icon h-6 w-6 transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
               </motion.article>
             ))}
 
@@ -1841,101 +1549,43 @@ function Framework({ page }: { page: PageConfig }) {
 
 function Evidence({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.07] bg-[#030303] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+    <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
           <div className="flex items-center gap-3">
-            <FileText className="h-4 w-4 text-white/35" />
-
-            <span className="font-mono text-[8px] tracking-[0.22em] text-white/20">
-              EVIDENCE LAYER
-            </span>
+            <FileText className="h-4.5 w-4.5 hyi-blue-icon" />
+            <span className="hyi-h3 hyi-white">EVIDENCE LAYER</span>
           </div>
 
-          <h2 className="mt-8 max-w-[700px] text-[40px] font-medium leading-[1.05] tracking-[-0.05em] md:text-[55px]">
-            Make control operation
-            <span className="block text-white/25">
-              visible and traceable.
-            </span>
+          <h2 className="hyi-h1 mt-4 max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Make control operation</span>
+            <span className="block text-white/25">visible and traceable.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {page.evidence.map((item, index) => (
             <motion.article
               key={item.title}
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.07,
-              }}
-              whileHover={{
-                y: -8,
-                borderColor: "rgba(255,255,255,.18)",
-              }}
-              className="min-h-[290px] rounded-[22px] border border-white/[0.07] bg-black p-7"
+              transition={{ delay: index * 0.07 }}
+              whileHover={{ y: -6 }}
+              className="hyi-skeu p-6"
             >
               <div className="flex items-center justify-between">
-                <Layers3 className="h-4 w-4 text-white/25" />
-
-                <span className="font-mono text-[8px] text-white/12">
+                <Layers3 className="h-4.5 w-4.5 hyi-blue-icon" />
+                <span className="font-mono text-[12px] text-white/50">
                   E-0{index + 1}
                 </span>
               </div>
 
-              <h3 className="mt-24 text-[17px] font-medium text-white/70">
-                {item.title}
-              </h3>
-
-              <p className="mt-4 text-[11px] leading-6 text-white/[0.34]">
-                {item.text}
-              </p>
+              <h3 className="hyi-h3 hyi-white mt-6">{item.title}</h3>
+              <p className="hyi-p mt-2">{item.text}</p>
             </motion.article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* BIG TYPE                                                                   */
-/* -------------------------------------------------------------------------- */
-
-function BigType({ page }: { page: PageConfig }) {
-  return (
-    <section className="relative flex min-h-[430px] items-center overflow-hidden border-b border-white/[0.07] bg-black">
-      <motion.div
-        animate={{
-          x: ["0%", "-30%"],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-        className="whitespace-nowrap text-[105px] font-medium tracking-[-0.075em] text-white/[0.035] md:text-[185px]"
-      >
-        CONTROL / EVIDENCE / GOVERNANCE / ASSURANCE / CONTROL
-      </motion.div>
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          whileHover={{ scale: 1.04 }}
-          className="rounded-full border border-white/[0.1] bg-black/80 px-7 py-3 backdrop-blur-2xl"
-        >
-          <span className="font-mono text-[8px] tracking-[0.25em] text-white/35">
-            {page.eyebrow}
-          </span>
-        </motion.div>
       </div>
     </section>
   );
@@ -1947,51 +1597,33 @@ function BigType({ page }: { page: PageConfig }) {
 
 function Questions({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.07] bg-[#030303] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
+      <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <Label>ASSURANCE QUESTIONS</Label>
-
-          <h2 className="mt-8 max-w-[730px] text-[40px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
-            Evidence should answer
-            <span className="block text-white/25">
-              practical questions.
-            </span>
+          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Evidence should answer</span>
+            <span className="block text-white/25">practical questions.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-16">
+        <div className="mt-8">
           {page.questions.map((item, index) => (
             <motion.article
               key={item.question}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                backgroundColor: "rgba(255,255,255,.02)",
-              }}
-              className="grid gap-7 border-t border-white/[0.08] px-3 py-10 lg:grid-cols-[70px_1fr_1fr]"
+              transition={{ delay: index * 0.07 }}
+              whileHover={{ backgroundColor: "rgba(124,58,237,.035)" }}
+              className="grid gap-4 border-t border-white/[0.08] px-3 py-8 lg:grid-cols-[70px_1fr_1fr] lg:items-center"
             >
-              <span className="font-mono text-[8px] text-white/18">
+              <span className="font-mono text-[12px] text-[#a78bfa]">
                 Q / 0{index + 1}
               </span>
 
-              <h3 className="max-w-[420px] text-[20px] font-medium tracking-[-0.025em] text-white/75">
-                {item.question}
-              </h3>
+              <h3 className="hyi-h3 hyi-white max-w-[430px]">{item.question}</h3>
 
-              <p className="text-[12px] leading-7 text-white/[0.37]">
-                {item.answer}
-              </p>
+              <p className="hyi-p max-w-[470px]">{item.answer}</p>
             </motion.article>
           ))}
 
@@ -2008,132 +1640,47 @@ function Questions({ page }: { page: PageConfig }) {
 
 function Outcomes({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.07] bg-black px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-      <div className="absolute right-[-160px] top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-white/[0.035] blur-[160px]" />
+    <section className="relative overflow-hidden bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
+      <div className="absolute left-[-150px] top-1/2 h-[420px] w-[420px] rounded-full bg-[#6d28d9]/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-[1100px]">
+      <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
           <div className="flex items-center gap-3">
-            <Workflow className="h-4 w-4 text-white/30" />
-
-            <span className="font-mono text-[8px] tracking-[0.22em] text-white/20">
-              PROGRAM OUTCOMES
-            </span>
+            <Workflow className="h-4.5 w-4.5 hyi-blue-icon" />
+            <span className="hyi-h3 hyi-white">PROGRAM OUTCOMES</span>
           </div>
+
+          <h2 className="hyi-h1 mt-4 max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Turn compliance work</span>
+            <span className="block hyi-blue">into lasting capability.</span>
+          </h2>
         </Reveal>
 
-        <div className="mt-12">
+        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 lg:grid-cols-3">
           {page.outcomes.map((item, index) => (
             <motion.div
               key={item}
-              initial={{
-                opacity: 0,
-                x: index % 2 === 0 ? -30 : 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.06,
+              transition={{ delay: index * 0.05 }}
+              whileHover={{
+                y: -4,
+                backgroundColor: "rgba(124,58,237,.055)",
               }}
-              whileHover={{ x: 8 }}
-              className="group flex items-center justify-between border-t border-white/[0.08] py-7"
+              className="group flex items-end justify-between gap-4 bg-black p-6"
             >
-              <div className="flex items-center gap-8">
-                <span className="font-mono text-[8px] text-white/16">
+              <div>
+                <span className="font-mono text-[12px] text-[#a78bfa]">
                   0{index + 1}
                 </span>
-
-                <span className="text-[14px] text-white/50 transition-colors group-hover:text-white/80">
-                  {item}
-                </span>
+                <p className="hyi-h3 hyi-white mt-3">{item}</p>
               </div>
 
-              <CheckCircle2 className="h-4 w-4 text-white/20" />
+              <CheckCircle2 className="hyi-white-icon h-5 w-5 shrink-0 transition-colors group-hover:text-[#a78bfa]" />
             </motion.div>
           ))}
-
-          <div className="border-t border-white/[0.08]" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* FINAL CTA                                                                  */
-/* -------------------------------------------------------------------------- */
-
-function FinalCTA({ page }: { page: PageConfig }) {
-  return (
-    <section className="relative overflow-hidden bg-black px-5 py-36 md:px-8 lg:px-12 lg:py-48">
-      <BackgroundField />
-
-      <div className="relative mx-auto max-w-[1000px] text-center">
-        <Reveal>
-          <motion.div
-            animate={{
-              boxShadow: [
-                "0 0 0 rgba(255,255,255,0)",
-                "0 0 90px rgba(255,255,255,.09)",
-                "0 0 0 rgba(255,255,255,0)",
-              ],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-            className="mx-auto mb-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.03] backdrop-blur-2xl"
-          >
-            <ShieldCheck className="h-5 w-5 text-white/60" />
-          </motion.div>
-
-          <Label>{page.eyebrow}</Label>
-
-          <h2 className="mt-9 text-[45px] font-medium leading-[1.02] tracking-[-0.055em] md:text-[70px]">
-            {page.closingTitle}
-
-            <span className="block text-white/25">
-              {page.closingMuted}
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-7 max-w-[650px] text-[12px] leading-7 text-white/[0.4]">
-            {page.closingText}
-          </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <motion.a
-              href="/contact"
-              whileHover={{
-                y: -5,
-                scale: 1.03,
-                boxShadow: "0 20px 70px rgba(255,255,255,.08)",
-              }}
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-[11px] font-medium text-black"
-            >
-              Discuss compliance
-
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-            </motion.a>
-
-            <motion.a
-              href="#framework"
-              whileHover={{
-                y: -5,
-                borderColor: "rgba(255,255,255,.25)",
-              }}
-              className="inline-flex items-center gap-3 rounded-full border border-white/[0.1] px-7 py-3.5 text-[11px] text-white/45"
-            >
-              Review framework
-
-              <RefreshCcw className="h-3.5 w-3.5" />
-            </motion.a>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
@@ -2151,7 +1698,6 @@ export default function ComplianceRiskClient({
   const page = pages[pageKey];
 
   const { scrollYProgress } = useScroll();
-
   const progress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 25,
@@ -2162,28 +1708,17 @@ export default function ComplianceRiskClient({
     <div className="relative overflow-x-hidden bg-black text-white">
       <motion.div
         style={{ scaleX: progress }}
-        className="fixed left-0 right-0 top-0 z-[100] h-[2px] origin-left bg-white"
+        className="fixed left-0 right-0 top-0 z-[100] h-[2px] origin-left bg-[#8b5cf6]"
       />
 
       <Hero page={page} />
-
       <Ticker items={page.ticker} />
-
       <Statement page={page} />
-
       <Pillars page={page} />
-
       <Framework page={page} />
-
       <Evidence page={page} />
-
-      <BigType page={page} />
-
       <Questions page={page} />
-
       <Outcomes page={page} />
-
-      <FinalCTA page={page} />
 
       <style jsx global>{`
         html {
@@ -2191,8 +1726,8 @@ export default function ComplianceRiskClient({
         }
 
         ::selection {
-          background: rgba(255, 255, 255, 0.9);
-          color: black;
+          background: rgba(139, 92, 246, 0.4);
+          color: #ffffff;
         }
 
         @media (prefers-reduced-motion: reduce) {

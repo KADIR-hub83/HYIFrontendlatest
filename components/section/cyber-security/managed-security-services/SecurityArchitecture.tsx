@@ -11,7 +11,7 @@ export default function SecurityArchitecture({
   service: ManagedSecurityService;
 }) {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#030303] py-32 md:py-44">
+    <section className="relative overflow-hidden  bg-[#030303] ">
       <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046e6]/[0.055] blur-[180px]" />
 
       <div className="relative mx-auto max-w-[1380px] px-6 md:px-10">
@@ -21,15 +21,13 @@ export default function SecurityArchitecture({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="font-mono text-[10px] tracking-[0.26em] text-[#9878ef]">
-              {service.architecture.eyebrow}
-            </span>
+        
 
-            <h2 className="mt-7 text-[43px] font-semibold leading-[1.02] tracking-[-0.045em] md:text-[64px]">
+            <h2 className="hyi-h1 hyi-white">
               {service.architecture.title}
             </h2>
 
-            <p className="mt-7 max-w-[520px] text-[14px] leading-8 text-white/[0.48]">
+            <p className="mt-4 hyi-p">
               {service.architecture.description}
             </p>
           </motion.div>
@@ -48,7 +46,7 @@ export default function SecurityArchitecture({
                     transition={{ delay: index * 0.08 }}
                     className="relative grid grid-cols-[60px_1fr] items-center"
                   >
-                    <div className="relative z-10 flex h-[60px] items-center justify-center">
+                    <div className="relative z-10 flex h-[30px] items-center justify-center">
                       <motion.div
                         animate={{
                           boxShadow: [
@@ -74,22 +72,19 @@ export default function SecurityArchitecture({
                     <div className="group rounded-2xl border border-white/[0.07] bg-white/[0.015] p-6 transition hover:border-[#9878ef]/20 hover:bg-[#7046e6]/[0.035]">
                       <div className="flex items-center justify-between gap-6">
                         <div>
-                          <span className="font-mono text-[8px] text-white/[0.20]">
-                            LAYER 0{index + 1}
-                          </span>
-
-                          <h3 className="mt-2 text-[16px] font-medium">
+                        
+                          <h3 className="mt-2 hyi-h3 hyi-white">
                             {layer.title}
                           </h3>
 
-                          <p className="mt-2 text-[12px] leading-6 text-white/[0.42]">
+                          <p className="mt-2 hyi-p">
                             {layer.description}
                           </p>
                         </div>
 
                         <ChevronRight
                           size={16}
-                          className="shrink-0 text-white/[0.18] transition group-hover:text-[#9878ef]"
+                          className="shrink-0 text-white/80 transition group-hover:text-[#9878ef]"
                         />
                       </div>
                     </div>

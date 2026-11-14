@@ -6,19 +6,17 @@ import type { SOCService } from "./socServices";
 
 export default function SOCProcess({ service }: { service: SOCService }) {
   return (
-    <section className="border-b border-white/[0.07] bg-black">
-      <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-32">
-        <div className="max-w-3xl">
-          <p className="text-[10px] uppercase tracking-[0.28em] text-white/30">
-            04 / Operational Flow
-          </p>
+    <section className=" bg-black">
+      <div className="mx-auto max-w-[1450px] px-5 md:px-8 lg:px-12 py-10">
+        <div className="">
+     
 
-          <h2 className="mt-5 text-3xl font-medium tracking-[-0.025em] md:text-[42px]">
+          <h2 className=" hyi-h1 hyi-white text-center mx-auto">
             A repeatable security operations loop.
           </h2>
         </div>
 
-        <div className="mt-14">
+        <div className="mt-8">
           {service.process.map((step, index) => (
             <motion.div
               key={step.number}
@@ -28,22 +26,22 @@ export default function SOCProcess({ service }: { service: SOCService }) {
               transition={{ delay: index * 0.05 }}
               className="group grid gap-5 border-t border-white/[0.08] py-7 md:grid-cols-[70px_0.7fr_1.2fr_0.7fr] md:items-center md:gap-8"
             >
-              <span className="font-mono text-[9px] text-white/20">
+              <span className="font-mono text-[9px] text-white">
                 {step.number}
               </span>
 
-              <h3 className="text-[15px] font-medium text-white/85">
+              <h3 className="hyi-h3 hyi-white">
                 {step.title}
               </h3>
 
-              <p className="max-w-xl text-[11px] leading-6 text-white/30">
+              <p className="max-w-xl hyi-p">
                 {step.description}
               </p>
 
               <div className="flex items-center gap-2 md:justify-end">
-                <CheckCircle2 className="h-3.5 w-3.5 text-white/25" />
+                <CheckCircle2 className="h-3.5 w-3.5 hyi-blue-icon" />
 
-                <span className="font-mono text-[8px] uppercase tracking-[0.12em] text-white/25">
+                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-white/80">
                   {step.output}
                 </span>
               </div>

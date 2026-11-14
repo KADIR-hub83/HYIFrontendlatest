@@ -14,7 +14,7 @@ export default function StickySplit({
   children: ReactNode;
 }) {
   return (
-    <section className="grid gap-8 py-14 lg:grid-cols-[5fr_7fr] lg:gap-16">
+    <section className="grid gap-8 py-8 lg:grid-cols-[5fr_7fr] lg:gap-16">
       <div className="lg:sticky lg:top-32 lg:self-start">
         {eyebrow && <p className="hyi-eyebrow mb-4">{eyebrow}</p>}
         <SplitHeading text={title} accent={accent} />

@@ -29,7 +29,7 @@ export default function EndpointCapabilities({
   return (
     <section
       id="capabilities"
-      className="relative border-b border-white/[0.06] bg-black py-28"
+      className="relative  bg-black py-10"
     >
       <div className="mx-auto max-w-[1320px] px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
@@ -39,15 +39,13 @@ export default function EndpointCapabilities({
             viewport={{ once: true }}
             className="lg:sticky lg:top-28 lg:self-start"
           >
-            <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-white/25">
-              {service.capabilitiesEyebrow}
-            </p>
+       
 
-            <h2 className="mt-5 max-w-[460px] text-[28px] font-medium leading-[1.18] tracking-[-0.03em] text-white md:text-[36px]">
+            <h2 className="mt- max-w-[460px] hyi-h1 hyi-white">
               {service.capabilitiesTitle}
             </h2>
 
-            <p className="mt-5 max-w-[450px] text-[12px] leading-7 text-white/35">
+            <p className="mt-3 max-w-[450px] hyi-blue font-bold  hyi-p">
               {service.capabilitiesIntro}
             </p>
           </motion.div>
@@ -67,28 +65,27 @@ export default function EndpointCapabilities({
                   }}
                   whileHover={{
                     y: -5,
+                    borderColor:"white"
                   }}
-                  className="group min-h-[220px] rounded-[22px] border border-white/[0.07] bg-white/[0.018] p-6"
+                  className="group min-h-[20px] rounded-[22px] border border-white/[0.07] bg-white/[0.018] p-6"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08]">
-                      <Icon className="h-4 w-4 text-white/40" />
+                      <Icon className="h-4 w-4 hyi-white-icon" />
                     </div>
 
-                    <span className="font-mono text-[8px] text-white/15">
-                      0{index + 1}
-                    </span>
+                   
                   </div>
 
-                  <h3 className="mt-9 text-[15px] font-medium text-white/80">
+                  <h3 className="mt-2 hyi-h3">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-[11px] leading-6 text-white/30">
+                  <p className="mt-2 hyi-p">
                     {item.description}
                   </p>
 
-                  <div className="mt-7 h-px overflow-hidden bg-white/[0.06]">
+                  <div className="mt-3 h-px overflow-hidden bg-white/[0.06]">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: "55%" }}

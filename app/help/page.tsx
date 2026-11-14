@@ -37,7 +37,7 @@ const Page = () => {
     <section className="w-full justify-center">
       <Header />
       <section className="relative w-full flex justify-center px-4 py-4 md:px-8 md:py-0 lg:items-center">
-        <div className="absolute top-0 left-0 w-full h-full z-0">
+        <div className="absolute top-20 left-0 w-full h-full z-0">
           <CustomFloatableIcons2
             icons={techIcons}
             overlayMode={true}

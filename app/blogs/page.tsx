@@ -482,18 +482,7 @@ export default async function BlogPage({
 
       {/* HERO */}
       <div
-        className="
-          w-full
-          flex
-          justify-center
-          px-4
-          pb-6
-          md:px-6
-          md:pb-6
-          lg:items-center
-          lg:pb-8
-        "
-      >
+        className=" w-full flex justify-center px-4 pb-6 md:px-6 md:pb-6 lg:items-center lg:pb-8 ">
         <div className="w-full max-w-[1280px]">
           <HeroSection />
         </div>

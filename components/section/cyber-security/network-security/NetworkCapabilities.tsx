@@ -16,14 +16,12 @@ export default function NetworkCapabilities({
   return (
     <section
       id="capabilities"
-      className="border-b border-white/[0.06] bg-black px-5 py-24 md:px-8"
+      className=" bg-black px-5  md:px-8"
     >
       <div className="mx-auto max-w-[1280px]">
-        <p className="font-mono text-[8px] tracking-[.28em] text-white/25">
-          CAPABILITY SYSTEM
-        </p>
+        
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-[28px] border border-white/[0.07] bg-white/[0.07] md:grid-cols-3">
+        <div className=" grid gap-px overflow-hidden rounded-[28px] border border-white/[0.07] bg-white/[0.07] md:grid-cols-3">
           {items.map((item, index) => (
             <motion.article
               key={`${item.title}-${index}`}
@@ -43,23 +41,17 @@ export default function NetworkCapabilities({
               }}
               className="bg-[#050505] p-7"
             >
-              <div className="mb-8 flex justify-between">
-                <span className="font-mono text-[8px] text-white/20">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+             
 
-                <i className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]" />
-              </div>
-
-              <h3 className="text-[15px] text-white/80">
+              <h3 className="hyi-h3 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="mt-3 text-[12px] leading-6 text-white/38">
+              <p className="mt-2 hyi-p">
                 {item.description}
               </p>
 
-              <p className="mt-4 border-t border-white/[0.06] pt-4 text-[10px] leading-5 text-white/24">
+              <p className="mt-2 hyi-p hyi-blue font-extralight">
                 {item.detail}
               </p>
             </motion.article>

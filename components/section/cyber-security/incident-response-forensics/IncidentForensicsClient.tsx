@@ -5,25 +5,31 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  useMotionValue,
+  useMotionTemplate,
 } from "framer-motion";
 
 import {
   Activity,
-  ArrowDown,
+  AlertTriangle,
   ArrowRight,
   CheckCircle2,
   CircleDot,
   Database,
   Eye,
   FileText,
+  Layers3,
   Network,
+  Radio,
   RefreshCcw,
   Search,
   ShieldCheck,
+  Timer,
   Workflow,
 } from "lucide-react";
 
-import type { ReactNode } from "react";
+import type { MouseEvent as ReactMouseEvent, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type IncidentPageKey =
   | "incident"
@@ -583,7 +589,57 @@ const pages: Record<IncidentPageKey, PageConfig> = {
   },
 };
 
+/* =========================================================
+   SHARED
+========================================================= */
+
 const ease = [0.22, 1, 0.36, 1] as const;
+
+const TIMELINE = [
+  ["00:18", "Initial signal observed"],
+  ["00:31", "Relevant identity activity correlated"],
+  ["01:04", "Incident boundary updated"],
+  ["01:42", "Containment decision recorded"],
+  ["02:16", "Additional evidence preserved"],
+];
+
+const TABS = ["Timeline", "Stages", "Evidence"] as const;
+type Tab = (typeof TABS)[number];
+
+function Container({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`mx-auto w-full max-w-[1380px] ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+function TinyLabel({ children }: { children: ReactNode }) {
+  return (
+    <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/30">
+      {children}
+    </span>
+  );
+}
+
+function LiveDot() {
+  return (
+    <span className="relative flex h-2 w-2">
+      <motion.span
+        animate={{ scale: [1, 2.3, 1], opacity: [0.7, 0, 0.7] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute inset-0 rounded-full bg-[#8b5cf6]"
+      />
+      <span className="relative h-2 w-2 rounded-full bg-[#c4b5fd]" />
+    </span>
+  );
+}
 
 function Reveal({
   children,
@@ -596,10 +652,10 @@ function Reveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-70px" }}
-      transition={{ duration: 0.8, delay, ease }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, delay, ease }}
       className={className}
     >
       {children}
@@ -607,125 +663,432 @@ function Reveal({
   );
 }
 
-function Background() {
+function CountUp({
+  to,
+  decimals = 0,
+  duration = 1.6,
+}: {
+  to: number;
+  decimals?: number;
+  duration?: number;
+}) {
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(to * eased);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [to, duration]);
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.13]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(154,115,255,.75) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage:
-            "linear-gradient(to bottom, black, transparent 90%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black, transparent 90%)",
-        }}
-      />
-
-      <motion.div
-        animate={{
-          x: [-100, 100, -100],
-          y: [-80, 90, -80],
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-32 top-32 h-[500px] w-[500px] rounded-full bg-[#7650df]/[0.10] blur-[160px]"
-      />
-
-      <motion.div
-        animate={{
-          x: [80, -100, 80],
-          y: [50, -70, 50],
-        }}
-        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-40 top-[35%] h-[500px] w-[500px] rounded-full bg-[#9d7bf7]/[0.08] blur-[170px]"
-      />
-    </div>
+    <>
+      {val.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })}
+    </>
   );
 }
 
 function Badge({ children }: { children: ReactNode }) {
   return (
     <div className="inline-flex items-center gap-3 rounded-full border border-[#9d7bf7]/20 bg-[#9d7bf7]/[0.05] px-4 py-2 backdrop-blur-2xl">
-      <motion.span
-        animate={{ opacity: [0.25, 1, 0.25], scale: [0.8, 1.25, 0.8] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="h-1.5 w-1.5 rounded-full bg-[#a98cff]"
-      />
-      <span className="font-mono text-[8px] tracking-[0.25em] text-white/40">
+      <LiveDot />
+      <span className="font-mono text-[9px] tracking-[0.25em] text-white/55">
         {children}
       </span>
     </div>
   );
 }
 
+/* =========================================================
+   HERO
+========================================================= */
+
 function Hero({ page }: { page: PageConfig }) {
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 800], [0, 130]);
-  const heroOpacity = useTransform(scrollY, [0, 700], [1, 0.1]);
+
+  const titleY = useTransform(scrollY, [0, 650], [0, 80]);
+  const titleOpacity = useTransform(scrollY, [0, 550], [1, 0.25]);
+  const modelY = useTransform(scrollY, [0, 850], [0, 100]);
+  const modelScale = useTransform(scrollY, [0, 900], [1, 0.95]);
 
   return (
-    <section className="relative min-h-[930px] overflow-hidden border-b border-white/[0.07] bg-black">
-      <Background />
+    <section className="relative overflow-hidden bg-black px-5 py-20 md:px-10">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "linear-gradient(to bottom, black 20%, transparent 90%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 20%, transparent 90%)",
+        }}
+      />
 
       <motion.div
-        style={{ y: heroY, opacity: heroOpacity }}
-        className="relative mx-auto flex min-h-[930px] max-w-[1420px] flex-col justify-center px-5 pb-24 pt-40 md:px-10"
-      >
-        <div className="flex items-center justify-between">
-          <Badge>{page.eyebrow}</Badge>
-          <span className="font-mono text-[8px] tracking-[0.3em] text-white/20">
-            {page.number}
-          </span>
-        </div>
+        animate={{ scale: [1, 1.18, 1], opacity: [0.05, 0.12, 0.05] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute left-1/2 top-[550px] h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-[#6d28d9] blur-[220px]"
+      />
 
-        <div className="mt-20">
-          {page.hero.map((line, index) => (
-            <div key={line} className="overflow-hidden">
-              <motion.h1
-                initial={{ y: "120%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: index * 0.12,
-                  ease,
-                }}
-                className={`text-[53px] font-medium leading-[0.91] tracking-[-0.065em] sm:text-[72px] md:text-[96px] lg:text-[112px] ${
-                  index === 2 ? "text-[#8068b7]" : "text-white"
-                }`}
-              >
-                {line}
-              </motion.h1>
-            </div>
-          ))}
-        </div>
+      <Container className="relative">
+        <motion.div
+          style={{ y: titleY, opacity: titleOpacity }}
+          className="mx-auto max-w-[1050px] text-center"
+        >
+       
 
-        <div className="mt-16 grid gap-10 border-t border-white/[0.08] pt-8 lg:grid-cols-2">
-          <div className="flex items-center gap-4">
-            <Activity className="h-4 w-4 text-[#9b7bf0]" />
-            <span className="font-mono text-[8px] tracking-[0.25em] text-white/25">
-              {page.signal}
-            </span>
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.08 }}
+            className="hyi-white mx-auto mt-8 w-full text-5xl font-bold max-md:text-3xl"
+          >
+            {page.hero[0]} {page.hero[1]}
+            <span className="block"></span>
+            <span className="hyi-blue block">{page.hero[2]}</span>
+          </motion.h1>
 
-          <div>
-            <p className="max-w-[610px] text-[13px] leading-7 text-white/[0.52]">
-              {page.description}
-            </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hyi-p mx-auto mt-3 max-w-[780px]"
+          >
+            {page.description}
+          </motion.p>
 
-            <a
-              href="#response"
-              className="mt-7 inline-flex items-center gap-3 text-[10px] text-white/45 transition hover:text-white"
-            >
-              Enter investigation
-              <ArrowDown className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
-      </motion.div>
+      
+        </motion.div>
+
+        <motion.div
+          style={{ y: modelY, scale: modelScale }}
+          className="mt-10"
+        >
+          <CommandCenter page={page} />
+        </motion.div>
+      </Container>
     </section>
   );
 }
+
+/* =========================================================
+   COMMAND CENTER
+========================================================= */
+
+function KpiCard({
+  label,
+  value,
+  note,
+  icon: Icon,
+  index,
+}: {
+  label: string;
+  value: number;
+  note: string;
+  icon: typeof Activity;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+      whileHover={{ y: -4 }}
+      className="group relative overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.03] p-4 backdrop-blur-xl transition-colors hover:border-[#a78bfa]/40"
+    >
+      <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#7046e6]/20 opacity-60 blur-2xl transition-opacity group-hover:opacity-100" />
+
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
+          {label}
+        </span>
+        <Icon size={14} className="text-[#a78bfa]" />
+      </div>
+
+      <div className="mt-3">
+        <span className="hyi-white text-2xl font-semibold tracking-tight">
+          <CountUp to={value} />
+        </span>
+      </div>
+
+      <p className="hyi-blue mt-1 text-[10px]">{note}</p>
+    </motion.div>
+  );
+}
+
+function Ticker({ items }: { items: string[] }) {
+  const loop = [...items, ...items, ...items, ...items];
+
+  return (
+    <div className="relative overflow-hidden border-t border-white/[0.1] bg-black/60 py-2.5">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#030303] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#030303] to-transparent" />
+
+      <motion.div
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="flex w-max items-center gap-10 whitespace-nowrap"
+      >
+        {loop.map((text, i) => (
+          <span
+            key={i}
+            className="flex items-center gap-2 font-mono text-[10px] text-white/45"
+          >
+            <Activity size={11} className="text-[#38bdf8]" />
+            {text}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function CommandCenter({ page }: { page: PageConfig }) {
+  const [tab, setTab] = useState<Tab>("Timeline");
+  const ref = useRef<HTMLDivElement>(null);
+
+  const mx = useMotionValue(-300);
+  const my = useMotionValue(-300);
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mx}px ${my}px, rgba(112,70,230,0.16), transparent 70%)`;
+
+  const onMove = (e: ReactMouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    mx.set(e.clientX - rect.left);
+    my.set(e.clientY - rect.top);
+  };
+
+  const kpis = [
+    { label: "Response Phases", value: page.stages.length, note: "Structured flow", icon: Layers3 },
+    { label: "Evidence Sources", value: page.evidence.length, note: "Traceable record", icon: Database },
+    { label: "Capabilities", value: page.capabilities.length, note: "Case coverage", icon: ShieldCheck },
+    { label: "Case Outcomes", value: page.outcomes.length, note: "Defined results", icon: AlertTriangle },
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      id="command-center"
+      onMouseMove={onMove}
+      initial={{ opacity: 0, y: 70, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1, delay: 0.25 }}
+      className="relative overflow-hidden rounded-[30px] border border-white/[0.16] bg-[#030303] shadow-[0_50px_150px_rgba(0,0,0,.9),0_0_80px_rgba(112,70,230,.12)]"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          maskImage:
+            "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
+        }}
+      />
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ background: spotlight }}
+      />
+      <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#7046e6]/15 blur-[110px]" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#38bdf8]/10 blur-[110px]" />
+
+      <motion.div
+        animate={{ x: ["-100%", "220%"] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 z-40 h-px w-full bg-gradient-to-r from-transparent via-[#a78bfa] to-transparent"
+      />
+
+      {/* WINDOW BAR */}
+      <div className="relative z-10 flex items-center justify-between border-b border-white/[0.12] bg-black/40 px-6 py-3 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <span className="h-3 w-3 rounded-full bg-[#ed6a5e]" />
+          <span className="h-3 w-3 rounded-full bg-[#f4bf4f]" />
+          <span className="h-3 w-3 rounded-full bg-[#61c454]" />
+        </div>
+
+        <div className="flex items-center gap-2 text-white/35">
+          <ShieldCheck size={12} />
+          <span className="font-mono text-[9px] tracking-wider">
+            HYI.AI / CASE COMMAND CENTER
+          </span>
+        </div>
+
+        <div className="hidden items-center gap-5 text-white/25 sm:flex">
+          <motion.span
+            animate={{ rotate: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          >
+            <RefreshCcw size={13} />
+          </motion.span>
+          <Radio size={13} />
+          <CircleDot size={13} />
+        </div>
+      </div>
+
+      <div className="relative z-10 p-5 md:p-8">
+        {/* HEADER */}
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+          <div>
+            <TinyLabel>{page.eyebrow}</TinyLabel>
+            <h2 className="hyi-h1 mt-2 tracking-[-0.04em]">
+              Case <span className="hyi-blue">Command</span> Center
+            </h2>
+            <p className="hyi-white mt-1 text-xs opacity-60">
+              Live view of timeline, response stages and preserved evidence.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2">
+              <LiveDot />
+              <span className="font-mono text-[8px] uppercase text-white/45">
+                {page.signal}
+              </span>
+            </div>
+
+            <motion.a
+              href="#response"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="hyi-white rounded-full bg-gradient-to-r from-[#7046e6] to-[#5b7cfa] px-5 py-2.5 text-[10px] font-medium shadow-[0_0_30px_rgba(112,70,230,.45)]"
+            >
+              View Response Plan
+            </motion.a>
+          </div>
+        </div>
+
+        {/* KPI STRIP */}
+        <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {kpis.map((k, i) => (
+            <KpiCard key={k.label} {...k} index={i} />
+          ))}
+        </div>
+
+        {/* TABS */}
+        <div className="mt-7 flex items-center gap-1 border-b border-white/[0.08]">
+          {TABS.map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`relative px-4 py-2.5 text-[16px] font-medium transition-colors ${
+                tab === t ? "hyi-white" : "text-white/80 hover:text-white/70"
+              }`}
+            >
+              {t}
+              {tab === t && (
+                <motion.span
+                  layoutId="incident-tab"
+                  className="absolute inset-x-2 -bottom-px h-[2px] rounded-full bg-gradient-to-r from-[#a78bfa] to-[#38bdf8]"
+                />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* TAB CONTENT */}
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mt-5"
+        >
+          {tab === "Timeline" && (
+            <div className="relative overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#060606] p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <TinyLabel>Event Timeline</TinyLabel>
+                  <h3 className="hyi-h2 hyi-white mt-2">
+                    Investigation activity
+                  </h3>
+                </div>
+                <Activity size={16} className="text-[#a78bfa]" />
+              </div>
+
+              <div className="relative">
+                <div className="absolute bottom-0 left-[5px] top-0 w-px bg-white/[0.08]" />
+
+                {TIMELINE.map(([time, text], index) => (
+                  <motion.div
+                    key={time}
+                    initial={{ opacity: 0, x: 25 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative mb-6 grid grid-cols-[64px_1fr] gap-4 pl-7 last:mb-0"
+                  >
+                    <span className="absolute left-0 top-1 h-[11px] w-[11px] rounded-full border border-[#a78bfa]/70 bg-black" />
+                    <span className="font-mono text-[10px] text-[#a78bfa]">
+                      {time}
+                    </span>
+                    <span className="hyi-white text-[13px] opacity-70">
+                      {text}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tab === "Stages" && (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {page.stages.map((s) => (
+                <div
+                  key={s.id}
+                  className="rounded-2xl border border-white/[0.08] bg-[#060606] p-4"
+                >
+                  <span className="hyi-blue font-mono text-[10px]">
+                    PHASE {s.id}
+                  </span>
+                  <p className="hyi-h3 mt-1 text-white">{s.title}</p>
+                  <p className="hyi-p mt-1">{s.text}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {tab === "Evidence" && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {page.evidence.map((e, i) => (
+                <div
+                  key={e.title}
+                  className="flex items-start gap-3 rounded-2xl border border-white/[0.08] bg-[#060606] p-4"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#8b5cf6]/25 bg-black font-mono text-[9px] text-[#c4b5fd]">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <p className="hyi-h3 text-white">{e.title}</p>
+                    <p className="hyi-p mt-1">{e.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </div>
+
+      <Ticker items={page.outcomes} />
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   SIGNAL RAIL
+========================================================= */
 
 function SignalRail() {
   const items = [
@@ -738,19 +1101,19 @@ function SignalRail() {
   ];
 
   return (
-    <section className="overflow-hidden border-b border-white/[0.07] bg-[#030303] py-5">
+    <section className="overflow-hidden border-y border-white/[0.07] bg-[#030303] py-4">
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         className="flex w-max"
       >
-        {[...items, ...items, ...items].map((item, index) => (
+        {[...items, ...items, ...items, ...items].map((item, index) => (
           <div
             key={`${item}-${index}`}
             className="flex items-center gap-5 px-10"
           >
             <Activity className="h-3 w-3 text-[#8c6be8]" />
-            <span className="font-mono text-[8px] tracking-[0.28em] text-white/25">
+            <span className="font-mono text-[10px] tracking-[0.28em] text-white/40">
               {item}
             </span>
           </div>
@@ -760,434 +1123,322 @@ function SignalRail() {
   );
 }
 
+/* =========================================================
+   STATEMENT
+========================================================= */
+
 function Statement({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.07] bg-black px-5 py-32 md:px-10 lg:py-44">
-      <div className="absolute left-[15%] top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#7650df]/[0.07] blur-[170px]" />
+    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10">
+      <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7650df]/[0.08] blur-[170px]" />
 
-      <div className="relative mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[.35fr_1.65fr]">
-        <Reveal>
-          <span className="font-mono text-[8px] tracking-[0.28em] text-white/22">
-            INCIDENT PRINCIPLE
-          </span>
-        </Reveal>
+      <Container className="relative">
+        <Reveal className="text-center">
+          <TinyLabel>Incident Principle</TinyLabel>
 
-        <Reveal>
-          <h2 className="max-w-[930px] text-[42px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[68px]">
+          <h2 className="hyi-h1 hyi-white mx-auto mt-3 max-w-[950px]">
             {page.statement}
           </h2>
 
-          <p className="mt-10 max-w-[720px] border-l border-[#9b7bf0]/40 pl-7 text-[13px] leading-8 text-white/[0.45]">
+          <p className="hyi-p mx-auto mt-3 max-w-[820px]">
             {page.statementBody}
           </p>
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }
+
+/* =========================================================
+   RESPONSE SEQUENCE
+========================================================= */
 
 function ResponseSequence({ page }: { page: PageConfig }) {
   return (
-    <section
-      id="response"
-      className="relative overflow-hidden border-b border-white/[0.07] bg-[#030303] px-5 py-32 md:px-10 lg:py-40"
-    >
-      <Background />
-
-      <div className="relative mx-auto max-w-[1320px]">
-        <Reveal>
-          <Badge>RESPONSE SEQUENCE</Badge>
-          <h2 className="mt-8 max-w-[700px] text-[42px] font-medium leading-[1.04] tracking-[-0.05em] md:text-[62px]">
+    <section id="response" className="relative overflow-hidden bg-black px-5 py-10 md:px-10">
+      <Container>
+        <Reveal className="text-center">
+          <h2 className="hyi-h1 hyi-white mx-auto max-w-[800px]">
             Every decision leaves
-            <span className="block text-white/25">an investigative trail.</span>
+            <span className="hyi-blue block">an investigative trail.</span>
           </h2>
         </Reveal>
 
-        <div className="relative mt-20">
-          <div className="absolute bottom-0 left-[23px] top-0 w-px bg-white/[0.08] md:left-1/2" />
-
-          <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: "100%" }}
-            viewport={{ once: true }}
-            transition={{ duration: 2 }}
-            className="absolute left-[23px] top-0 w-px bg-gradient-to-b from-[#a98cff] via-[#7453d4] to-transparent md:left-1/2"
-          />
-
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {page.stages.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className={`relative mb-7 flex pl-16 md:w-1/2 md:pl-0 ${
-                index % 2 === 0
-                  ? "md:pr-16 md:text-right"
-                  : "md:ml-auto md:pl-16"
-              }`}
-            >
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="w-full rounded-[24px] border border-white/[0.07] bg-black/80 p-7 backdrop-blur-xl"
-              >
-                <span className="font-mono text-[8px] tracking-[0.25em] text-[#9d7bf7]">
-                  PHASE {item.id}
-                </span>
-
-                <h3 className="mt-6 text-[24px] font-medium tracking-[-0.04em]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-[12px] leading-7 text-white/[0.4]">
-                  {item.text}
-                </p>
-              </motion.div>
-
-              <motion.span
-                animate={{
-                  boxShadow: [
-                    "0 0 0 rgba(157,123,247,0)",
-                    "0 0 25px rgba(157,123,247,.5)",
-                    "0 0 0 rgba(157,123,247,0)",
-                  ],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  delay: index * 0.2,
-                }}
-                className={`absolute left-[17px] top-9 h-[13px] w-[13px] rounded-full border border-[#a98cff]/70 bg-black md:left-auto ${
-                  index % 2 === 0
-                    ? "md:-right-[7px]"
-                    : "md:-left-[7px]"
-                }`}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EvidenceLedger({ page }: { page: PageConfig }) {
-  return (
-    <section className="border-b border-white/[0.07] bg-black px-5 py-32 md:px-10">
-      <div className="mx-auto max-w-[1320px]">
-        <div className="grid gap-16 lg:grid-cols-[.7fr_1.3fr]">
-          <Reveal>
-            <div className="lg:sticky lg:top-32">
-              <div className="flex items-center gap-3">
-                <Database className="h-4 w-4 text-[#9878ef]" />
-                <span className="font-mono text-[8px] tracking-[0.25em] text-white/25">
-                  EVIDENCE LEDGER
-                </span>
-              </div>
-
-              <h2 className="mt-8 text-[42px] font-medium leading-[1.04] tracking-[-0.05em] md:text-[58px]">
-                Preserve context.
-                <span className="block text-white/25">Maintain traceability.</span>
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="overflow-hidden rounded-[28px] border border-white/[0.08]">
-            <div className="grid grid-cols-[70px_1fr] border-b border-white/[0.08] bg-white/[0.025] px-6 py-4 md:grid-cols-[100px_220px_1fr]">
-              <span className="font-mono text-[7px] text-white/20">ID</span>
-              <span className="hidden font-mono text-[7px] text-white/20 md:block">
-                EVIDENCE SOURCE
-              </span>
-              <span className="font-mono text-[7px] text-white/20">
-                INVESTIGATIVE VALUE
-              </span>
-            </div>
-
-            {page.evidence.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                whileHover={{
-                  backgroundColor: "rgba(157,123,247,.035)",
-                }}
-                className="grid min-h-[135px] grid-cols-[70px_1fr] items-center border-b border-white/[0.07] px-6 last:border-b-0 md:grid-cols-[100px_220px_1fr]"
-              >
-                <span className="font-mono text-[8px] text-[#9878ef]">
-                  EV-0{index + 1}
-                </span>
-
-                <h3 className="hidden text-[14px] text-white/70 md:block">
-                  {item.title}
-                </h3>
-
-                <div>
-                  <h3 className="mb-3 text-[14px] text-white/70 md:hidden">
-                    {item.title}
-                  </h3>
-                  <p className="text-[12px] leading-7 text-white/[0.38]">
-                    {item.text}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CapabilityGrid({ page }: { page: PageConfig }) {
-  return (
-    <section className="relative overflow-hidden border-b border-white/[0.07] bg-[#030303] px-5 py-32 md:px-10">
-      <div className="absolute right-[-180px] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#7650df]/[0.08] blur-[180px]" />
-
-      <div className="relative mx-auto max-w-[1320px]">
-        <Reveal>
-          <Badge>INVESTIGATION CAPABILITY</Badge>
-          <h2 className="mt-8 max-w-[720px] text-[42px] font-medium leading-[1.05] tracking-[-0.05em] md:text-[60px]">
-            Build context across
-            <span className="block text-white/25">the entire case.</span>
-          </h2>
-        </Reveal>
-
-        <div className="mt-16 grid gap-4 md:grid-cols-2">
-          {page.capabilities.map((item, index) => (
             <motion.article
-              key={item.title}
+              key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              whileHover={{
-                y: -7,
-                borderColor: "rgba(157,123,247,.3)",
-              }}
-              className="group min-h-[300px] rounded-[26px] border border-white/[0.07] bg-black p-8"
+              transition={{ delay: index * 0.07 }}
+              whileHover={{ y: -8, borderColor: "rgba(167,139,250,.28)" }}
+              className="relative overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#070707] p-6"
             >
-              <div className="flex items-center justify-between">
-                {index === 0 && <Search className="h-4 w-4 text-[#9878ef]" />}
-                {index === 1 && <Network className="h-4 w-4 text-[#9878ef]" />}
-                {index === 2 && <Eye className="h-4 w-4 text-[#9878ef]" />}
-                {index === 3 && <FileText className="h-4 w-4 text-[#9878ef]" />}
+              <motion.div
+                animate={{ opacity: [0.03, 0.1, 0.03] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  delay: index * 0.3,
+                }}
+                className="absolute -right-20 -top-20 h-[200px] w-[200px] rounded-full bg-[#7046e6] blur-[90px]"
+              />
 
-                <span className="font-mono text-[8px] text-white/15">
-                  C-0{index + 1}
-                </span>
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#8b5cf6]/25 bg-black font-mono text-[10px] text-[#c4b5fd]">
+                    {item.id}
+                  </span>
+                  <span className="hyi-blue font-mono text-[9px]">
+                    PHASE {item.id}
+                  </span>
+                </div>
+
+                <h3 className="hyi-h3 mt-5 text-white">{item.title}</h3>
+                <p className="hyi-p mt-2">{item.text}</p>
               </div>
-
-              <h3 className="mt-24 text-[22px] font-medium tracking-[-0.035em] text-white/75 group-hover:text-white">
-                {item.title}
-              </h3>
-
-              <p className="mt-5 max-w-[500px] text-[12px] leading-7 text-white/[0.38]">
-                {item.text}
-              </p>
             </motion.article>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
 
-function InvestigationWindow() {
+/* =========================================================
+   EVIDENCE LEDGER
+========================================================= */
+
+function EvidenceLedger({ page }: { page: PageConfig }) {
   return (
-    <section className="relative min-h-[620px] overflow-hidden border-b border-white/[0.07] bg-black px-5 py-28 md:px-10">
-      <Background />
+    <section className="bg-black px-5 py-10 md:px-10">
+      <Container>
+        <Reveal className="text-center">
+          <div className="flex items-center justify-center gap-3">
+            <Database className="h-4 w-4 text-[#a78bfa]" />
+            <TinyLabel>Evidence Ledger</TinyLabel>
+          </div>
 
-      <div className="relative mx-auto max-w-[1200px]">
-        <Reveal>
-          <div className="overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#050505]/90 shadow-2xl backdrop-blur-2xl">
-            <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
-              <div className="flex gap-2">
-                <span className="h-2 w-2 rounded-full bg-white/15" />
-                <span className="h-2 w-2 rounded-full bg-white/15" />
-                <span className="h-2 w-2 rounded-full bg-[#8f6ce7]/60" />
-              </div>
+          <h2 className="hyi-h1 hyi-white mt-3">
+            Preserve context.
+            <span className="hyi-blue block">Maintain traceability.</span>
+          </h2>
+        </Reveal>
 
-              <span className="font-mono text-[7px] tracking-[0.25em] text-white/18">
-                CASE / LIVE
+        <div className="mx-auto mt-8 max-w-[1100px] overflow-hidden rounded-[28px] border border-white/[0.1] bg-[#060606]">
+          <div className="grid grid-cols-[70px_1fr] border-b border-white/[0.08] bg-white/[0.025] px-6 py-4 md:grid-cols-[100px_240px_1fr]">
+            <span className="font-mono text-[9px] text-white/35">ID</span>
+            <span className="hidden font-mono text-[9px] text-white/35 md:block">
+              EVIDENCE SOURCE
+            </span>
+            <span className="font-mono text-[9px] text-white/35">
+              INVESTIGATIVE VALUE
+            </span>
+          </div>
+
+          {page.evidence.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08 }}
+              whileHover={{ backgroundColor: "rgba(157,123,247,.05)" }}
+              className="grid grid-cols-[70px_1fr] items-center border-b border-white/[0.07] px-6 py-5 last:border-b-0 md:grid-cols-[100px_240px_1fr]"
+            >
+              <span className="hyi-blue font-mono text-[10px]">
+                EV-0{index + 1}
               </span>
-            </div>
 
-            <div className="grid lg:grid-cols-[230px_1fr]">
-              <div className="border-b border-white/[0.07] p-6 lg:border-b-0 lg:border-r">
-                {[
-                  "Case overview",
-                  "Timeline",
-                  "Entities",
-                  "Evidence",
-                  "Decisions",
-                ].map((item, index) => (
-                  <motion.div
-                    key={item}
-                    whileHover={{ x: 5 }}
-                    className={`mb-2 rounded-xl px-4 py-3 text-[10px] ${
-                      index === 1
-                        ? "bg-[#8d6ce6]/10 text-white/70"
-                        : "text-white/25"
-                    }`}
-                  >
-                    {item}
-                  </motion.div>
-                ))}
+              <h3 className="hyi-h3 hidden text-white md:block">
+                {item.title}
+              </h3>
+
+              <div>
+                <h3 className="hyi-h3 mb-1 text-white md:hidden">
+                  {item.title}
+                </h3>
+                <p className="hyi-p">{item.text}</p>
               </div>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
 
-              <div className="relative min-h-[430px] overflow-hidden p-7">
-                <div className="mb-10 flex items-center justify-between">
-                  <div>
-                    <span className="font-mono text-[7px] text-[#9878ef]">
-                      EVENT TIMELINE
+/* =========================================================
+   CAPABILITIES
+========================================================= */
+
+const CAP_ICONS = [Search, Network, Eye, FileText];
+
+function CapabilityGrid({ page }: { page: PageConfig }) {
+  return (
+    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10">
+      <div className="absolute right-[-180px] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#7650df]/[0.08] blur-[180px]" />
+
+      <Container className="relative">
+        <Reveal className="text-center">
+          <h2 className="hyi-h1 hyi-white mx-auto max-w-[800px]">
+            Build context across
+            <span className="hyi-blue block">the entire case.</span>
+          </h2>
+        </Reveal>
+
+        <div className="mt-8 rounded-[28px] border border-white/10 bg-white/[0.02] p-6">
+          <h3 className="hyi-h2 hyi-white text-center">
+            Investigation Capability
+          </h3>
+
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {page.capabilities.map((item, index) => {
+              const Icon = CAP_ICONS[index % CAP_ICONS.length];
+
+              return (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + index * 0.08 }}
+                  whileHover={{ y: -4 }}
+                  className="hyi-skeu flex flex-col justify-between p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
+                      <Icon className="h-4 w-4 text-white" />
                     </span>
-                    <h3 className="mt-3 text-[22px] font-medium">
-                      Investigation activity
-                    </h3>
+                    <span className="font-mono text-[10px] text-white/50">
+                      C-0{index + 1}
+                    </span>
                   </div>
 
-                  <Activity className="h-4 w-4 text-[#9878ef]" />
-                </div>
-
-                <div className="relative">
-                  <div className="absolute bottom-0 left-[5px] top-0 w-px bg-white/[0.08]" />
-
-                  {[
-                    ["00:18", "Initial signal observed"],
-                    ["00:31", "Relevant identity activity correlated"],
-                    ["01:04", "Incident boundary updated"],
-                    ["01:42", "Containment decision recorded"],
-                    ["02:16", "Additional evidence preserved"],
-                  ].map(([time, text], index) => (
-                    <motion.div
-                      key={time}
-                      initial={{ opacity: 0, x: 25 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.12 }}
-                      className="relative mb-8 grid grid-cols-[70px_1fr] gap-5 pl-7"
-                    >
-                      <span className="absolute left-0 top-1 h-[11px] w-[11px] rounded-full border border-[#9878ef]/70 bg-black" />
-
-                      <span className="font-mono text-[8px] text-[#9878ef]">
-                        {time}
-                      </span>
-
-                      <span className="text-[11px] text-white/40">
-                        {text}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div
-                  animate={{ y: [-20, 420] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9878ef]/50 to-transparent"
-                />
-              </div>
-            </div>
+                  <div className="mt-5">
+                    <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                    <p className="hyi-p mt-2">{item.text}</p>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
-        </Reveal>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 }
+
+/* =========================================================
+   OUTCOMES
+========================================================= */
 
 function Outcomes({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.07] bg-[#030303] px-5 py-32 md:px-10">
-      <div className="mx-auto max-w-[1150px]">
-        <Reveal>
-          <div className="flex items-center gap-3">
-            <Workflow className="h-4 w-4 text-[#9878ef]" />
-            <span className="font-mono text-[8px] tracking-[0.25em] text-white/20">
-              CASE OUTCOMES
-            </span>
+    <section className="bg-black px-5 py-10 md:px-10">
+      <Container>
+        <Reveal className="text-center">
+          <div className="flex items-center justify-center gap-3">
+            <Workflow className="h-4 w-4 text-[#a78bfa]" />
+            <TinyLabel>Case Outcomes</TinyLabel>
           </div>
+
+          <h2 className="hyi-h1 hyi-white mt-3">What the case delivers.</h2>
         </Reveal>
 
-        <div className="mt-12">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {page.outcomes.map((item, index) => (
             <motion.div
               key={item}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.06 }}
-              whileHover={{ x: 8 }}
-              className="group flex items-center justify-between border-t border-white/[0.08] py-7"
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ x: 5, borderColor: "rgba(167,139,250,.25)" }}
+              className="flex items-center gap-4 rounded-[15px] border border-white/[0.07] bg-black p-5"
             >
-              <div className="flex items-center gap-8">
-                <span className="font-mono text-[8px] text-[#9878ef]/70">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#8b5cf6]/25">
+                <CheckCircle2 size={16} className="text-white" />
+              </span>
+
+              <div>
+                <span className="hyi-blue font-mono text-[10px]">
                   0{index + 1}
                 </span>
-                <span className="text-[15px] text-white/45 transition group-hover:text-white/80">
-                  {item}
-                </span>
+                <p className="hyi-h3 mt-1">{item}</p>
               </div>
-
-              <CheckCircle2 className="h-4 w-4 text-white/20" />
             </motion.div>
           ))}
-          <div className="border-t border-white/[0.08]" />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
 
 function FinalCTA({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden bg-black px-5 py-40 md:px-10 lg:py-52">
-      <Background />
-
-      <div className="relative mx-auto max-w-[1050px] text-center">
-        <Reveal>
+    <section className="bg-black px-5 pb-16 pt-6 md:px-10">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-[28px] border border-[#6366f1]/25 bg-[#080a16] px-6 py-16 text-center"
+        >
           <motion.div
-            animate={{
-              boxShadow: [
-                "0 0 0 rgba(143,108,231,0)",
-                "0 0 90px rgba(143,108,231,.18)",
-                "0 0 0 rgba(143,108,231,0)",
-              ],
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="mx-auto mb-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#9878ef]/25 bg-[#9878ef]/[0.06]"
-          >
-            <ShieldCheck className="h-5 w-5 text-[#b69cff]" />
-          </motion.div>
+            animate={{ x: ["-20%", "20%", "-20%"], opacity: [0.22, 0.5, 0.22] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[-170px] left-1/2 h-[320px] w-[950px] -translate-x-1/2 rounded-full bg-[#7046e6] blur-[120px]"
+          />
 
-          <Badge>{page.eyebrow}</Badge>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+            className="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/[0.04]"
+          />
 
-          <h2 className="mt-9 text-[48px] font-medium leading-[1] tracking-[-0.06em] md:text-[76px]">
-            {page.closing[0]}
-            <span className="block text-[#756496]">{page.closing[1]}</span>
-          </h2>
+          <div className="relative">
+            <motion.div
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#8b5cf6]/30 bg-[#8b5cf6]/[0.07]"
+            >
+              <Timer size={23} className="text-[#c4b5fd]" />
+            </motion.div>
 
-          <p className="mx-auto mt-8 max-w-[620px] text-[13px] leading-7 text-white/[0.42]">
-            {page.closingText}
-          </p>
+            <h2 className="hyi-h1 hyi-white mx-auto mt-6 max-w-[850px]">
+              {page.closing[0]}
+              <span className="hyi-blue block">{page.closing[1]}</span>
+            </h2>
 
-          <motion.a
-            href="/contact"
-            whileHover={{
-              y: -5,
-              scale: 1.03,
-            }}
-            whileTap={{ scale: 0.97 }}
-            className="group mt-10 inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-[11px] font-medium text-black"
-          >
-            Discuss incident readiness
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-          </motion.a>
-        </Reveal>
-      </div>
+            <p className="hyi-p mx-auto mt-3 max-w-[720px]">
+              {page.closingText}
+            </p>
+
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="hyi-white mx-auto mt-7 flex w-fit items-center gap-3 rounded-full bg-[#7546ef] px-7 py-3.5 text-[12px] font-medium shadow-[0_0_45px_rgba(124,58,237,.3)]"
+            >
+              Discuss Incident Readiness
+              <ArrowRight size={14} />
+            </motion.a>
+          </div>
+        </motion.div>
+      </Container>
     </section>
   );
 }
+
+/* =========================================================
+   MAIN
+========================================================= */
 
 export default function IncidentForensicsClient({
   pageKey,
@@ -1205,10 +1456,10 @@ export default function IncidentForensicsClient({
   });
 
   return (
-    <div className="relative overflow-x-hidden bg-black text-white">
+    <div className="relative mx-auto max-w-[1350px] overflow-x-hidden bg-black text-white">
       <motion.div
-        style={{ scaleX: progress }}
-        className="fixed left-0 right-0 top-0 z-[999] h-[2px] origin-left bg-[#9878ef]"
+        style={{ scaleX: progress, transformOrigin: "left" }}
+        className="fixed left-0 top-0 z-[99999] h-[2px] w-full bg-gradient-to-r from-[#5b21b6] via-[#c4b5fd] to-[#7c3aed]"
       />
 
       <Hero page={page} />
@@ -1216,10 +1467,9 @@ export default function IncidentForensicsClient({
       <Statement page={page} />
       <ResponseSequence page={page} />
       <EvidenceLedger page={page} />
-      <InvestigationWindow />
       <CapabilityGrid page={page} />
       <Outcomes page={page} />
-      <FinalCTA page={page} />
+      {/* <FinalCTA page={page} /> */}
 
       <style jsx global>{`
         html {

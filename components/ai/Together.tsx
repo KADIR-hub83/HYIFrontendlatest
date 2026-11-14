@@ -7,7 +7,7 @@ import { together, services, type ServiceId } from "@/components/data/aiContent"
 
 export default function Together({ current }: { current: ServiceId }) {
   return (
-    <section className="pt-20">
+    <section className="pt-10">
       <div className="mx-auto max-w-4xl text-center">
         <SplitHeading text={together.title} accent={["Together"]} className="hyi-h2 hyi-white" />
         <Reveal from="blur">
@@ -15,7 +15,7 @@ export default function Together({ current }: { current: ServiceId }) {
         </Reveal>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {together.rows.map((r, i) => {
           const s = services[r.id];
           const isNow = r.id === current;
@@ -38,7 +38,7 @@ export default function Together({ current }: { current: ServiceId }) {
         })}
       </div>
 
-      <div className="mt-16">
+      <div className="mt-8">
         <Reveal>
           <Card variant="glass" tilt={false} className="mx-auto max-w-4xl">
             <p className="hyi-eyebrow mb-5">{together.approachTitle}</p>

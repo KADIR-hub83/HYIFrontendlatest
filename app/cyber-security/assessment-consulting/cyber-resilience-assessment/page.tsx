@@ -7,7 +7,7 @@ import DeveloperDirectory from "@/components/section/hire-developer/DeveloperDir
 
 export default function CyberResilienceAssessmentPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className=" bg-black text-white">
       <Header />
        <DeveloperDirectory />
       <CyberResilienceAssessmentClient />

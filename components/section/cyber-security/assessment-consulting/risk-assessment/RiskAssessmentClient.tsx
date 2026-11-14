@@ -5,6 +5,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  useMotionValue, useMotionTemplate,AnimatePresence
 } from "framer-motion";
 
 import {
@@ -21,6 +22,8 @@ import {
   Gauge,
   GitBranch,
   Layers3,
+    AlertTriangle,
+    Timer,
   Network,
   Radio,
   RefreshCcw,
@@ -30,8 +33,8 @@ import {
   Workflow,
   Zap,
 } from "lucide-react";
-
 import type { ElementType, ReactNode } from "react";
+import { useEffect, useRef, useState , useMemo } from "react";
 
 /* =========================================================
    DATA
@@ -157,6 +160,14 @@ const principles = [
   "Include identity, cloud, data, application and infrastructure exposure.",
   "Define remediation ownership and expected outcomes.",
   "Reassess material changes to systems and attack surfaces.",
+];
+
+          const SCOPE_ITEMS = [
+  "Assets and services",
+  "Identity relationships",
+  "Network exposure",
+  "Cloud dependencies",
+  "Sensitive information",
 ];
 
 const matrix = [
@@ -314,7 +325,7 @@ function Hero() {
   const modelScale = useTransform(scrollY, [0, 850], [1, 0.94]);
 
   return (
-    <section className="relative overflow-hidden bg-black px-5  md:px-10 ">
+    <section className="relative overflow-hidden bg-black px-5  md:px-10 py-20">
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
@@ -349,26 +360,7 @@ function Hero() {
           }}
           className="mx-auto max-w-[1050px] text-center"
         >
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: -15,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
-            className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.15] bg-white/[0.025] px-5 py-2.5"
-          >
-            <LiveDot />
-
-            <span className="text-[10px] text-white/55">
-              Cyber Risk Intelligence
-            </span>
-          </motion.div>
+         
 
           <motion.h1
             initial={{
@@ -383,16 +375,16 @@ function Hero() {
               duration: 0.85,
               delay: 0.08,
             }}
-            className="mx-auto mt-8 max-w-[1050px] text-[clamp(3.3rem,6vw,6.8rem)] font-semibold leading-[0.91] tracking-[-0.07em]"
+            className="mx-auto mt-8 max-w-[1050px] font-bold hyi-white max-md:text-3xl text-5xl"
           >
-            See the risk
+            See The Risk
 
-            <span className="block text-white/75">
-              before it becomes
+            <span className="block ">
+              Before It Becomes
             </span>
 
-            <span className="block text-[#a78bfa]">
-              an incident.
+            <span className="block hyi-blue">
+              An Incident.
             </span>
           </motion.h1>
 
@@ -407,39 +399,13 @@ function Hero() {
               duration: 0.8,
               delay: 0.3,
             }}
-            className="mx-auto mt-8 max-w-[780px] text-[13px] leading-7 text-white/[0.50] md:text-sm"
+            className="mx-auto mt-3 max-w-[780px] hyi-p "
           >
             HYI.AI Cyber Risk Assessment helps organizations understand
             technology exposure, critical assets, security controls and
             potential business impact so teams can prioritize cybersecurity
             improvements with clearer context.
           </motion.p>
-
-          <motion.a
-            href="#risk-command-center"
-            initial={{
-              opacity: 0,
-              scale: 0.9,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              delay: 0.45,
-            }}
-            whileHover={{
-              scale: 1.05,
-            }}
-            whileTap={{
-              scale: 0.97,
-            }}
-            className="mx-auto mt-9 flex w-fit items-center gap-3 rounded-full bg-[#7546ef] px-7 py-3.5 text-[11px] font-medium shadow-[0_0_45px_rgba(124,58,237,.28)]"
-          >
-            Explore Risk Assessment
-
-            <ArrowRight size={13} />
-          </motion.a>
         </motion.div>
 
         <motion.div
@@ -447,7 +413,7 @@ function Hero() {
             y: modelY,
             scale: modelScale,
           }}
-          className="mt-20"
+          className="mt-10"
         >
           <RiskCommandCenter />
         </motion.div>
@@ -460,120 +426,372 @@ function Hero() {
    COMMAND CENTER
 ========================================================= */
 
-function RiskCommandCenter() {
+// ======================================================
+// DATA
+// ======================================================
+
+const KPIS = [
+  { label: "Risk Score", value: 78, suffix: "/100", icon: ShieldCheck, trend: "-6 pts" },
+  { label: "Critical Findings", value: 12, suffix: "", icon: AlertTriangle, trend: "-3 this week" },
+  { label: "Assets Scanned", value: 2486, suffix: "", icon: Server, trend: "+148 new" },
+  { label: "Mean Time To Fix", value: 4.2, suffix: "h", icon: Timer, trend: "-18%", decimals: 1 },
+];
+
+const TABS = ["Overview", "Assets", "Threats"] as const;
+type Tab = (typeof TABS)[number];
+
+const FEED = [
+  "CVE-2026-1182 patched on 14 edge servers",
+  "Anomalous login blocked from 3 regions",
+  "S3 bucket exposure remediated",
+  "Phishing campaign neutralised",
+  "Zero-trust policy updated for 212 endpoints",
+  "TLS 1.0 deprecated across API gateway",
+];
+
+// ======================================================
+// HELPERS
+// ======================================================
+
+function CountUp({
+  to,
+  decimals = 0,
+  duration = 1.6,
+}: {
+  to: number;
+  decimals?: number;
+  duration?: number;
+}) {
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(to * eased);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [to, duration]);
+
+  return <>{val.toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  })}</>;
+}
+
+function ScoreRing({ score }: { score: number }) {
+  const r = 34;
+
+  return (
+    <div className="relative h-24 w-24 shrink-0">
+      <svg viewBox="0 0 80 80" className="-rotate-90">
+        <circle
+          cx="40"
+          cy="40"
+          r={r}
+          fill="none"
+          stroke="rgba(255,255,255,.08)"
+          strokeWidth="6"
+        />
+        <motion.circle
+          cx="40"
+          cy="40"
+          r={r}
+          fill="none"
+          stroke="url(#ringGrad)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: score / 100 }}
+          transition={{ duration: 1.8, delay: 0.6, ease: "easeOut" }}
+        />
+        <defs>
+          <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#38bdf8" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="hyi-white text-xl font-semibold leading-none">
+          <CountUp to={score} />
+        </span>
+        <span className="mt-1 font-mono text-[8px] uppercase tracking-widest text-white/40">
+          Secure
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function KpiCard({
+  item,
+  index,
+}: {
+  item: (typeof KPIS)[number];
+  index: number;
+}) {
+  const Icon = item.icon;
+
   return (
     <motion.div
-      id="risk-command-center"
-      initial={{
-        opacity: 0,
-        y: 70,
-        scale: 0.96,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      transition={{
-        duration: 1,
-        delay: 0.25,
-      }}
-      className="relative overflow-hidden rounded-[30px] border border-white/[0.16] bg-[#030303] shadow-[0_50px_150px_rgba(0,0,0,.9)]"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+      whileHover={{ y: -4 }}
+      className="group relative overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.03] p-4 backdrop-blur-xl transition-colors hover:border-[#a78bfa]/40"
     >
+      <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#7046e6]/20 blur-2xl transition-opacity group-hover:opacity-100 opacity-60" />
+
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
+          {item.label}
+        </span>
+        <Icon size={14} className="text-[#a78bfa]" />
+      </div>
+
+      <div className="mt-3 flex items-end gap-1">
+        <span className="hyi-white text-2xl font-semibold tracking-tight">
+          <CountUp to={item.value} decimals={item.decimals ?? 0} />
+        </span>
+        <span className="mb-0.5 text-xs text-white/40">{item.suffix}</span>
+      </div>
+
+      <p className="hyi-blue mt-1 text-[10px]">{item.trend}</p>
+    </motion.div>
+  );
+}
+
+function ThreatTicker() {
+  const loop = [...FEED, ...FEED];
+
+  return (
+    <div className="relative overflow-hidden border-t border-white/[0.1] bg-black/60 py-2.5">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#030303] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#030303] to-transparent" />
+
       <motion.div
-        animate={{
-          x: ["-100%", "220%"],
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="flex w-max items-center gap-10 whitespace-nowrap"
+      >
+        {loop.map((text, i) => (
+          <span key={i} className="flex items-center gap-2 font-mono text-[10px] text-white/45">
+            <Activity size={11} className="text-[#38bdf8]" />
+            {text}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// ======================================================
+// MAIN
+// ======================================================
+
+function RiskCommandCenter() {
+  const [tab, setTab] = useState<Tab>("Overview");
+  const ref = useRef<HTMLDivElement>(null);
+
+  // mouse spotlight
+  const mx = useMotionValue(-300);
+  const my = useMotionValue(-300);
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mx}px ${my}px, rgba(112,70,230,0.16), transparent 70%)`;
+
+  const onMove = (e: React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    mx.set(e.clientX - rect.left);
+    my.set(e.clientY - rect.top);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      id="risk-command-center"
+      onMouseMove={onMove}
+      initial={{ opacity: 0, y: 70, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1, delay: 0.25 }}
+      className="relative overflow-hidden rounded-[30px] border border-white/[0.16] bg-[#030303] shadow-[0_50px_150px_rgba(0,0,0,.9),0_0_80px_rgba(112,70,230,.12)]"
+    >
+      {/* BACKGROUND LAYERS */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          maskImage:
+            "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
         }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute top-0 z-40 h-px w-[40%] bg-gradient-to-r from-transparent via-[#a78bfa] to-transparent"
+      />
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ background: spotlight }}
+      />
+      <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-[#7046e6]/15 blur-[110px]" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#38bdf8]/10 blur-[110px]" />
+
+      {/* SCAN LINE */}
+      <motion.div
+        animate={{ x: ["-100%", "220%"] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 z-40 h-px w-full bg-gradient-to-r from-transparent via-[#a78bfa] to-transparent"
       />
 
-      <div className="flex items-center justify-between border-b border-white/[0.12] px-6 py-5">
+      {/* WINDOW BAR */}
+      <div className="relative z-10 flex items-center justify-between border-b border-white/[0.12] bg-black/40 px-6 py-3 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full bg-[#ed6a5e]" />
           <span className="h-3 w-3 rounded-full bg-[#f4bf4f]" />
           <span className="h-3 w-3 rounded-full bg-[#61c454]" />
-
-          <span className="ml-5 text-white/20">
-            ◧
-          </span>
-
-          <span className="ml-3 text-white/40">
-            ‹
-          </span>
-
-          <span className="text-white/20">
-            ›
-          </span>
         </div>
 
         <div className="flex items-center gap-2 text-white/35">
           <ShieldCheck size={12} />
-
-          <span className="font-mono text-[8px]">
+          <span className="font-mono text-[9px] tracking-wider">
             HYI.AI / RISK COMMAND CENTER
           </span>
         </div>
 
         <div className="hidden items-center gap-5 text-white/25 sm:flex">
-          <RefreshCcw size={13} />
+          <motion.span
+            animate={{ rotate: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          >
+            <RefreshCcw size={13} />
+          </motion.span>
           <Radio size={13} />
           <CircleDot size={13} />
         </div>
       </div>
 
-      <div className="grid min-h-[760px] lg:grid-cols-[88px_1fr]">
+      <div className="relative z-10 grid min-h-[760px] lg:grid-cols-[88px_1fr]">
         <CommandSidebar />
 
         <div className="p-5 md:p-8">
+          {/* HEADER */}
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
-            <div>
-              <TinyLabel>
-                Enterprise Security Assessment
-              </TinyLabel>
+            <div className="flex items-center gap-5">
+              <ScoreRing score={78} />
 
-              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] md:text-3xl">
-                Cyber Risk Intelligence
-              </h2>
+              <div>
+                <TinyLabel>Enterprise Security Assessment</TinyLabel>
+
+                <h2 className="hyi-h1 mt-2 tracking-[-0.04em]">
+                  Cyber <span className="hyi-blue">Risk</span> Intelligence
+                </h2>
+
+                <p className="hyi-white mt-1 text-xs opacity-60">
+                  Continuous posture monitoring across cloud, endpoint and identity.
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 rounded-full border border-white/[0.08] px-4 py-2">
+              <div className="flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2">
                 <LiveDot />
-
-                <span className="font-mono text-[7px] text-white/35">
+                <span className="font-mono text-[8px] text-white/45">
                   ASSESSMENT ACTIVE
                 </span>
               </div>
 
               <motion.button
-                whileHover={{
-                  scale: 1.04,
-                }}
-                className="rounded-full bg-[#7046e6] px-5 py-2.5 text-[9px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="hyi-white rounded-full bg-gradient-to-r from-[#7046e6] to-[#5b7cfa] px-5 py-2.5 text-[10px] font-medium shadow-[0_0_30px_rgba(112,70,230,.45)]"
               >
                 + New Assessment
               </motion.button>
             </div>
           </div>
 
-          <div className="mt-7 grid gap-4 xl:grid-cols-[1.35fr_.65fr]">
-            <AttackSurfaceRadar />
-
-            <RiskSummary />
+          {/* KPI STRIP */}
+          <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {KPIS.map((item, i) => (
+              <KpiCard key={item.label} item={item} index={i} />
+            ))}
           </div>
 
-          <div className="mt-4 grid gap-4 xl:grid-cols-[1.25fr_.75fr]">
-            <AssetExposureTable />
-
-            <RiskSignalPanel />
+          {/* TABS */}
+          <div className="mt-7 flex items-center gap-1 border-b border-white/[0.08]">
+            {TABS.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`relative px-4 py-2.5 text-[16px] font-medium transition-colors ${
+                  tab === t ? "hyi-white" : "text-white/80 hover:text-white/70"
+                }`}
+              >
+                {t}
+                {tab === t && (
+                  <motion.span
+                    layoutId="risk-tab"
+                    className="absolute inset-x-2 -bottom-px h-[2px] rounded-full bg-gradient-to-r from-[#a78bfa] to-[#38bdf8]"
+                  />
+                )}
+              </button>
+            ))}
           </div>
+
+          {/* TAB CONTENT */}
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mt-5"
+          >
+            {tab === "Overview" && (
+              <>
+                <div className="grid gap-4 xl:grid-cols-[1.35fr_.65fr]">
+                  <AttackSurfaceRadar />
+                  <RiskSummary />
+                </div>
+
+                <div className="mt-4 grid gap-4 xl:grid-cols-[1.25fr_.75fr]">
+                  <AssetExposureTable />
+                  <RiskSignalPanel />
+                </div>
+              </>
+            )}
+
+            {tab === "Assets" && (
+              <div className="grid gap-4">
+                <h3 className="hyi-h2">Asset Exposure</h3>
+                <AssetExposureTable />
+              </div>
+            )}
+
+            {tab === "Threats" && (
+              <div className="grid gap-4 xl:grid-cols-[1.35fr_.65fr]">
+                <div className="grid gap-4">
+                  <h3 className="hyi-h2">Attack Surface</h3>
+                  <AttackSurfaceRadar />
+                </div>
+                <div className="grid gap-4">
+                  <h3 className="hyi-h2">Live Signals</h3>
+                  <RiskSignalPanel />
+                </div>
+              </div>
+            )}
+          </motion.div>
         </div>
       </div>
+
+      {/* LIVE FEED */}
+      <ThreatTicker />
     </motion.div>
   );
 }
@@ -1149,7 +1367,7 @@ function RiskSignalPanel() {
 
 function RiskIntro() {
   return (
-    <section className="relative overflow-hidden bg-black px-5 py-28 md:px-10">
+    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10">
       <motion.div
         animate={{
           x: ["-5%", "5%", "-5%"],
@@ -1164,15 +1382,12 @@ function RiskIntro() {
 
       <Container className="relative">
         <Reveal className="text-center">
-          <SectionLabel number="01">
-            Cyber Risk Assessment
-          </SectionLabel>
-
-          <h2 className="mx-auto mt-8 max-w-[950px] text-4xl font-semibold tracking-[-0.055em] md:text-6xl">
+        
+       <h2 className="mx-auto hyi-white hyi-h1 max-w-[950px] ">
             Risk is more than a vulnerability list.
           </h2>
 
-          <p className="mx-auto mt-6 max-w-[950px] text-[13px] leading-7 text-white/[0.52]">
+          <p className="mx-auto mt-2 max-w-[950px] hyi-p">
             A useful cybersecurity risk assessment considers what the
             organization depends on, where exposure exists, which threats are
             relevant, what controls are already in place and how a security
@@ -1180,7 +1395,7 @@ function RiskIntro() {
           </p>
         </Reveal>
 
-        <div className="mt-16">
+        <div className="mt-5">
           <RiskMatrix />
         </div>
       </Container>
@@ -1192,115 +1407,442 @@ function RiskIntro() {
    RISK MATRIX
 ========================================================= */
 
+// ======================================================
+// RISK MATRIX CONFIG
+// ======================================================
+
+type Severity = "low" | "medium" | "high" | "critical";
+
+type MatrixPoint = {
+  label: string;
+  x: number; // likelihood 0-100 (left -> right)
+  y: number; // 0-100 (top -> bottom), top = high impact
+};
+
+const SEVERITY: Record<
+  Severity,
+  { name: string; color: string; bg: string; action: string }
+> = {
+  low: {
+    name: "Low",
+    color: "#38bdf8",
+    bg: "rgba(56,189,248,0.10)",
+    action: "Monitor and review quarterly.",
+  },
+  medium: {
+    name: "Medium",
+    color: "#a78bfa",
+    bg: "rgba(167,139,250,0.14)",
+    action: "Schedule remediation in the next sprint.",
+  },
+  high: {
+    name: "High",
+    color: "#f59e0b",
+    bg: "rgba(245,158,11,0.16)",
+    action: "Prioritise fix within 7 days.",
+  },
+  critical: {
+    name: "Critical",
+    color: "#f43f5e",
+    bg: "rgba(244,63,94,0.20)",
+    action: "Immediate action. Escalate to leadership.",
+  },
+};
+
+const LIKELIHOOD_LEVELS = [
+  "Rare",
+  "Unlikely",
+  "Possible",
+  "Likely",
+  "Almost Certain",
+];
+
+const IMPACT_LEVELS = [
+  "Negligible",
+  "Minor",
+  "Moderate",
+  "Major",
+  "Severe",
+];
+
+const scoreToSeverity = (score: number): Severity => {
+  if (score <= 4) return "low";
+  if (score <= 9) return "medium";
+  if (score <= 15) return "high";
+  return "critical";
+};
+
+// x, y (0-100) -> likelihood (1-5), impact (1-5)
+const toLevel = (value: number) =>
+  Math.min(5, Math.max(1, Math.ceil(value / 20) || 1));
+
+const describePoint = (point: MatrixPoint) => {
+  const likelihood = toLevel(point.x);
+  const impact = toLevel(100 - point.y);
+  const score = likelihood * impact;
+
+  return {
+    likelihood,
+    impact,
+    score,
+    severity: scoreToSeverity(score),
+  };
+};
+
+// ======================================================
+// RISK MATRIX
+// ======================================================
+
 function RiskMatrix() {
+  const [selected, setSelected] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const points = useMemo(
+    () =>
+      (matrix as MatrixPoint[]).map((point) => ({
+        ...point,
+        ...describePoint(point),
+      })),
+    []
+  );
+
+  const counts = useMemo(() => {
+    const base: Record<Severity, number> = {
+      low: 0,
+      medium: 0,
+      high: 0,
+      critical: 0,
+    };
+    points.forEach((p) => {
+      base[p.severity] += 1;
+    });
+    return base;
+  }, [points]);
+
+  const activeLabel = hovered ?? selected;
+  const active = points.find((p) => p.label === activeLabel) ?? null;
+
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        scale: 0.95,
-      }}
-      whileInView={{
-        opacity: 1,
-        scale: 1,
-      }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{
-        duration: 0.8,
-      }}
-      className="relative mx-auto max-w-[1050px] overflow-hidden rounded-[26px] border border-white/[0.12] bg-[#08070a] p-6 md:p-8"
+      transition={{ duration: 0.8 }}
+      className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[26px] border border-white/[0.12] bg-[#08070a] p-6 shadow-[0_40px_120px_rgba(0,0,0,.7),0_0_70px_rgba(112,70,230,.10)] md:p-8"
     >
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#7046e6]/15 blur-[100px]" />
+      <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#38bdf8]/10 blur-[100px]" />
+
+      {/* HEADER */}
+      <div className="relative flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
           <TinyLabel>Risk Prioritization Model</TinyLabel>
 
-          <h3 className="mt-2 text-2xl font-medium">
-            Exposure × Impact
+          <h3 className="hyi-h1 mt-2 tracking-[-0.03em]">
+            Exposure <span className="hyi-blue">×</span> Impact
           </h3>
+
+          <p className="hyi-white mt-1 max-w-xl text-xs opacity-60">
+            Every risk is scored by likelihood and business impact, so remediation
+            effort goes where it matters most.
+          </p>
         </div>
 
-        <div className="flex items-center gap-2 rounded-full border border-white/[0.08] px-4 py-2">
+        <div className="flex items-center gap-2 self-start rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2">
           <LiveDot />
           <TinyLabel>Illustrative Model</TinyLabel>
         </div>
       </div>
 
-      <div className="relative mt-8 h-[480px] overflow-hidden rounded-[18px] border border-white/[0.07] bg-black">
-        <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <div
-              key={index}
-              className="border-b border-r border-white/[0.055]"
-            />
-          ))}
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#5b21b6]/[0.07] to-transparent" />
-
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-[7px] uppercase tracking-[0.15em] text-white/20">
-          Likelihood →
-        </div>
-
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 font-mono text-[7px] uppercase tracking-[0.15em] text-white/20">
-          Business Impact →
-        </div>
-
-        {matrix.map((point, index) => (
+      {/* ZONE SUMMARY */}
+      <div className="relative mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+        {(Object.keys(SEVERITY) as Severity[]).map((key, i) => (
           <motion.div
-            key={point.label}
-            initial={{
-              opacity: 0,
-              scale: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-            }}
+            key={key}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              type: "spring",
-              delay: 0.3 + index * 0.15,
-            }}
-            style={{
-              left: `${point.x}%`,
-              top: `${point.y}%`,
-            }}
-            className="absolute -translate-x-1/2 -translate-y-1/2"
+            transition={{ delay: 0.2 + i * 0.08 }}
+            className="rounded-xl border bg-white/[0.02] px-4 py-3"
+            style={{ borderColor: `${SEVERITY[key].color}33` }}
           >
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 0 rgba(139,92,246,0)",
-                  "0 0 35px rgba(139,92,246,.4)",
-                  "0 0 0 rgba(139,92,246,0)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: index * 0.4,
-              }}
-              className="flex items-center gap-2 rounded-full border border-[#a78bfa]/30 bg-[#160c24] px-4 py-2"
-            >
-              <span className="h-2 w-2 rounded-full bg-[#a78bfa]" />
-
-              <span className="font-mono text-[7px] text-white/60">
-                {point.label}
+            <div className="flex items-center gap-2">
+              <span
+                className="h-2 w-2 rounded-full"
+                style={{
+                  background: SEVERITY[key].color,
+                  boxShadow: `0 0 10px ${SEVERITY[key].color}`,
+                }}
+              />
+              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/45">
+                {SEVERITY[key].name}
               </span>
-            </motion.div>
+            </div>
+            <p className="hyi-white mt-1.5 text-2xl font-semibold leading-none">
+              {counts[key]}
+            </p>
           </motion.div>
         ))}
+      </div>
 
-        <motion.div
-          animate={{
-            left: ["10%", "90%", "10%"],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 top-0 w-px bg-gradient-to-b from-transparent via-[#8b5cf6]/30 to-transparent"
-        />
+      {/* BODY */}
+      <div className="relative mt-6 grid gap-5 lg:grid-cols-[1fr_300px]">
+        {/* MATRIX */}
+        <div className="flex gap-2">
+          {/* Y axis title */}
+          <div className="flex w-5 shrink-0 items-center justify-center">
+            <span className="-rotate-90 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] text-white/35">
+              Business Impact →
+            </span>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex gap-2">
+              {/* Y levels */}
+              <div className="hidden w-[70px] shrink-0 grid-rows-5 sm:grid">
+                {[...IMPACT_LEVELS].reverse().map((level) => (
+                  <div
+                    key={level}
+                    className="flex items-center justify-end pr-1 font-mono text-[8px] uppercase tracking-wider text-white/30"
+                  >
+                    {level}
+                  </div>
+                ))}
+              </div>
+
+              {/* GRID AREA */}
+              <div
+                className="relative h-[440px] min-w-0 flex-1 overflow-hidden rounded-[16px] border border-white/[0.1] bg-black"
+                onMouseLeave={() => setHovered(null)}
+              >
+                {/* heatmap cells */}
+                <div className="absolute inset-0 grid grid-cols-5 grid-rows-5">
+                  {Array.from({ length: 25 }).map((_, index) => {
+                    const col = index % 5;
+                    const row = Math.floor(index / 5);
+                    const likelihood = col + 1;
+                    const impact = 5 - row;
+                    const score = likelihood * impact;
+                    const sev = SEVERITY[scoreToSeverity(score)];
+
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.15 + (col + row) * 0.05 }}
+                        className="relative flex items-start justify-end border-b border-r border-white/[0.05] p-1.5"
+                        style={{ background: sev.bg }}
+                      >
+                        <span
+                          className="font-mono text-[8px]"
+                          style={{ color: sev.color, opacity: 0.45 }}
+                        >
+                          {score}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* sweep line */}
+                <motion.div
+                  animate={{ left: ["0%", "100%", "0%"] }}
+                  transition={{
+                    duration: 9,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="pointer-events-none absolute bottom-0 top-0 w-px bg-gradient-to-b from-transparent via-[#a78bfa]/50 to-transparent"
+                />
+
+                {/* POINTS */}
+                {points.map((point, index) => {
+                  const sev = SEVERITY[point.severity];
+                  const isActive = activeLabel === point.label;
+
+                  return (
+                    <motion.button
+                      key={point.label}
+                      type="button"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        type: "spring",
+                        delay: 0.4 + index * 0.12,
+                      }}
+                      onMouseEnter={() => setHovered(point.label)}
+                      onFocus={() => setHovered(point.label)}
+                      onBlur={() => setHovered(null)}
+                      onClick={() =>
+                        setSelected((prev) =>
+                          prev === point.label ? null : point.label
+                        )
+                      }
+                      style={{
+                        left: `${point.x}%`,
+                        top: `${point.y}%`,
+                        zIndex: isActive ? 30 : 10,
+                      }}
+                      className="absolute -translate-x-1/2 -translate-y-1/2 outline-none"
+                    >
+                      {/* pulse ring */}
+                      <motion.span
+                        animate={{
+                          scale: [1, 2.2],
+                          opacity: [0.5, 0],
+                        }}
+                        transition={{
+                          duration: 2.4,
+                          repeat: Infinity,
+                          delay: index * 0.3,
+                        }}
+                        className="absolute inset-0 rounded-full"
+                        style={{ background: sev.color }}
+                      />
+
+                      <span
+                        className="relative flex items-center gap-2 rounded-full border bg-[#0d0916]/95 px-3 py-1.5 backdrop-blur-md transition-all duration-200"
+                        style={{
+                          borderColor: isActive
+                            ? sev.color
+                            : `${sev.color}55`,
+                          boxShadow: isActive
+                            ? `0 0 28px ${sev.color}66`
+                            : `0 0 14px ${sev.color}22`,
+                          transform: isActive ? "scale(1.08)" : "scale(1)",
+                        }}
+                      >
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{ background: sev.color }}
+                        />
+                        <span className="whitespace-nowrap font-mono text-[9px] text-white/80">
+                          {point.label}
+                        </span>
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* X levels */}
+            <div className="mt-2 flex gap-2">
+              <div className="hidden w-[70px] shrink-0 sm:block" />
+              <div className="grid flex-1 grid-cols-5">
+                {LIKELIHOOD_LEVELS.map((level) => (
+                  <span
+                    key={level}
+                    className="text-center font-mono text-[8px] uppercase tracking-wider text-white/30"
+                  >
+                    {level}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-white/35">
+              Likelihood →
+            </p>
+          </div>
+        </div>
+
+        {/* SIDE PANEL */}
+        <div className="flex flex-col gap-4">
+          <div className="min-h-[220px] rounded-2xl border border-white/[0.1] bg-white/[0.03] p-5 backdrop-blur-xl">
+            <TinyLabel>Risk Details</TinyLabel>
+
+            <AnimatePresence mode="wait">
+              {active ? (
+                <motion.div
+                  key={active.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                  className="mt-3"
+                >
+                  <h4 className="hyi-h2">{active.label}</h4>
+
+                  <span
+                    className="mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[9px] uppercase tracking-wider"
+                    style={{
+                      color: SEVERITY[active.severity].color,
+                      borderColor: `${SEVERITY[active.severity].color}55`,
+                      background: SEVERITY[active.severity].bg,
+                    }}
+                  >
+                    {SEVERITY[active.severity].name} · Score {active.score}
+                  </span>
+
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="rounded-lg border border-white/[0.08] px-3 py-2">
+                      <p className="font-mono text-[8px] uppercase tracking-widest text-white/35">
+                        Likelihood
+                      </p>
+                      <p className="hyi-white mt-1 text-sm">
+                        {LIKELIHOOD_LEVELS[active.likelihood - 1]}
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg border border-white/[0.08] px-3 py-2">
+                      <p className="font-mono text-[8px] uppercase tracking-widest text-white/35">
+                        Impact
+                      </p>
+                      <p className="hyi-white mt-1 text-sm">
+                        {IMPACT_LEVELS[active.impact - 1]}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="hyi-blue mt-4 text-xs leading-5">
+                    {SEVERITY[active.severity].action}
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.p
+                  key="empty"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="hyi-white mt-3 text-xs leading-5 opacity-50"
+                >
+                  Hover or click a risk on the matrix to see its likelihood,
+                  impact and recommended action.
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* LEGEND */}
+          <div className="rounded-2xl border border-white/[0.1] bg-white/[0.02] p-5">
+            <TinyLabel>Severity Scale</TinyLabel>
+
+            <div className="mt-3 flex h-2 overflow-hidden rounded-full">
+              {(Object.keys(SEVERITY) as Severity[]).map((key) => (
+                <span
+                  key={key}
+                  className="flex-1"
+                  style={{ background: SEVERITY[key].color }}
+                />
+              ))}
+            </div>
+
+            <div className="mt-3 flex justify-between font-mono text-[8px] uppercase tracking-wider text-white/40">
+              {(Object.keys(SEVERITY) as Severity[]).map((key) => (
+                <span key={key}>{SEVERITY[key].name}</span>
+              ))}
+            </div>
+
+            <p className="mt-3 font-mono text-[8px] leading-4 text-white/30">
+              Score = Likelihood (1-5) × Impact (1-5)
+            </p>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
@@ -1312,23 +1854,21 @@ function RiskMatrix() {
 
 function RiskDomains() {
   return (
-    <section className="bg-black px-5 py-28 md:px-10">
+    <section className="bg-black px-5 py- md:px-10">
       <Container>
         <Reveal>
-          <SectionLabel number="02">
-            Assessment Domains
-          </SectionLabel>
+        
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
-            <h2 className="max-w-[700px] text-5xl font-semibold leading-[0.94] tracking-[-0.06em] md:text-6xl">
+          <div className="mt- grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-[700px] hyi-h1 hyi-white">
               Understand where
 
-              <span className="block text-white/25">
+              <span className="block ">
                 cyber risk lives.
               </span>
             </h2>
 
-            <p className="max-w-[650px] text-[13px] leading-7 text-white/[0.48]">
+            <p className="max-w-[650px] hyi-p">
               Modern cyber risk spans identities, cloud environments,
               applications, infrastructure, data and operational
               dependencies. Assessment should connect those areas rather than
@@ -1337,7 +1877,7 @@ function RiskDomains() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {riskDomains.map((item, index) => {
             const Icon = item.Icon;
 
@@ -1360,7 +1900,7 @@ function RiskDomains() {
                   y: -8,
                   borderColor: "rgba(167,139,250,.28)",
                 }}
-                className="group relative min-h-[310px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#070707] p-6"
+                className="group relative min-h-[210px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#070707] p-6"
               >
                 <motion.div
                   animate={{
@@ -1379,24 +1919,22 @@ function RiskDomains() {
                     <div className="flex h-11 w-11 items-center justify-center rounded-[13px] border border-[#8b5cf6]/20 bg-[#8b5cf6]/[0.04]">
                       <Icon
                         size={17}
-                        className="text-[#c4b5fd]"
+                        className="text-white"
                       />
                     </div>
 
-                    <span className="font-mono text-[7px] text-white/20">
-                      {item.number}
-                    </span>
+                   
                   </div>
 
-                  <h3 className="mt-14 text-xl font-medium tracking-[-0.03em]">
+                  <h3 className="mt-5 hyi-h3">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-[12px] leading-7 text-white/[0.45]">
+                  <p className="mt-2 hyi-p">
                     {item.description}
                   </p>
 
-                  <div className="mt-6 flex items-center gap-2 font-mono text-[7px] text-[#a78bfa]">
+                  <div className="mt-3 flex items-center gap-2 font-mono text-[7px] text-[#a78bfa]">
                     ASSESS RISK
 
                     <ChevronRight
@@ -1420,67 +1958,65 @@ function RiskDomains() {
 
 function ExposureTopology() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#050505] px-5 py-28 md:px-10">
+    <section className="relative overflow-hidden text-center   px-5 py-10 md:px-10">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
+        <div className=" items-center text-center" >
           <Reveal>
-            <SectionLabel number="03">
-              Exposure Topology
-            </SectionLabel>
+          
 
-            <h2 className="mt-9 text-5xl font-semibold leading-[0.93] tracking-[-0.06em] md:text-6xl">
+            <h2 className=" hyi-h1 ">
               Find the
 
-              <span className="block text-[#a78bfa]">
+              <span className="block ">
                 connected risk.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-[500px] text-[12px] leading-7 text-white/[0.47]">
+            <p className="mt-3  text-[12px] max-w-[500px] text-center mx-auto hyi-p">
               A weakness becomes more meaningful when it is connected to a
               critical system, privileged identity, sensitive data set or
               important business service. Mapping relationships helps teams
               understand that context.
             </p>
 
-            <div className="mt-8 space-y-3">
-              {[
-                "Assets and services",
-                "Identity relationships",
-                "Network exposure",
-                "Cloud dependencies",
-                "Sensitive information",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{
-                    opacity: 0,
-                    x: -15,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.06,
-                  }}
-                  className="flex items-center gap-3"
-                >
-                  <CheckCircle2
-                    size={12}
-                    className="text-[#a78bfa]"
-                  />
 
-                  <span className="text-[11px] text-white/45">
-                    {item}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+
+<motion.div
+  initial={{ opacity: 0, y: 24 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mt-8 rounded-[28px] border border-white/10 bg-white/[0.02] p-6 md:p-"
+>
+  <h3 className="hyi-h2 hyi-white text-center">Discovery Scope</h3>
+
+  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {SCOPE_ITEMS.map((item, index) => (
+      <motion.div
+        key={item}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.15 + index * 0.08 }}
+        whileHover={{ y: -4 }}
+        className="hyi-skeu flex  flex-col justify-between p-5"
+      >
+       
+
+        <div className="mt-6 flex gap-3 items-center text-center justify-start">
+           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+          <CheckCircle2 size={16} className="text-white" />
+        </span>
+       
+          <p className="hyi-white mt-1 hyi-h1 hyi-white font-medium">{item}</p>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
           </Reveal>
 
-          <ExposureTopologyModel />
+        
         </div>
       </Container>
     </section>
@@ -1669,40 +2205,24 @@ function ExposureTopologyModel() {
 
 function AssessmentLifecycle() {
   return (
-    <section className="relative overflow-hidden bg-black px-5 py-28 md:px-10">
+    <section className="relative overflow-hidden bg-black px-5  md:px-10">
       <Container>
         <Reveal className="text-center">
-          <SectionLabel number="04">
-            Assessment Lifecycle
-          </SectionLabel>
+        
 
-          <h2 className="mx-auto mt-8 max-w-[850px] text-5xl font-semibold tracking-[-0.06em] md:text-6xl">
+          <h2 className="mx-auto  max-w-[850px] hyi-h1 hyi-white">
             From exposure to action.
           </h2>
 
-          <p className="mx-auto mt-6 max-w-[850px] text-[13px] leading-7 text-white/[0.47]">
+          <p className="mx-auto mt-2 hyi-p max-w-[850px]">
             Risk assessment becomes more useful when findings move through a
             repeatable process from discovery and context to prioritization,
             mitigation and continuous review.
           </p>
         </Reveal>
 
-        <div className="relative mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-6">
-          <div className="absolute left-[7%] right-[7%] top-[36px] hidden h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/50 to-transparent lg:block" />
-
-          <motion.div
-            animate={{
-              left: ["7%", "92%"],
-              opacity: [0, 1, 1, 0],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute top-[32px] z-30 hidden h-2 w-2 rounded-full bg-[#c4b5fd] shadow-[0_0_20px_#8b5cf6] lg:block"
-          />
-
+        <div className="relative py-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+  
           {lifecycle.map((item, index) => {
             const Icon = item.Icon;
 
@@ -1729,19 +2249,17 @@ function AssessmentLifecycle() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#8b5cf6]/25 bg-black">
                   <Icon
                     size={14}
-                    className="text-[#c4b5fd]"
+                    className="text-white"
                   />
                 </div>
 
-                <span className="mt-8 block font-mono text-[7px] text-[#a78bfa]">
-                  {item.number}
-                </span>
+             
 
-                <h3 className="mt-3 text-[15px] font-medium">
+                <h3 className="mt-3 hyi-h3 text-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[10px] leading-6 text-white/[0.42]">
+                <p className="mt-2 hyi-p">
                   {item.text}
                 </p>
               </motion.article>
@@ -1759,17 +2277,15 @@ function AssessmentLifecycle() {
 
 function RiskPrioritization() {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_0%,#27103d_0%,#0d0610_35%,#000_72%)] px-5 py-28 md:px-10">
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_0%,#27103d_0%,#0d0610_35%,#000_72%)] px-5 py-10 md:px-10">
       <Container>
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <RiskPriorityEngine />
 
           <Reveal>
-            <SectionLabel number="05">
-              Risk Prioritization
-            </SectionLabel>
+          
 
-            <h2 className="mt-9 text-5xl font-semibold leading-[0.93] tracking-[-0.06em] md:text-6xl">
+            <h2 className=" hyi-h1 hyi-white">
               Not every finding
 
               <span className="block text-white/25">
@@ -1777,14 +2293,14 @@ function RiskPrioritization() {
               </span>
             </h2>
 
-            <p className="mt-7 max-w-[570px] text-[12px] leading-7 text-white/[0.48]">
+            <p className="mt-3 max-w-[570px] hyi-p">
               Prioritization can consider asset importance, exposure,
               potential impact, control effectiveness and other relevant
               context rather than relying on a vulnerability severity value
               alone.
             </p>
 
-            <div className="mt-9 grid gap-3 sm:grid-cols-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {[
                 "Asset criticality",
                 "Business impact",
@@ -1810,11 +2326,11 @@ function RiskPrioritization() {
                   className="flex items-center gap-3 rounded-[12px] border border-white/[0.07] bg-black/40 p-4"
                 >
                   <CircleDot
-                    size={9}
-                    className="text-[#a78bfa]"
+                    size={12}
+                    className="text-white"
                   />
 
-                  <span className="text-[10px] text-white/45">
+                  <span className="hyi-h3 text-white/80">
                     {item}
                   </span>
                 </motion.div>
@@ -1852,9 +2368,9 @@ function RiskPriorityEngine() {
       <div className="relative">
         <div className="flex items-center justify-between">
           <div>
-            <TinyLabel>Risk Priority Engine</TinyLabel>
+          
 
-            <h3 className="mt-2 text-xl font-medium">
+            <h3 className="mt-2 text-2xl font-bold hyi-white">
               Exposure Analysis
             </h3>
           </div>
@@ -1941,23 +2457,16 @@ function RiskPriorityEngine() {
 
 function RiskPrinciples() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#060606] px-5 py-28 md:px-10">
+    <section className=" px-5  md:px-10">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr]">
+        <div className="grid gap-8 lg:grid-cols-1 text-center">
           <Reveal>
-            <SectionLabel number="06">
-              Assessment Principles
-            </SectionLabel>
+            <h2 className=" hyi-h1 hyi-white ">
+              Context before conclusions
 
-            <h2 className="mt-9 text-5xl font-semibold leading-[0.93] tracking-[-0.06em] md:text-6xl">
-              Context before
+          </h2>
 
-              <span className="block text-white/25">
-                conclusions.
-              </span>
-            </h2>
-
-            <p className="mt-7 max-w-[500px] text-[12px] leading-7 text-white/[0.47]">
+            <p className="mt-3 hyi-p max-w-[800px] mx-auto">
               Cybersecurity risk assessment should help people make informed
               decisions. Findings need enough technical and business context
               for teams to understand why an issue matters and what practical
@@ -1965,7 +2474,7 @@ function RiskPrinciples() {
             </p>
           </Reveal>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 text-start">
             {principles.map((item, index) => (
               <motion.div
                 key={item}
@@ -1987,20 +2496,20 @@ function RiskPrinciples() {
                 }}
                 className="flex items-start gap-4 rounded-[15px] border border-white/[0.07] bg-black p-5"
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#8b5cf6]/25">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#8b5cf6]/25">
                   <CheckCircle2
-                    size={12}
-                    className="text-[#c4b5fd]"
+                    size={16}
+                    className="text-white"
                   />
                 </div>
 
                 <div>
-                  <span className="font-mono text-[6px] text-[#8b5cf6]">
+                  <span className="font-mono hyi-p hyi-blue">
                     PRINCIPLE /{" "}
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  <p className="mt-2 text-[10px] leading-6 text-white/[0.44]">
+                  <p className="mt-2 hyi-h3">
                     {item}
                   </p>
                 </div>
@@ -2019,19 +2528,16 @@ function RiskPrinciples() {
 
 function AssessmentOutcomes() {
   return (
-    <section className="bg-black px-5 py-28 md:px-10">
+    <section className="bg-black px-5 py-10 md:px-10">
       <Container>
         <Reveal className="text-center">
-          <SectionLabel number="07">
-            Assessment Outcomes
-          </SectionLabel>
 
-          <h2 className="mx-auto mt-8 max-w-[900px] text-5xl font-semibold tracking-[-0.06em] md:text-6xl">
+          <h2 className="mx-auto hyi-h1 hyi-white max-w-[900px] ">
             Turn findings into a security roadmap.
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 lg:grid-cols-2">
           {[
             {
               title: "Risk Visibility",
@@ -2069,17 +2575,17 @@ function AssessmentOutcomes() {
               }}
               className="relative overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#070707] p-6"
             >
-              <div className="absolute -right-16 -top-16 h-[170px] w-[170px] rounded-full bg-[#7046e6]/[0.06] blur-[60px]" />
+              
+            <div className="absolute -right-16 -top-16 h-[170px] w-[170px] rounded-full bg-[#7046e6]/80 blur-[60px]" />
+            <div className="absolute -left-16 -bottom-16 h-[170px] w-[170px] rounded-full bg-[#7046e6]/80 blur-[60px]" />
 
-              <span className="relative font-mono text-[7px] text-[#a78bfa]">
-                0{index + 1}
-              </span>
+  
 
-              <h3 className="relative mt-14 text-xl font-medium">
+              <h3 className="relative  hyi-h2 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="relative mt-4 text-[11px] leading-7 text-white/[0.45]">
+              <p className="relative mt-4 hyi-p">
                 {item.text}
               </p>
             </motion.article>
@@ -2090,98 +2596,7 @@ function AssessmentOutcomes() {
   );
 }
 
-/* =========================================================
-   CTA
-========================================================= */
 
-function FinalCTA() {
-  return (
-    <section className="bg-black px-5 pb-28 pt-12 md:px-10">
-      <Container>
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 35,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-[28px] border border-[#6366f1]/25 bg-[#080a16] px-6 py-24 text-center"
-        >
-          <motion.div
-            animate={{
-              x: ["-20%", "20%", "-20%"],
-              opacity: [0.22, 0.5, 0.22],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-[-170px] left-1/2 h-[320px] w-[950px] -translate-x-1/2 rounded-full bg-[#7046e6] blur-[120px]"
-          />
-
-          <motion.div
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/[0.04]"
-          />
-
-          <div className="relative">
-            <motion.div
-              animate={{
-                scale: [1, 1.08, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-              }}
-              className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#8b5cf6]/30 bg-[#8b5cf6]/[0.07]"
-            >
-              <ShieldCheck
-                size={23}
-                className="text-[#c4b5fd]"
-              />
-            </motion.div>
-
-            <h2 className="mx-auto mt-8 max-w-[850px] text-4xl font-semibold tracking-[-0.05em] md:text-5xl">
-              Understand your cyber risk before deciding what to fix next.
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-[700px] text-[12px] leading-7 text-white/[0.48]">
-              Build a clearer view of assets, exposure, security controls and
-              business context through a structured cybersecurity risk
-              assessment.
-            </p>
-
-            <motion.a
-              href="#risk-command-center"
-              whileHover={{
-                scale: 1.05,
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
-              className="mx-auto mt-9 flex w-fit items-center gap-3 rounded-full bg-[#7546ef] px-7 py-3.5 text-[11px] font-medium shadow-[0_0_45px_rgba(124,58,237,.3)]"
-            >
-              Talk To Our Expert
-
-              <ArrowRight size={13} />
-            </motion.a>
-          </div>
-        </motion.div>
-      </Container>
-    </section>
-  );
-}
 
 /* =========================================================
    MAIN
@@ -2197,7 +2612,7 @@ export default function RiskAssessmentClient() {
   });
 
   return (
-    <div className="overflow-x-hidden bg-black text-white">
+    <div className="overflow-x-hidden bg-black text-white mx-auto max-w-[1350px]">
       <motion.div
         style={{
           scaleX,
@@ -2222,7 +2637,7 @@ export default function RiskAssessmentClient() {
 
       <AssessmentOutcomes />
 
-      <FinalCTA />
+
     </div>
   );
 }

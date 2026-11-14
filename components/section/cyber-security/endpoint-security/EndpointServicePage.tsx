@@ -33,9 +33,9 @@ export default function EndpointServicePage({
 
       <EndpointUseCases service={service} />
 
-      <EndpointPrinciples service={service} />
+      {/* <EndpointPrinciples service={service} />
 
-      <EndpointCTA service={service} />
+      <EndpointCTA service={service} /> */}
 
       <Footer />
     </main>

@@ -9,14 +9,12 @@ export default function EndpointPrinciples({
   service: EndpointService;
 }) {
   return (
-    <section className="border-b border-white/[0.06] bg-black py-28">
+    <section className=" bg-black ">
       <div className="mx-auto max-w-[1320px] px-5 md:px-8">
         <div className="text-center">
-          <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-white/25">
-            {service.principlesEyebrow}
-          </p>
+        
 
-          <h2 className="mx-auto mt-5 max-w-[680px] text-[30px] font-medium tracking-[-0.03em] text-white md:text-[38px]">
+          <h2 className="mx-auto  max-w-[680px] hyi-h1 hyi-white">
             {service.principlesTitle}
           </h2>
         </div>

@@ -256,6 +256,8 @@ export default function Home() {
 
       <HeroUserSlider />
 
+
+
       {/* ------------------------------------------------ */}
       {/* CONNECT WITH DEVELOPERS                          */}
       {/* ------------------------------------------------ */}

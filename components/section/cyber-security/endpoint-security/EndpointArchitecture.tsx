@@ -10,23 +10,21 @@ export default function EndpointArchitecture({
   service: EndpointService;
 }) {
   return (
-    <section className="border-b border-white/[0.06] bg-black py-28">
+    <section className=" bg-black py-10">
       <div className="mx-auto max-w-[1320px] px-5 md:px-8">
-        <div className="max-w-[680px]">
-          <p className="font-mono text-[8px] uppercase tracking-[0.24em] text-white/25">
-            {service.architectureEyebrow}
-          </p>
+        <div className="text-center max-w-[700px] mx-auto">
+     
 
-          <h2 className="mt-5 text-[30px] font-medium tracking-[-0.03em] text-white md:text-[38px]">
+          <h2 className=" hyi-h1 hyi-white ">
             {service.architectureTitle}
           </h2>
 
-          <p className="mt-5 text-[12px] leading-7 text-white/35">
+          <p className="mt-2 hyi-p hyi-blue  font-bold max-w-[600px] mx-auto">
             {service.architectureIntro}
           </p>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 lg:flex-row lg:items-stretch">
+        <div className="mt-8 flex flex-col gap-3 lg:grid grid-cols-2 lg:items-stretch">
           {service.architecture.map((item, index) => (
             <motion.div
               key={item.title}
@@ -38,20 +36,13 @@ export default function EndpointArchitecture({
               }}
               className="flex flex-1 items-center"
             >
-              <div className="min-h-[190px] flex-1 rounded-[20px] border border-white/[0.07] bg-white/[0.015] p-5">
-                <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#7c3aed]" />
-
-                  <span className="font-mono text-[7px] text-white/20">
-                    LAYER 0{index + 1}
-                  </span>
-                </div>
-
-                <h3 className="mt-8 text-[13px] text-white/70">
+              <div className="min-h-[0px] flex-1 rounded-[20px] border border-white/[0.07] bg-white/[0.015] p-5">
+              
+                <h3 className=" hyi-h3 hyi-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[10px] leading-6 text-white/28">
+                <p className="mt-2 hyi-p">
                   {item.description}
                 </p>
               </div>

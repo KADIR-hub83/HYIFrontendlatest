@@ -106,7 +106,7 @@ export default function AboutShell({
 
         {/* Hero with scroll parallax fade */}
         <header
-          className="flex lg:min-h-[52vh] min-h-[32vh] flex-col justify-center py-1"
+          className="flex pt-30 flex-col justify-center py-1"
           style={{
             transform: "translateY(calc(var(--sy,0) * 0.18px))",
             opacity: "calc(1 - var(--sy,0) * 0.0016)",

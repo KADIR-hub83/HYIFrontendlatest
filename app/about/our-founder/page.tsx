@@ -13,7 +13,7 @@ export const metadata = { title: "Our Founder | HYI.AI" };
 
 export default function OurFounderPage() {
   return (
-    <AboutShell title="HYI Founder" accent={["Founder"]}>
+    <AboutShell title="Our Founder" accent={["Founder"]}>
       <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:items-start">
         {/* Sticky profile */}
         <div className="space-y-6 lg:sticky lg:top-28">
@@ -74,7 +74,7 @@ export default function OurFounderPage() {
 
           <Reveal>
             <Card variant="clay-soft">
-              <SplitHeading text="His Way of Thinking" accent={["Thinking"]} className="hyi-h2 hyi-white mb-6" />
+              <SplitHeading text="His Way of Thinking"  className="hyi-h2 hyi-white mb-6" />
               <Paras items={founder.thinking} />
             </Card>
           </Reveal>

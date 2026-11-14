@@ -103,7 +103,7 @@ export const vm = {
 
 export const founder = {
   role: "Entrepreneur, HYI.AI",
-  since: "Entrepreneur since 2012",
+  since: "Entrepreneur Since 2012",
   linkedin: "https://www.linkedin.com/in/yakub-s-281859240/", // TODO: real LinkedIn URL
   vision: [
     "Every business has a starting point. For HYI, it began with a belief that businesses should have better access to talent, technology, and the right opportunities to grow.",

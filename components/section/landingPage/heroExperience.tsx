@@ -1777,7 +1777,7 @@ function MiniCard({ t, index }: { t: HeroTalent; index: number }) {
   return (
     <div className="pointer-events-none relative h-[164px] w-[256px] shrink-0 overflow-hidden rounded-[18px] border border-blue-400/30 bg-gradient-to-br from-[#0d1f5c]/90 via-[#0a1440]/90 to-[#070b26]/95 shadow-[0_0_28px_-8px_rgba(59,130,246,0.55),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-md">
       {/* dotted map + pin */}
-      <div className="absolute inset-y-0 right-0 w-[62%] opacity-50">
+      <div className="absolute inset-y-0 right-0 w-[62%] opacity-100">
         <Image
           src={HeroMapImage}
           alt=""
@@ -1786,7 +1786,7 @@ function MiniCard({ t, index }: { t: HeroTalent; index: number }) {
           className="object-cover object-center"
         />
         <span
-          className="absolute -translate-x-1/2 -translate-y-1/2 text-sky-400 drop-shadow-[0_0_6px_rgba(56,189,248,0.9)]"
+          className="absolute -translate-x-1/2 -translate-y-1/2 text-white drop-shadow-[0_0_6px_rgba(56,189,248,0.9)]"
           style={{ left: `${pinLeft}%`, top: `${pinTop}%` }}
         >
           <PinIcon className="h-5 w-5" />
@@ -1794,7 +1794,7 @@ function MiniCard({ t, index }: { t: HeroTalent; index: number }) {
       </div>
 
       {/* round photo */}
-      <div className="absolute left-3 top-3 h-[68px] w-[68px] rounded-full border-2 border-sky-400/80 p-[3px] shadow-[0_0_18px_rgba(56,189,248,0.55)]">
+      <div className="absolute left-3 top-3 h-[68px] w-[68px] rounded-full border-2 border-black/80 p-[3px] shadow-[0_0_18px_rgba(56,189,248,0.55)]">
         <div className="relative h-full w-full overflow-hidden rounded-full bg-gradient-to-br from-blue-500/40 to-indigo-950">
           <TalentPhoto t={photoTalent} sizes="68px" textClass="text-xl" />
         </div>
@@ -1813,7 +1813,7 @@ function MiniCard({ t, index }: { t: HeroTalent; index: number }) {
             strokeLinejoin="round"
           />
         </svg>
-        {t.demo ? "Sample" : "Verified Talent"}
+        {t.demo ? "Verified Talent" : "Verified Talent"}
       </div>
 
       {/* bottom details */}
@@ -1913,7 +1913,7 @@ const config = [
 
   return (
     <div
-      className={`pointer-events-none flex flex-col justify-center gap-5 overflow-hidden opacity-20 lg:pt-40 ${className}`}
+      className={`pointer-events-none flex flex-col justify-center gap-5 overflow-hidden opacity-20 pt-35 lg:pt-60 ${className}`}
       style={{
         WebkitMaskImage:
           "linear-gradient(90deg, transparent 0%, #000 20%, #000 90%, transparent 100%)",

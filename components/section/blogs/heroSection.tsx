@@ -78,12 +78,12 @@ export default function HeroSection() {
     setDurations(icons.map(() => 2.5 + Math.random() * 1));
   }, []);
   return (
-    <div className="relative flex justify-center items-center pt-10 pb-2 md:py-24">
+    <div className="relative flex justify-center items-center pt-30 pb-2 md:pt-30">
       {/* Floating Icons */}
       {icons.map((icon, i) => (
         <div
           key={icon.id}
-          className={`hidden absolute w-16 h-16 md:flex items-center justify-center rounded-full glass-gradient-full backdrop-blur-md shadow-lg hover:scale-105 transition duration-300 ${icon.className} bounce-gentle-large`}
+          className={`hidden absolute w-16 h-16 top-40  md:flex items-center justify-center rounded-full glass-gradient-full backdrop-blur-md shadow-lg hover:scale-105 transition duration-300 ${icon.className} bounce-gentle-large`}
           style={{
             animationDelay: `${icon.delay}s`,
             animationDuration: durations[i] ? `${durations[i]}s` : "3s",

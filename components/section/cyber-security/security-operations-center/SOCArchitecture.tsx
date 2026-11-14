@@ -12,20 +12,18 @@ export default function SOCArchitecture({
   return (
     <section
       id="operations"
-      className="border-b border-white/[0.07] bg-[#030303]"
+      className=" bg-[#ffffff]"
     >
-      <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1450px] px-5  py-10 md:px-8 lg:px-12 ">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-white/30">
-              03 / Operating Architecture
-            </p>
+           
 
-            <h2 className="mt-5 max-w-md text-3xl font-medium leading-tight tracking-[-0.025em] md:text-[42px]">
+            <h2 className=" max-w-md hyi-blue hyi-h1">
               From raw activity to security action.
             </h2>
 
-            <p className="mt-6 max-w-md text-[12px] leading-7 text-white/35">
+            <p className="mt-2 max-w-md hyi-p text-black">
               The operating architecture creates a structured path from
               distributed security sources to investigation and controlled
               operational action.
@@ -43,22 +41,16 @@ export default function SOCArchitecture({
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="relative min-h-[145px] rounded-[20px] border border-white/[0.08] bg-black p-5"
+                  className="relative rounded-[20px] border border-white/[0.08] bg-gray-700 p-5"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[8px] text-white/20">
-                      LAYER 0{index + 1}
-                    </span>
+              
 
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#7c3aed]/60" />
-                  </div>
-
-                  <p className="mt-12 text-[13px] font-medium text-white/75">
+                  <p className=" hyi-h3 text-white">
                     {item}
                   </p>
 
                   {index < service.architecture.length - 1 && (
-                    <ChevronRight className="absolute -right-[13px] top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full border border-white/10 bg-black p-1 text-white/25 md:block" />
+                    <ChevronRight className="absolute -right-[13px] top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full border border-white/10 bg-gray-500 p-1 text-white md:block" />
                   )}
                 </motion.div>
               ))}

@@ -43,25 +43,23 @@ export default function SecurityCapabilities({
   service: ManagedSecurityService;
 }) {
   return (
-    <section className="bg-black py-28 md:py-40">
-      <div className="mx-auto max-w-[1380px] px-6 md:px-10">
+    <section className="bg-black py-13">
+      <div className="mx-auto max-w-[1350px] px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 max-w-[720px]"
+          className="mb-8 text-center"
         >
-          <span className="font-mono text-[10px] tracking-[0.25em] text-[#9878ef]">
-            SECURITY CAPABILITIES
-          </span>
+       
 
-          <h2 className="mt-6 text-[42px] font-semibold tracking-[-0.04em] md:text-[62px]">
+          <h2 className="mt-3 hyi-h1 hyi-white">
             Defense built as
-            <span className="text-[#a98af4]"> a system.</span>
+            <span className="hyi-blue"> a system.</span>
           </h2>
         </motion.div>
 
-        <div className="grid border-l border-t border-white/[0.07] md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid border-l border-t border-white/90 md:grid-cols-2  lg:grid-cols-3 gap-5 rounded-[30px]">
           {service.capabilities.map((item, index) => {
             const Icon = icons[item.icon];
 
@@ -73,28 +71,27 @@ export default function SecurityCapabilities({
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.06 }}
                 whileHover={{
-                  backgroundColor: "rgba(112,70,230,.055)",
+                  backgroundColor: "white",
+                  color:"black"
                 }}
-                className="group min-h-[300px] border-b border-r border-white/[0.07] p-8 md:p-10"
+                className="group min-h-[100px] border-b border-r border-purple-500 p-8 md:p-10 rounded-[30px]  gap-5"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.08]">
+                <div className="flex items-start justify-between ">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70">
                     <Icon
                       size={17}
-                      className="text-[#a98af4]"
+                      className=""
                     />
                   </div>
 
-                  <span className="font-mono text-[9px] text-white/[0.20]">
-                    0{index + 1}
-                  </span>
+              
                 </div>
 
-                <h3 className="mt-16 text-[20px] font-medium tracking-[-0.025em]">
+                <h3 className="mt-2 font-bold text-[22px] max-md:text-[16px]">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/[0.48]">
+                <p className="mt-2 font-medium max-md:text-sm">
                   {item.description}
                 </p>
               </motion.div>

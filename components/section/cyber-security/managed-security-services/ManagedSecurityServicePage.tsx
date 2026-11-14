@@ -20,7 +20,7 @@ type Props = {
 
 export default function ManagedSecurityServicePage({ service }: Props) {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black text-white">
+    <main className="min-h-screen overflow-x-hidden bg-black text-white mx-auto max-w-[1350px]">
       <Header />
 
       <ManagedSecurityHero service={service} />
@@ -41,7 +41,7 @@ export default function ManagedSecurityServicePage({ service }: Props) {
 
       <SecurityUseCases service={service} />
 
-      <SecurityCTA service={service} />
+      {/* <SecurityCTA service={service} /> */}
 
       <Footer />
     </main>

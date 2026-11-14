@@ -10,6 +10,7 @@ import { services, type ServiceId } from "@/components/data/aiContent";
 import AiShell from "./AiShell";
 import OfferAccordion from "./OfferAccordion";
 import Together from "./Together";
+import OfferIcon from "./OfferIcon";
 
 const badge = {
   display: "flex",
@@ -36,11 +37,13 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       <span className="pointer-events-none absolute -bottom-6 -right-1 select-none text-[7rem] font-black leading-none text-white/[0.045]">
         {String(i + 1).padStart(2, "0")}
       </span>
-      <div className="relative flex items-center justify-between">
-        <span className="hyi-skeu" style={badge}>{o.icon}</span>
-        <span className="hyi-eyebrow !text-white/40">{String(i + 1).padStart(2, "0")}</span>
-      </div>
-      <h3 className="hyi-h3 hyi-white relative mt-6">{o.t}</h3>
+<div className="relative flex items-center justify-between">
+  <span className="hyi-skeu !inline-flex !h-12 !w-12 shrink-0 items-center justify-center !p-0">
+    <OfferIcon name={o.icon} />
+  </span>
+</div>
+
+<h3 className="hyi-h3 hyi-white relative mt-6">{o.t}</h3>
       <p className="hyi-p relative mt-3">{o.d}</p>
     </Card>
   );
@@ -87,7 +90,7 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       {/* What we offer — layout differs per page */}
       {s.layout === "stack" && (
         <StickySplit eyebrow="Capabilities" title="What We Offer" accent={["Offer"]}>
-          <div className="space-y-10 pb-6">
+          <div className="space-y-10 pb-6 ">
             {s.offers.map((o, i) =>
               offerCard(o, i, {
                 cls: "min-h-[230px]",
@@ -99,10 +102,10 @@ export default function ServicePage({ id }: { id: ServiceId }) {
       )}
 
       {s.layout === "grid" && (
-        <section className="py-16">
-          <div className="mb-12 text-center">
-            <p className="hyi-eyebrow mb-4">Capabilities</p>
-            <SplitHeading text="What We Offer" accent={["Offer"]} className="hyi-h2 hyi-white" />
+        <section className="py-10">
+          <div className="mb-5 text-center">
+            <p className="hyi-eyebrow mb-4 ">Capabilities</p>
+            <SplitHeading text="What We Offer" accent={["Offer"]} className="hyi-h2  hyi-white" />
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {s.offers.map((o, i) => (
@@ -124,15 +127,15 @@ export default function ServicePage({ id }: { id: ServiceId }) {
 
       {/* Our focus */}
       <Reveal from="zoom">
-        <Card variant="clay-soft" className="my-10 text-center">
-          <p className="hyi-eyebrow mb-5">Our focus</p>
-          <ScrollText text={s.focus} className="hyi-h2 hyi-white mx-auto max-w-4xl" />
+        <Card variant="clay-soft" className="my-0 text-center">
+          <p className="hyi-eyebrow mb-2">Our focus</p>
+          <ScrollText text={s.focus} className="hyi-h3 hyi-white mx-auto max-w-4xl" />
         </Card>
       </Reveal>
 
       {/* Key outcomes */}
-      <section className="pt-14">
-        <div className="mb-10 text-center">
+      <section className="pt-7">
+        <div className="mb-7 text-center">
           <SplitHeading text="Key Outcomes" accent={["Outcomes"]} className="hyi-h2 hyi-white" />
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

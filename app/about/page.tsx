@@ -1,424 +1,153 @@
-// import UserStatsCard from "@/components/about/userStats";
-// import CountryStats from "@/components/about/countryStats";
-// import Image from "next/image";
-// import AboutUsBackground from "@/assets/about/aboutUsBackground.webp";
-// import CompanyOverviewCard from "@/components/about/companyOverviewCard";
-// import MiddleIcon from "@/assets/about/middle.png";
-// import CoreValues from "@/components/about/coreValues";
-// // import AboutUsLeaderShip from "@/components/about/leaderShip";
-// import AboutUsStrategicMinds from "@/components/about/StrategicAndMedia";
-// import Technologies from "@/components/section/general/technologies";
-// import Footer from "@/components/section/general/footer";
-// import Header from "@/components/section/general/header";
-// import CustomFloatableIcons from "@/components/shared/customFloatableIcons";
-// import Card4Background from "@/assets/about/backgroundCards/card4.png";
-// import Amazon from "@/assets/common/FloatableIcons/amazon.png";
-// import Airtable from "@/assets/common/FloatableIcons/airtable.png";
-// import Calendly from "@/assets/common/FloatableIcons/calendly.png";
-// import ClickUp from "@/assets/common/FloatableIcons/clickUp.png";
-// import Feedback from "@/assets/common/FloatableIcons/feedback.png";
-// import Google from "@/assets/common/FloatableIcons/google.png";
-// import Slack from "@/assets/common/FloatableIcons/slack.png";
-// import Useberry from "@/assets/common/FloatableIcons/useberry.png";
-// import ActiveUsersCard from "@/components/about/ActiveUsersCard";
-// import TalentsCard from "@/components/about/talentsCountCard";
-// import RealTimeDataProvider from "@/components/about/RealTimeDataProvider";
-// import MissionAndVision from "@/components/about/missionAndVission";
-
-// const techIcons = [
-//   { id: "amazon", src: Amazon, alt: "Amazon" },
-//   { id: "airtable", src: Airtable, alt: "Airtable" },
-//   { id: "calendly", src: Calendly, alt: "Calendly" },
-//   { id: "clickUp", src: ClickUp, alt: "ClickUp" },
-//   { id: "feedback", src: Feedback, alt: "Feedback" },
-//   { id: "google", src: Google, alt: "Google" },
-//   { id: "slack", src: Slack, alt: "Slack" },
-//   { id: "useberry", src: Useberry, alt: "Useberry" },
-// ];
-
-// interface DailyData {
-//   date: string;
-//   count: number;
-// }
-// interface MonthData {
-//   month: string;
-//   monthName: string;
-//   count: number;
-// }
-// interface CountryData {
-//   country: string;
-//   count: number;
-// }
-
-// interface AboutUsData {
-//   data: {
-//     last5MinCount: number;
-//     dailyData: DailyData[];
-//     countryData: CountryData[];
-//     monthData: MonthData[];
-//   };
-//   totalCount: number;
-// }
-
-// const BASE_URL =
-//   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5002/api";
-
-// export const revalidate = 120;
-
-// const newUsersData = [
-//   { month: "Jan", users: 1850 },
-//   { month: "Feb", users: 2640 },
-//   { month: "Mar", users: 3510 },
-//   { month: "Apr", users: 4680 },
-//   { month: "May", users: 5940 },
-//   { month: "Jun", users: 7380 },
-//   { month: "Jul", users: 9120 },
-//   { month: "Aug", users: 10850 },
-//   { month: "Sep", users: 12847 },
-// ];
-
-// const EMPTY_ABOUT_DATA: AboutUsData = {
-//   data: {
-//     last5MinCount: 184,
-
-//     dailyData: [
-//       {
-//         date: "2026-09-23",
-//         count: 124,
-//       },
-//       {
-//         date: "2026-09-24",
-//         count: 168,
-//       },
-//       {
-//         date: "2026-09-25",
-//         count: 215,
-//       },
-//       {
-//         date: "2026-09-26",
-//         count: 192,
-//       },
-//       {
-//         date: "2026-09-27",
-//         count: 286,
-//       },
-//       {
-//         date: "2026-09-28",
-//         count: 342,
-//       },
-//       {
-//         date: "2026-09-29",
-//         count: 418,
-//       },
-//     ],
-
-//     countryData: [
-//       {
-//         country: "India",
-//         count: 6842,
-//       },
-//       {
-//         country: "United States",
-//         count: 3248,
-//       },
-//       {
-//         country: "United Kingdom",
-//         count: 1876,
-//       },
-//       {
-//         country: "Canada",
-//         count: 1425,
-//       },
-//       {
-//         country: "Germany",
-//         count: 986,
-//       },
-//       {
-//         country: "Australia",
-//         count: 754,
-//       },
-//     ],
-
-//    monthData: [
-//   {
-//     month: "01",
-//     monthName: "Jan",
-//     count: 1850,
-//   },
-//   {
-//     month: "02",
-//     monthName: "Feb",
-//     count: 2640,
-//   },
-//   {
-//     month: "03",
-//     monthName: "Mar",
-//     count: 3510,
-//   },
-//   {
-//     month: "04",
-//     monthName: "Apr",
-//     count: 4680,
-//   },
-//   {
-//     month: "05",
-//     monthName: "May",
-//     count: 5940,
-//   },
-//   {
-//     month: "06",
-//     monthName: "Jun",
-//     count: 7380,
-//   },
-//   {
-//     month: "07",
-//     monthName: "Jul",
-//     count: 9120,
-//   },
-//   {
-//     month: "08",
-//     monthName: "Aug",
-//     count: 10850,
-//   },
-//   {
-//     month: "09",
-//     monthName: "Sep",
-//     count: 12847,
-//   },
-// ],
-//   },
-
-//   totalCount: 12847,
-// };
-
-// async function getAboutUsData(): Promise<AboutUsData> {
-//   try {
-//     const url = `${BASE_URL.replace(/\/$/, "")}/get-graph-counts`;
-
-//     console.log("[About Page] Fetching:", url);
-
-//     const response = await fetch(url, {
-//       method: "GET",
-//       headers: {
-//         Accept: "application/json",
-//       },
-//       next: {
-//         revalidate: 120,
-//       },
-//     });
-
-//     if (!response.ok) {
-//       console.warn(
-//         `[About Page] API returned ${response.status} ${response.statusText}`,
-//       );
-
-//       return EMPTY_ABOUT_DATA;
-//     }
-
-//     const result = await response.json();
-
-//     return {
-//       data: {
-//         last5MinCount: result?.data?.last5MinCount ?? 0,
-//         dailyData: result?.data?.dailyData ?? [],
-//         countryData: result?.data?.countryData ?? [],
-//         monthData: result?.data?.monthData ?? [],
-//       },
-//       totalCount: result?.totalCount ?? 0,
-//     };
-//   } catch (error) {
-//     console.warn("[About Page] API unavailable:", error);
-
-//     return EMPTY_ABOUT_DATA;
-//   }
-// }
-
-// export default async function AboutUsPage() {
-//   const data = await getAboutUsData();
-
-//   function formatCompactFloor(num: number): string {
-//     if (num >= 1_000_000_000) {
-//       return Math.floor(num / 1_000_000_000) + "B";
-//     }
-
-//     if (num >= 1_000_000) {
-//       return Math.floor(num / 1_000_000) + "M";
-//     }
-
-//     if (num >= 1_000) {
-//       return Math.floor(num / 1_000) + "K";
-//     }
-
-//     return num.toString();
-  
-//   }
-
-//   return (
-//     <section className="w-full min-h-screen flex flex-col items-center">
-//       <div className="relative z-50 w-full">
-//         <Header />
-//       </div>
-//       <div className="absolute top-0 left-0 w-full h-[35vh] xs:h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[50vh] min-[1060px]:h-[70dvh] min-[1160px]:h-[70dvh] xl:h-[60vh] min-[1360px]:min-h-[70dvh] min-[1580px]:min-h-[60dvh]  z-0">
-//         <Image
-//           src={AboutUsBackground}
-//           alt="Background"
-//           fill
-//           className="object-cover"
-//           priority
-//         />
-//         <CustomFloatableIcons
-//           icons={techIcons}
-//           overlayMode={true}
-//           showContent={false}
-//         />
-//       </div>
-//       <div className="relative z-10 w-full max-w-7xl mx-auto space-y-4 sm:space-y-8 p-4 lg:p-2">
-//         <div className="flex flex-col items-center justify-center gap-3 xs:gap-4 pt-0 pb-0 xs:pt-8 xs:pb-8 sm:pt-10 sm:pb-10 md:pt-14 md:pb-14 lg:pt-16 lg:pb-16 xl:pt-28 xl:pb-20">
-//           <h1 className="text-white font-semibold text-lg md:text-xl lg:text-2xl text-center leading-tight">
-//             Welcome to <span className="text-brand-600">HYI.AI</span>
-//           </h1>
-//           <div className="text-[#D2D0DD] text-sm xs:text-base md:text-lg lg:text-lg text-center max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl px-2 xs:px-4 leading-relaxed">
-//             Empowering businesses with smart solutions, expert talent, and
-//             cutting-edge technology.
-//           </div>
-//           <p className="text-xs xs:text-sm sm:text-base bg-gradient-to-r from-[#FCCB90] to-[#D57EEB] bg-clip-text text-transparent text-center flex justify-center items-center gap-1">
-//             Instant Talent Access
-//             <Image src={MiddleIcon} alt="Middle Icon" width={14} height={14} />
-//             Smart Growth.
-//           </p>
-//         </div>
-//         {/* Wrap dynamic data in RealTimeDataProvider for client-side updates */}
-//         <RealTimeDataProvider initialData={data}>
-//           {/* First Row Cards */}
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-3 xs:gap-4 md:gap-6">
-//             <TalentsCard totalCount={data.totalCount} />
-//             <ActiveUsersCard
-//               last5MinCount={data.data.last5MinCount}
-//               dailyData={data.data.dailyData}
-//               countryData={data.data.countryData}
-//             />
-//           </div>
-//           {/* Second Row Cards*/}
-//           <div className="grid grid-cols-1 lg:grid-cols-10 gap-3 xs:gap-4 md:gap-6">
-//             <UserStatsCard
-//               monthData={data.data.monthData}
-//               totalCount={data.totalCount}
-//             />
-//             <div className="col-span-1 lg:col-span-4 relative rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 overflow-hidden min-h-[300px] xs:min-h-[320px] sm:min-h-[350px]">
-//               <Image
-//                 src={Card4Background}
-//                 alt=""
-//                 fill
-//                 className="absolute inset-0 object-cover z-0"
-//               />
-//               <div className="relative z-10 space-y-3 xs:space-y-4 sm:space-y-6 h-full flex flex-col">
-//                 <h3 className="text-white text-sm xs:text-base sm:text-lg lg:text-xl font-semibold leading-tight">
-//                   Total Registered Talents Worldwide
-//                 </h3>
-//                 <div className="flex items-end gap-2">
-//                   <span className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
-//                     {formatCompactFloor(data?.totalCount)} +
-//                   </span>
-//                 </div>
-//                 <div className="flex-1">
-//                   <CountryStats countryData={data.data.countryData} />
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </RealTimeDataProvider>
-//       </div>
-//       <div className="relative z-10 w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 p-4 lg:p-2">
-//         <div className="relative w-full mt-12 mb-12">
-//           {/* Background image repeated exactly 4 times */}
-//           <div className="absolute inset-0 flex flex-col">
-//             {Array.from({ length: 4 }).map((_, i) => (
-//               <div
-//                 key={i}
-//                 className="flex-1 bg-[url('/bg-talent.svg')] bg-no-repeat bg-center bg-[length:125%_150%] sm:bg-none"
-//               />
-//             ))}
-//           </div>
-//           <div className="relative z-10">
-//             <CompanyOverviewCard />
-//           </div>
-//         </div>
-//       </div>
-//       <div className="relative z-10 w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 p-4 lg:p-2">
-//         <MissionAndVision />
-//         <div className="mt-8 xs:mt-12 sm:mt-16">
-//           <CoreValues />
-//         </div>
-//         {/* <div><AboutUsLeaderShip /></div> */}
-//         <div>
-//           <AboutUsStrategicMinds />
-//         </div>
-//         <Technologies />
-//       </div>
-//       <Footer />
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
 "use client";
-// npm i framer-motion
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
-import "@fontsource-variable/fraunces";
+import Link from "next/link";
 import {
-  AnimatePresence, MotionConfig, animate, motion,
-  useInView, useScroll, useTransform, type MotionValue,
+  AnimatePresence,
+  MotionConfig,
+  animate,
+  motion,
+  useInView,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
 } from "framer-motion";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronDown, CircleDot } from "lucide-react";
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
- 
-const display = { className: "font-fraunces" };
-const grad = "bg-gradient-to-r from-[#FCCB90] to-[#D57EEB] bg-clip-text text-transparent";
+import {
+  LINKEDIN,
+  TAGLINE,
+  whoLead,
+  whoMore,
+  pillars,
+  story,
+  vision,
+  mission,
+  howWork,
+  steps,
+  believeLead,
+  belief,
+  lookingAhead,
+  founderParas,
+  founderThinking,
+  founderQuote,
+  founderFacts,
+  valuesIntro,
+  values,
+  valuesMean,
+  futureIntro,
+  future,
+  futureClose,
+  faqs,
+} from "@/components/data/aboutContentFooter";
+
 const ease = [0.22, 1, 0.36, 1] as const;
-const card = "rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur";
- 
-/* ---------------- content (from client PDF) ---------------- */
-const pillars = [
-  { t: "Talent Solutions", d: "Pre-vetted remote professionals, hired hourly, weekly, monthly or full-time." },
-  { t: "Technology Solutions", d: "Software, AI applications, automation and digital solutions." },
-  { t: "Cybersecurity", d: "Protecting digital environments, systems and operations." },
-  { t: "Global Capability Centres", d: "Dedicated global teams, built and managed for you." },
-];
-const story = [
-  { y: "2017", t: "A problem worth solving", d: "Our founder, Yakub Sheikh, saw that finding the right people and technical expertise at the right time was slow, expensive and often stopped businesses from moving forward. He believed things could be different." },
-  { y: "Early days", t: "Talent first", d: "We started by connecting businesses with skilled professionals who could make a real difference to their teams and projects." },
-  { y: "Growth", t: "Beyond recruitment", d: "Businesses needed more than hiring. We expanded into technology, cybersecurity and Global Capability Centres, with a talent network across 150+ countries, regions and territories." },
-  { y: "Today", t: "Ready to deploy", d: "Our strength is ready-to-deploy professionals who fill skill gaps and get projects moving without unnecessary delay, alongside software, AI, automation and digital solutions." },
-  { y: "Next", t: "AI that is practical", d: "We believe AI should not be complicated or out of reach. We help businesses see where it makes a difference and put it to use." },
-  { y: "Always", t: "Still writing it", d: "A startup building its first team needs something different from an established company entering a new market. We listen first, then work out how to help." },
-];
-const values = [
-  { t: "People matter most", d: "Behind every successful business are people who make things happen. We treat everyone fairly and build relationships that matter." },
-  { t: "Be honest and keep your word", d: "Trust comes from honesty, open communication and doing what we say we will do." },
-  { t: "Do the work properly", d: "No shortcuts on quality. We deliver work we can stand behind." },
-  { t: "Always look for a better way", d: "From AI to automation, we stay curious and open to better ways of solving problems." },
-  { t: "Take responsibility", d: "We own our work and make an effort to put things right when plans go off track." },
-  { t: "Work together, grow together", d: "Good results rarely come from working alone. We want relationships that grow beyond a single project." },
-  { t: "Keep learning and moving forward", d: "We ask questions, learn from experience and treat every challenge as a chance to do better." },
-  { t: "Think beyond boundaries", d: "Talent and opportunity exist everywhere. We connect businesses with expertise in 150+ countries, regions and territories." },
-];
-const future = [
-  { t: "Making talent easier to find", d: "Better access to skilled, ready-to-deploy professionals across industries and markets, without the complication." },
-  { t: "Growing with technology", d: "More software, digital and automation services, with AI that helps people save time and focus on what matters." },
-  { t: "Helping businesses stay secure", d: "Stronger cybersecurity to protect systems, information and operations as work moves online." },
-  { t: "Building global teams", d: "GCC services that help more organisations set up dedicated teams and access global expertise." },
-  { t: "Reaching more businesses", d: "Stronger links across international markets, and more industries understood and served." },
-];
-const belief = "Technology makes progress possible, but it is people who make it happen.";
- 
-/* ---------------- helpers ---------------- */
+const sec = "px-5 py-10 md:px-10 md:py-14 lg:px-20";
+const wrap = "mx-auto max-w-[1320px]";
+
+const NAV = [
+  ["who", "Who we are"],
+  ["story", "Our story"],
+  ["vision", "Vision & mission"],
+  ["founder", "Our founder"],
+  ["values", "Our values"],
+  ["future", "Our future"],
+  ["faq", "FAQ"],
+] as const;
+
+/* ============================ BUILDING BLOCKS ============================ */
+
+type Tone = "neu" | "clay";
+const toneClass = (t: Tone) => (t === "neu" ? "hyi-card hyi-neu" : "hyi-card hyi-clay-soft");
+
+/**
+ * Box = motion wrapper (animation) + inner .hyi-card (your black / blue box).
+ * Split on purpose: hyi-card uses CSS transform, framer-motion also sets transform.
+ * tone="neu"  -> black box   |   tone="clay" -> blue box
+ */
+function Box({
+  tone = "neu",
+  children,
+  className = "",
+  delay = 0,
+  x = 0,
+  hover = true,
+  sticky = "",
+}: {
+  tone?: Tone;
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  x?: number;
+  hover?: boolean;
+  sticky?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: x ? 0 : 28, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.75, delay, ease }}
+      whileHover={hover ? { y: -6 } : undefined}
+      className={`h-full ${sticky}`}
+    >
+      <div className={`${toneClass(tone)} flex h-full flex-col p-6 sm:p-8 ${className}`}>{children}</div>
+    </motion.div>
+  );
+}
+
+function Label({ children }: { children: ReactNode }) {
+  return (
+    <div className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2">
+      <motion.span
+        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.3, 0.8] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="h-1.5 w-1.5 rounded-full bg-[#a78bfa] shadow-[0_0_14px_rgba(167,139,250,.9)]"
+      />
+      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/60">{children}</span>
+    </div>
+  );
+}
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  x = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  x?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: x ? 0 : 30, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.8, delay, ease }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Paras({ items, className = "" }: { items: string[]; className?: string }) {
+  return (
+    <div className={`space-y-4 ${className}`}>
+      {items.map((p, i) => (
+        <p key={i} className="hyi-p">
+          {p}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function Count({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
@@ -428,314 +157,749 @@ function Count({ to, suffix = "" }: { to: number; suffix?: string }) {
     const c = animate(0, to, { duration: 1.8, ease: "easeOut", onUpdate: (l) => setV(Math.round(l)) });
     return () => c.stop();
   }, [inView, to]);
-  return <span ref={ref}>{v}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {v}
+      {suffix}
+    </span>
+  );
 }
- 
+
+function Bg() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      <motion.div
+        animate={{ x: [-100, 90, -100], y: [-50, 80, -50] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -left-24 top-32 h-[520px] w-[520px] rounded-full bg-[#6d28d9]/[0.16] blur-[160px]"
+      />
+      <motion.div
+        animate={{ x: [90, -80, 90], y: [50, -70, 50] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-[-100px] top-[20%] h-[480px] w-[480px] rounded-full bg-[#3b82f6]/[0.12] blur-[170px]"
+      />
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(196,181,253,.9) 1px, transparent 1px)",
+          backgroundSize: "42px 42px",
+          maskImage: "linear-gradient(to bottom, black, transparent 94%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 94%)",
+        }}
+      />
+    </div>
+  );
+}
+
 function Word({ w, p, r }: { w: string; p: MotionValue<number>; r: [number, number] }) {
   const o = useTransform(p, r, [0.15, 1]);
-  return <motion.span style={{ opacity: o }} className="mr-[0.25em] inline-block">{w}</motion.span>;
+  return (
+    <motion.span style={{ opacity: o }} className="mr-[0.25em] inline-block">
+      {w}
+    </motion.span>
+  );
 }
+
 function BeliefText() {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
   const words = belief.split(" ");
   return (
-    <p ref={ref} className={`${display.className} mx-auto max-w-4xl text-center text-3xl leading-tight text-white sm:text-5xl lg:text-6xl`}>
-      {words.map((w, i) => <Word key={i} w={w} p={scrollYProgress} r={[i / words.length, (i + 1) / words.length]} />)}
+    <p
+      ref={ref}
+      className="hyi-h1 hyi-white mx-auto max-w-4xl text-center text-[34px] leading-tight tracking-[-0.04em] sm:text-[52px] lg:text-[64px]"
+    >
+      {words.map((w, i) => (
+        <Word key={i} w={w} p={scrollYProgress} r={[i / words.length, (i + 1) / words.length]} />
+      ))}
     </p>
   );
 }
- 
-/* ---------------- sections ---------------- */
+
+/* ============================ SECTIONS ============================ */
+
 function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const o = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const o = useTransform(scrollYProgress, [0, 0.8], [1, 0.1]);
+
   return (
-    <section ref={ref} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 pt-28">
-      <motion.div style={{ y }} className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#D57EEB]/30 blur-[110px] sm:h-[28rem] sm:w-[28rem]" />
-      <motion.div style={{ y: y2 }} className="pointer-events-none absolute -right-24 bottom-20 h-72 w-72 rounded-full bg-[#FCCB90]/20 blur-[110px] sm:h-[28rem] sm:w-[28rem]" />
-      <motion.div style={{ opacity: o, y: y2 }} className="relative z-10 mx-auto max-w-5xl text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 50, filter: "blur(12px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.1, ease }}
-          className={`${display.className} text-[2.6rem] leading-[1.05] text-white sm:text-7xl lg:text-8xl`}
+    <section
+      ref={ref}
+      aria-labelledby="about-title"
+      className="relative overflow-hidden border-b border-white/[0.06] bg-black"
+    >
+      <Bg />
+      <motion.div
+        style={{ y, opacity: o }}
+        className="relative mx-auto max-w-[1450px] px-5 pb-12 pt-30 max-md:pt-20 md:px-10 lg:px-20"
+      >
+        <Label>HYI.AI / About us</Label>
+
+        {/* the ONE h1 of the page, keyword-rich for SEO */}
+        <h1 id="about-title" className="mt-6">
+          {[
+            ["About HYI.AI:", "hyi-white"],
+            ["The world’s talent,", "hyi-white"],
+            ["on demand.", "hyi-blue"],
+          ].map(([line, cls], i) => (
+            <span key={line} className="block overflow-hidden">
+              <motion.span
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.1 + i * 0.12, ease }}
+                className={`hyi-h1 block text-[44px] leading-[0.98] tracking-[-0.06em] sm:text-[60px] md:text-[78px] lg:text-[76px] ${cls}`}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.8 }}
+          className="mt-6 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
         >
-          The world’s talent,<br /><span className={grad}>on demand.</span>
-        </motion.h1>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 1 }}
-          className="mx-auto mt-6 max-w-2xl text-base text-[#D2D0DD] sm:text-xl">
-          HYI.AI is a global talent marketplace and technology partner for startups, enterprises and scaling companies.
-        </motion.p>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }}
-          className={`mt-4 text-sm sm:text-base ${grad}`}>
-          Global Talent. Technology. Cybersecurity. Artificial Intelligence.
-        </motion.p>
-      </motion.div>
-      <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 h-10 w-6 rounded-full border border-white/30 p-1">
-        <div className="mx-auto h-2 w-1 rounded-full bg-white/70" />
+          <div className="flex items-start gap-3">
+            <CircleDot className="mt-1 h-4.5 w-4.5 shrink-0 hyi-blue-icon" />
+            <p className="hyi-h3 hyi-white">{TAGLINE}</p>
+          </div>
+          <div>
+            <p className="hyi-p">
+              HYI.AI is a global talent marketplace and technology partner for startups, enterprises and scaling
+              companies, founded in 2017.
+            </p>
+            <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-2">
+              {NAV.map(([id, l]) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-[13px] font-semibold text-white/70 transition hover:border-[#a78bfa]/50 hover:text-white"
+                >
+                  {l}
+                </a>
+              ))}
+            </nav>
+            <a
+              href="#who"
+              className="hyi-white mt-6 inline-flex items-center gap-3 text-[14px] font-semibold transition hover:text-[#a78bfa]"
+            >
+              Scroll to explore <ArrowDown className="h-4 w-4" />
+            </a>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
 }
- 
+
+function Stats() {
+  const items = [
+    { n: 150, s: "+", l: "Countries, regions & territories" },
+    { n: 4, s: "", l: "Key areas of business" },
+    { n: 2017, s: "", l: "Year we started" },
+    { n: 24, s: "/7", l: "On-demand talent access" },
+  ];
+  return (
+    <section aria-label="HYI.AI at a glance" className={`relative bg-black pb-0 ${sec}`}>
+      <div className={`${wrap} grid gap-4 sm:grid-cols-2 lg:grid-cols-4`}>
+        {items.map((x, i) => (
+          <Box key={x.l} tone={i % 2 === 0 ? "neu" : "clay"} delay={i * 0.08} className="justify-between">
+            <div className="hyi-h1 hyi-blue text-[40px] tracking-[-0.04em] sm:text-[48px]">
+              {x.n === 2017 ? "2017" : <Count to={x.n} suffix={x.s} />}
+            </div>
+            <p className="hyi-p mt-2 text-[13px]">{x.l}</p>
+          </Box>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function WhoWeAre() {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:py-32">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-        <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.9, ease }}>
-          <h2 className={`${display.className} text-4xl text-white sm:text-5xl`}>Who we are</h2>
-          <p className="mt-6 text-lg leading-relaxed text-[#D2D0DD]">
-            HYI.AI is one of the largest remote, verified talent marketplaces, serving startups, enterprises and professionals across 150+ countries, regions and territories.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-[#D2D0DD]">
-            Companies source, hire and manage top-tier remote talent on demand, with no long-term commitments. Our approach is straightforward: understand the requirement, bring the right expertise and help deliver the outcome.
-          </p>
-          <div className="mt-10 grid grid-cols-3 gap-4">
-            {[[150, "+", "countries, regions and territories"], [4, "", "areas of business"], [2017, "", "year we started"]].map(([n, s, l]) => (
-              <div key={String(l)}>
-                <div className={`${display.className} text-3xl sm:text-5xl ${grad}`}>
-                  {n === 2017 ? "2017" : <Count to={n as number} suffix={s as string} />}
-                </div>
-                <div className="mt-1 text-xs text-[#9C99B0] sm:text-sm">{l}</div>
-              </div>
+    <section id="who" aria-labelledby="who-title" className={`relative scroll-mt-24 bg-black ${sec}`}>
+      <div className={wrap}>
+        <Reveal>
+          <Label>Who we are</Label>
+          <h2
+            id="who-title"
+            className="hyi-h1 mt-4 max-w-[860px] text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+          >
+            <span className="hyi-white">A global talent marketplace and</span>
+            <span className="block hyi-blue">technology solutions partner.</span>
+          </h2>
+        </Reveal>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+          <Box tone="neu" hover={false} x={-40}>
+            <Paras items={whoLead} />
+          </Box>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {pillars.map((p, i) => (
+              <Box key={p.t} tone={i % 2 === 0 ? "clay" : "neu"} delay={i * 0.08} x={40}>
+                <span className="font-mono text-[12px] text-[#a78bfa]">0{i + 1}</span>
+                <h3 className="hyi-h3 hyi-white mt-4">{p.t}</h3>
+                <p className="hyi-p mt-2">{p.d}</p>
+              </Box>
             ))}
           </div>
-        </motion.div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {pillars.map((p, i) => (
-            <motion.div key={p.t}
-              initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease }}
-              whileHover={{ y: -6 }} className={`${card} p-6`}>
-              <h3 className="text-lg font-semibold text-white">{p.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#B9B6CC]">{p.d}</p>
-            </motion.div>
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {whoMore.map((p, i) => (
+            <Box key={i} tone={(Math.floor(i / 2) + i) % 2 === 0 ? "neu" : "clay"} delay={(i % 2) * 0.08} hover={false}>
+              <p className="hyi-p">{p}</p>
+            </Box>
           ))}
         </div>
       </div>
     </section>
   );
 }
- 
-/* LEFT side stays pinned, story scrolls on the right */
+
+/* left pinned, story scrolls on the right */
 function Story() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.6", "end 0.7"] });
+
   return (
-    <section ref={ref} className="mx-auto max-w-7xl px-5 py-24 sm:py-32">
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
-        <div className="lg:sticky lg:top-28 lg:h-fit">
-          <h2 className={`${display.className} text-4xl leading-tight text-white sm:text-6xl`}>Our story</h2>
-          <p className="mt-5 max-w-md text-lg text-[#D2D0DD]">
-            This is our story. And we are still writing it.
-          </p>
-          <div className="mt-8 hidden h-48 w-1 overflow-hidden rounded-full bg-white/10 lg:block">
-            <motion.div style={{ scaleY: scrollYProgress, originY: 0 }} className="h-full w-full bg-gradient-to-b from-[#FCCB90] to-[#D57EEB]" />
+    <section
+      id="story"
+      ref={ref}
+      aria-labelledby="story-title"
+      className={`relative scroll-mt-24 bg-[#030303] ${sec}`}
+    >
+      <div className={wrap}>
+        <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:h-fit">
+            <Label>Our story</Label>
+            <h2
+              id="story-title"
+              className="hyi-h1 mt-4 max-w-[460px] text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+            >
+              <span className="hyi-white">This is our story.</span>
+              <span className="block hyi-blue">And we are still writing it.</span>
+            </h2>
+            <p className="hyi-p mt-4 max-w-[400px]">HYI.AI – Connecting People, Technology, and Opportunities.</p>
+            <div className="mt-8 hidden h-48 w-1 overflow-hidden rounded-full bg-white/10 lg:block">
+              <motion.div
+                style={{ scaleY: scrollYProgress, originY: 0 }}
+                className="h-full w-full bg-gradient-to-b from-[#60a5fa] to-[#6d28d9]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {story.map((s, i) => (
+              <Box key={s.t} tone={i % 2 === 0 ? "neu" : "clay"} hover={false}>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#a78bfa]">{s.y}</span>
+                  <span className="font-mono text-[12px] text-white/50">0{i + 1}</span>
+                </div>
+                <h3 className="hyi-h3 hyi-white mt-4">{s.t}</h3>
+                <Paras items={s.d} className="mt-3" />
+              </Box>
+            ))}
           </div>
         </div>
-        <div className="space-y-6">
-          {story.map((s) => (
-            <motion.div key={s.t}
-              initial={{ opacity: 0.2, scale: 0.94 }} whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ amount: 0.6 }} transition={{ duration: 0.6, ease }}
-              className={`${card} p-7 sm:p-9`}>
-              <div className={`text-sm font-semibold ${grad}`}>{s.y}</div>
-              <h3 className={`${display.className} mt-2 text-2xl text-white sm:text-3xl`}>{s.t}</h3>
-              <p className="mt-3 leading-relaxed text-[#B9B6CC]">{s.d}</p>
-            </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Belief() {
+  return (
+    <section aria-label="What we believe" className="relative overflow-hidden bg-black px-5 py-16 md:py-24">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7c3aed]/10 blur-[150px]" />
+      <div className="relative">
+        <Reveal className="mb-8 text-center">
+          <Label>What we believe</Label>
+          <p className="hyi-p mx-auto mt-5 max-w-2xl">{believeLead}</p>
+        </Reveal>
+        <BeliefText />
+      </div>
+    </section>
+  );
+}
+
+function VisionMission() {
+  return (
+    <section id="vision" aria-labelledby="vision-title" className={`relative scroll-mt-24 bg-[#030303] ${sec}`}>
+      <div className={wrap}>
+        <h2 id="vision-title" className="sr-only">
+          Vision, mission, how we work and looking ahead
+        </h2>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Box tone="neu" x={-40} hover={false} className="md:p-9">
+            <Label>Our vision</Label>
+            <Paras items={vision} className="mt-5" />
+          </Box>
+          <Box tone="clay" x={40} hover={false} className="md:p-9">
+            <Label>Our mission</Label>
+            <Paras items={mission} className="mt-5" />
+          </Box>
+        </div>
+
+        <div className="mt-14 grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-16">
+          <Reveal>
+            <Label>How we work</Label>
+            <h3 className="hyi-h1 mt-4 text-[34px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[46px]">
+              <span className="hyi-white">Good relationships</span>
+              <span className="block hyi-blue">begin with understanding.</span>
+            </h3>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Paras items={howWork} />
+          </Reveal>
+        </div>
+
+        <ol className="mt-8 grid gap-4 sm:grid-cols-3">
+          {steps.map((s, i) => (
+            <li key={s} className="h-full">
+              <Box tone={i % 2 === 0 ? "clay" : "neu"} delay={i * 0.1}>
+                <span className="font-mono text-[12px] text-[#a78bfa]">0{i + 1}</span>
+                <h4 className="hyi-h3 hyi-white mt-4">{s}</h4>
+              </Box>
+            </li>
           ))}
+        </ol>
+
+        <div className="mt-14 grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-16">
+          <Reveal>
+            <Label>Looking ahead</Label>
+            <h3 className="hyi-h1 mt-4 text-[34px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[46px]">
+              <span className="hyi-white">AI and emerging</span>
+              <span className="block hyi-blue">technologies.</span>
+            </h3>
+          </Reveal>
+          <Box tone="neu" hover={false} delay={0.08}>
+            <Paras items={lookingAhead} />
+          </Box>
         </div>
       </div>
     </section>
   );
 }
- 
-function Belief() {
-  return (
-    <section className="px-5 py-28 sm:py-44">
-      <BeliefText />
-    </section>
-  );
-}
- 
-function VisionMission() {
-  const steps = ["Understand the requirement", "Bring the right expertise", "Help deliver the outcome"];
-  return (
-    <section className="mx-auto max-w-7xl px-5 py-16 sm:py-24">
-      <div className="grid gap-6 lg:grid-cols-2">
-        {[
-          { t: "Our vision", d: "To become a trusted partner for businesses around the world, helping them find the right people, make better use of technology and grow with confidence.", x: -70 },
-          { t: "Our mission", d: "To help businesses get the right people, the right technology and the right support whenever they need it, with ready-to-deploy professionals, technology solutions, cybersecurity and dedicated global teams.", x: 70 },
-        ].map((c) => (
-          <motion.div key={c.t} initial={{ opacity: 0, x: c.x }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, ease }}
-            className="rounded-[2rem] bg-gradient-to-br from-[#FCCB90]/50 via-white/10 to-[#D57EEB]/50 p-px">
-            <div className="h-full rounded-[calc(2rem-1px)] bg-[#0D0B18] p-8 sm:p-12">
-              <h3 className={`${display.className} text-3xl text-white sm:text-4xl`}>{c.t}</h3>
-              <p className="mt-5 text-lg leading-relaxed text-[#D2D0DD]">{c.d}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      <h3 className={`${display.className} mt-20 text-center text-3xl text-white sm:text-4xl`}>How we work</h3>
-      <div className="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-3">
-        {steps.map((s, i) => (
-          <motion.div key={s} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.7, ease }} className={`${card} p-6 text-center text-white`}>
-            <div className={`text-2xl font-semibold ${grad}`}>{i + 1}</div>
-            <div className="mt-2">{s}</div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-}
- 
+
 function Founder() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:py-32">
-      <div ref={ref} className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-          transition={{ duration: 0.9, ease }} className="relative mx-auto w-full max-w-sm">
-          <div className="absolute -inset-3 rounded-[2.2rem] bg-gradient-to-br from-[#FCCB90] to-[#D57EEB] opacity-40 blur-2xl" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/15">
-            <motion.div style={{ y }} className="absolute -inset-10">
-              {/* replace with the client's approved photo */}
-              <Image src="/images/yakub-sheikh.jpg" alt="Yakub Sheikh" fill sizes="(max-width:1024px) 90vw, 400px" className="object-cover" />
-            </motion.div>
-          </div>
-        </motion.div>
-        <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.9, ease }}>
-          <h2 className={`${display.className} text-4xl text-white sm:text-5xl`}>The vision behind HYI.AI</h2>
-          <p className="mt-2 text-[#9C99B0]">Yakub Sheikh · Entrepreneur since 2012</p>
-          <p className="mt-6 text-lg leading-relaxed text-[#D2D0DD]">
-            Yakub is an entrepreneur with an interest in technology, business development, strategic investments and building new opportunities. In 2017 he turned his vision into HYI, to help close the gap between ambitious plans and the people and expertise needed to deliver them.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-[#D2D0DD]">
-            For him, entrepreneurship is about understanding problems, finding practical solutions, taking calculated risks and adapting when the market changes.
-          </p>
-          <blockquote className={`${display.className} mt-8 border-l-2 border-[#D57EEB] pl-5 text-xl leading-snug text-white sm:text-2xl`}>
-            “I believe growth comes from understanding the right opportunities, bringing the right people together, and having the courage to keep moving forward.”
-          </blockquote>
-        </motion.div>
+    <section
+      id="founder"
+      aria-labelledby="founder-title"
+      className={`relative scroll-mt-24 overflow-hidden bg-black ${sec}`}
+    >
+      <div className="pointer-events-none absolute -left-40 top-1/3 h-[26rem] w-[26rem] rounded-full bg-[#3b82f6]/10 blur-[130px]" />
+      <div className={`relative ${wrap}`}>
+        <div ref={ref} className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease }}
+            className="lg:sticky lg:top-28 lg:h-fit"
+          >
+            <div className="relative mx-auto w-full max-w-sm">
+              <div className="absolute -inset-3 rounded-[2.2rem] bg-gradient-to-br from-[#60a5fa] to-[#6d28d9] opacity-40 blur-2xl" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/15">
+                <motion.div style={{ y }} className="absolute -inset-8">
+                  <Image
+                    src="/images/yakub-sheikh.jpg"
+                    alt="Yakub Sheikh, entrepreneur and founder of HYI.AI"
+                    fill
+                    sizes="(max-width:1024px) 90vw, 400px"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </div>
+            </div>
+
+            <div className="mx-auto mt-6 max-w-sm">
+              <p className="hyi-h3 hyi-white">Yakub Sheikh</p>
+              <p className="hyi-p mt-1">Entrepreneur · since 2012</p>
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hyi-white mt-3 inline-flex items-center gap-2 text-[14px] font-semibold transition hover:text-[#a78bfa]"
+              >
+                Connect on LinkedIn <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </motion.div>
+
+          <Reveal x={50}>
+            <Label>Our founder</Label>
+            <h2
+              id="founder-title"
+              className="hyi-h1 mt-4 text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+            >
+              <span className="hyi-white">The vision behind</span>
+              <span className="block hyi-blue">HYI.AI</span>
+            </h2>
+            <p className="hyi-h3 hyi-white mt-4">Yakub Sheikh | Entrepreneur</p>
+
+            <Paras items={founderParas} className="mt-5" />
+
+            <h3 className="hyi-h3 hyi-blue mt-8">His way of thinking</h3>
+            <Paras items={founderThinking} className="mt-3" />
+
+            <div className="mt-8">
+              <Box tone="clay" hover={false}>
+                <blockquote>
+                  <p className="hyi-h3 hyi-white leading-snug">“{founderQuote}”</p>
+                  <footer className="mt-4">
+                    <p className="hyi-white font-semibold">Yakub Sheikh</p>
+                    <p className="hyi-p">Entrepreneur, HYI.AI</p>
+                  </footer>
+                </blockquote>
+              </Box>
+            </div>
+
+            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+              {founderFacts.map((f, i) => (
+                <li key={f} className="h-full">
+                  <Box tone={i % 2 === 0 ? "neu" : "clay"} delay={i * 0.06} className="!p-5">
+                    <div className="flex items-start gap-3">
+                      <CircleDot className="mt-0.5 h-4.5 w-4.5 shrink-0 hyi-blue-icon" />
+                      <span className="hyi-p">{f}</span>
+                    </div>
+                  </Box>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
 }
- 
-/* RIGHT side stays pinned, values scroll on the left */
+
+/* right pinned, values scroll on the left */
 function Values() {
   const [active, setActive] = useState(0);
+
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:py-32">
-      <h2 className={`${display.className} mb-12 text-4xl text-white sm:text-6xl`}>What we value</h2>
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-        <div className="space-y-5">
-          {values.map((v, i) => (
-            <motion.div key={v.t} onViewportEnter={() => setActive(i)} viewport={{ amount: 0.6 }}
-              initial={{ opacity: 0.25 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.5 }}
-              className={`${card} p-7 sm:p-9 lg:min-h-[40vh]`}>
-              <h3 className="text-xl font-semibold text-white sm:text-2xl">{v.t}</h3>
-              <p className="mt-3 leading-relaxed text-[#B9B6CC]">{v.d}</p>
-            </motion.div>
-          ))}
-        </div>
-        <div className="hidden lg:block">
-          <div className="sticky top-28 flex h-[60vh] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#D57EEB]/20 to-[#FCCB90]/10 p-10">
-            <AnimatePresence mode="wait">
-              <motion.div key={active} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.45, ease }}>
-                <div className={`${display.className} text-5xl leading-tight ${grad}`}>{values[active].t}</div>
+    <section id="values" aria-labelledby="values-title" className={`relative scroll-mt-24 bg-[#030303] ${sec}`}>
+      <div className={wrap}>
+        <Reveal>
+          <Label>Our values</Label>
+          <h2
+            id="values-title"
+            className="hyi-h1 mt-4 max-w-[800px] text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+          >
+            <span className="hyi-white">The way we do business</span>
+            <span className="block hyi-blue">matters as much as the work.</span>
+          </h2>
+          <Paras items={valuesIntro} className="mt-5 max-w-[760px]" />
+        </Reveal>
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
+          <div className="space-y-4">
+            {values.map((v, i) => (
+              <motion.div
+                key={v.t}
+                onViewportEnter={() => setActive(i)}
+                viewport={{ amount: 0.6 }}
+                initial={{ opacity: 0.35 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className={`${toneClass(i % 2 === 0 ? "neu" : "clay")} p-6 sm:p-8 lg:min-h-[28vh]`}>
+                  <span className="font-mono text-[12px] text-[#a78bfa]">0{i + 1}</span>
+                  <h3 className="hyi-h3 hyi-white mt-3">{v.t}</h3>
+                  <p className="hyi-p mt-2">{v.d}</p>
+                </div>
               </motion.div>
-            </AnimatePresence>
-            <p className="text-[#D2D0DD]">Values are not something to write down and forget. They show in how we communicate, decide and keep our promises.</p>
-            <div className="flex gap-2">
-              {values.map((_, i) => (
-                <div key={i} className={`h-1 flex-1 rounded-full transition-colors duration-500 ${i <= active ? "bg-[#FCCB90]" : "bg-white/15"}`} />
-              ))}
+            ))}
+          </div>
+
+          <div className="hidden lg:block">
+            <div className="sticky top-28">
+              <div className="hyi-card hyi-clay-soft flex h-[60vh] flex-col justify-between overflow-hidden p-9">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.45, ease }}
+                  >
+                    <div className="font-mono text-[12px] text-[#c4b5fd]">0{active + 1}</div>
+                    <div className="hyi-h1 hyi-white mt-3 text-[40px] leading-tight tracking-[-0.04em]">
+                      {values[active].t}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+                <p className="hyi-p">
+                  Values are not something to write down and forget. They show in how we communicate, decide and keep
+                  our promises.
+                </p>
+                <div className="flex gap-2" aria-hidden>
+                  {values.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-1 flex-1 rounded-full transition-colors duration-500 ${
+                        i <= active ? "bg-white" : "bg-white/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <Reveal className="mt-12">
+          <h3 className="hyi-h3 hyi-white">What these values mean to us</h3>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {valuesMean.map((p, i) => (
+              <Box key={i} tone={i % 2 === 0 ? "neu" : "clay"} delay={i * 0.08} hover={false}>
+                <p className="hyi-p">{p}</p>
+              </Box>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
- 
+
+function FutureIntro() {
+  return (
+    <section
+      id="future"
+      aria-labelledby="future-title"
+      className={`relative scroll-mt-24 overflow-hidden bg-black pb-0 ${sec}`}
+    >
+      <div className="pointer-events-none absolute right-[-150px] top-[10%] h-[450px] w-[450px] rounded-full bg-[#6d28d9]/10 blur-[150px]" />
+      <div className={`relative ${wrap}`}>
+        <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-16">
+          <Reveal>
+            <Label>Our future</Label>
+            <h2
+              id="future-title"
+              className="hyi-h1 mt-4 text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+            >
+              <span className="hyi-white">We have come a long way,</span>
+              <span className="block hyi-blue">and there is still so much to do.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Paras items={futureIntro} />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* page stays pinned while cards travel sideways */
-function Future() {
+function FutureTrack() {
   const ref = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const [dist, setDist] = useState(0);
+
   useEffect(() => {
-    const m = () => track.current && setDist(Math.max(0, track.current.scrollWidth - window.innerWidth));
-    m(); window.addEventListener("resize", m);
-    return () => window.removeEventListener("resize", m);
+    const el = track.current;
+    if (!el) return;
+
+    const measure = () => {
+      const d = el.scrollWidth - window.innerWidth;
+      setDist(Math.max(0, Math.round(d)));
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("load", measure);
+    };
   }, []);
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const x = useTransform(scrollYProgress, [0, 1], [0, -dist]);
+  const bar = useSpring(scrollYProgress, { stiffness: 100, damping: 25 });
+
   return (
-    <section ref={ref} style={{ height: `calc(100svh + ${dist}px)` }} className="relative">
+    <section
+      ref={ref}
+      aria-label="Where we are heading"
+      style={{ height: `calc(100svh + ${dist}px)` }}
+      className="relative bg-black"
+    >
       <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
-        <div className="mx-auto w-full max-w-7xl px-5">
-          <h2 className={`${display.className} text-4xl text-white sm:text-6xl`}>Our future</h2>
-          <p className="mt-3 max-w-xl text-[#D2D0DD]">We have come a long way, and there is still so much to do.</p>
+        <div className="mx-auto w-full max-w-[1320px] px-5 md:px-10 lg:px-20">
+          <p className="hyi-h3 hyi-blue">Where we are heading</p>
         </div>
-        <motion.div ref={track} style={{ x }} className="mt-10 flex w-max gap-5 px-5 sm:gap-6 lg:pl-[max(1.25rem,calc((100vw-80rem)/2+1.25rem))]">
-          {future.map((f) => (
-            <div key={f.t} className={`${card} flex h-[45vh] min-h-[280px] w-[78vw] shrink-0 flex-col justify-end p-7 sm:w-[24rem] sm:p-9`}>
-              <h3 className={`${display.className} text-2xl text-white sm:text-3xl`}>{f.t}</h3>
-              <p className="mt-3 leading-relaxed text-[#B9B6CC]">{f.d}</p>
+
+        <motion.div
+          ref={track}
+          style={{ x }}
+          className="mt-6 flex w-max items-stretch gap-4 px-5 md:px-10 lg:pl-[max(5rem,calc((100vw-82.5rem)/2+5rem))] lg:pr-20"
+        >
+          {future.map((f, i) => (
+            <div
+              key={f.t}
+              className={`${toneClass(i % 2 === 0 ? "neu" : "clay")} flex w-[82vw] shrink-0 flex-col p-6 sm:w-[27rem] md:p-8`}
+            >
+              <span className="font-mono text-[12px] text-[#a78bfa]">0{i + 1}</span>
+              <h3 className="hyi-h3 hyi-white mt-4">{f.t}</h3>
+              <p className="hyi-p mt-3">{f.d}</p>
             </div>
           ))}
         </motion.div>
-        <div className="mx-auto mt-10 h-1 w-[min(90%,40rem)] overflow-hidden rounded-full bg-white/10">
-          <motion.div style={{ scaleX: scrollYProgress, originX: 0 }} className="h-full w-full bg-gradient-to-r from-[#FCCB90] to-[#D57EEB]" />
+
+        <div className="mx-auto mt-8 h-1 w-[min(90%,40rem)] overflow-hidden rounded-full bg-white/10" aria-hidden>
+          <motion.div
+            style={{ scaleX: bar, originX: 0 }}
+            className="h-full w-full bg-gradient-to-r from-[#60a5fa] to-[#6d28d9]"
+          />
         </div>
       </div>
     </section>
   );
 }
- 
-function Closing() {
+
+/* Visible FAQ: same text as FAQPage JSON-LD (required by Google) */
+function Faq() {
   return (
-    <section className="px-5 pb-28 pt-16 text-center sm:pb-40">
-      <motion.div initial={{ opacity: 0, scale: 0.92 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease }}>
-        <h2 className={`${display.className} mx-auto max-w-4xl text-4xl leading-tight text-white sm:text-7xl`}>
-          Growing with change.<br /><span className={grad}>Moving forward together.</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-[#D2D0DD]">
-          We started HYI with a simple idea in 2017. Today we are building on it with a bigger vision, a global outlook and an open mind.
-        </p>
-      </motion.div>
+    <section id="faq" aria-labelledby="faq-title" className={`relative scroll-mt-24 bg-[#030303] ${sec}`}>
+      <div className={`${wrap} grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-16`}>
+        <Reveal>
+          <Label>FAQ</Label>
+          <h2
+            id="faq-title"
+            className="hyi-h1 mt-4 text-[36px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]"
+          >
+            <span className="hyi-white">Frequently asked</span>
+            <span className="block hyi-blue">questions about HYI.AI.</span>
+          </h2>
+        </Reveal>
+
+        <div className="space-y-3">
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={i * 0.05}>
+              <details
+                className={`${toneClass(i % 2 === 0 ? "neu" : "clay")} group p-5 sm:p-6 [&_summary::-webkit-details-marker]:hidden`}
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+                  <h3 className="hyi-h3 hyi-white">{f.q}</h3>
+                  <ChevronDown className="hyi-white-icon h-5 w-5 shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <p className="hyi-p mt-3">{f.a}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
- 
-export default function AboutUsPremium() {
+
+function Closing() {
+  return (
+    <section
+      aria-labelledby="closing-title"
+      className="relative overflow-hidden border-t border-white/[0.06] bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20"
+    >
+      <Bg />
+      <div className="relative mx-auto max-w-[900px] text-center">
+        <Reveal>
+          <h2
+            id="closing-title"
+            className="hyi-h1 text-[38px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[58px]"
+          >
+            <span className="hyi-white">Growing With Change.</span>
+            <span className="block hyi-blue">Moving Forward Together.</span>
+          </h2>
+          <Paras items={futureClose} className="mx-auto mt-6 max-w-[680px]" />
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-[16px] font-bold text-black transition hover:scale-[1.03]"
+            >
+              Talk to HYI.AI
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/hire-developer"
+              className="inline-flex items-center rounded-full border border-white/[0.14] px-7 py-3.5 text-[16px] font-bold text-white/70 transition hover:border-[#a78bfa]/50 hover:text-white"
+            >
+              Hire remote talent
+            </Link>
+          </div>
+
+          <p className="hyi-h3 hyi-white mt-8">HYI.AI – Growing With Change. Moving Forward Together.</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ PAGE ============================ */
+
+export default function AboutClient() {
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 25, restDelta: 0.001 });
+
   return (
     <MotionConfig reducedMotion="user">
-      <Header/>
-      {/* no overflow-hidden here: it would break the sticky sections */}
-      <main className="w-full overflow-x-clip bg-[#07060F] text-white">
+      {/* header: always above everything */}
+      <div className="relative z-50">
+        <Header />
+      </div>
 
-        <Hero />
+      <motion.div
+        style={{ scaleX: progress }}
+        className="fixed left-0 right-0 top-0 z-[100] h-[2px] origin-left bg-[#60a5fa]"
+      />
+
+      {/* content layer: isolated so hyi-card transforms can't leak over the footer.
+          No overflow-hidden here: it would break the sticky sections. */}
+<main className="relative isolate z-10 w-full overflow-x-clip bg-black text-white [contain:paint]">        <Hero />
+        <Stats />
         <WhoWeAre />
         <Story />
         <Belief />
         <VisionMission />
         <Founder />
         <Values />
-        <Future />
+        <FutureIntro />
+        <FutureTrack />
+        <Faq />
         <Closing />
       </main>
-      <Footer/>
+
+      {/* footer layer: solid background, always below content flow and above it visually */}
+  <div className="relative isolate z-30 mt-0 bg-black">
+  <Footer />
+</div>
+
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+        ::selection {
+          background: rgba(96, 165, 250, 0.4);
+          color: #ffffff;
+        }
+      `}</style>
     </MotionConfig>
   );
 }
- 

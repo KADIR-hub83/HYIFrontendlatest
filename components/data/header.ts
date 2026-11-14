@@ -1703,6 +1703,25 @@ export const headerData: HeaderDataProps = {
   outerPadding: "large",
 
   links: [
+
+    {
+       label: "AI Advisory",
+      text: "",
+      children: [
+         {
+          label: "AI Lab",
+          href: "/ai/ai-lab",
+        },
+         {
+          label: "AI Governance",
+          href: "/ai/ai-governance",
+        },
+         {
+          label: "AI Responsible",
+          href: "/ai/ai-responsible",
+        },
+      ]
+    },
        
     {
       label: "Corporate AI Training",
@@ -1738,24 +1757,7 @@ export const headerData: HeaderDataProps = {
         },
       ],
     },
-      {
-       label: "AI Advisory",
-      text: "",
-      children: [
-         {
-          label: "AI Lab",
-          href: "/ai/ai-lab",
-        },
-         {
-          label: "AI Governance",
-          href: "/ai/ai-governance",
-        },
-         {
-          label: "AI Responsible",
-          href: "/ai/ai-responsible",
-        },
-      ]
-    },
+      
 
     {
       label: "College & University Programs",

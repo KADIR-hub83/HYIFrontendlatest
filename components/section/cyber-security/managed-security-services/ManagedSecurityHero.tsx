@@ -24,7 +24,7 @@ export default function ManagedSecurityHero({ service }: Props) {
   const opacity = useTransform(scrollY, [0, 650], [1, 0.15]);
 
   return (
-    <section className="relative min-h-[1050px] overflow-hidden border-b border-white/[0.07] bg-black">
+    <section className="relative  overflow-hidden  bg-black">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.22]"
         style={{
@@ -38,38 +38,21 @@ export default function ManagedSecurityHero({ service }: Props) {
         }}
       />
 
-      <div className="pointer-events-none absolute left-1/2 top-[32%] h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-[#7046e6]/[0.10] blur-[170px]" />
 
-      <div className="relative mx-auto max-w-[1450px] px-6 pb-24 pt-36 md:px-10 lg:px-14">
+      <div className="relative mx-auto max-w-[1350px] px-6  pt-36 md:px-10 lg:px-14">
         <motion.div
           style={{ y: titleY, opacity }}
           className="relative z-20 mx-auto max-w-[1100px] text-center"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9878ef] opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#9878ef]" />
-            </span>
-
-            <span className="font-mono text-[10px] uppercase tracking-[0.26em] text-white/[0.48]">
-              {service.eyebrow}
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="text-[52px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[72px] md:text-[96px] lg:text-[116px]"
+            className="hyi-h1 hyi-white lg:text-4xl"
           >
             {service.title}
 
-            <span className="mt-2 block text-[#a98af4]">
+            <span className=" block hyi-blue">
               {service.accent}
             </span>
           </motion.h1>
@@ -78,7 +61,7 @@ export default function ManagedSecurityHero({ service }: Props) {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="mx-auto mt-9 max-w-[800px] text-[15px] leading-8 text-white/[0.56] md:text-[17px]"
+            className="mx-auto mt-3 hyi-p max-w-[800px]"
           >
             {service.description}
           </motion.p>
@@ -86,7 +69,7 @@ export default function ManagedSecurityHero({ service }: Props) {
 
         <motion.div
           style={{ y: visualY }}
-          className="relative z-10 mx-auto mt-20 max-w-[1220px]"
+          className="relative z-10 mx-auto mt-10 max-w-[1450px]"
         >
           <div className="overflow-hidden rounded-[32px] border border-white/[0.09] bg-[#050505] shadow-[0_60px_180px_rgba(112,70,230,0.12)]">
             <div className="flex h-14 items-center justify-between border-b border-white/[0.07] px-5">
@@ -96,7 +79,7 @@ export default function ManagedSecurityHero({ service }: Props) {
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </div>
 
-              <div className="flex items-center gap-2 rounded-full border border-white/[0.07] px-4 py-2">
+              <div className="flex items-center gap-2 rounded-full border border-white/[0.07] px-4 py-2 z-10">
                 <ShieldCheck size={12} className="text-[#9878ef]" />
 
                 <span className="font-mono text-[9px] tracking-[0.22em] text-white/[0.30]">
@@ -289,20 +272,7 @@ export default function ManagedSecurityHero({ service }: Props) {
             </div>
           </div>
         </motion.div>
-
-        <div className="mt-10 flex justify-center">
-          <a
-            href="#security-overview"
-            className="group flex items-center gap-3 text-[11px] text-white/[0.35]"
-          >
-            Explore security system
-
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] transition group-hover:border-[#9878ef]/40">
-              <ArrowDown size={13} />
-            </span>
-          </a>
-        </div>
-      </div>
+   </div>
     </section>
   );
 }

@@ -44,24 +44,22 @@ const expertise = [
 
 export default function DesignerExpertise() {
   return (
-    <section className="px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
+    <section className="px-5 py-10 sm:px-8 lg:px-12 ">
       <div className="mx-auto max-w-[1450px]">
         <div className="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
           <div>
             <div className="sticky top-28">
-              <span className="text-[10px] uppercase tracking-[0.25em] text-[#a78bfa]">
-                Expertise
-              </span>
+             
 
-              <h2 className="mt-5 text-[clamp(44px,5vw,78px)] font-medium leading-[0.92] tracking-[-0.06em]">
+              <h2 className="hyi-h1 text-[clamp(44px,5vw,78px)] font-medium leading-[0.92] tracking-[-0.06em]">
                 The right
                 <br />
                 designer,
                 <br />
-                <span className="text-white/25">right now.</span>
+                <span className="hyi-blue">right now.</span>
               </h2>
 
-              <p className="mt-7 max-w-[340px] text-[12px] leading-6 text-white/40">
+              <p className="mt-3 max-w-[340px] hyi-p">
                 Add exactly the design capability your team needs without
                 rebuilding your entire hiring pipeline.
               </p>
@@ -72,11 +70,9 @@ export default function DesignerExpertise() {
             {expertise.map(({ icon: Icon, title, text }, index) => (
               <div
                 key={title}
-                className="group relative min-h-[260px] bg-[#080808] p-8 transition duration-500 hover:bg-[#0d0c10]"
+                className="group relative  bg-[#080808] p-6 transition duration-500 hover:bg-[#0d0c10]"
               >
-                <span className="absolute right-7 top-7 font-mono text-[9px] text-white/15">
-                  0{index + 1}
-                </span>
+      
 
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] transition group-hover:border-[#8b5cf6]/30 group-hover:bg-[#8b5cf6]/10">
                   <Icon
@@ -85,10 +81,10 @@ export default function DesignerExpertise() {
                   />
                 </div>
 
-                <div className="mt-20">
-                  <h3 className="text-[18px] font-medium">{title}</h3>
+                <div className="mt-3">
+                  <h3 className="hyi-h3 hy-white">{title}</h3>
 
-                  <p className="mt-3 max-w-[260px] text-[11px] leading-5 text-white/35">
+                  <p className="mt-2 max-w-[260px] hyi-p">
                     {text}
                   </p>
                 </div>

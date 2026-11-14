@@ -26,22 +26,20 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#080808] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
-      <div className="mx-auto max-w-[1450px]">
+    <section className=" bg-[#080808] px-5 py- sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1350px]">
         <div className="mb-16 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-white/30">
-              Selected work
-            </span>
+          
 
-            <h2 className="mt-5 text-[clamp(45px,6vw,90px)] font-medium leading-[0.9] tracking-[-0.065em]">
+            <h2 className="mt-5 text-[clamp(45px,6vw,90px)] hyi-h1 font-medium leading-[0.9] tracking-[-0.065em]">
               Designed to
               <br />
-              <span className="text-white/25">move business.</span>
+              <span className="hyi-blue">move business.</span>
             </h2>
           </div>
 
-          <p className="max-w-[360px] text-[12px] leading-6 text-white/40">
+          <p className="max-w-[360px] hyi-p">
             Senior designers who can move between product thinking, interaction
             design and visual execution.
           </p>
@@ -54,7 +52,7 @@ export default function SelectedWork() {
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="group relative min-h-[650px] overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#0b0b0d]"
+              className="group relative min-h-[480px] overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#0b0b0d]"
             >
               <img
                 src={project.background}
@@ -117,8 +115,8 @@ export default function SelectedWork() {
                   </div>
                 ) : (
                   <div className="relative w-full max-w-[850px]">
-                    <div className="rounded-[24px] border border-white/10 bg-[#101014]/95 p-5 shadow-2xl backdrop-blur-xl">
-                      <div className="mb-5 flex items-center justify-between">
+                    <div className="rounded-[24px] border border-white/10 bg-[#101014]/95 p-5 shadow-2xl mt-20 backdrop-blur-xl">
+                      <div className=" flex items-center justify-between">
                         <div>
                           <div className="text-[10px] text-white/30">
                             Workspace
@@ -174,16 +172,14 @@ export default function SelectedWork() {
 
               <div className="absolute inset-x-0 bottom-0 z-10 grid gap-5 p-7 sm:p-10 lg:grid-cols-[1fr_1fr_auto] lg:items-end">
                 <div>
-                  <div className="mb-3 text-[9px] tracking-[0.18em] text-white/35">
-                    {project.index} / {project.type}
-                  </div>
+               
 
-                  <h3 className="max-w-[600px] text-[28px] font-medium leading-[1.05] tracking-[-0.04em] sm:text-[38px]">
+                  <h3 className="max-w-[600px] text-[28px] hyi-h3 hyi-white">
                     {project.title}
                   </h3>
                 </div>
 
-                <p className="max-w-[370px] text-[11px] leading-5 text-white/40">
+                <p className="max-w-[370px] hyi-p">
                   {project.description}
                 </p>
 

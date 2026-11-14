@@ -210,7 +210,8 @@
 //       ["Help", "/help"],
 //       ["Blogs", "/blogs"],
 //       ["Media", "/media"],
-//       ["Contact Us", "/contact-us"],
+//       ["Contact Us", "/help"],
+//       ["Our Expert", "/talk-to-our-expert"],
 //     ],
 //   },
 
@@ -308,123 +309,190 @@
 
 
 
-import { headerData } from "./header";
+// ==================================================
+// FOOTER DATA
+// Column order = footer.dynamicLinks (neeche dekho)
+// ==================================================
 
-// ========================
-// Types
-// ========================
+export const footerSections = {
+  // ==================================================
+  // 1. FOR TALENT
+  // ==================================================
 
-export type FooterLink = readonly [label: string, href: string];
-
-export type FooterSection = {
-  heading: string;
-  links: readonly FooterLink[];
-};
-
-export type MegaGroup = {
-  heading: string;
-  links: FooterLink[];
-};
-
-export type MegaMenu = {
-  key: string;
-  heading: string;
-  paragraph?: string;
-  groups: MegaGroup[];
-};
-
-// ========================
-// Helpers (header data se footer data banate hain)
-// ========================
-
-const getNav = (value: string) =>
-  headerData.nav.find((item) => item.value === value);
-
-const toLinks = (
-  items?: { label: string; href?: string }[]
-): FooterLink[] =>
-  (items ?? [])
-    .filter((item) => !!item.href)
-    .map((item) => [item.label, item.href as string] as const);
-
-// Direct links (jinke children nahi hain)
-const getFlatLinks = (value: string): FooterLink[] =>
-  toLinks(getNav(value)?.links?.filter((l) => !l.children?.length));
-
-// Groups (jinke children hain)
-const getGroups = (value: string, exclude: string[] = []): MegaGroup[] =>
-  (getNav(value)?.links ?? [])
-    .filter((l) => l.children?.length && !exclude.includes(l.label))
-    .map((l) => ({ heading: l.label, links: toLinks(l.children) }));
-
-// ========================
-// Footer Columns
-// ========================
-
-export const footerSections: Record<string, FooterSection> = {
-  // FOR TALENTS (same as before)
   ForTalents: {
     heading: "For Talent",
     links: [
       ["Resume Builder", "/resume-builder"],
-      ["Job Opportunity", "https://hyi-nine.vercel.app/signup"],
+      ["Job Opportunity", "https://va.hyi.ai/talent-login"],
       ["How To Get Hired", "/get-hired"],
-      ["Mock Test", "https://hyi-nine.vercel.app/signup"],
-      ["Mock Interview", "https://hyi-nine.vercel.app/signup"],
+      ["Mock Test", "https://va.hyi.ai/talent-login"],
+      ["Mock Interview", "https://va.hyi.ai/talent-login"],
       ["Talent Resources", "/talent/resource"],
-      // ["Certified Developer", "/developer"],
-      ["How to Get Certified", "https://hyi-nine.vercel.app/signup"],
+      ["Certified Developer", "/developer"],
+      ["How to Get Certified", "https://va.hyi.ai/talent-login"],
       ["Talent Support", "/talent/support"],
     ],
   },
 
-  // HIRE TALENT = header links + footer ke extra links
-  HireTalent: {
-    heading: "Hire Talent",
+  // ==================================================
+  // 2. FOR COMPANIES
+  // (header ke "Hire Talent" menu ke saare options)
+  // ==================================================
+
+  ForCompanies: {
+    heading: "For Companies",
     links: [
-      ...getFlatLinks("hire-talent"),
-      ["Hire AI Engineers", "/hire-talent/ai-engineers"],
-      ["Hire Software Engineers", "/hire-talent/software-engineers"],
-      ["Hire Data Engineers", "/hire-talent/data-engineers"],
-      ["Hire Cloud Engineers", "/hire-talent/cloud-engineers"],
-      ["Hire DevOps Engineers", "/hire-talent/devops-engineers"],
-      ["Hire Cybersecurity Experts", "/hire-talent/cybersecurity-experts"],
+      ["Hire Developer", "/hire-developer"],
+      ["Hire Designer", "/hire-designer"],
+      ["Project Manager", "/project-manager"],
+      ["Product Designer", "/hire/product-designer"],
+      ["Hire Finance Consultant", "/hire/hire-finance-consultant"],
+      ["Hire CXO", "/hire/hire-cxo"],
+      ["Build Your Team", "/hire/build-your-team"],
     ],
   },
 
-  // Consulting & Solutions -> Footer component me API se bharega
-  ConsultingAndSolutions: {
-    heading: "Consulting & Solutions",
-    links: [],
+  // ==================================================
+  // 3. INTEGRATE AI
+  // ==================================================
+
+  IntegrateAI: {
+    heading: "Integrate AI",
+    links: [
+      ["KPI & KRA", "/integrate-AI/KPI&KRA"],
+      ["Project Tracking", "/integrate-AI/project-tracking"],
+      ["Price Tracking", "/integrate-AI/price-tracking"],
+      ["Talent Matching", "/integrate-AI/talent-matching"],
+      ["Strategy & Planning", "/integrate-AI/strategy&planning"],
+    ],
   },
 
-  // GCC (header se)
-  GCC: {
-    heading: getNav("gcc")?.heading ?? "Global Capability Center",
-    links: getFlatLinks("gcc"),
+  // ==================================================
+  // 4. TECHNOLOGY SOLUTIONS
+  // Sirf main menu. Har link us category ke pehle page par jaata hai.
+  // ==================================================
+
+  TechnologySolutions: {
+    heading: "Technology Solutions",
+    links: [
+      [
+        "Application Development",
+        "/technology-solutions/application-development",
+      ],
+      ["Integrate AI", "/integrate-AI"],
+      ["Global Capability Center (GCC)", "/gcc/fo-page"],
+      [
+        "Artificial Intelligence",
+        "/technology-solutions/artificial-intelligence",
+      ],
+      [
+        "Data Analytics",
+        "/technology-solutions/data-analytics",
+      ],
+      [
+        "Cloud Infrastructure",
+        "/technology-solutions/cloud-infrastructure",
+      ],
+      ["AI Cloud", "/technology-solutions/ai-cloud"],
+      [
+        "Digital Transformation",
+        "/technology-solutions/digital-transformation",
+      ],
+      [
+        "Robotic Design & Development",
+        "/technology-solutions/robotic-design-development",
+      ],
+      ["A/B Testing", "/technology-solutions/ab-testing"],
+      [
+        "Finance & Risk Intelligence",
+        "/technology-solutions/finance-risk-intelligence",
+      ],
+
+    ],
   },
 
-  // ABOUT US (header Resources -> About Us)
-  AboutUs: {
-    heading: "About Us",
-    links: toLinks(
-      getNav("resources")?.links?.find((l) => l.label === "About Us")
-        ?.children
-    ),
+  // ==================================================
+  // 5. CYBER SECURITY
+  // Sirf main menu. Har link us category ke pehle page par jaata hai.
+  // ==================================================
+
+  CyberSecurity: {
+    heading: "Cyber Security",
+    links: [
+      [
+        "Cybersecurity Assessment & Consulting",
+        "/cyber-security/assessment-consulting/risk-assessment",
+      ],
+      [
+        "Managed Security Services",
+        "/cyber-security/managed-security-services/mdr",
+      ],
+      [
+        "Security Operations Center (SOC)",
+        "/cyber-security/security-operations-center/24-7-monitoring",
+      ],
+      ["Endpoint Security", "/cyber-security/endpoint-security/edr"],
+      [
+        "Network Security",
+        "/cyber-security/network-security/security-assessment",
+      ],
+      [
+        "Cloud Security",
+        "/cyber-security/cloud-security/security-assessment",
+      ],
+      [
+        "Vulnerability Assessment & Penetration Testing",
+        "/cyber-security/vulnerability-assessment/network-penetration-testing",
+      ],
+      [
+        "Finance and Risk Management",
+        "/cyber-security/finance-risk-management/cyber-risk-management",
+      ],
+      [
+        "Threat Detection & Response",
+        "/cyber-security/threat-detection-response/threat-intelligence",
+      ],
+      [
+        "Security Compliance & Risk Management",
+        "/cyber-security/compliance-risk-management/iso-27001",
+      ],
+      [
+        "Incident Response & Digital Forensics",
+        "/cyber-security/incident-response-forensics/cyber-incident-response",
+      ],
+      [
+        "Security Awareness & Training",
+        "/cyber-security/security-awareness-training/cybersecurity-awareness",
+      ],
+    ],
   },
 
-  // RESOURCES = header links + footer ke extra links
+  // ==================================================
+  // 6. RESOURCES
+  // ==================================================
+
   Resources: {
     heading: "Resources",
     links: [
-      ...getFlatLinks("resources"),
+      ["About HYI", "/about"],
+      ["Leadership", "/leadership"],
+      ["Investor", "/investor"],
+      ["Finance", "/finance"],
+      ["Client", "/client"],
       ["Case Study", "/case-studies"],
+      ["Career", "/career"],
       ["Help", "/help"],
       ["Blogs", "/blogs"],
+      ["Media", "/media"],
+      ["Contact Us", "/help"],
+      ["Our Expert", "/talk-to-our-expert"],
     ],
   },
 
-  // COMPLIANCE (same as before)
+  // ==================================================
+  // 7. COMPLIANCE
+  // ==================================================
+
   Compliance: {
     heading: "Compliance",
     links: [
@@ -439,45 +507,21 @@ export const footerSections: Record<string, FooterSection> = {
       ["Escalation Policy", "/documents/escalation-policy"],
     ],
   },
-};
+} as const;
 
-// ========================
-// Big Menus (header ke groups + sub-links)
-// ========================
-
-const buildMega = (value: string, exclude: string[] = []): MegaMenu => {
-  const nav = getNav(value);
-  return {
-    key: value,
-    heading: nav?.heading ?? nav?.title ?? value,
-    paragraph: nav?.paragraph,
-    groups: getGroups(value, exclude),
-  };
-};
-
-export const footerMegaMenus: MegaMenu[] = [
-  // GCC & AI-Powered Business Processes upar already aa chuke hain
-  // (duplicate), isliye yaha exclude kiye hain
-  buildMega("technology-solutions", [
-    "Global Capability Center (GCC)",
-    "AI-Powered Business Processes",
-  ]),
-  buildMega("cyber-security"),
-  buildMega("ai-training"),
-];
-
-// ========================
-// Footer Configuration (order yaha se control hota hai)
-// ========================
+// ==================================================
+// FOOTER CONFIGURATION
+// Columns isi order mein dikhenge. Kuch hatana/badalna ho to yahan karo.
+// ==================================================
 
 export const footer = {
   dynamicLinks: [
     "ForTalents",
-    "HireTalent",
-    "ConsultingAndSolutions",
-    "GCC",
-    "AboutUs",
+    "ForCompanies",
+    "IntegrateAI",
+    "TechnologySolutions",
+    "CyberSecurity",
     "Resources",
     "Compliance",
-  ] as const,
+  ] as (keyof typeof footerSections)[],
 };

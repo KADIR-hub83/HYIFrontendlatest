@@ -13,17 +13,17 @@ import Footer from "@/components/section/general/footer";
 
 export default function HireDesignerPage() {
   return (
-    <main className="overflow-hidden bg-[#050505] text-white">
+    <main className="overflow-hidden bg-[#050505] text-white  mx-auto">
         <Header/>
       <DesignerHero />
-      <DesignMarquee />
+      {/* <DesignMarquee /> */}
       <DesignerServices />
       <SelectedWork />
       <DesignerExpertise />
       <DesignProcess />
       <DesignSystemLab />
-      <EngineeringHandoff />
-      <WhyHireDesigners />
+      {/* <EngineeringHandoff />
+      <WhyHireDesigners /> */}
       <DesignerCTA />
       <Footer/>
     </main>

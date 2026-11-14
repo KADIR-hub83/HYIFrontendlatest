@@ -11,19 +11,15 @@ export default function SecurityPrinciples({
   service: ManagedSecurityService;
 }) {
   return (
-    <section className="border-y border-white/[0.06] bg-[#030303] py-32">
+    <section className="">
       <div className="mx-auto max-w-[1380px] px-6 md:px-10">
-        <div className="grid gap-16 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <span className="font-mono text-[10px] tracking-[0.25em] text-[#9878ef]">
-              SECURITY PRINCIPLES
-            </span>
+        <div className="flex flex-col ">
+          <div className="text-center mb-8">
+      
 
-            <h2 className="mt-6 text-[44px] font-semibold leading-[1] tracking-[-0.045em] md:text-[64px]">
-              Security built
-              <span className="block text-[#a98af4]">
-                deliberately.
-              </span>
+            <h2 className="hyi-h1 hyi-white">
+              Security built deliberately
+             
             </h2>
           </div>
 
@@ -35,18 +31,18 @@ export default function SecurityPrinciples({
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="min-h-[230px] rounded-[22px] border border-white/[0.07] bg-white/[0.015] p-7"
+                className="min-h-[30px] rounded-[22px] border border-white/[0.07] bg-white/[0.015] p-7 hover:border-white/30"
               >
                 <ShieldCheck
-                  size={17}
-                  className="text-[#9878ef]"
+                  size={22}
+                  className="hyi-white-icon"
                 />
 
-                <h3 className="mt-10 text-[17px] font-medium">
+                <h3 className="mt-5 hyi-h3 hyi-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[12px] leading-7 text-white/[0.43]">
+                <p className="mt-2 hyi-p">
                   {item.description}
                 </p>
               </motion.div>

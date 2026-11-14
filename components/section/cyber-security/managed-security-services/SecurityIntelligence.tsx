@@ -11,34 +11,17 @@ export default function SecurityIntelligence({
   service: ManagedSecurityService;
 }) {
   return (
-    <section className="bg-black py-32 md:py-44">
-      <div className="mx-auto max-w-[1380px] px-6 md:px-10">
-        <div className="grid gap-16 lg:grid-cols-2">
-          <div>
-            <span className="font-mono text-[10px] tracking-[0.25em] text-[#9878ef]">
-              {service.intelligence.eyebrow}
-            </span>
+    <section className="bg-black py-10">
+      <div className="mx-auto max-w-[1350px] px-6 md:px-10">
+        <div className="grid gap-5 lg:grid-cols-2">
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mt-7 max-w-[650px] text-[46px] font-semibold leading-[1] tracking-[-0.045em] md:text-[70px]"
-            >
-              {service.intelligence.title}
-            </motion.h2>
-
-            <p className="mt-8 max-w-[620px] text-[14px] leading-8 text-white/[0.48] md:text-[15px]">
-              {service.intelligence.description}
-            </p>
-          </div>
 
           <div className="rounded-[28px] border border-white/[0.08] bg-[#050505] p-6 md:p-8">
             <div className="flex items-center justify-between border-b border-white/[0.06] pb-5">
               <div className="flex items-center gap-3">
-                <Radio size={14} className="text-[#9878ef]" />
+                <Radio size={18} className="text-[#9878ef]" />
 
-                <span className="font-mono text-[9px] tracking-[0.22em] text-white/[0.30]">
+                <span className="font-mono text-[9px] tracking-[0.22em] text-white/60">
                   LIVE SECURITY TELEMETRY
                 </span>
               </div>
@@ -46,7 +29,7 @@ export default function SecurityIntelligence({
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#9878ef]" />
             </div>
 
-            <div className="mt-7 space-y-3">
+            <div className="mt-3 space-y-3">
               {service.intelligence.signals.map(
                 (signal, index) => (
                   <motion.div
@@ -59,11 +42,11 @@ export default function SecurityIntelligence({
                   >
                     <div className="flex items-center gap-4">
                       <Activity
-                        size={12}
-                        className="text-[#9878ef]"
+                        size={16}
+                        className="text-white"
                       />
 
-                      <span className="text-[12px] text-white/[0.52]">
+                      <span className="hyi-h3">
                         {signal}
                       </span>
                     </div>
@@ -93,6 +76,23 @@ export default function SecurityIntelligence({
               )}
             </div>
           </div>
+
+                    <div>
+  
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="hyi-h1 hyi-white"
+            >
+              {service.intelligence.title}
+            </motion.h2>
+
+            <p className="mt-3 max-w-[620px] hyi-p">
+              {service.intelligence.description}
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

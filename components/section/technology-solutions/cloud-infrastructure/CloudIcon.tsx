@@ -37,10 +37,7 @@ const iconMap = {
   activity: Activity,
 } satisfies Record<CloudIconName, ComponentType<LucideProps>>;
 
-export default function CloudIcon({
-  name,
-  ...props
-}: CloudIconProps) {
+export default function CloudIcon({ name, ...props }: CloudIconProps) {
   const IconComponent = iconMap[name];
 
   return <IconComponent {...props} />;

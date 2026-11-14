@@ -38,7 +38,7 @@ export default function SplitHeading({
   return (
     <Tag ref={ref} className={className}>
       {text.split(" ").map((w, i) => (
-        <span key={i} className="hyi-word">
+        <span key={i} className="hyi-word hyi-white">
           <span
             data-on={on}
             style={{ transitionDelay: `${delay + i * 70}ms` }}

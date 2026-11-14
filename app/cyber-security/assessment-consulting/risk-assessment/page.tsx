@@ -5,7 +5,7 @@ import RiskAssessmentClient from "@/components/section/cyber-security/assessment
 
 export default function RiskAssessmentPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className=" bg-black text-white">
       <Header />
       <RiskAssessmentClient />
       <Footer />

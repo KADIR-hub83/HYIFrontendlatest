@@ -44,7 +44,7 @@ export default function DesignerHero() {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen overflow-hidden border-b border-white/[0.06]"
+      className="relative min-h-screen overflow-hidden mx-auto max-w-[1350px]"
     >
       {/* cursor glow */}
 
@@ -82,7 +82,7 @@ export default function DesignerHero() {
               className="mb-7 flex items-center gap-3"
             >
               <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
-                <Sparkles size={12} className="text-[#a78bfa]" />
+                <Sparkles size={12} className="hyi-white-icon" />
               </div>
 
               <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-white/40">
@@ -94,12 +94,12 @@ export default function DesignerHero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-[1100px] text-[clamp(58px,8.3vw,145px)] font-medium leading-[0.82] tracking-[-0.075em]"
+              className="max-w-[1100px] hyi-h1 text-white text-[clamp(58px,6.3vw,145px)] font-medium leading-[0.92] tracking-[-0.075em]"
             >
               Hire designers
               <br />
 
-              <span className="text-white/25">who make</span>{" "}
+              <span className="hyi-blue">who make</span>{" "}
 
               <span className="relative inline-block">
                 products
@@ -128,26 +128,12 @@ export default function DesignerHero() {
             transition={{ delay: 0.35 }}
             className="pb-3 lg:pb-5"
           >
-            <p className="max-w-[340px] text-[14px] leading-7 text-white/45">
+            <p className="max-w-[340px] hyi-p">
               Work with senior product designers who transform complex ideas
               into intuitive, scalable and beautifully crafted digital
               experiences.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <button className="group flex h-12 items-center gap-3 rounded-full bg-white px-6 text-[12px] font-semibold text-black transition hover:bg-[#a78bfa]">
-                Hire a designer
-                <ArrowUpRight
-                  size={15}
-                  className="transition group-hover:rotate-45"
-                />
-              </button>
-
-              <button className="flex h-12 items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 text-[12px] text-white/60 transition hover:bg-white/[0.07]">
-                <Play size={12} fill="currentColor" />
-                How it works
-              </button>
-            </div>
           </motion.div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -9,17 +10,12 @@ import {
 
 import {
   Activity,
-  ArrowDown,
   ArrowRight,
   CheckCircle2,
   ChevronRight,
   CircleDot,
   Eye,
   Radio,
-  RefreshCcw,
-  ShieldCheck,
-  Workflow,
-  Zap,
 } from "lucide-react";
 
 import type { ReactNode } from "react";
@@ -44,36 +40,14 @@ type PageConfig = {
   heroMain: string;
   heroAccent: string;
   intro: string;
-
   ticker: string[];
-
   signalTitle: string;
   signalText: string;
-
-  capabilities: {
-    label: string;
-    title: string;
-    text: string;
-  }[];
-
-  detectionFlow: {
-    step: string;
-    title: string;
-    text: string;
-  }[];
-
-  questions: {
-    question: string;
-    answer: string;
-  }[];
-
-  disciplines: {
-    title: string;
-    text: string;
-  }[];
-
+  capabilities: { label: string; title: string; text: string }[];
+  detectionFlow: { step: string; title: string; text: string }[];
+  questions: { question: string; answer: string }[];
+  disciplines: { title: string; text: string }[];
   outcomes: string[];
-
   closing: string;
   closingAccent: string;
   closingText: string;
@@ -133,36 +107,12 @@ const pages: Record<ThreatPageKey, PageConfig> = {
     ],
 
     detectionFlow: [
-      {
-        step: "01",
-        title: "Collect",
-        text: "Gather relevant information from approved intelligence sources.",
-      },
-      {
-        step: "02",
-        title: "Filter",
-        text: "Reduce noise and retain signals aligned to the environment.",
-      },
-      {
-        step: "03",
-        title: "Enrich",
-        text: "Add technical, temporal and business context.",
-      },
-      {
-        step: "04",
-        title: "Correlate",
-        text: "Compare external observations with internal exposure.",
-      },
-      {
-        step: "05",
-        title: "Distribute",
-        text: "Route useful intelligence to appropriate defensive teams.",
-      },
-      {
-        step: "06",
-        title: "Learn",
-        text: "Improve collection priorities from operational feedback.",
-      },
+      { step: "01", title: "Collect", text: "Gather relevant information from approved intelligence sources." },
+      { step: "02", title: "Filter", text: "Reduce noise and retain signals aligned to the environment." },
+      { step: "03", title: "Enrich", text: "Add technical, temporal and business context." },
+      { step: "04", title: "Correlate", text: "Compare external observations with internal exposure." },
+      { step: "05", title: "Distribute", text: "Route useful intelligence to appropriate defensive teams." },
+      { step: "06", title: "Learn", text: "Improve collection priorities from operational feedback." },
     ],
 
     questions: [
@@ -184,22 +134,10 @@ const pages: Record<ThreatPageKey, PageConfig> = {
     ],
 
     disciplines: [
-      {
-        title: "Strategic intelligence",
-        text: "Longer-term context for leadership, risk teams and security strategy.",
-      },
-      {
-        title: "Operational intelligence",
-        text: "Campaign and adversary context supporting active defensive operations.",
-      },
-      {
-        title: "Technical intelligence",
-        text: "Technical observations that can enrich detection and investigation workflows.",
-      },
-      {
-        title: "Intelligence lifecycle",
-        text: "Feedback-driven collection and analysis aligned to defined requirements.",
-      },
+      { title: "Strategic intelligence", text: "Longer-term context for leadership, risk teams and security strategy." },
+      { title: "Operational intelligence", text: "Campaign and adversary context supporting active defensive operations." },
+      { title: "Technical intelligence", text: "Technical observations that can enrich detection and investigation workflows." },
+      { title: "Intelligence lifecycle", text: "Feedback-driven collection and analysis aligned to defined requirements." },
     ],
 
     outcomes: [
@@ -277,8 +215,7 @@ const pages: Record<ThreatPageKey, PageConfig> = {
     questions: [
       {
         question: "Can the behavior be observed?",
-        answer:
-          "Detection starts with reliable telemetry and sufficient context.",
+        answer: "Detection starts with reliable telemetry and sufficient context.",
       },
       {
         question: "Is the signal meaningful?",
@@ -1162,7 +1099,7 @@ const pages: Record<ThreatPageKey, PageConfig> = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* REUSABLE MOTION                                                            */
+/* MOTION HELPERS                                                             */
 /* -------------------------------------------------------------------------- */
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -1178,14 +1115,10 @@ function Reveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.8,
-        delay,
-        ease,
-      }}
+      transition={{ duration: 0.8, delay, ease }}
       className={className}
     >
       {children}
@@ -1195,28 +1128,16 @@ function Reveal({
 
 function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <motion.div
-      whileHover={{
-        borderColor: "rgba(167,139,250,.35)",
-      }}
-      className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-black/40 px-4 py-2 backdrop-blur-2xl"
-    >
+    <div className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2">
       <motion.span
-        animate={{
-          opacity: [0.3, 1, 0.3],
-          scale: [0.8, 1.3, 0.8],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-        }}
+        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.3, 0.8] }}
+        transition={{ duration: 2, repeat: Infinity }}
         className="h-1.5 w-1.5 rounded-full bg-[#a78bfa] shadow-[0_0_14px_rgba(167,139,250,.9)]"
       />
-
-      <span className="font-mono text-[8px] tracking-[0.22em] text-white/35">
+      <span className="font-mono text-[11px] tracking-[0.2em] text-white/60">
         {children}
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -1228,28 +1149,14 @@ function DetectionBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
-        animate={{
-          x: [-120, 100, -120],
-          y: [-60, 80, -60],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ x: [-120, 100, -120], y: [-60, 80, -60] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -left-24 top-32 h-[520px] w-[520px] rounded-full bg-[#6d28d9]/[0.13] blur-[160px]"
       />
 
       <motion.div
-        animate={{
-          x: [100, -80, 100],
-          y: [50, -80, 50],
-        }}
-        transition={{
-          duration: 24,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ x: [100, -80, 100], y: [50, -80, 50] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
         className="absolute right-[-100px] top-[20%] h-[480px] w-[480px] rounded-full bg-[#8b5cf6]/[0.1] blur-[170px]"
       />
 
@@ -1259,23 +1166,15 @@ function DetectionBackground() {
           backgroundImage:
             "radial-gradient(circle, rgba(196,181,253,.9) 1px, transparent 1px)",
           backgroundSize: "42px 42px",
-          maskImage:
-            "linear-gradient(to bottom, black, transparent 94%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black, transparent 94%)",
+          maskImage: "linear-gradient(to bottom, black, transparent 94%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 94%)",
         }}
       />
 
       <motion.div
-        animate={{
-          y: ["-10%", "110%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/20 to-transparent"
+        animate={{ y: ["-10%", "110%"] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/25 to-transparent"
       />
     </div>
   );
@@ -1287,63 +1186,40 @@ function DetectionBackground() {
 
 function Hero({ page }: { page: PageConfig }) {
   const { scrollY } = useScroll();
-
-  const heroY = useTransform(scrollY, [0, 900], [0, 160]);
-  const heroOpacity = useTransform(scrollY, [0, 700], [1, 0.1]);
+  const y = useTransform(scrollY, [0, 900], [0, 120]);
+  const opacity = useTransform(scrollY, [0, 700], [1, 0.15]);
 
   return (
-    <section className="relative  overflow-hidden border-b border-white/[0.06] bg-black">
+    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black">
       <DetectionBackground />
 
       <motion.div
-        style={{
-          y: heroY,
-          opacity: heroOpacity,
-        }}
-        className="relative mx-auto flex  max-w-[1450px] flex-col justify-center px-5 py-10 md:py-20 md:px-10 lg:px-20"
+        style={{ y, opacity }}
+        className="relative mx-auto flex max-w-[1450px] flex-col justify-center px-5 pb-10 pt-30 max-md:pt-20 md:px-10 lg:px-20"
       >
-        <div className="flex items-center justify-between mt-10">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Eyebrow>{page.eyebrow}</Eyebrow>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Eyebrow>{page.eyebrow}</Eyebrow>
+        </motion.div>
 
-          {/* <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="font-mono text-[8px] tracking-[0.25em] text-white/15"
-          >
-            {page.number}
-          </motion.span> */}
-        </div>
-
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
+        <div className="mt-6 grid gap-10 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
           <div>
             {[page.heroTop, page.heroMain, page.heroAccent].map(
               (line, index) => (
                 <div key={line} className="overflow-hidden">
                   <motion.h1
-                    initial={{
-                      y: "110%",
-                      opacity: 0,
-                    }}
-                    animate={{
-                      y: 0,
-                      opacity: 1,
-                    }}
+                    initial={{ y: "110%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{
                       duration: 1,
                       delay: 0.1 + index * 0.12,
                       ease,
                     }}
-                    className={`text-[52px] font-medium leading-[0.92] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[100px] ${
-                      index === 2
-                        ? "text-[#a993df]/55"
-                        : "text-white"
+                    className={`hyi-h1 text-[52px] leading-[0.92] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px] ${
+                      index === 2 ? "hyi-blue" : "hyi-white"
                     }`}
                   >
                     {line}
@@ -1354,46 +1230,28 @@ function Hero({ page }: { page: PageConfig }) {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.55,
-              duration: 0.8,
-            }}
-            className="border-l border-white/[0.08] pl-6"
+            transition={{ delay: 0.55, duration: 0.8 }}
+            className="border-white/[0.08] lg:border-l lg:pl-6"
           >
             <div className="flex items-center gap-3">
-              <Radio className="h-4.5 w-4.5 text-[#a78bfa]" />
-
-              <span className="font-mono text-[12px] tracking-[0.2em] text-white/70">
-                DEFENSIVE SIGNAL / ACTIVE
-              </span>
+              <Radio className="h-4.5 w-4.5 hyi-blue-icon" />
+              <span className="hyi-h3 hyi-white">DEFENSIVE SIGNAL / ACTIVE</span>
             </div>
 
-            <p className="mt-7 text-[18px] leading-7 text-white/[0.48]">
-              {page.intro}
-            </p>
+            <p className="hyi-p mt-4">{page.intro}</p>
 
             <motion.a
               href="#detection"
-              whileHover={{
-                x: 6,
-              }}
-              className="mt-8 inline-flex items-center gap-3 text-[12px] text-white/65"
+              whileHover={{ x: 6 }}
+              className="hyi-white mt-6 inline-flex items-center gap-3 text-[14px] font-semibold"
             >
               Explore detection approach
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4" />
             </motion.a>
           </motion.div>
         </div>
-
-        {/* <div className="mt-20 flex items-center justify-between border-t border-white/[0.07] pt-6">
-          <span className="font-mono text-[7px] tracking-[0.22em] text-white/15">
-            HYI.AI / THREAT DETECTION + RESPONSE
-          </span>
-
-          <ArrowDown className="h-3.5 w-3.5 text-white/20" />
-        </div> */}
       </motion.div>
     </section>
   );
@@ -1404,25 +1262,27 @@ function Hero({ page }: { page: PageConfig }) {
 /* -------------------------------------------------------------------------- */
 
 function SignalTicker({ items }: { items: string[] }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="overflow-hidden border-b border-white/[0.06] bg-[#030303] py-10">
+    <section
+      className="overflow-hidden border-b border-white/[0.06] bg-[#030303]"
+      style={{
+        maskImage:
+          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+      }}
+    >
       <motion.div
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 27,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         className="flex w-max py-5"
       >
         {[...items, ...items].map((item, index) => (
-          <div
-            key={`${item}-${index}`}
-            className="flex items-center gap-7 px-8"
-          >
-            <Activity className="h-4 w-4 text-[#8b5cf6]/80" />
-
-            <span className="font-mono text-[12px] tracking-[0.24em] text-white/80">
+          <div key={`${item}-${index}`} className="flex items-center gap-4 px-8">
+            <Activity className="h-4 w-4 text-[#8b5cf6]" />
+            <span className="font-mono text-[12px] tracking-[0.24em] text-white/75">
               {item}
             </span>
           </div>
@@ -1440,34 +1300,24 @@ function SignalStatement({ page }: { page: PageConfig }) {
   return (
     <section
       id="detection"
-      className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5 md:px-10 py-10 lg:px-20"
+      className="relative overflow-hidden bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20"
     >
       <div className="absolute left-[10%] top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-[#7c3aed]/10 blur-[150px]" />
 
-      <div className="relative mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[.4fr_1.6fr]">
+      <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
           <div className="flex items-center gap-3">
-            <Eye className="h-4 w-4 text-[#a78bfa]/80" />
-
-            <span className="font-mono text-[12px] tracking-[0.22em] text-white/80">
-              SIGNAL / 001
-            </span>
+            <Eye className="h-4.5 w-4.5 hyi-blue-icon" />
+            <span className="hyi-h3 hyi-white">SIGNAL / 001</span>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.08}>
-          <h2 className="max-w-[900px] text-[43px] font-medium leading-[1.03] tracking-[-0.055em] md:text-[55px]">
+          <h2 className="hyi-h1 hyi-white mt-6 max-w-[1000px] text-[40px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[60px] lg:text-[66px]">
             {page.signalTitle}
           </h2>
 
-          <div className="mt-12 grid gap-8 border-t border-white/[0.08] pt-8 md:grid-cols-[1fr_1.4fr]">
-            <span className="font-mono text-[12px] tracking-[0.22em] text-[#a78bfa]/75">
-              OBSERVE → INTERPRET → RESPOND
-            </span>
-
-            <p className="text-[18px] leading-7 text-white/[0.42]">
-              {page.signalText}
-            </p>
+          <div className="mt-8 grid gap-6 border-t border-white/[0.08] pt-8 lg:grid-cols-2">
+            <span className="hyi-h3 hyi-blue">OBSERVE → INTERPRET → RESPOND</span>
+            <p className="hyi-p max-w-[600px]">{page.signalText}</p>
           </div>
         </Reveal>
       </div>
@@ -1481,70 +1331,43 @@ function SignalStatement({ page }: { page: PageConfig }) {
 
 function Capabilities({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
+    <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <Eyebrow>DETECTION CAPABILITIES</Eyebrow>
-
-          <h2 className="mt-8 max-w-[720px] text-[40px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[58px]">
-            Build visibility around
-            <span className="block text-white/25">
-              meaningful signals.
-            </span>
+          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
+            <span className="hyi-white">Build visibility around</span>
+            <span className="block text-white/25">meaningful signals.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
           {page.capabilities.map((item, index) => (
             <motion.article
               key={item.title}
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.08,
-                duration: 0.7,
-              }}
-              whileHover={{
-                y: -7,
-                borderColor: "rgba(167,139,250,.25)",
-              }}
-              className="group relative min-h-[20px] overflow-hidden rounded-[24px] border border-white/[0.07] bg-black p-8"
+              transition={{ delay: index * 0.08, duration: 0.7 }}
+              whileHover={{ y: -6 }}
+              className="hyi-skeu group relative overflow-hidden p-7 md:p-8"
             >
               <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-[#7c3aed]/10 blur-3xl" />
 
               <div className="relative flex items-center justify-between">
-                <span className="font-mono text-[12px] tracking-[0.22em] text-[#a78bfa]/70">
+                <span className="font-mono text-[12px] tracking-[0.22em] text-[#a78bfa]">
                   {item.label}
                 </span>
-
-                <span className="font-mono text-[12px] text-white/70">
+                <span className="font-mono text-[12px] text-white/50">
                   0{index + 1}
                 </span>
               </div>
 
-              <div className="relative mt-10">
-                <h3 className="text-3xl font-bold tracking-[-0.03em] text-white/75 group-hover:text-white">
-                  {item.title}
-                </h3>
-
-                <p className="mt-5 max-w-[500px] text-[18px] leading-7 text-white/[0.36]">
-                  {item.text}
-                </p>
+              <div className="relative mt-8">
+                <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                <p className="hyi-p mt-2 max-w-[500px] pr-10">{item.text}</p>
               </div>
 
-              <motion.div
-                whileHover={{ x: 6 }}
-                className="absolute bottom-8 right-8"
-              >
-                <ArrowRight className="h-4 w-4 text-white/75 group-hover:text-[#a78bfa]" />
-              </motion.div>
+              <ArrowRight className="hyi-white-icon absolute bottom-7 right-7 h-5 w-5 transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
             </motion.article>
           ))}
         </div>
@@ -1559,23 +1382,21 @@ function Capabilities({ page }: { page: PageConfig }) {
 
 function DetectionFlow({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5 py-10 md:px-10 lg:px-20">
+    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="absolute right-[-180px] top-[20%] h-[500px] w-[500px] rounded-full bg-[#8b5cf6]/10 blur-[170px]" />
 
       <div className="relative mx-auto max-w-[1320px]">
-        <div className="grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
+        <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
           <Reveal>
             <div className="lg:sticky lg:top-32">
-              <Eyebrow>DETECTION FLOW</Eyebrow>
-
-              <h2 className="mt-8 max-w-[450px] text-[40px] font-medium leading-[1.05] tracking-[-0.05em] md:text-[54px]">
-                Signal becomes
+              <h2 className="hyi-h1 max-w-[450px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]">
+                <span className="hyi-white">Signal becomes</span>
                 <span className="block text-white/25">
                   useful through context.
                 </span>
               </h2>
 
-              <p className="mt-7 max-w-[420px] text-[18px] leading-7 text-white/[0.33]">
+              <p className="hyi-p mt-4 max-w-[430px]">
                 Detection is not the end of the process. Each signal needs
                 enough context to support investigation, response and
                 continuous improvement.
@@ -1588,47 +1409,30 @@ function DetectionFlow({ page }: { page: PageConfig }) {
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
-              transition={{
-                duration: 1.4,
-                ease,
-              }}
+              transition={{ duration: 1.4, ease }}
               className="absolute -left-px top-0 h-full w-px origin-top bg-gradient-to-b from-[#8b5cf6] via-[#8b5cf6]/30 to-transparent"
             />
 
             {page.detectionFlow.map((item, index) => (
               <motion.article
                 key={item.step}
-                initial={{
-                  opacity: 0,
-                  x: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.08,
-                }}
-                className="group relative border-b border-white/[0.07] py-9"
+                transition={{ delay: index * 0.07 }}
+                className="group relative border-b border-white/[0.07] py-7"
               >
                 <motion.div
                   whileHover={{ scale: 1.5 }}
-                  className="absolute -left-[34px] top-11 h-2 w-2 rounded-full border border-[#a78bfa]/50 bg-black md:-left-[52px]"
+                  className="absolute -left-[34px] top-9 h-2 w-2 rounded-full border border-[#a78bfa]/60 bg-black md:-left-[52px]"
                 />
 
-                <div className="grid gap-4 md:grid-cols-[80px_180px_1fr]">
-                  <span className="font-mono text-[12px] text-[#a78bfa]/75">
+                <div className="grid gap-3 md:grid-cols-[60px_170px_1fr] md:items-center">
+                  <span className="font-mono text-[12px] text-[#a78bfa]">
                     {item.step}
                   </span>
-
-                  <h3 className="text-3xl font-bold text-white/65 group-hover:text-white">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-[18px] leading-7 text-white/[0.32]">
-                    {item.text}
-                  </p>
+                  <h3 className="hyi-h3 hyi-white">{item.title}</h3>
+                  <p className="hyi-p">{item.text}</p>
                 </div>
               </motion.article>
             ))}
@@ -1645,49 +1449,35 @@ function DetectionFlow({ page }: { page: PageConfig }) {
 
 function InvestigationQuestions({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
+    <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <span className="font-mono text-[12px] tracking-[0.22em] text-[#a78bfa]/70">
-            / INVESTIGATIVE THINKING
-          </span>
-
-          <h2 className="mt-5 max-w-[750px] text-[40px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
-            Ask better questions
-            <span className="block text-white/25">
-              before taking action.
-            </span>
+          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Ask better questions</span>
+            <span className="block text-white/25">before taking action.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-10">
+        <div className="mt-8">
           {page.questions.map((item, index) => (
             <motion.article
               key={item.question}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                backgroundColor: "rgba(124,58,237,.035)",
-              }}
-              className="group grid gap-7 border-t border-white/[0.08] px-4 py-10 lg:grid-cols-[80px_1fr_1fr_40px]"
+              transition={{ delay: index * 0.07 }}
+              whileHover={{ backgroundColor: "rgba(124,58,237,.035)" }}
+              className="group grid gap-4 border-t border-white/[0.08] px-3 py-8 lg:grid-cols-[70px_1fr_1fr_40px] lg:items-center"
             >
-              <span className="font-mono text-[12px] text-[#a78bfa]/85">
+              <span className="font-mono text-[12px] text-[#a78bfa]">
                 0{index + 1}
               </span>
 
-              <h3 className="max-w-[430px] text-3xl font-bold tracking-[-0.025em] text-white/75 group-hover:text-white">
-                {item.question}
-              </h3>
+              <h3 className="hyi-h3 hyi-white max-w-[430px]">{item.question}</h3>
 
-              <p className="max-w-[470px] text-[18px] leading-7 text-white/[0.34]">
-                {item.answer}
-              </p>
+              <p className="hyi-p max-w-[470px]">{item.answer}</p>
 
-              <ChevronRight className="h-4 w-4 text-white/10 group-hover:text-[#a78bfa]" />
+              <ChevronRight className="hyi-white-icon h-6 w-6 transition-all group-hover:translate-x-1 group-hover:text-[#a78bfa]" />
             </motion.article>
           ))}
 
@@ -1699,110 +1489,40 @@ function InvestigationQuestions({ page }: { page: PageConfig }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* BIG TYPE                                                                   */
-/* -------------------------------------------------------------------------- */
-
-// function BigType({ page }: { page: PageConfig }) {
-//   return (
-//     <section className="relative flex min-h-[420px] items-center overflow-hidden border-b border-white/[0.06] bg-black">
-//       <motion.div
-//         animate={{
-//           x: ["0%", "-35%"],
-//         }}
-//         transition={{
-//           duration: 20,
-//           repeat: Infinity,
-//           repeatType: "reverse",
-//           ease: "easeInOut",
-//         }}
-//         className="whitespace-nowrap text-[100px] font-medium tracking-[-0.075em] text-white/[0.035] md:text-[180px]"
-//       >
-//         {page.eyebrow} / {page.eyebrow} / {page.eyebrow}
-//       </motion.div>
-
-//       <div className="absolute inset-0 flex items-center justify-center">
-//         <motion.div
-//           whileHover={{
-//             scale: 1.05,
-//           }}
-//           className="flex items-center gap-4 rounded-full border border-[#8b5cf6]/20 bg-black/70 px-6 py-3 backdrop-blur-2xl"
-//         >
-//           <motion.span
-//             animate={{
-//               opacity: [0.3, 1, 0.3],
-//             }}
-//             transition={{
-//               duration: 1.6,
-//               repeat: Infinity,
-//             }}
-//             className="h-1.5 w-1.5 rounded-full bg-[#a78bfa]"
-//           />
-
-//           <span className="font-mono text-[8px] tracking-[0.24em] text-white/35">
-//             SIGNAL / CONTEXT / RESPONSE
-//           </span>
-//         </motion.div>
-//       </div>
-//     </section>
-//   );
-// }
-
-/* -------------------------------------------------------------------------- */
 /* DISCIPLINES                                                                */
 /* -------------------------------------------------------------------------- */
 
 function Disciplines({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
+    <section className="bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="text-center">
-          <Eyebrow>OPERATIONAL DISCIPLINES</Eyebrow>
-
-          <h2 className="mx-auto mt-5 max-w-[700px] text-[40px] font-medium leading-[1.05] tracking-[-0.05em] md:text-[55px]">
-            Detection works
-            <span className="block text-white/25">
-              as a connected practice.
-            </span>
+          <h2 className="hyi-h1 mx-auto max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Detection works</span>
+            <span className="block hyi-blue">as a connected practice.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-[26px] border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {page.disciplines.map((item, index) => (
             <motion.article
               key={item.title}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.07,
-              }}
-              whileHover={{
-                y: -8,
-                backgroundColor: "rgba(124,58,237,.05)",
-              }}
-              className="min-h-[10px] bg-black p-7"
+              transition={{ delay: index * 0.07 }}
+              whileHover={{ y: -6 }}
+              className="hyi-skeu p-6"
             >
               <div className="flex items-center justify-between">
-                <CircleDot className="h-4.5 w-4.5 text-[#a78bfa]/70" />
-
-                <span className="font-mono text-[12px] text-white/75">
+                <CircleDot className="h-4.5 w-4.5 hyi-blue-icon" />
+                <span className="font-mono text-[12px] text-white/50">
                   0{index + 1}
                 </span>
               </div>
 
-              <h3 className="mt-10 text-3xl font-bold text-white/65">
-                {item.title}
-              </h3>
-
-              <p className="mt-4 text-[18px] leading-6 text-white/[0.3]">
-                {item.text}
-              </p>
+              <h3 className="hyi-h3 hyi-white mt-6">{item.title}</h3>
+              <p className="hyi-p mt-2">{item.text}</p>
             </motion.article>
           ))}
         </div>
@@ -1817,128 +1537,42 @@ function Disciplines({ page }: { page: PageConfig }) {
 
 function Outcomes({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5 py-10 md:px-10 lg:px-20">
+    <section className="relative overflow-hidden bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="absolute left-[-150px] top-1/2 h-[420px] w-[420px] rounded-full bg-[#6d28d9]/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-[1100px]">
+      <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
-          <Eyebrow>DEFENSIVE OUTCOMES</Eyebrow>
+          <h2 className="hyi-h1 max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+            <span className="hyi-white">Turn detection</span>
+            <span className="block hyi-blue">into defensive outcomes.</span>
+          </h2>
         </Reveal>
 
-        <div className="mt-12">
+        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 lg:grid-cols-3">
           {page.outcomes.map((item, index) => (
             <motion.div
               key={item}
-              initial={{
-                opacity: 0,
-                x: index % 2 === 0 ? -30 : 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.06,
-              }}
+              transition={{ delay: index * 0.05 }}
               whileHover={{
-                x: 8,
+                y: -4,
+                backgroundColor: "rgba(124,58,237,.055)",
               }}
-              className="group flex items-center justify-between border-t border-white/[0.07] py-7"
+              className="group flex items-end justify-between gap-4 bg-black p-6"
             >
-              <div className="flex items-center gap-7">
-                <span className="font-mono text-[12px] text-[#a78bfa]/80">
+              <div>
+                <span className="font-mono text-[12px] text-[#a78bfa]">
                   0{index + 1}
                 </span>
-
-                <span className="text-3xl font-bold text-white/48 group-hover:text-white/80">
-                  {item}
-                </span>
+                <p className="hyi-h3 hyi-white mt-3">{item}</p>
               </div>
 
-              <CheckCircle2 className="h-4 w-4 text-[#a78bfa]/85" />
+              <CheckCircle2 className="hyi-white-icon h-5 w-5 shrink-0 transition-colors group-hover:text-[#a78bfa]" />
             </motion.div>
           ))}
-
-          <div className="border-t border-white/[0.07]" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* CTA                                                                        */
-/* -------------------------------------------------------------------------- */
-
-function FinalCTA({ page }: { page: PageConfig }) {
-  return (
-    <section className="relative overflow-hidden bg-black px-5 py-10 md:px-10 lg:px-20">
-      <DetectionBackground />
-
-      <div className="relative mx-auto max-w-[1000px] text-center">
-        <Reveal>
-          <motion.div
-            animate={{
-              boxShadow: [
-                "0 0 0 rgba(139,92,246,0)",
-                "0 0 90px rgba(139,92,246,.16)",
-                "0 0 0 rgba(139,92,246,0)",
-              ],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-            className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#8b5cf6]/25 bg-[#8b5cf6]/[0.05] backdrop-blur-2xl"
-          >
-            <Activity className="h-5 w-5 text-[#c4b5fd]/60" />
-          </motion.div>
-
-          <Eyebrow>{page.eyebrow}</Eyebrow>
-
-          <h2 className="mt-5 text-[45px] font-medium leading-[1.02] tracking-[-0.055em] md:text-[68px]">
-            {page.closing}
-
-            <span className="block text-[#a993df]/50">
-              {page.closingAccent}
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-[650px] text-[18px] leading-7 text-white/[0.35]">
-            {page.closingText}
-          </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <motion.a
-              href="/contact"
-              whileHover={{
-                y: -5,
-                scale: 1.04,
-                boxShadow: "0 20px 70px rgba(139,92,246,.20)",
-              }}
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-[11px] font-medium text-black"
-            >
-              Talk to HYI.AI
-
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-            </motion.a>
-
-            <motion.a
-              href="#detection"
-              whileHover={{
-                y: -5,
-                borderColor: "rgba(167,139,250,.35)",
-              }}
-              className="inline-flex items-center gap-3 rounded-full border border-white/[0.1] px-7 py-3.5 text-[11px] text-white/45"
-            >
-              Review approach
-
-              <RefreshCcw className="h-3.5 w-3.5" />
-            </motion.a>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
@@ -1956,7 +1590,6 @@ export default function ThreatDetectionClient({
   const page = pages[pageKey];
 
   const { scrollYProgress } = useScroll();
-
   const progress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 25,
@@ -1971,24 +1604,13 @@ export default function ThreatDetectionClient({
       />
 
       <Hero page={page} />
-
       <SignalTicker items={page.ticker} />
-
       <SignalStatement page={page} />
-
       <Capabilities page={page} />
-
       <DetectionFlow page={page} />
-
       <InvestigationQuestions page={page} />
-
-      {/* <BigType page={page} /> */}
-
       <Disciplines page={page} />
-
       <Outcomes page={page} />
-
-      <FinalCTA page={page} />
 
       <style jsx global>{`
         html {
@@ -1997,7 +1619,7 @@ export default function ThreatDetectionClient({
 
         ::selection {
           background: rgba(139, 92, 246, 0.4);
-          color: white;
+          color: #ffffff;
         }
 
         @media (prefers-reduced-motion: reduce) {

@@ -64,7 +64,7 @@ export default function AiShell({
 
         {/* Hero with live neural-network canvas */}
         <header
-          className="relative flex min-h-[78vh] max-md:min-h-[54vh] flex-col items-center justify-center py-16 text-center"
+          className="relative flex  flex-col items-center justify-center pt-25 text-center pb-10"
           style={{
             transform: "translateY(calc(var(--sy,0) * 0.18px))",
             opacity: "calc(1 - var(--sy,0) * 0.0016)",

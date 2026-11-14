@@ -4,75 +4,77 @@ import { motion } from "framer-motion";
 import CloudIcon from "./CloudIcon";
 import type { CloudService } from "./cloudServices";
 
-type Props = {
-  service: CloudService;
-};
+const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function CloudHero({ service }: Props) {
+export default function CloudHero({ service }: { service: CloudService }) {
   return (
-    <section className="relative overflow-hidden bg-[#030303] px-5 pb-24 pt-36 text-white md:px-10 md:pb-32 md:pt-44">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.22]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-          backgroundSize: "52px 52px",
-          maskImage:
-            "radial-gradient(circle at 50% 45%, black, transparent 70%)",
-          WebkitMaskImage:
-            "radial-gradient(circle at 50% 45%, black, transparent 70%)",
-        }}
-      />
-
-      <div className="pointer-events-none absolute left-1/2 top-[450px] h-[700px] w-[1100px] -translate-x-1/2 rounded-full bg-[#7046e6]/10 blur-[200px]" />
-
-      <div className="relative mx-auto max-w-[1500px]">
+    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-[1100px] text-center"
-        >
-          <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-[#7046e6]/25 bg-[#7046e6]/[0.07] px-4 py-2">
-            <CloudIcon
-              name={service.icon}
-              size={11}
-              strokeWidth={1.7}
-              className="text-[#a98ef4]"
-            />
+          animate={{ x: [-100, 90, -100], y: [-50, 80, -50] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-24 top-32 h-[520px] w-[520px] rounded-full bg-[#6d28d9]/[0.13] blur-[160px]"
+        />
+        <motion.div
+          animate={{ x: [90, -80, 90], y: [50, -70, 50] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute right-[-100px] top-[20%] h-[480px] w-[480px] rounded-full bg-[#8b5cf6]/[0.1] blur-[170px]"
+        />
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(196,181,253,.9) 1px, transparent 1px)",
+            backgroundSize: "42px 42px",
+            maskImage: "linear-gradient(to bottom, black, transparent 94%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black, transparent 94%)",
+          }}
+        />
+      </div>
 
-            <span className="font-mono text-[7px] uppercase tracking-[0.25em] text-[#a98ef4]">
-              HYI.AI / {service.eyebrow}
-            </span>
+      <div className="relative mx-auto max-w-[1450px] px-5 pb-10 pt-30 max-md:pt-20 md:px-10 lg:px-20">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2"
+        >
+          <CloudIcon
+            name={service.icon}
+            size={14}
+            strokeWidth={1.7}
+            className="hyi-blue-icon"
+          />
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/60">
+            HYI.AI / {service.eyebrow}
+          </span>
+        </motion.div>
+
+        <div className="mt-6 overflow-hidden">
+          <motion.h1
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.1, ease }}
+            className="hyi-h1 hyi-white text-[52px] leading-[0.95] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px]"
+          >
+            {service.title}
+          </motion.h1>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="mt-6 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
+        >
+          <div className="flex items-start gap-3">
+            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#a78bfa] shadow-[0_0_14px_rgba(167,139,250,.9)]" />
+            <p className="hyi-h3 hyi-blue">{service.accent}</p>
           </div>
 
-          <h1 className="mt-9 text-[clamp(4rem,8vw,8.5rem)] font-medium leading-[0.87] tracking-[-0.075em]">
-            {service.title}
-          </h1>
-
-          <p className="mx-auto mt-8 max-w-[850px] text-[13px] leading-7 text-white/55 md:text-[15px]">
-            {service.description}
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0.6 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.45, duration: 0.8 }}
-            className="mx-auto mt-12 h-px max-w-[700px]"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(112,70,230,0.8), transparent)",
-            }}
-          />
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="mx-auto mt-10 max-w-[760px] text-[11px] uppercase leading-6 tracking-[0.12em] text-white/35"
-          >
-            {service.accent}
-          </motion.p>
+          <p className="hyi-p">{service.description}</p>
         </motion.div>
       </div>
     </section>

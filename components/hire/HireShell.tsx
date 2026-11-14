@@ -19,7 +19,7 @@ export default function HireShell({ children }: { children: ReactNode }) {
     <main className="hyi-bg">
       <BackdropFx />
       <Header/>
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-5 sm:px-6">
         {/* <nav
           ref={nav}
           aria-label="Hire talent pages"
