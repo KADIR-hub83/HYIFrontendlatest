@@ -517,8 +517,8 @@ export default function CertificateView({ data }: { data: CertData }) {
       {/* AUTHORIZED SIGNATORY (right edge = 1111) */}
       <section className="absolute left-[891px] top-[772px] w-[220px] text-center">
         <img src="/sign.png" alt="Authorized Signatory" className="mx-auto h-[52px] w-full object-contain" />
-        <div className="h-[2px] w-full bg-[#1a1535]" />
-        <p className="m-0 mt-[7px] whitespace-nowrap text-[16px] font-bold text-[#2b1a6b]">CEO & Founder</p>
+        {/* <div className="h-[2px] w-full bg-[#1a1535]" /> */}
+        <p className="m-0 mt-[5px] whitespace-nowrap text-[16px] font-bold text-[#2b1a6b]">CEO & Founder</p>
       </section>
     </article>
   );
