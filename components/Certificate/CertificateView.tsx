@@ -244,6 +244,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { BadgeCheck, CalendarDays, Clock3 } from "lucide-react";
 
 export type CertData = {
   studentName: string;
@@ -393,7 +394,7 @@ export default function CertificateView({ data }: { data: CertData }) {
 
       {/* TITLE */}
       <h1
-        className="hyi-h1 absolute left-[116px] top-[148px] m-0 whitespace-nowrap text-left text-[55px] font-extrabold leading-[1.1] text-[#14102e]"
+        className="hyi-h1 absolute left-[116px] top-[148px] m-0 whitespace-nowrap text-left text-[55px] font-extrabold leading-[1.1] text-[#7046e6]"
       >
         Certificate Of Completion
       </h1>
@@ -455,13 +456,57 @@ export default function CertificateView({ data }: { data: CertData }) {
       </div>
 
       {/* DETAILS PANEL (116 → 1111) */}
-      <section className="absolute left-[116px] top-[652px] grid w-[995px] grid-cols-[1.2fr_1fr_0.9fr_1.6fr] divide-x divide-[#d9ccfa] rounded-[16px] border border-[#ddd2fb] bg-white/90 py-[14px] shadow-[0_6px_18px_rgba(76,31,181,0.12)]">
-        <Detail label="Certificate No" value={data.certificateId || "—"} />
-        <Detail label="Date of Completion" value={formatDate(data.completionDate) || "—"} />
-        <Detail label="Training Duration" value="6 Months" />
-        <Detail label="Institute" value="BY Zila Panchayat Shahdol MP" />
-      </section>
+<section className="absolute left-[116px] top-[652px] grid w-[995px] grid-cols-3 divide-x divide-[#E3D8F8] rounded-[16px] border border-[#DDD2FB] bg-white/95 py-[14px] shadow-[0_5px_16px_rgba(76,31,181,0.08)]">
 
+  {/* Certificate Number */}
+  <div className="flex items-center justify-start  px-5">
+    <BadgeCheck
+      size={30}
+      strokeWidth={1.6}
+      className="shrink-0 text-[#7046e6]"
+    />
+
+    <div className="text-left">
+      <Detail
+        label="Certificate No"
+        value={data.certificateId || "—"}
+      />
+    </div>
+  </div>
+
+  {/* Completion Date */}
+  <div className="flex items-center justify-start  px-5">
+    <CalendarDays
+      size={30}
+      strokeWidth={1.6}
+      className="shrink-0 text-[#7046e6]"
+    />
+
+    <div className="text-left">
+      <Detail
+        label="Date of Completion"
+        value={formatDate(data.completionDate) || "—"}
+      />
+    </div>
+  </div>
+
+  {/* Training Duration */}
+  <div className="flex items-center justify-start  px-5">
+    <Clock3
+      size={30}
+      strokeWidth={1.6}
+      className="shrink-0 text-[#7046e6]"
+    />
+
+    <div className="text-left">
+      <Detail
+        label="Training Duration"
+        value="6 Months"
+      />
+    </div>
+  </div>
+
+</section>
       {/* TRAINING COORDINATOR (purple shape se door) */}
       {/* <section className="absolute left-[190px] top-[772px] w-[220px] text-center">
         <div className="h-[52px]" />
