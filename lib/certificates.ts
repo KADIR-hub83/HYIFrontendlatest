@@ -1,3 +1,5 @@
+import type { ObjectId } from "mongodb";
+
 export const FIELDS = [
   "studentName",
   "fatherName",
@@ -18,14 +20,25 @@ export const FIELD_LABELS: Record<string, string> = {
 
 const CLASSES = ["6", "7", "8", "9", "10", "11", "12", "College"];
 
-export function clean(body: any) {
-  const data = {
-    studentName: String(body?.studentName ?? "").trim(),
-    fatherName: String(body?.fatherName ?? "").trim(),
-    studentClass: String(body?.studentClass ?? "").trim(),
-    age: Number(body?.age),
-    certificateId: String(body?.certificateId ?? "").trim(),
-    completionDate: String(body?.completionDate ?? "").trim(),
+export type CertificateInput = {
+  studentName: string;
+  fatherName: string;
+  studentClass: string;
+  age: number;
+  certificateId: string;
+  completionDate: string;
+};
+
+export function clean(body: unknown) {
+  const b = (body ?? {}) as Record<string, unknown>;
+
+  const data: CertificateInput = {
+    studentName: String(b.studentName ?? "").trim(),
+    fatherName: String(b.fatherName ?? "").trim(),
+    studentClass: String(b.studentClass ?? "").trim(),
+    age: Number(b.age),
+    certificateId: String(b.certificateId ?? "").trim(),
+    completionDate: String(b.completionDate ?? "").trim(),
   };
 
   let error = "";
@@ -39,6 +52,6 @@ export function clean(body: any) {
   return { data, error };
 }
 
-export function serialize(doc: any) {
+export function serialize<T extends { _id: ObjectId }>(doc: T) {
   return { ...doc, _id: doc._id.toString() };
 }
