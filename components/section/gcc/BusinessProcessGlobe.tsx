@@ -259,14 +259,7 @@ export default function BusinessProcessGlobe() {
         </div>
       ))}
 
-      {/* top small global network label */}
-      <div className="absolute left-1/2 top-[4%] z-30 -translate-x-1/2 md:top-[2%]">
-        <div className="flex items-center gap-2 text-[9px] uppercase tracking-[3px] text-purple-200/50">
-          <span className="h-[4px] w-[4px] rounded-full bg-purple-400" />
-          Global Operations Network
-          <span className="h-[4px] w-[4px] rounded-full bg-purple-400" />
-        </div>
-      </div>
+  
 
       <style jsx>{`
         @keyframes globeLight {

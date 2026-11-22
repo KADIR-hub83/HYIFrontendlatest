@@ -1,43 +1,14 @@
-import Header from "@/components/section/general/header";
-import Footer from "@/components/section/general/footer";
+import type { Metadata } from "next";
+import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
+import { aiServices } from "@/components/data/ai-services.data";
 
-import GenerativeAIHero from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/GenerativeAIHero";
-import AICommandCenter from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/AICommandCenter";
-import GenerativeCapabilities from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/GenerativeCapabilities";
-import ModelEcosystem from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/ModelEcosystem";
-import AIWorkflow from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/AIWorkflow";
-import EnterpriseKnowledge from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/EnterpriseKnowledge";
-import ResponsibleAI from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/ResponsibleAI";
-import AIUseCases from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/AIUseCases";
-import GenerativeAIImpact from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/GenerativeAIImpact";
-import GenerativeAICTA from "@/components/section/technology-solutions/artificial-intelligence/generative-ai/GenerativeAICTA";
+const service = getAIService("generative-ai");
 
-export default function GenerativeAIPage() {
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-[#020203] text-white">
-      <Header />
+export const metadata: Metadata = {
+  title: "Generative AI Development | HYI.AI",
+  description: "Build secure generative AI systems, enterprise copilots, RAG platforms and multimodal applications engineered around your business.",
+};
 
-      <GenerativeAIHero />
-
-      <AICommandCenter />
-
-      <GenerativeCapabilities />
-
-      <ModelEcosystem />
-
-      <AIWorkflow />
-
-      <EnterpriseKnowledge />
-
-      <ResponsibleAI />
-
-      <AIUseCases />
-
-      <GenerativeAIImpact />
-
-      <GenerativeAICTA />
-
-      <Footer />
-    </main>
-  );
+export default function GenerativeAiPage() {
+  return <AIServiceShell service={service} />;
 }

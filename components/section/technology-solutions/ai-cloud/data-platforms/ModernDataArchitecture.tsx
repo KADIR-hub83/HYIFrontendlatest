@@ -38,25 +38,23 @@ const architecture = [
 
 export default function ModernDataArchitecture() {
   return (
-    <section className="relative overflow-hidden bg-[#030303] py-28">
+    <section className="relative overflow-hidden bg-[#030303] ">
       <div className="absolute -right-[250px] top-[10%] h-[700px] w-[700px] rounded-full bg-[#7046e6]/15 blur-[180px]" />
 
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="max-w-[850px]">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              02 / MODERN ARCHITECTURE
-            </p>
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="flex flex-col text-center mx-auto">
+          <div className="max-w-[850px] mx-auto">
+       
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Architecture built for
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 continuously moving data.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-[480px] text-[13px] leading-7 text-white/[0.5]">
+          <p className="max-w-[780px] hyi-p mx-auto">
             Modern data platforms connect multiple technologies through clear
             architectural layers instead of allowing every application and
             team to build isolated data pipelines.
@@ -89,14 +87,12 @@ export default function ModernDataArchitecture() {
                 <div className="flex items-center justify-between">
                   <Icon size={15} className="text-[#9b79ef]" />
 
-                  <span className="font-mono text-[6px] text-white/[0.22]">
-                    {number}
-                  </span>
+             
                 </div>
 
-                <h3 className="mt-8 text-xl">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-4 text-[11px] leading-6 text-white/[0.48]">
+                <p className="mt-1 hyi-p">
                   {text}
                 </p>
               </div>

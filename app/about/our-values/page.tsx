@@ -8,16 +8,16 @@ export const metadata = { title: "Our Values | HYI.AI" };
 
 export default function OurValuesPage() {
   return (
-    <AboutShell title="Our Values" accent={["Values"]}>
+    <AboutShell title="Our Values"  accent={["Values"]}>
       <Reveal>
         <Card variant="glass">
-          <p className="hyi-h3 hyi-white mb-5">{values.intro[0]}</p>
+          <p className="hyi-h3 hyi-white mb-5 ">{values.intro[0]}</p>
           <Paras items={values.intro.slice(1)} />
         </Card>
       </Reveal>
 
       {/* Stacking cards: each card sticks and the next slides over it */}
-      <div className="mt-16 space-y-10 pb-10">
+      <div className="mt-6 space-y-10 pb-10 max-lg:pb-5">
         {values.items.map((v, i) => (
           <Card
             key={v.t}
@@ -36,9 +36,9 @@ export default function OurValuesPage() {
       </div>
 
       <Reveal from="zoom">
-        <Card variant="clay" className="mt-10">
-          <h2 className="hyi-h2 hyi-white mb-5">{values.meansTitle}</h2>
-          <div className="space-y-5">
+        <Card variant="clay" className="mt-2">
+          <h2 className="hyi-h2 hyi-white mb-2">{values.meansTitle}</h2>
+          <div className="space-y-3">
             {values.means.map((t, i) => (
               <p key={i} className="hyi-p !text-white/90">{t}</p>
             ))}

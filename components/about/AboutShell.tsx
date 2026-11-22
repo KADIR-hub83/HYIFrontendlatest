@@ -106,7 +106,7 @@ export default function AboutShell({
 
         {/* Hero with scroll parallax fade */}
         <header
-          className="flex pt-30 flex-col justify-center py-1"
+          className="flex pt-30 flex-col justify-center "
           style={{
             transform: "translateY(calc(var(--sy,0) * 0.18px))",
             opacity: "calc(1 - var(--sy,0) * 0.0016)",
@@ -116,7 +116,7 @@ export default function AboutShell({
             <span className="hyi-pulse inline-block h-2.5 w-2.5 rounded-full bg-[#4f9dff]" />
             HYI.AI · About Us
           </p> */}
-          <SplitHeading as="h1" text={title} accent={accent} className="hyi-h1 text-[40px] md:text-[60px] lg:text-[120px]  hyi-white text-center" delay={50} />
+          <SplitHeading as="h1" text={title} accent={accent} className="hyi-h1 mb-5 max-md:text-4xl max-md:mb-2 md:text-5xl  hyi-white text-center" delay={50} />
           {/* <div className="mt-14 flex items-center gap-4">
             <div className="hyi-mouse" />
             <span className="hyi-eyebrow !text-white/50">Scroll</span>

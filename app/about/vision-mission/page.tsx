@@ -34,10 +34,10 @@ export default function VisionMissionPage() {
         </Reveal>
       </div>
 
-      <section className="py-28 text-center">
-        <p className="hyi-eyebrow mb-6">Beliefs</p>
-        <SplitHeading text="What We Believe" accent={["Believe"]} className="hyi-h1 hyi-white mb-12" />
-        <div className="mx-auto max-w-4xl space-y-10">
+      <section className="pt-5 max-md:pt-15 text-center">
+        <p className="hyi-eyebrow mb-6  max-lg:mb-3">Beliefs</p>
+        <SplitHeading text="What We Believe" accent={["Believe"]} className="hyi-h1 hyi-white mb-6" />
+        <div className="mx-auto max-w-4xl space-y-5">
           <ScrollText text={vm.believe} className="hyi-h2 hyi-white" />
           <Reveal from="zoom">
             <Card variant="clay">

@@ -32,7 +32,7 @@ const capabilities = [
 
 export default function DataPlatformsHero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#030303] px-5 pb-24 pt-28 md:px-10 md:pt-36">
+    <section className="relative overflow-hidden bg-[#030303] px-5  md:px-10 pt-30">
       {/* atmospheric circles */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-[25%] h-[900px] w-[900px] -translate-x-1/2 rounded-full bg-[#7046e6]/20 blur-[190px]" />
@@ -56,39 +56,30 @@ export default function DataPlatformsHero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1500px]">
+      <div className="relative mx-auto max-w-[1350px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-[1150px] text-center"
         >
-          <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-[#7046e6]/30 bg-[#7046e6]/[0.08] px-4 py-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute h-full w-full animate-ping rounded-full bg-[#7046e6] opacity-60" />
-              <span className="relative h-2 w-2 rounded-full bg-[#c6b4ff]" />
-            </span>
+       
 
-            <span className="font-mono text-[7px] uppercase tracking-[0.32em] text-[#bca6f7]">
-              HYI.AI / AI CLOUD / DATA PLATFORMS
-            </span>
-          </div>
-
-          <h1 className="mt-8 text-[clamp(4.2rem,9vw,9.3rem)] font-medium leading-[0.84] tracking-[-0.075em]">
+          <h1 className="hyi-h1 hyi-white">
             Build the data
-            <span className="block bg-gradient-to-r from-white via-[#cdbdf6] to-[#7046e6] bg-clip-text text-transparent">
+            <span className="block hyi-blue">
               foundation for AI.
             </span>
           </h1>
 
-          <p className="mx-auto mt-9 max-w-[820px] text-[13px] leading-7 text-white/[0.55] md:text-[15px] md:leading-8">
+          <p className="mx-auto mt-2 max-w-[820px] hyi-p">
             Design modern data platforms that connect fragmented information,
             support reliable data engineering, strengthen governance and create
             an accessible foundation for analytics, applications and
             artificial intelligence.
           </p>
 
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <div className="mt-2 flex flex-wrap justify-center gap-3">
             {capabilities.map(({ Icon, label }) => (
               <motion.div
                 key={label}
@@ -100,7 +91,7 @@ export default function DataPlatformsHero() {
               >
                 <Icon size={11} className="text-[#9e7cf0]" />
 
-                <span className="text-[9px] text-white/[0.48]">
+                <span className="hyi-p">
                   {label}
                 </span>
               </motion.div>
@@ -108,17 +99,9 @@ export default function DataPlatformsHero() {
           </div>
         </motion.div>
 
-        <div className="mt-16">
+        <div className="mt-5">
           <DataPlatformHeroModel />
         </div>
-
-        <a
-          href="#data-foundation"
-          className="mx-auto mt-10 flex w-fit items-center gap-3 font-mono text-[7px] uppercase tracking-[0.25em] text-white/[0.3]"
-        >
-          Explore the platform
-          <ArrowDown size={10} />
-        </a>
       </div>
     </section>
   );

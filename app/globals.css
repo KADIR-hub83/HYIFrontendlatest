@@ -1279,3 +1279,4 @@ body {
 @keyframes ico-pulse{0%,100%{transform:scale(1)}40%{transform:scale(1.18)}70%{transform:scale(.96)}}
 
 @media (prefers-reduced-motion:reduce){.hyi-ico svg{animation:none!important}}
+

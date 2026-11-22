@@ -16,7 +16,7 @@ const gpuNodes = [
 
 export default function NeuralComputeGrid() {
   return (
-    <div className="relative mx-auto max-w-[1420px] overflow-hidden rounded-[42px] border border-[#7653df]/25 bg-[#060606]">
+    <div className="relative mx-auto max-w-[1250px] overflow-hidden rounded-[42px] border border-[#7653df]/25 bg-[#060606]">
       <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-5 md:px-8">
         <div>
           <p className="font-mono text-[7px] tracking-[0.3em] text-[#a98cf4]">

@@ -49,24 +49,22 @@ export default function HostingOverview() {
   return (
     <section
       id="hosting-overview"
-      className="border-y border-white/[0.06] bg-[#070707] py-28"
+      className=" bg-[#000000]"
     >
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="max-w-[850px]">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              01 / MODEL SERVING PLATFORM
-            </p>
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="flex flex-col text-center mx-auto ">
+          <div className="max-w-[850px] mx-auto ">
+          
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               A model file is not
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 a production service.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-[480px] text-[12px] leading-7 text-white/[0.45]">
+          <p className="max-w-[480px] hyi-p mx-auto">
             Production hosting surrounds a trained model with runtime
             infrastructure, endpoints, routing, scaling, version management,
             security controls and operational visibility.
@@ -86,13 +84,13 @@ export default function HostingOverview() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
               whileHover={{ y: -5 }}
-              className="min-h-[245px] rounded-[24px] border border-white/[0.07] bg-[#030303] p-7"
+              className=" rounded-[24px] border border-white/[0.07] bg-[#030303] p-7"
             >
               <Icon size={15} className="text-[#a98cf4]" />
 
-              <h3 className="mt-9 text-xl">{title}</h3>
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-              <p className="mt-4 text-[11px] leading-6 text-white/[0.42]">
+              <p className="mt-2 hyi-p">
                 {text}
               </p>
             </motion.article>

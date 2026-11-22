@@ -48,16 +48,16 @@ export default function ProjectManagerExpertise() {
       <div className="mx-auto max-w-[1450px]">
         <div className="grid gap-16 lg:grid-cols-[.75fr_1.25fr]">
           <div>
-            <div className="sticky top-28">
+            <div className="sticky ">
            
 
-              <h2 className="mt-5 hyi-h1 hyi-white">
+              <h2 className=" hyi-h1 hyi-white">
                 Leadership for
                 <br />
-                <span className="text-white/25">every kind of delivery.</span>
+                <span className="hyi-blue">every kind of delivery.</span>
               </h2>
 
-              <p className="mt-7 max-w-[360px] hyi-p hyi-gray">
+              <p className="mt-2 max-w-[360px] hyi-p ">
                 Match with project leadership based on your team, methodology,
                 technical environment and delivery stage.
               </p>

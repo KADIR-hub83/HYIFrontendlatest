@@ -19,7 +19,7 @@ const nodes = [
 
 export default function StrategyIntelligenceCore() {
   return (
-    <div className="relative mx-auto min-h-[620px] max-w-[1400px] overflow-hidden rounded-[40px] border border-[#7046e6]/20 bg-[#060606]">
+    <div className="relative mx-auto min-h-[420px] max-w-[1350px] overflow-hidden rounded-[40px] border border-[#7046e6]/20 bg-[#060606]">
       <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-5">
         <span className="font-mono text-[8px] tracking-[0.25em] text-white/[0.32]">
           STRATEGY INTELLIGENCE SYSTEM

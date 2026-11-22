@@ -31,7 +31,7 @@ export default function MLOpsPage() {
       <MLOpsCapabilities />
       <MLOpsWorkflow />
       <MLOpsUseCases />
-      <MLOpsCTA />
+      {/* <MLOpsCTA /> */}
       <Footer />
     </main>
   );

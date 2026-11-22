@@ -23,11 +23,11 @@ const steps = [
 export default function DesignProcess() {
   return (
     <section className="relative  bg-[#080808] px-5 py-10 sm:px-8 lg:px-12  ">
-      <div className="mx-auto max-w-[1350px]">
+      <div className="mx-auto max-w-[1250px]">
         <div className="mb-8">
      
 
-          <h2 className=" max-w-[850px] text-[clamp(45px,5vw,90px)] font-medium leading-[0.92] hyi-h1 hyi-white tracking-[-0.065em]">
+          <h2 className=" hyi-h1 hyi-white text-center mx-autos">
             From brief to brilliant,
             <span className="hyi-blue"> without the hiring drag.</span>
           </h2>
@@ -62,9 +62,6 @@ export default function DesignProcess() {
                 <div className="mt-2 flex items-center gap-3">
                   <div className="h-[1px] w-10 bg-[#8b5cf6]" />
 
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-white/25">
-                    Step {index + 1}
-                  </span>
                 </div>
               </div>
             </motion.div>

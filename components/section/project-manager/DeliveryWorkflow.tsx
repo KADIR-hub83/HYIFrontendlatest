@@ -35,21 +35,21 @@ const steps = [
 
 export default function DeliveryWorkflow() {
   return (
-    <section className="px-5 py-10 sm:px-10 lg:px-20">
+    <section className="px-5  sm:px-10 lg:px-20">
       <div className="mx-auto max-w-[1450px]">
-        <div className="mb-20 grid gap-10 lg:grid-cols-2">
+        <div className="mb-5 text-center mx-auto">
           <div>
           
 
-            <h2 className="mt-5 hyi-h1 hyi-white">
+            <h2 className="mt-5 hyi-h1 hyi-white mx-auto">
               Less chaos.
               <br />
-              <span className="text-white/25">More momentum.</span>
+              <span className="hyi-blue">More momentum.</span>
             </h2>
           </div>
 
-          <div className="flex items-end lg:justify-end">
-            <p className="max-w-[400px] hyi-p">
+          <div className="flex ">
+            <p className="max-w-[600px] hyi-p mx-auto text-center">
               Good project management isn&apos;t more meetings. It&apos;s the right
               information, decisions and people connecting at the right time.
             </p>

@@ -45,20 +45,17 @@ const phases = [
 
 export default function HostingWorkflow() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className=" bg-[#070707] ">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="mx-auto max-w-[900px] text-center">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            09 / MODEL DELIVERY
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+       
+          <h2 className="hyi-h1 hyi-white">
             From trained artifact
-            <span className="text-[#7046e6]"> to live endpoint.</span>
+            <span className="hyi-blue"> to live endpoint.</span>
           </h2>
         </div>
 
-        <div className="relative mt-16">
+        <div className="relative mt-5">
           <div className="absolute left-[8%] right-[8%] top-[44px] hidden h-px bg-[#7046e6]/25 lg:block" />
 
           <motion.span
@@ -67,7 +64,7 @@ export default function HostingWorkflow() {
             className="absolute top-[41px] z-20 hidden h-2 w-2 rounded-full bg-[#d5c5ff] shadow-[0_0_20px_#9878ef] lg:block"
           />
 
-          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-6">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {phases.map(({ Icon, title, text }, index) => (
               <motion.article
                 key={title}
@@ -75,19 +72,17 @@ export default function HostingWorkflow() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="relative z-10 min-h-[300px] rounded-[23px] border border-white/[0.07] bg-[#030303] p-5"
+                className="relative z-10] rounded-[23px] border border-white/[0.07] bg-[#030303] p-5"
               >
                 <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-[#7046e6]/30 bg-[#0a0710]">
                   <Icon size={14} className="text-[#c0a9ff]" />
                 </div>
 
-                <p className="mt-9 font-mono text-[6px] text-[#7653df]">
-                  PHASE 0{index + 1}
-                </p>
+          
 
-                <h3 className="mt-3 text-lg">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-4 text-[10px] leading-6 text-white/[0.4]">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
               </motion.article>

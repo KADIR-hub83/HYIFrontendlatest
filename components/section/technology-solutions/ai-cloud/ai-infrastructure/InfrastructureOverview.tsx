@@ -45,27 +45,25 @@ export default function InfrastructureOverview() {
   return (
     <section
       id="infrastructure-overview"
-      className="relative border-y border-white/[0.06] bg-[#050505] py-28"
+      className="relative  bg-[#050505] py-10 "
     >
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="max-w-[850px]">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            01 / INFRASTRUCTURE SYSTEM
-          </p>
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="max-w-[850px] text-center mx-auto">
+      
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-white hyi-h1 ">
             AI needs more than
-            <span className="block text-[#7653df]">powerful hardware.</span>
+            <span className="block hyi-blue">powerful hardware.</span>
           </h2>
 
-          <p className="mt-7 max-w-[700px] text-[13px] leading-7 text-white/[0.48]">
+          <p className="mt-2 max-w-[700px] hyi-p mx-auto">
             Effective AI infrastructure is a coordinated system. Compute,
             networking, storage, orchestration, security and observability must
             work together around the behavior of AI workloads.
           </p>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-6">
           <GPUClusterModel />
         </div>
 
@@ -75,9 +73,9 @@ export default function InfrastructureOverview() {
               key={title}
               className="rounded-[25px] border border-white/[0.07] bg-[#080808] p-7"
             >
-              <Icon size={15} className="text-[#a98cf4]" />
-              <h3 className="mt-8 text-xl">{title}</h3>
-              <p className="mt-4 text-[11px] leading-6 text-white/[0.42]">
+              <Icon size={15} className="hyi-blue-icon" />
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+              <p className="mt-2 hyi-p">
                 {text}
               </p>
             </article>

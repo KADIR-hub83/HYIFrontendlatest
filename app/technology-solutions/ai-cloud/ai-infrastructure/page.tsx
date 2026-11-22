@@ -27,8 +27,8 @@ export default function AIInfrastructurePage() {
       <ObservabilitySection />
       <InfrastructureCapabilities />
       <ReliabilitySection />
-      <InfrastructureWorkflow />
-      <AIInfrastructureCTA />
+      {/* <InfrastructureWorkflow />
+      <AIInfrastructureCTA /> */}
 
       <Footer />
     </main>

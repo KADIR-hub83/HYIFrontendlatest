@@ -260,7 +260,7 @@ function MLHeroVisual() {
       initial={{ opacity: 0, y: 45, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1, delay: 0.15 }}
-      className="relative mx-auto mt-16 max-w-[1360px]"
+      className="relative mx-auto mt-5 max-w-[1360px]"
     >
       <div className="absolute left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7046e6]/25 blur-[150px]" />
 
@@ -456,7 +456,7 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           HERO
       ===================================================== */}
-      <section className="relative min-h-screen overflow-hidden px-5 pb-24 pt-32 md:px-10 md:pt-40">
+      <section className="relative  overflow-hidden px-5 pt-30 md:px-10 ">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#140717_0%,#25092c_48%,#160818_100%)]" />
 
         <div className="absolute left-1/2 top-[30%] h-[900px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full  blur-[180px]" />
@@ -478,39 +478,29 @@ export default function CloudMachineLearningPage() {
           }}
         />
 
-        <div className="relative mx-auto max-w-[1500px]">
+        <div className="relative mx-auto max-w-[1250px]">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-[1150px] text-center"
           >
-            <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.1] bg-white/[0.04] px-4 py-2 backdrop-blur-xl">
-              <motion.span
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="h-1.5 w-1.5 rounded-full bg-[#a88af3]"
-              />
+         
 
-              <span className="font-mono text-[7px] uppercase tracking-[0.3em] text-[#d1c2f8]">
-                HYI.AI / AI CLOUD / CLOUD MACHINE LEARNING
-              </span>
-            </div>
-
-            <h1 className="mt-9 text-[clamp(4.2rem,9vw,9.2rem)] font-semibold leading-[0.86] tracking-[-0.075em] text-[#f4efff]">
+            <h1 className="hyi-h1 hyi-white">
               Machine learning,
-              <span className="block text-[#cdbbf8]">
+              <span className="block hyi-blue">
                 built for the cloud.
               </span>
             </h1>
 
-            <p className="mx-auto mt-9 max-w-[820px] text-[13px] leading-7 text-[#e9def5]/60 md:text-[15px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[820px] hyi-p">
               Build cloud machine learning foundations that connect data,
               scalable compute, model development and production operations
               into one reliable engineering lifecycle.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-2">
+            <div className="mt-2 flex flex-wrap justify-center gap-2">
               {[
                 "Cloud ML",
                 "Model Training",
@@ -520,7 +510,7 @@ export default function CloudMachineLearningPage() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-full border border-white/[0.09] bg-white/[0.035] px-4 py-2.5 font-mono text-[6px] tracking-[0.18em] text-[#d8c9f5]/60"
+                  className="rounded-full border border-white/[0.09] bg-white/[0.035] px-4 py-2.5 font-mono hyi-p tracking-[0.18em] text-[#d8c9f5]/60"
                 >
                   {item.toUpperCase()}
                 </div>
@@ -530,13 +520,7 @@ export default function CloudMachineLearningPage() {
 
           <MLHeroVisual />
 
-          <a
-            href="#foundation"
-            className="mx-auto mt-10 flex w-fit items-center gap-3 font-mono text-[7px] tracking-[0.24em] text-[#d8c9f5]/40"
-          >
-            EXPLORE THE PLATFORM
-            <ArrowDown size={11} />
-          </a>
+        
         </div>
       </section>
 
@@ -545,29 +529,27 @@ export default function CloudMachineLearningPage() {
       ===================================================== */}
       <section
         id="foundation"
-        className="relative overflow-hidden border-y border-white/[0.07] bg-[#1b091f] py-28 md:py-36"
+        className="relative overflow-hidden  bg-[#000000] py-10"
       >
         <PurpleAtmosphere position="left" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-                01 / THE FOUNDATION
-              </p>
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white ">
                 From ML experiment
-                <span className="block text-[#cdbbf8]">
+                <span className="block hyi-blue">
                   to ML system.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[590px] text-[13px] leading-7 text-[#eadff5]/55">
+              <p className="mt-2 max-w-[590px] hyi-p">
                 Building a model is only one part of machine learning. A
                 production platform also needs reliable data workflows,
                 scalable infrastructure, deployment patterns, governance and
@@ -609,21 +591,19 @@ export default function CloudMachineLearningPage() {
                     y: -5,
                     borderColor: "rgba(167,138,239,.3)",
                   }}
-                  className="min-h-[250px] rounded-[26px] border border-white/[0.08] bg-white/[0.035] p-6 backdrop-blur-xl"
+                  className=" rounded-[26px] border border-white/[0.08] bg-white/[0.035] p-6 backdrop-blur-xl"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/30 bg-[#7046e6]/10">
                       <Icon size={15} className="text-[#c8b4f8]" />
                     </div>
 
-                    <span className="font-mono text-[6px] text-white/[0.2]">
-                      0{index + 1}
-                    </span>
+              
                   </div>
 
-                  <h3 className="mt-10 text-xl font-medium">{title}</h3>
+                  <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                  <p className="mt-4 text-[11px] leading-6 text-[#e8dcf2]/50">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -636,32 +616,30 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           CAPABILITIES
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#150717] py-28 md:py-36">
+      <section className="relative overflow-hidden bg-[#000000] ">
         <PurpleAtmosphere position="right" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div className="max-w-[900px]">
-              <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-                02 / CLOUD ML CAPABILITIES
-              </p>
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="flex flex-col text-center mx-auto">
+            <div className="max-w-[900px] mx-auto">
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 The engineering around
-                <span className="block text-[#cdbbf8]">
+                <span className="block hyi-blue">
                   machine intelligence.
                 </span>
               </h2>
             </div>
 
-            <p className="max-w-[470px] text-[13px] leading-7 text-[#eadff5]/50">
+            <p className="max-w-[670px] hyi-p mx-auto">
               Connect the technologies and operational disciplines required to
               take machine learning beyond isolated notebooks and into
               maintainable cloud systems.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map(
               ({ Icon, number, title, text }, index) => (
                 <motion.article
@@ -674,23 +652,19 @@ export default function CloudMachineLearningPage() {
                     y: -7,
                     borderColor: "rgba(112,70,230,.45)",
                   }}
-                  className="group min-h-[330px] rounded-[28px] border border-white/[0.075] bg-[#1d0b21]/75 p-7"
+                  className="group  rounded-[28px] border border-white/[0.075] bg-[#1d0b21]/75 p-7"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/30 bg-[#7046e6]/10 transition-transform duration-300 group-hover:scale-110">
                       <Icon size={16} className="text-[#c8b5f8]" />
                     </div>
-
-                    <span className="font-mono text-[6px] tracking-[0.2em] text-[#a78aef]/60">
-                      {number}
-                    </span>
                   </div>
 
-                  <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-[#eadff5]/50">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -703,28 +677,25 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           ARCHITECTURE
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.07] bg-[#200b25] py-28 md:py-36">
+      <section className="relative overflow-hidden  bg-[#000000] py-10">
         <PurpleAtmosphere position="center" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1000px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-              03 / PLATFORM ARCHITECTURE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+         
+            <h2 className="hyi-h1 hyi-white">
               One connected
-              <span className="text-[#cdbbf8]"> ML stack.</span>
+              <span className="hyi-blue"> ML stack.</span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-[720px] text-[13px] leading-7 text-[#eadff5]/50">
+            <p className="mx-auto hyi-p">
               Machine learning becomes easier to operate when data, engineering,
               models, serving and production operations are designed as
               connected layers.
             </p>
           </div>
 
-          <div className="mx-auto mt-16 max-w-[1200px]">
+          <div className="mx-auto mt-4 max-w-[1200px]">
             {architectureLayers.map(
               ({ Icon, step, title, text }, index) => (
                 <motion.div
@@ -741,16 +712,13 @@ export default function CloudMachineLearningPage() {
                       className="text-[#a78aef]"
                     />
 
-                    <span className="font-mono text-[6px] tracking-[0.2em] text-white/[0.3]">
-                      {step}
-                    </span>
                   </div>
 
-                  <h3 className="text-2xl font-medium tracking-[-0.03em]">
+                  <h3 className="hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="max-w-[620px] text-[12px] leading-7 text-[#eadff5]/48">
+                  <p className="max-w-[620px] hyi-p">
                     {text}
                   </p>
                 </motion.div>
@@ -765,35 +733,33 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           TRAINING + COMPUTE
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#140716] py-28 md:py-36">
+      <section className="relative overflow-hidden bg-[#000000] ">
         <PurpleAtmosphere position="left" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-                04 / TRAINING INFRASTRUCTURE
-              </p>
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 Compute that follows
-                <span className="block text-[#cdbbf8]">
+                <span className="block hyi-blue">
                   the workload.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[580px] text-[13px] leading-7 text-[#eadff5]/52">
+              <p className="mt-2 max-w-[580px] hyi-p">
                 Experimentation and model training can create very different
                 infrastructure demands. Cloud architecture provides a way to
                 align compute resources with changing workload requirements
                 instead of designing every environment around fixed capacity.
               </p>
 
-              <div className="mt-10 space-y-3">
+              <div className="mt-4 space-y-3">
                 {[
                   "CPU and accelerator-aware workload design",
                   "Scalable training environments",
@@ -810,7 +776,7 @@ export default function CloudMachineLearningPage() {
                       className="shrink-0 text-[#a98cf0]"
                     />
 
-                    <span className="text-[11px] text-[#eadff5]/55">
+                    <span className="hyi-h3 hyi-white">
                       {item}
                     </span>
                   </div>
@@ -818,56 +784,55 @@ export default function CloudMachineLearningPage() {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="grid gap-3 sm:grid-cols-2"
-            >
-              {[
-                {
-                  Icon: Cpu,
-                  title: "Training Compute",
-                  text: "Provision compute environments aligned with model size, experimentation patterns and training requirements.",
-                },
-                {
-                  Icon: Database,
-                  title: "Data Access",
-                  text: "Keep training workflows connected to governed and reusable enterprise data foundations.",
-                },
-                {
-                  Icon: Orbit,
-                  title: "Experimentation",
-                  text: "Support iterative development without turning temporary experiments into unmanaged production infrastructure.",
-                },
-                {
-                  Icon: Server,
-                  title: "Model Artifacts",
-                  text: "Maintain intentional handling of trained models and the artifacts required for downstream deployment.",
-                },
-              ].map(({ Icon, title, text }, index) => (
-                <motion.div
-                  key={title}
-                  whileHover={{
-                    y: -5,
-                    backgroundColor: "rgba(255,255,255,.045)",
-                  }}
-                  className="min-h-[290px] rounded-[26px] border border-white/[0.08] bg-[#1e0b22]/70 p-7"
-                >
-                  <Icon size={18} className="text-[#b49bf3]" />
+           <motion.div
+  initial={{ opacity: 0, x: 30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  className="grid gap-3 sm:grid-cols-2"
+>
+  {[
+    {
+      Icon: Cpu,
+      title: "Training Compute",
+      text: "Provision compute environments aligned with model size, experimentation patterns and training requirements.",
+      style: "hyi-glass",
+    },
+    {
+      Icon: Database,
+      title: "Data Access",
+      text: "Keep training workflows connected to governed and reusable enterprise data foundations.",
+      style: "hyi-skeu",
+    },
+    {
+      Icon: Orbit,
+      title: "Experimentation",
+      text: "Support iterative development without turning temporary experiments into unmanaged production infrastructure.",
+      style: "hyi-skeu",
+    },
+    {
+      Icon: Server,
+      title: "Model Artifacts",
+      text: "Maintain intentional handling of trained models and the artifacts required for downstream deployment.",
+      style: "hyi-glass",
+    },
+  ].map(({ Icon, title, text, style }) => (
+    <motion.div
+      key={title}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
+      className={`group relative overflow-hidden rounded-[26px] p-7 ${style}`}
+    >
+      <Icon
+        size={18}
+        className="text-[#b49bf3] transition-transform duration-300 group-hover:scale-110"
+      />
 
-                  <span className="mt-10 block font-mono text-[6px] tracking-[0.2em] text-white/[0.22]">
-                    COMPUTE 0{index + 1}
-                  </span>
+      <h3 className="mt-3 hyi-h3 hyi-white">{title}</h3>
 
-                  <h3 className="mt-4 text-xl font-medium">{title}</h3>
-
-                  <p className="mt-5 text-[11px] leading-6 text-[#eadff5]/48">
-                    {text}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
+      <p className="mt-2 hyi-p">{text}</p>
+    </motion.div>
+  ))}
+</motion.div>
           </div>
         </div>
       </section>
@@ -875,29 +840,25 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           LIFECYCLE
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.07] bg-[#1d0921] py-28 md:py-36">
-        <PurpleAtmosphere position="right" />
+      <section className="relative overflow-hidden  bg-[#000000] py-10">
+        <div className="relative mx-auto max-w-[1350px] text-center px-5 md:px-10">
+          <div className="max-w-[900px] mx-auto">
+        
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[900px]">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-              05 / MACHINE LEARNING LIFECYCLE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Models move through
-              <span className="block text-[#cdbbf8]">
+              <span className="block hyi-blue">
                 a lifecycle.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-[700px] text-[13px] leading-7 text-[#eadff5]/50">
+            <p className="mt-2 max-w-[700px] hyi-p mx-auto">
               Production machine learning is a continuous engineering process,
               not a one-time deployment event.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 lg:grid-cols-5">
+          <div className="mt-5 grid gap-3 lg:grid-cols-5">
             {lifecycle.map(({ number, title, text }, index) => (
               <motion.article
                 key={title}
@@ -905,19 +866,17 @@ export default function CloudMachineLearningPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07 }}
-                className="relative min-h-[310px] overflow-hidden rounded-[25px] border border-white/[0.08] bg-[#160719]/75 p-6"
+                className="relative overflow-hidden rounded-[25px] border border-white/[0.08] bg-[#160719]/75 p-6"
               >
                 <div className="absolute right-[-25px] top-[-30px] h-28 w-28 rounded-full bg-[#7046e6]/15 blur-[45px]" />
 
-                <span className="font-mono text-[7px] tracking-[0.2em] text-[#a98cf0]">
-                  {number}
-                </span>
+         
 
-                <div className="mt-12 h-px bg-gradient-to-r from-[#7046e6]/60 to-transparent" />
+                <div className="mt-2 h-px bg-gradient-to-r from-[#7046e6]/60 to-transparent" />
 
-                <h3 className="mt-8 text-xl font-medium">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-5 text-[11px] leading-6 text-[#eadff5]/48">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
 
@@ -936,24 +895,22 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           PRODUCTION ML
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#140716] py-28 md:py-36">
-        <PurpleAtmosphere position="center" />
+      <section className="relative overflow-hidden bg-[#000000]">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-                06 / PRODUCTION ML
-              </p>
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 Deployment is
-                <span className="block text-[#cdbbf8]">
+                <span className="block hyi-blue">
                   the beginning.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[570px] text-[13px] leading-7 text-[#eadff5]/50">
+              <p className="mt-2 max-w-[570px] hyi-p">
                 Once a model becomes part of a production application, the
                 surrounding system needs the same operational discipline
                 expected from other critical cloud workloads.
@@ -992,19 +949,15 @@ export default function CloudMachineLearningPage() {
                   whileHover={{
                     borderColor: "rgba(112,70,230,.4)",
                   }}
-                  className="min-h-[280px] rounded-[26px] border border-white/[0.08] bg-[#1e0b22]/65 p-7"
+                  className=" rounded-[26px] border border-white/[0.08] bg-[#1e0b22]/65 p-7"
                 >
                   <div className="flex items-center justify-between">
                     <Icon size={17} className="text-[#b69df4]" />
-
-                    <span className="font-mono text-[6px] text-white/[0.2]">
-                      PROD 0{index + 1}
-                    </span>
                   </div>
 
-                  <h3 className="mt-12 text-xl font-medium">{title}</h3>
+                  <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                  <p className="mt-5 text-[11px] leading-6 text-[#eadff5]/48">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -1017,24 +970,19 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           USE CASES
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.07] bg-[#200b25] py-28 md:py-36">
-        <PurpleAtmosphere position="left" />
+      <section className="relative overflow-hidden  bg-[#000000] py-10">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1000px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-              07 / CLOUD ML USE CASES
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Machine learning where
-              <span className="block text-[#cdbbf8]">
+              <span className="block hyi-blue">
                 applications need it.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {useCases.map(({ Icon, tag, title, text }, index) => (
               <motion.article
                 key={title}
@@ -1046,23 +994,19 @@ export default function CloudMachineLearningPage() {
                   y: -6,
                   borderColor: "rgba(112,70,230,.42)",
                 }}
-                className="min-h-[350px] rounded-[28px] border border-white/[0.08] bg-[#160719]/75 p-7"
+                className=" rounded-[28px] border border-white/[0.08] bg-[#160719]/75 p-7"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/30 bg-[#7046e6]/10">
                     <Icon size={16} className="text-[#c7b3f8]" />
                   </div>
-
-                  <span className="font-mono text-[6px] tracking-[0.18em] text-[#a98cf0]/70">
-                    {tag}
-                  </span>
                 </div>
 
-                <h3 className="mt-16 text-2xl font-medium tracking-[-0.03em]">
+                <h3 className="mt-2 hyi-h3 hyi-white">
                   {title}
                 </h3>
 
-                <p className="mt-5 text-[12px] leading-7 text-[#eadff5]/48">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
               </motion.article>
@@ -1074,24 +1018,21 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           PRINCIPLES
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#160818] py-28 md:py-36">
+      <section className="relative overflow-hidden bg-[#000000]">
         <PurpleAtmosphere position="right" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-                08 / ENGINEERING PRINCIPLES
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+            
+              <h2 className="hyi-h1 hyi-white">
                 Build systems,
-                <span className="block text-[#cdbbf8]">
+                <span className="block hyi-blue">
                   not demos.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[480px] text-[13px] leading-7 text-[#eadff5]/50">
+              <p className="mt-2 max-w-[480px] hyi-p">
                 Sustainable machine learning depends on engineering practices
                 that remain useful as models, data and cloud technologies
                 continue changing.
@@ -1112,16 +1053,14 @@ export default function CloudMachineLearningPage() {
                   </div>
 
                   <div>
-                    <span className="font-mono text-[6px] tracking-[0.18em] text-[#a98cf0]/60">
-                      PRINCIPLE 0{index + 1}
-                    </span>
+               
 
-                    <h3 className="mt-3 text-xl font-medium">
+                    <h3 className="mt-1 hyi-h3 hyi-white">
                       {title}
                     </h3>
                   </div>
 
-                  <p className="text-[12px] leading-7 text-[#eadff5]/48">
+                  <p className="hyi-p">
                     {text}
                   </p>
                 </motion.div>
@@ -1136,30 +1075,28 @@ export default function CloudMachineLearningPage() {
       {/* =====================================================
           OUTCOMES
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.07] bg-[#210b26] py-28 md:py-36">
-        <div className="absolute left-1/2 top-1/2 h-[900px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#390b44]/65 blur-[200px]" />
+      <section className="relative overflow-hidden bg-[#000000] py-5">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[950px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#a78aef]">
-              09 / PLATFORM OUTCOMES
-            </p>
+      
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Make machine learning
-              <span className="block text-[#cdbbf8]">
+              <span className="block hyi-blue">
                 operational.
               </span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-[720px] text-[13px] leading-7 text-[#eadff5]/50">
+            <p className="mx-auto mt-2 max-w-[720px] hyi-p">
               The goal is not simply to train more models. It is to create a
               cloud foundation where useful machine learning systems can be
               developed, deployed and operated consistently.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
             {outcomes.map(({ Icon, title, text }, index) => (
               <motion.div
                 key={title}
@@ -1168,13 +1105,13 @@ export default function CloudMachineLearningPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07 }}
                 whileHover={{ y: -6 }}
-                className="min-h-[300px] rounded-[27px] border border-white/[0.08] bg-white/[0.035] p-7 backdrop-blur-xl"
+                className=" rounded-[27px] border border-white/[0.08] bg-white/[0.035] p-7 backdrop-blur-xl"
               >
                 <Icon size={17} className="text-[#b69df4]" />
 
-                <h3 className="mt-14 text-xl font-medium">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-5 text-[11px] leading-6 text-[#eadff5]/48">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
               </motion.div>
@@ -1183,61 +1120,7 @@ export default function CloudMachineLearningPage() {
         </div>
       </section>
 
-      {/* =====================================================
-          PREMIUM CLOSING — NO BUTTON
-      ===================================================== */}
-      <section className="relative overflow-hidden bg-[#120614] px-5 py-32 md:px-10 md:py-44">
-        <div className="absolute left-1/2 top-1/2 h-[900px] w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#390b44]/80 blur-[190px]" />
 
-        <div className="absolute left-[10%] top-[10%] h-[500px] w-[500px] rounded-full bg-[#7046e6]/15 blur-[170px]" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mx-auto max-w-[1250px] text-center"
-        >
-          <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.09] bg-white/[0.035] px-4 py-2">
-            <BrainCircuit size={10} className="text-[#b69df4]" />
-
-            <span className="font-mono text-[6px] tracking-[0.25em] text-[#d2c3f5]/65">
-              CLOUD MACHINE LEARNING
-            </span>
-          </div>
-
-          <h2 className="mt-9 text-[clamp(4rem,8vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.075em] text-[#f4efff]">
-            Intelligence needs
-            <span className="block text-[#cdbbf8]">
-              infrastructure.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-9 max-w-[760px] text-[13px] leading-7 text-[#eadff5]/52 md:text-[14px]">
-            Connect machine learning with the cloud foundations required to
-            turn experimental models into reliable components of modern
-            applications and enterprise systems.
-          </p>
-
-          <div className="mx-auto mt-14 h-px max-w-[700px] bg-gradient-to-r from-transparent via-[#7046e6]/55 to-transparent" />
-
-          <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4">
-            {[
-              "DATA",
-              "COMPUTE",
-              "TRAINING",
-              "DEPLOYMENT",
-              "OPERATIONS",
-            ].map((item) => (
-              <span
-                key={item}
-                className="font-mono text-[6px] tracking-[0.22em] text-[#d2c3f5]/35"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </section>
 
       <Footer />
     </main>

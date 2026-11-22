@@ -151,32 +151,20 @@ export default function StrategyAdvisoryPage() {
         {/* top fade */}
         <div className="pointer-events-none absolute left-0 top-0 h-[250px] w-full bg-gradient-to-b from-black/40 to-transparent" />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-20 pt-28 md:px-10 md:pt-32 lg:px-16">
-          {/* badge */}
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-purple-400/[0.18] bg-purple-500/[0.06] px-4 py-2 backdrop-blur-xl">
-              <span className="h-[5px] w-[5px] rounded-full bg-[#b56cff] shadow-[0_0_12px_rgba(181,108,255,1)]" />
-
-              <span className="text-[10px] uppercase tracking-[2.2px] text-purple-100/65">
-                HYI.AI Global Capability Center
-              </span>
-            </div>
-          </div>
+        <div className="relative z-10 mx-auto max-w-[1350px] px-5 pb-20 pt-28 md:px-10 md:pt-32 lg:px-16">
+       
 
           {/* heading */}
           <div className="relative z-30 mx-auto mt-8 max-w-[1150px] text-center">
-            <p className="mb-5 text-[11px] uppercase tracking-[4px] text-white/30">
-              Strategy • Transformation • Global Growth
-            </p>
-
-            <h1 className="text-[44px] font-semibold leading-[0.98] tracking-[-2.5px] text-white sm:text-[58px] md:text-[76px] lg:text-[88px]">
+      
+            <h1 className="hyi-h1 hyi-white">
               Strategy &
-              <span className="ml-0 block bg-gradient-to-r from-[#e1b6ff] via-[#a45cff] to-[#7258ff] bg-clip-text text-transparent md:ml-4 md:inline">
+              <span className="ml-2  hyi-blue">
                 Advisory
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-[820px] text-[15px] leading-7 text-white/45 md:text-[17px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[820px] hyi-p">
               Transform global ambition into an executable strategy. We help
               enterprises design, build and scale high-performance Global
               Capability Centers through intelligence, technology, talent and
@@ -188,14 +176,7 @@ export default function StrategyAdvisoryPage() {
               WORLD INTELLIGENCE EXPERIENCE
           ====================================================== */}
           <div className="relative mx-auto mt-4 h-[510px] max-w-[1180px] md:mt-0 md:h-[650px]">
-            {/* top network label */}
-            <div className="absolute left-1/2 top-[7%] z-30 -translate-x-1/2">
-              <div className="flex items-center gap-3 text-[8px] uppercase tracking-[3px] text-purple-200/40 md:text-[9px]">
-                <span className="h-1 w-1 rounded-full bg-purple-400" />
-                Global Strategy Intelligence
-                <span className="h-1 w-1 rounded-full bg-purple-400" />
-              </div>
-            </div>
+      
 
             {/* globe glow */}
             <div className="pointer-events-none absolute left-1/2 top-[52%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[100px] md:h-[620px] md:w-[620px]" />
@@ -353,63 +334,14 @@ export default function StrategyAdvisoryPage() {
           <div className="relative z-40 mx-auto -mt-6 max-w-[850px] text-center md:-mt-10">
             <div className="mx-auto h-px w-[190px] bg-gradient-to-r from-transparent via-purple-400/45 to-transparent" />
 
-            <p className="mx-auto mt-6 max-w-[720px] text-[14px] leading-7 text-white/40 md:text-[15px]">
+            <p className="mx-auto mt-2 max-w-[720px] hyi-p">
               From market intelligence to operating model transformation, HYI.AI
               connects strategy with the capabilities required to execute it.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={scrollToCapabilities}
-                className="group relative overflow-hidden rounded-full border border-purple-300/20 bg-gradient-to-r from-[#722ce1] via-[#9250ff] to-[#7047f5] px-8 py-4 text-[13px] font-medium text-white shadow-[0_12px_45px_rgba(124,58,237,.30)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(124,58,237,.45)]"
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  Explore Advisory Capabilities
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-
-                <span className="absolute inset-y-0 left-[-45%] w-[35%] rotate-[18deg] bg-white/20 blur-xl transition-all duration-700 group-hover:left-[125%]" />
-              </button>
-
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("strategy-framework")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="rounded-full border border-white/[0.09] bg-white/[0.025] px-8 py-4 text-[13px] text-white/55 backdrop-blur-xl transition duration-300 hover:border-purple-400/25 hover:bg-purple-500/[0.06] hover:text-white"
-              >
-                Our Approach
-              </button>
-            </div>
           </div>
 
-          {/* metrics */}
-          <div className="relative z-30 mx-auto mt-16 grid max-w-[1000px] grid-cols-2 overflow-hidden rounded-[24px] border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl md:grid-cols-4">
-            {[
-              ["360°", "Strategic Advisory"],
-              ["Global", "Market Intelligence"],
-              ["AI", "Enabled Strategy"],
-              ["End-to-End", "GCC Transformation"],
-            ].map(([value, label], index) => (
-              <div
-                key={label}
-                className={`relative px-5 py-6 text-center md:py-7 ${
-                  index !== 3 ? "md:border-r md:border-white/[0.06]" : ""
-                } ${index < 2 ? "border-b border-white/[0.06] md:border-b-0" : ""}`}
-              >
-                <div className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-xl font-semibold text-transparent md:text-2xl">
-                  {value}
-                </div>
-
-                <div className="mt-2 text-[9px] uppercase tracking-[1.6px] text-white/28">
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
+    
         </div>
 
         <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-b from-transparent to-[#020203]" />
@@ -420,56 +352,51 @@ export default function StrategyAdvisoryPage() {
       ========================================================== */}
       <section
         id="advisory-capabilities"
-        className="relative overflow-hidden border-b border-white/[0.05] bg-[#030305] py-24 md:py-32"
+        className="relative overflow-hidden  bg-[#030305] "
       >
         <div className="pointer-events-none absolute left-1/2 top-[20%] h-[650px] w-[950px] -translate-x-1/2 rounded-full bg-purple-800/[0.07] blur-[160px]" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[850px] text-center">
-            <div className="inline-flex rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-[9px] uppercase tracking-[2px] text-white/40">
-              Strategic Capabilities
-            </div>
-
-            <h2 className="mt-6 text-3xl font-semibold tracking-[-1.2px] text-white md:text-5xl">
+          
+            <h2 className="mt-2 hyi-h1 hyi-white">
               From strategic ambition to
-              <span className="bg-gradient-to-r from-[#d8a6ff] to-[#8055ff] bg-clip-text text-transparent">
+              <span className="hyi-blue">
                 {" "}
                 enterprise impact.
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-[700px] text-[14px] leading-7 text-white/40 md:text-[15px]">
+            <p className="mx-auto mt-2 max-w-[700px] hyi-p">
               Integrated advisory capabilities designed to help enterprises
               establish, transform and scale globally distributed operations.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item) => (
               <article
                 key={item.number}
-                className="group relative min-h-[270px] overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-1 hover:border-purple-400/20 md:p-8"
+                className="group relative  overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-1 hover:border-purple-400/20 md:p-8"
               >
                 <div className="absolute -right-20 -top-20 h-[220px] w-[220px] rounded-full bg-purple-600/[0.08] blur-[70px] transition duration-500 group-hover:bg-purple-600/[0.15]" />
 
                 <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] tracking-[2px] text-purple-300/45">
-                      {item.number}
-                    </span>
+                  <div className="flex items-center justify-end">
+           
 
                     <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.02] text-sm text-white/30 transition duration-300 group-hover:border-purple-400/20 group-hover:text-purple-200">
                       ↗
                     </span>
                   </div>
 
-                  <h3 className="mt-12 text-xl font-medium tracking-[-0.4px] text-white/90">
+                  <h3 className="hyi-h3 hyi-white mt-2">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-[13px] leading-7 text-white/38">
+                  <p className="mt-2 hyi-p">
                     {item.description}
                   </p>
                 </div>
@@ -484,25 +411,23 @@ export default function StrategyAdvisoryPage() {
       ========================================================== */}
       <section
         id="strategy-framework"
-        className="relative overflow-hidden bg-[#020203] py-24 md:py-32"
+        className="relative overflow-hidden bg-[#020203] py-10 "
       >
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5d20a5]/[0.07] blur-[170px]" />
 
         <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[850px] text-center">
-            <p className="text-[10px] uppercase tracking-[3px] text-purple-300/45">
-              Strategy to Execution
-            </p>
+         
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+            <h2 className=" hyi-h1 hyi-white">
               One connected transformation
-              <span className="block bg-gradient-to-r from-[#d9a9ff] via-[#a35cff] to-[#7656ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 journey.
               </span>
             </h2>
           </div>
 
-          <div className="relative mt-16 grid gap-4 md:grid-cols-4">
+          <div className="relative mt-6 grid gap-4 md:grid-cols-4">
             {/* desktop connecting line */}
             <div className="pointer-events-none absolute left-[10%] right-[10%] top-[42px] hidden h-px bg-gradient-to-r from-transparent via-purple-400/25 to-transparent md:block" />
 
@@ -515,11 +440,11 @@ export default function StrategyAdvisoryPage() {
                   {item.step}
                 </div>
 
-                <h3 className="mt-9 text-lg font-medium text-white/85">
+                <h3 className="mt-3 hyi-h3 hyi-white">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-6 text-white/35">
+                <p className="mt-2 hyi-p">
                   {item.text}
                 </p>
               </div>
@@ -527,7 +452,7 @@ export default function StrategyAdvisoryPage() {
           </div>
 
           {/* final executive statement */}
-          <div className="relative mt-20 overflow-hidden rounded-[32px] border border-purple-400/[0.12] bg-gradient-to-br from-purple-900/[0.12] via-[#07060c] to-[#050508] px-6 py-16 text-center md:px-14 md:py-20">
+          {/* <div className="relative mt-20 overflow-hidden rounded-[32px] border border-purple-400/[0.12] bg-gradient-to-br from-purple-900/[0.12] via-[#07060c] to-[#050508] px-6 py-16 text-center md:px-14 md:py-20">
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[350px] w-[650px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/[0.10] blur-[100px]" />
 
             <div className="relative z-10 mx-auto max-w-[850px]">
@@ -556,7 +481,7 @@ export default function StrategyAdvisoryPage() {
                 </span>
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

@@ -44,7 +44,7 @@ export default function DesignerHero() {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen overflow-hidden mx-auto max-w-[1350px]"
+      className="relative  overflow-hidden mx-auto max-w-[1350px]"
     >
       {/* cursor glow */}
 
@@ -71,30 +71,18 @@ export default function DesignerHero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-20 pt-28 sm:px-8 lg:px-12 lg:pt-36">
+      <div className="relative z-10 mx-auto max-w-[1350px] px-5 pb-20 pt-28 sm:px-8 lg:px-12 lg:pt-36">
         {/* top */}
 
-        <div className="grid items-end gap-12 lg:grid-cols-[1fr_360px]">
+        <div className="flex flex-col text-center mx-auto">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-7 flex items-center gap-3"
-            >
-              <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
-                <Sparkles size={12} className="hyi-white-icon" />
-              </div>
-
-              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-white/40">
-                HYI / Design talent
-              </span>
-            </motion.div>
+         
 
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-[1100px] hyi-h1 text-white text-[clamp(58px,6.3vw,145px)] font-medium leading-[0.92] tracking-[-0.075em]"
+              className="max-w-[1100px] hyi-h1 mx-auto "
             >
               Hire designers
               <br />
@@ -128,7 +116,7 @@ export default function DesignerHero() {
             transition={{ delay: 0.35 }}
             className="pb-3 lg:pb-5"
           >
-            <p className="max-w-[340px] hyi-p">
+            <p className="max-w-[640px] hyi-p mx-auto mt-3">
               Work with senior product designers who transform complex ideas
               into intuitive, scalable and beautifully crafted digital
               experiences.
@@ -147,7 +135,7 @@ export default function DesignerHero() {
             duration: 1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="relative mt-20 overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090b]"
+          className="relative mt-10 overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090b]"
         >
           <div className="absolute inset-0">
             <img

@@ -27,22 +27,20 @@ const stages = [
 
 export default function EngineeringPipeline() {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.05] bg-[#030305] py-24 md:py-32">
-      <div className="mx-auto max-w-[1380px] px-5 md:px-10 lg:px-16">
+    <section className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[820px] text-center">
-          <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-            Engineering Delivery Model
-          </p>
+     
 
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+          <h2 className=" hyi-h1 hyi-white">
             From engineering ambition
-            <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7758ff] bg-clip-text text-transparent">
+            <span className="block hyi-blue">
               to scalable execution.
             </span>
           </h2>
         </div>
 
-        <div className="relative mt-20">
+        <div className="relative mt-6">
           <div className="absolute left-[10%] right-[10%] top-[37px] hidden h-px bg-white/[0.06] md:block" />
 
           <div className="pipeline-energy absolute left-[10%] top-[37px] hidden h-px bg-gradient-to-r from-transparent via-purple-300 to-purple-500 md:block" />
@@ -58,16 +56,16 @@ export default function EngineeringPipeline() {
                     {stage.no}
                   </div>
 
-                  <span className="text-[7px] uppercase tracking-[1.5px] text-white/20">
+                  <span className="hyi-p">
                     {stage.tag}
                   </span>
                 </div>
 
-                <h3 className="relative z-10 mt-10 text-xl font-medium text-white/82">
+                <h3 className="relative z-10 mt-3 hyi-h3 hyi-white">
                   {stage.title}
                 </h3>
 
-                <p className="relative z-10 mt-4 text-[13px] leading-7 text-white/34">
+                <p className="relative z-10 mt-2 hyi-p">
                   {stage.text}
                 </p>
 

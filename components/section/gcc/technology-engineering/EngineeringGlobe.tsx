@@ -111,18 +111,7 @@ export default function EngineeringGlobe() {
           TOP STATUS
       ====================================================== */}
 
-      <div className="absolute left-1/2 top-[4%] z-40 -translate-x-1/2">
-        <div className="flex items-center gap-3 whitespace-nowrap text-[7px] uppercase tracking-[2.4px] text-purple-100/35 sm:text-[8px] md:text-[9px] md:tracking-[3px]">
-          <span className="relative flex h-[5px] w-[5px]">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-40" />
-            <span className="relative inline-flex h-[5px] w-[5px] rounded-full bg-green-400" />
-          </span>
-
-          Global Engineering Network
-
-          <span className="h-[4px] w-[4px] rounded-full bg-purple-400" />
-        </div>
-      </div>
+   
 
       {/* =====================================================
           3D MODEL
@@ -133,19 +122,19 @@ export default function EngineeringGlobe() {
         className="absolute inset-0 transition-transform duration-700 ease-out [transform-style:preserve-3d]"
       >
         {/* outer orbit */}
-        <div className="engineering-orbit-slow absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-purple-300/[0.13] sm:h-[400px] sm:w-[400px] md:h-[540px] md:w-[540px] lg:h-[590px] lg:w-[590px]">
+        {/* <div className="engineering-orbit-slow absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-purple-300/[0.13] sm:h-[400px] sm:w-[400px] md:h-[540px] md:w-[540px] lg:h-[590px] lg:w-[590px]">
           <span className="absolute left-1/2 top-[-5px] h-[9px] w-[9px] -translate-x-1/2 rounded-full bg-purple-100 shadow-[0_0_18px_5px_rgba(192,132,252,.55)]" />
 
           <span className="absolute bottom-[8%] right-[13%] h-[6px] w-[6px] rounded-full bg-violet-300 shadow-[0_0_15px_4px_rgba(139,92,246,.5)]" />
-        </div>
+        </div> */}
 
         {/* second orbit */}
-        <div className="engineering-orbit-reverse absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.12] sm:h-[345px] sm:w-[345px] md:h-[455px] md:w-[455px] lg:h-[500px] lg:w-[500px]">
+        {/* <div className="engineering-orbit-reverse absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.12] sm:h-[345px] sm:w-[345px] md:h-[455px] md:w-[455px] lg:h-[500px] lg:w-[500px]">
           <span className="absolute left-[7%] top-[29%] h-[7px] w-[7px] rounded-full bg-fuchsia-300 shadow-[0_0_16px_4px_rgba(217,70,239,.45)]" />
-        </div>
+        </div> */}
 
         {/* third orbit */}
-        <div className="engineering-orbit-medium absolute left-1/2 top-1/2 h-[225px] w-[225px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-purple-300/[0.15] sm:h-[280px] sm:w-[280px] md:h-[365px] md:w-[365px] lg:h-[400px] lg:w-[400px]" />
+        {/* <div className="engineering-orbit-medium absolute left-1/2 top-1/2 h-[225px] w-[225px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-purple-300/[0.15] sm:h-[280px] sm:w-[280px] md:h-[365px] md:w-[365px] lg:h-[400px] lg:w-[400px]" /> */}
 
         {/* horizontal 3D rings */}
         <div className="engineering-horizontal-one absolute left-1/2 top-1/2 h-[105px] w-[72%] rounded-[50%] border border-purple-400/[0.14] md:h-[145px] md:w-[72%]" />
@@ -355,7 +344,7 @@ export default function EngineeringGlobe() {
 
               <div className="relative min-w-[150px] rounded-2xl border border-white/[0.08] bg-[#08070d]/75 px-4 py-3.5 backdrop-blur-2xl transition duration-300 group-hover:-translate-y-1 group-hover:border-purple-400/30">
                 <div className="flex items-center justify-between gap-5">
-                  <span className="text-[7px] uppercase tracking-[1.5px] text-white/22">
+                  <span className="text-[7px] uppercase tracking-[1.5px] text-white">
                     {node.sub}
                   </span>
 
@@ -410,16 +399,7 @@ export default function EngineeringGlobe() {
 
       <div className="pointer-events-none absolute bottom-[7%] left-1/2 h-[130px] w-[88%] -translate-x-1/2 rounded-[50%] border border-purple-400/[0.04] [transform:translateX(-50%)_rotateX(70deg)]" />
 
-      {/* bottom status */}
-      <div className="absolute bottom-[1%] left-1/2 z-40 -translate-x-1/2">
-        <div className="flex items-center gap-3 rounded-full border border-white/[0.07] bg-black/40 px-4 py-2 backdrop-blur-xl md:px-5">
-          <span className="h-[5px] w-[5px] animate-pulse rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]" />
 
-          <span className="whitespace-nowrap text-[6px] uppercase tracking-[1.7px] text-white/28 md:text-[7px] md:tracking-[2px]">
-            Engineering Infrastructure Active
-          </span>
-        </div>
-      </div>
 
       {/* =====================================================
           ANIMATIONS

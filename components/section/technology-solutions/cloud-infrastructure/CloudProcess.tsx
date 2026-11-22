@@ -6,23 +6,24 @@ import type { CloudService } from "./cloudServices";
 
 export default function CloudProcess({ service }: { service: CloudService }) {
   return (
-    <section className="bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
-      <div className="mx-auto max-w-[1320px]">
+    <section className="bg-black px-5 py-5 md:px-10 lg:px-20">
+      <div className="mx-auto max-w-[1350px]">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+        
         >
-          <p className="hyi-h3 hyi-blue">03 / ENGINEERING PROCESS</p>
+   
 
-          <h2 className="hyi-h1 mt-4 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
-            <span className="hyi-white">How {service.title}</span>
+          <h2 className="hyi-h1 mt-2 lg:max-w-[750px] max-lg:text-center hyi-h1">
+            <span className="hyi-white hyi-h1">How {service.title}</span>
             <span className="block hyi-blue">is engineered.</span>
           </h2>
         </motion.div>
 
-        <div className="relative mt-8 max-w-[1100px]">
+        <div className="relative mt-4 max-w-[900px]">
           <div className="absolute bottom-0 left-[19px] top-0 w-px bg-gradient-to-b from-[#8b5cf6] via-[#8b5cf6]/20 to-transparent" />
 
           <div className="space-y-4">
@@ -39,17 +40,17 @@ export default function CloudProcess({ service }: { service: CloudService }) {
                   {item.step}
                 </div>
 
-                <div className="hyi-skeu p-6">
+                <div className="hyi-skeu p-4">
                   <div className="grid items-center gap-4 md:grid-cols-[1fr_auto]">
                     <div>
                       <h3 className="hyi-h3 hyi-white">{item.title}</h3>
-                      <p className="hyi-p mt-2 max-w-[650px]">
+                      <p className="hyi-p  max-w-[650px]">
                         {item.description}
                       </p>
                     </div>
 
                     <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#8b5cf6]/25 bg-[#8b5cf6]/[0.06] px-4 py-2">
-                      <CheckCircle2 size={16} className="hyi-blue-icon" />
+                      <CheckCircle2 size={16} className="hyi-white-icon" />
                       <span className="font-mono text-[12px] text-white/70">
                         {item.output}
                       </span>

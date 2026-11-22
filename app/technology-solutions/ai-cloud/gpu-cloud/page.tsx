@@ -31,7 +31,7 @@ export default function GPUCloudPage() {
       <GPUCloudWorkflow />
       <GPUCloudPrinciples />
       <GPUCloudUseCases />
-      <GPUCloudCTA />
+      {/* <GPUCloudCTA /> */}
       <Footer />
     </main>
   );

@@ -1,30 +1,14 @@
-import Header from "@/components/section/general/header";
-import Footer from "@/components/section/general/footer";
+import type { Metadata } from "next";
+import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
+import { getAIService } from "@/data/ai-services.data";
 
-import NLPHero from "@/components/section/technology-solutions/artificial-intelligence/nlp/NLPHero";
-import LanguagePipeline from "@/components/section/technology-solutions/artificial-intelligence/nlp/LanguagePipeline";
-import NLPCapabilities from "@/components/section/technology-solutions/artificial-intelligence/nlp/NLPCapabilities";
-import SemanticGraph from "@/components/section/technology-solutions/artificial-intelligence/nlp/SemanticGraph";
-import NLPUseCases from "@/components/section/technology-solutions/artificial-intelligence/nlp/NLPUseCases";
-import LanguageCommandCenter from "@/components/section/technology-solutions/artificial-intelligence/nlp/LanguageCommandCenter";
-import NLPImpact from "@/components/section/technology-solutions/artificial-intelligence/nlp/NLPImpact";
-import NLPCTA from "@/components/section/technology-solutions/artificial-intelligence/nlp/NLPCTA";
+const service = getAIService("nlp");
 
-export default function NLPPage() {
-  return (
-    <main className="relative overflow-hidden bg-[#030303] text-white">
-      <Header />
+export const metadata: Metadata = {
+  title: "Natural Language Processing | HYI.AI",
+  description: "Build NLP systems that extract meaning from text, classify information, discover relationships and power intelligent language experiences.",
+};
 
-      <NLPHero />
-      <LanguagePipeline />
-      <NLPCapabilities />
-      <SemanticGraph />
-      <NLPUseCases />
-      <LanguageCommandCenter />
-      <NLPImpact />
-      <NLPCTA />
-
-      <Footer />
-    </main>
-  );
+export default function NlpPage() {
+  return <AIServiceShell service={service} />;
 }

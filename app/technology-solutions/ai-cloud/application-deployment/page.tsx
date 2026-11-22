@@ -6,28 +6,23 @@ import Footer from "@/components/section/general/footer";
 import { motion } from "framer-motion";
 import {
   Activity,
-  ArrowDown,
   ArrowRight,
   Boxes,
   BrainCircuit,
   CheckCircle2,
-  Cloud,
   Code2,
   Cpu,
   Database,
   GitBranch,
   Globe2,
   Gauge,
-  Layers3,
   Network,
   RefreshCw,
   Rocket,
-  Server,
   ShieldCheck,
   Sparkles,
   Terminal,
   Workflow,
-  Zap,
 } from "lucide-react";
 
 /* =========================================================
@@ -37,42 +32,36 @@ import {
 const deploymentCapabilities = [
   {
     Icon: Rocket,
-    number: "01",
     title: "AI Application Deployment",
     description:
       "Move AI applications from development environments into reliable production infrastructure with repeatable deployment workflows, runtime controls and operational visibility.",
   },
   {
     Icon: BrainCircuit,
-    number: "02",
     title: "Model Runtime",
     description:
       "Deploy model-serving environments designed around inference behavior, application demand, accelerator requirements and model lifecycle management.",
   },
   {
     Icon: Boxes,
-    number: "03",
     title: "Containerized AI",
     description:
       "Package application services, AI runtimes and supporting dependencies into portable deployment units that can operate consistently across environments.",
   },
   {
     Icon: Workflow,
-    number: "04",
     title: "CI/CD for AI",
     description:
       "Connect code, model and infrastructure changes with automated validation and controlled deployment pipelines for faster production delivery.",
   },
   {
     Icon: Network,
-    number: "05",
     title: "Inference APIs",
     description:
       "Expose AI capabilities through scalable service interfaces with routing, traffic management, authentication and observability built into the architecture.",
   },
   {
     Icon: Activity,
-    number: "06",
     title: "Production Observability",
     description:
       "Observe application health, infrastructure behavior, latency and AI service performance after deployment so production systems remain understandable.",
@@ -82,36 +71,26 @@ const deploymentCapabilities = [
 const deploymentFlow = [
   {
     Icon: Code2,
-    step: "01",
-    label: "BUILD",
     title: "Application",
     text: "Code + AI logic",
   },
   {
     Icon: GitBranch,
-    step: "02",
-    label: "VALIDATE",
     title: "Pipeline",
     text: "Test + package",
   },
   {
     Icon: Boxes,
-    step: "03",
-    label: "PACKAGE",
     title: "Runtime",
     text: "Container + model",
   },
   {
     Icon: Rocket,
-    step: "04",
-    label: "DEPLOY",
     title: "Production",
     text: "Cloud runtime",
   },
   {
     Icon: Activity,
-    step: "05",
-    label: "OBSERVE",
     title: "Operations",
     text: "Metrics + signals",
   },
@@ -186,41 +165,79 @@ const principles = [
 const workloads = [
   {
     Icon: BrainCircuit,
-    tag: "GENERATIVE AI",
     title: "AI Assistants",
     text: "Deploy conversational and task-oriented AI applications with model access, retrieval services and production APIs.",
   },
   {
     Icon: Sparkles,
-    tag: "GEN AI",
     title: "RAG Applications",
     text: "Operate retrieval-augmented applications that connect models with vector search, enterprise knowledge and application services.",
   },
   {
     Icon: Globe2,
-    tag: "AI API",
     title: "Inference Services",
     text: "Expose production model capabilities through controlled and scalable API endpoints for downstream applications.",
   },
   {
     Icon: Workflow,
-    tag: "AGENTIC AI",
     title: "AI Agents",
     text: "Deploy agent runtimes that coordinate models, tools, application state and enterprise services through governed workflows.",
   },
   {
     Icon: Database,
-    tag: "DATA + AI",
     title: "Intelligent Data Apps",
     text: "Connect production applications with data platforms, analytics services and AI inference within a unified architecture.",
   },
   {
     Icon: Cpu,
-    tag: "AI COMPUTE",
     title: "Accelerated Applications",
     text: "Run computationally intensive AI applications on infrastructure aligned with GPU and high-performance compute requirements.",
   },
 ];
+
+const architectureStack = [
+  {
+    Icon: Globe2,
+    title: "AI Application",
+    text: "The user-facing experience, agents and application logic.",
+  },
+  {
+    Icon: Network,
+    title: "API Gateway",
+    text: "Routing, authentication and traffic management for AI services.",
+  },
+  {
+    Icon: BrainCircuit,
+    title: "Model Runtime",
+    text: "Serving environments for foundation and specialized models.",
+  },
+  {
+    Icon: Cpu,
+    title: "AI Compute",
+    text: "Accelerated infrastructure executing inference workloads.",
+  },
+  {
+    Icon: Database,
+    title: "Data Layer",
+    text: "Vector, cache and state systems supplying context to AI.",
+  },
+];
+
+/* =========================================================
+   BACKGROUND COMPONENT
+========================================================= */
+
+function PurpleGlow({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <div
+      className={`pointer-events-none absolute rounded-full bg-[#390b44]/60 blur-[180px] ${className}`}
+    />
+  );
+}
 
 /* =========================================================
    SMALL MODEL COMPONENTS
@@ -318,27 +335,37 @@ function VerticalPacket({
 
 function AIDeploymentInfrastructure() {
   return (
-    <div className="relative mx-auto mt-16 h-[760px] w-full max-w-[1250px] overflow-hidden lg:overflow-visible">
+    <motion.div
+      initial={{ opacity: 0, y: 70, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.1, delay: 0.2 }}
+      className="relative mx-auto mt-10 h-[760px] w-full max-w-[1250px] overflow-hidden lg:overflow-visible"
+    >
+      {/* ground glow */}
+      <div className="absolute bottom-[20px] left-1/2 h-[130px] w-[75%] -translate-x-1/2 rounded-full bg-[#7046e6]/30 blur-[90px]" />
+
+      {/* atmospheric glow */}
+      <div className="absolute left-1/2 top-[40%] h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#390b44]/50 blur-[130px]" />
+
       <VerticalPacket left="34%" delay={0} />
       <VerticalPacket left="50%" delay={1.3} />
       <VerticalPacket left="66%" delay={2.5} />
 
       {/* LEFT FLOAT CARD */}
-
       <motion.div
-        animate={{ y: [0, -8, 0] }}
+        animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
-        className="absolute left-0 top-[34%] z-50 hidden w-[190px] rounded-[20px] border border-white/[0.08] bg-black p-5 xl:block"
+        className="absolute left-0 top-[34%] z-50 hidden w-[190px] rounded-2xl border border-white/[0.08] bg-[#0b070d]/80 p-5 backdrop-blur-xl xl:block"
       >
         <div className="flex items-center gap-3">
-          <GitBranch size={14} className="text-[#9b7aec]" />
+          <GitBranch size={14} className="text-[#b59af4]" />
 
           <div>
-            <p className="font-mono text-[5px] tracking-[0.18em] text-white/25">
-              RELEASE PIPELINE
+            <p className="text-[9px] text-white/70">
+              Release Pipeline
             </p>
 
-            <p className="mt-1 font-mono text-[7px] text-[#a98cf1]">
+            <p className="mt-1 font-mono text-[5px] tracking-[0.18em] text-white/25">
               DEPLOYING
             </p>
           </div>
@@ -360,22 +387,21 @@ function AIDeploymentInfrastructure() {
       </motion.div>
 
       {/* RIGHT FLOAT CARD */}
-
       <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity }}
-        className="absolute right-0 top-[45%] z-50 hidden w-[190px] rounded-[20px] border border-white/[0.08] bg-black p-5 xl:block"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 4.6, repeat: Infinity }}
+        className="absolute right-0 top-[45%] z-50 hidden w-[190px] rounded-2xl border border-white/[0.08] bg-[#0b070d]/80 p-5 backdrop-blur-xl xl:block"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Activity size={14} className="text-[#9b7aec]" />
+            <Activity size={14} className="text-[#b59af4]" />
 
             <div>
-              <p className="font-mono text-[5px] tracking-[0.18em] text-white/25">
-                PROD HEALTH
+              <p className="text-[9px] text-white/70">
+                Prod Health
               </p>
 
-              <p className="mt-1 font-mono text-[7px] text-[#a98cf1]">
+              <p className="mt-1 font-mono text-[5px] tracking-[0.18em] text-white/25">
                 HEALTHY
               </p>
             </div>
@@ -403,18 +429,9 @@ function AIDeploymentInfrastructure() {
       </motion.div>
 
       {/* MAIN BUILDING */}
-
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 70,
-          scale: 0.94,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-        }}
+        initial={{ opacity: 0, y: 70, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{
           duration: 1.1,
           ease: [0.16, 1, 0.3, 1],
@@ -422,7 +439,6 @@ function AIDeploymentInfrastructure() {
         className="absolute bottom-[45px] left-1/2 w-[94%] max-w-[780px] -translate-x-1/2"
       >
         {/* ANTENNA */}
-
         <div className="relative mx-auto h-[70px] w-px bg-gradient-to-t from-[#7046e6] to-transparent">
           <motion.div
             animate={{
@@ -438,7 +454,6 @@ function AIDeploymentInfrastructure() {
         </div>
 
         {/* ROOF */}
-
         <div className="mx-auto flex w-[78%] items-center justify-between rounded-t-[24px] border border-b-0 border-white/[0.09] bg-[#030303] px-5 py-4">
           <div className="flex items-center gap-3">
             <motion.div
@@ -473,10 +488,8 @@ function AIDeploymentInfrastructure() {
         </div>
 
         {/* BUILDING */}
-
-        <div className="relative overflow-hidden rounded-[30px] border border-white/[0.1] bg-[#020202] p-3">
+        <div className="relative overflow-hidden rounded-[30px] border border-[#7046e6]/20 bg-[#070509]/80 p-3 shadow-[0_0_80px_rgba(112,70,230,.15)] backdrop-blur-xl">
           {/* SCANNER */}
-
           <motion.div
             animate={{ top: ["0%", "100%", "0%"] }}
             transition={{
@@ -487,15 +500,14 @@ function AIDeploymentInfrastructure() {
             className="pointer-events-none absolute left-0 right-0 z-40 h-px bg-[#7046e6]/70 shadow-[0_0_15px_#7046e6]"
           />
 
-          {/* FLOOR 5 */}
-
+          {/* AI APPLICATION EDGE */}
           <div className="mb-2 rounded-[20px] border border-white/[0.06] bg-[#050505] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Globe2 size={12} className="text-[#9b7aec]" />
 
                 <span className="font-mono text-[5px] tracking-[0.18em] text-white/30">
-                  FLOOR 05 / AI APPLICATION EDGE
+                  AI APPLICATION EDGE
                 </span>
               </div>
 
@@ -530,15 +542,14 @@ function AIDeploymentInfrastructure() {
             </div>
           </div>
 
-          {/* FLOOR 4 */}
-
+          {/* API & TRAFFIC LAYER */}
           <div className="mb-2 rounded-[20px] border border-white/[0.06] bg-[#050505] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Network size={12} className="text-[#9b7aec]" />
 
                 <span className="font-mono text-[5px] tracking-[0.18em] text-white/30">
-                  FLOOR 04 / API & TRAFFIC LAYER
+                  API & TRAFFIC LAYER
                 </span>
               </div>
 
@@ -553,9 +564,7 @@ function AIDeploymentInfrastructure() {
               {[15, 32, 50, 68, 85].map((left, i) => (
                 <motion.div
                   key={left}
-                  animate={{
-                    scale: [1, 1.4, 1],
-                  }}
+                  animate={{ scale: [1, 1.4, 1] }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -578,15 +587,14 @@ function AIDeploymentInfrastructure() {
             </div>
           </div>
 
-          {/* FLOOR 3 */}
-
+          {/* MODEL RUNTIME */}
           <div className="mb-2 rounded-[20px] border border-white/[0.06] bg-[#050505] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <BrainCircuit size={12} className="text-[#9b7aec]" />
 
                 <span className="font-mono text-[5px] tracking-[0.18em] text-white/30">
-                  FLOOR 03 / MODEL RUNTIME
+                  MODEL RUNTIME
                 </span>
               </div>
 
@@ -599,9 +607,7 @@ function AIDeploymentInfrastructure() {
               {Array.from({ length: 10 }).map((_, i) => (
                 <motion.div
                   key={i}
-                  animate={{
-                    opacity: [0.2, 1, 0.35],
-                  }}
+                  animate={{ opacity: [0.2, 1, 0.35] }}
                   transition={{
                     duration: 1.8,
                     repeat: Infinity,
@@ -613,15 +619,14 @@ function AIDeploymentInfrastructure() {
             </div>
           </div>
 
-          {/* FLOOR 2 */}
-
+          {/* AI COMPUTE */}
           <div className="mb-2 rounded-[20px] border border-white/[0.06] bg-[#050505] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Cpu size={12} className="text-[#9b7aec]" />
 
                 <span className="font-mono text-[5px] tracking-[0.18em] text-white/30">
-                  FLOOR 02 / AI COMPUTE
+                  AI COMPUTE
                 </span>
               </div>
 
@@ -631,22 +636,21 @@ function AIDeploymentInfrastructure() {
             </div>
 
             <div className="mt-4 flex gap-2">
-              <ServerRack name="GPU-01" delay={0.2} />
-              <ServerRack name="GPU-02" delay={0.4} />
-              <ServerRack name="GPU-03" delay={0.6} />
-              <ServerRack name="GPU-04" delay={0.8} />
+              <ServerRack name="GPU-A" delay={0.2} />
+              <ServerRack name="GPU-B" delay={0.4} />
+              <ServerRack name="GPU-C" delay={0.6} />
+              <ServerRack name="GPU-D" delay={0.8} />
             </div>
           </div>
 
-          {/* FLOOR 1 */}
-
+          {/* DATA & VECTOR LAYER */}
           <div className="rounded-[20px] border border-white/[0.06] bg-[#050505] p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Database size={12} className="text-[#9b7aec]" />
 
                 <span className="font-mono text-[5px] tracking-[0.18em] text-white/30">
-                  FLOOR 01 / DATA & VECTOR LAYER
+                  DATA & VECTOR LAYER
                 </span>
               </div>
 
@@ -659,9 +663,7 @@ function AIDeploymentInfrastructure() {
               {["VECTOR", "CACHE", "DATA", "STATE"].map((item, i) => (
                 <motion.div
                   key={item}
-                  animate={{
-                    opacity: [0.35, 1, 0.35],
-                  }}
+                  animate={{ opacity: [0.35, 1, 0.35] }}
                   transition={{
                     duration: 2.5,
                     repeat: Infinity,
@@ -683,9 +685,9 @@ function AIDeploymentInfrastructure() {
           </div>
         </div>
 
-        <div className="mx-auto h-[17px] w-[88%] rounded-b-[18px] border-x border-b border-white/[0.08] bg-[#050505]" />
+        <div className="mx-auto h-[17px] w-[88%] rounded-b-[18px] border-x border-b border-[#7046e6]/20 bg-[#09060b]" />
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -695,57 +697,48 @@ function AIDeploymentInfrastructure() {
 
 export default function ApplicationDeploymentPage() {
   return (
-    <main className="overflow-hidden bg-[#000000] text-white selection:bg-[#7046e6] selection:text-white">
+    <main className="overflow-hidden  text-white selection:bg-[#7046e6] selection:text-white">
       <Header />
 
       {/* =====================================================
           HERO
       ===================================================== */}
-
-      <section className="relative min-h-screen overflow-hidden bg-[#000000] px-5 pb-24 pt-32 md:px-10 md:pt-40">
+      <section className="relative min-h-screen overflow-hidden px-5  pt-30 md:px-10 ">
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.12]"
+          className="absolute inset-0 opacity-[0.16]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px)",
-            backgroundSize: "72px 72px",
+              "linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
             maskImage:
-              "linear-gradient(to bottom, black, transparent 78%)",
+              "radial-gradient(circle at 50% 45%,black,transparent 80%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, black, transparent 78%)",
+              "radial-gradient(circle at 50% 45%,black,transparent 80%)",
           }}
         />
 
-        <div className="relative mx-auto max-w-[1500px]">
+        <div className="relative mx-auto max-w-[1350px]">
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="mx-auto max-w-[1250px] text-center"
+            transition={{ duration: 0.8 }}
+            className="mx-auto max-w-[1200px] text-center"
           >
-            <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
-              <StatusLight />
-
-              <span className="font-mono text-[7px] tracking-[0.27em] text-white/40">
-                HYI.AI / AI CLOUD / APPLICATION DEPLOYMENT
-              </span>
-            </div>
-
-            <h1 className="mt-9 text-[clamp(4rem,8.7vw,9rem)] font-semibold leading-[0.84] tracking-[-0.078em]">
+            <h1 className="hyi-h1 hyi-white">
               Deploy AI into
-              <span className="block text-[#cbbbf4]">
+              <span className="block hyi-blue">
                 the real world.
               </span>
             </h1>
 
-            <p className="mx-auto mt-9 max-w-[900px] text-[13px] leading-7 text-white/[0.5] md:text-[15px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[830px] hyi-p">
               Engineer production deployment systems for modern AI
               applications — connecting code, models, APIs, compute,
               data and operations through reliable cloud
               infrastructure.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-2">
+            <div className="py-2 flex flex-wrap justify-center gap-2">
               {[
                 "AI Applications",
                 "Model Runtime",
@@ -754,55 +747,43 @@ export default function ApplicationDeploymentPage() {
                 "Containers",
                 "Observability",
               ].map((item) => (
-                <span
+                <div
                   key={item}
-                  className="rounded-full border border-white/[0.08] bg-black px-4 py-2.5 font-mono text-[6px] tracking-[0.16em] text-white/[0.35]"
+                  className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2.5 font-mono hyi-p tracking-[0.17em] text-white/[0.4]"
                 >
                   {item.toUpperCase()}
-                </span>
+                </div>
               ))}
             </div>
           </motion.div>
 
           <AIDeploymentInfrastructure />
-
-          <a
-            href="#deployment-system"
-            className="mx-auto flex w-fit items-center gap-3 font-mono text-[7px] tracking-[0.2em] text-white/30"
-          >
-            EXPLORE DEPLOYMENT SYSTEM
-            <ArrowDown size={11} />
-          </a>
         </div>
       </section>
 
       {/* =====================================================
           DEPLOYMENT SYSTEM
       ===================================================== */}
-
       <section
         id="deployment-system"
-        className="border-y border-white/[0.07] bg-[#000000] py-28 md:py-40"
+        className="relative overflow-hidden  py-10"
       >
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
+
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-                01 / PRODUCTION SYSTEM
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 Deployment is more
-                <span className="block text-[#cbbbf4]">
+                <span className="block hyi-blue">
                   than shipping code.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[560px] text-[13px] leading-7 text-white/[0.48]">
+              <p className="mt-2 max-w-[590px] hyi-p">
                 AI applications introduce dependencies that extend
                 beyond conventional software. Production systems can
                 include model endpoints, retrieval services,
@@ -810,15 +791,15 @@ export default function ApplicationDeploymentPage() {
                 external tools.
               </p>
 
-              <p className="mt-5 max-w-[560px] text-[13px] leading-7 text-white/[0.4]">
+              <p className="mt-2 max-w-[590px] hyi-p">
                 A strong deployment architecture coordinates these
                 elements as one operational system while keeping
                 releases repeatable, observable and controlled.
               </p>
             </motion.div>
 
-            <div className="rounded-[32px] border border-white/[0.08] bg-[#030303] p-5 md:p-8">
-              <div className="mb-8 flex items-center justify-between">
+            <div className="rounded-[32px] border border-white/[0.07] bg-white/[0.025] p-5 md:p-8">
+              <div className="mb-4 flex items-center justify-between">
                 <div>
                   <p className="font-mono text-[6px] tracking-[0.18em] text-[#9675ed]">
                     DEPLOYMENT PIPELINE
@@ -834,7 +815,7 @@ export default function ApplicationDeploymentPage() {
 
               <div className="space-y-3">
                 {deploymentFlow.map(
-                  ({ Icon, step, label, title, text }, index) => (
+                  ({ Icon, title, text }, index) => (
                     <motion.div
                       key={title}
                       initial={{ opacity: 0, x: 30 }}
@@ -845,27 +826,17 @@ export default function ApplicationDeploymentPage() {
                         x: 5,
                         borderColor: "rgba(112,70,230,.35)",
                       }}
-                      className="grid items-center gap-4 rounded-[20px] border border-white/[0.07] bg-black p-4 md:grid-cols-[45px_1fr_1fr_35px]"
+                      className="grid items-center gap-4 rounded-[20px] border border-white/[0.07] bg-[#080609] p-4 md:grid-cols-[45px_1fr_1fr]"
                     >
                       <div className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#7046e6]/25 bg-[#7046e6]/10">
-                        <Icon size={14} className="text-[#b9a3f0]" />
+                        <Icon size={14} className="text-[#bba4f6]" />
                       </div>
 
-                      <div>
-                        <p className="font-mono text-[5px] tracking-[0.16em] text-[#9675ed]">
-                          {label}
-                        </p>
+                      <h3 className="hyi-h3 hyi-white">
+                        {title}
+                      </h3>
 
-                        <h3 className="mt-1.5 text-[14px] font-medium">
-                          {title}
-                        </h3>
-                      </div>
-
-                      <p className="text-[10px] text-white/30">{text}</p>
-
-                      <span className="font-mono text-[6px] text-white/20">
-                        {step}
-                      </span>
+                      <p className="hyi-p">{text}</p>
                     </motion.div>
                   ),
                 )}
@@ -878,22 +849,20 @@ export default function ApplicationDeploymentPage() {
       {/* =====================================================
           CAPABILITIES
       ===================================================== */}
+      <section className="relative overflow-hidden ">
 
-      <section className="bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[1050px]">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              02 / DEPLOYMENT CAPABILITIES
-            </p>
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="flex flex-col text-center mx-auto">
+            <div className="max-w-[900px] mx-auto">
+              <h2 className="hyi-h1 hyi-white">
+                Everything AI needs
+                <span className="block hyi-blue">
+                  to reach production.
+                </span>
+              </h2>
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
-              Everything AI needs
-              <span className="block text-[#cbbbf4]">
-                to reach production.
-              </span>
-            </h2>
-
-            <p className="mt-8 max-w-[760px] text-[13px] leading-7 text-white/[0.45]">
+            <p className="max-w-[670px] hyi-p mx-auto">
               Production AI requires application engineering,
               infrastructure, model serving and operational controls
               to work together rather than existing as disconnected
@@ -901,38 +870,32 @@ export default function ApplicationDeploymentPage() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {deploymentCapabilities.map(
-              ({ Icon, number, title, description }, index) => (
+              ({ Icon, title, description }, index) => (
                 <motion.article
                   key={title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.06 }}
+                  transition={{ delay: index * 0.05 }}
                   whileHover={{
                     y: -7,
-                    borderColor: "rgba(112,70,230,.4)",
+                    borderColor: "rgba(112,70,230,.45)",
                   }}
-                  className="min-h-[370px] rounded-[30px] border border-white/[0.07] bg-[#030303] p-7"
+                  className="group rounded-[29px] border border-white/[0.07] bg-[#080609] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/10">
-                      <Icon size={16} className="text-[#b9a3f0]" />
+                      <Icon size={16} className="text-[#bba4f6]" />
                     </div>
-
-                    <span className="font-mono text-[6px] tracking-[0.18em] text-white/20">
-                      {number}
-                    </span>
                   </div>
 
-                  <h3 className="mt-16 text-2xl font-medium tracking-[-0.03em]">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.45]">
-                    {description}
-                  </p>
+                  <p className="mt-2 hyi-p">{description}</p>
                 </motion.article>
               ),
             )}
@@ -943,145 +906,99 @@ export default function ApplicationDeploymentPage() {
       {/* =====================================================
           ARCHITECTURE
       ===================================================== */}
+      <section className="relative overflow-hidden  bg-[#070508] py-10">
 
-      <section className="border-y border-white/[0.07] bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="mx-auto max-w-[1050px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              03 / APPLICATION ARCHITECTURE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="mx-auto max-w-[950px] text-center">
+            <h2 className="hyi-h1 hyi-white">
               One application.
-              <span className="block text-[#cbbbf4]">
+              <span className="block hyi-blue">
                 Multiple intelligence layers.
               </span>
             </h2>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-16 max-w-[1150px] rounded-[34px] border border-white/[0.08] bg-[#020202] p-6 md:p-9"
-          >
-            <div className="grid gap-3 lg:grid-cols-5">
-              {[
-                {
-                  Icon: Globe2,
-                  label: "EXPERIENCE",
-                  title: "AI Application",
-                },
-                {
-                  Icon: Network,
-                  label: "INTERFACE",
-                  title: "API Gateway",
-                },
-                {
-                  Icon: BrainCircuit,
-                  label: "INTELLIGENCE",
-                  title: "Model Runtime",
-                },
-                {
-                  Icon: Cpu,
-                  label: "EXECUTION",
-                  title: "AI Compute",
-                },
-                {
-                  Icon: Database,
-                  label: "CONTEXT",
-                  title: "Data Layer",
-                },
-              ].map(({ Icon, label, title }, index) => (
-                <motion.div
+          <div className="mt-5 grid gap-3 lg:grid-cols-5">
+            {architectureStack.map(
+              ({ Icon, title, text }, index) => (
+                <motion.article
                   key={title}
-                  whileHover={{ y: -6 }}
-                  className="relative min-h-[220px] rounded-[22px] border border-white/[0.07] bg-black p-5"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="relative  rounded-[26px] border border-white/[0.07] bg-[#030303]/80 p-6"
                 >
-                  <div className="flex items-center justify-between">
-                    <Icon size={16} className="text-[#9675ed]" />
+                  <Icon size={16} className="text-[#9878ef]" />
 
-                    <span className="font-mono text-[5px] text-white/15">
-                      0{index + 1}
-                    </span>
-                  </div>
+                  <h3 className="mt-2 hyi-h3 hyi-white">
+                    {title}
+                  </h3>
 
-                  <p className="mt-16 font-mono text-[5px] tracking-[0.17em] text-[#9675ed]">
-                    {label}
-                  </p>
+                  <p className="mt-2 hyi-p">{text}</p>
 
-                  <h3 className="mt-3 text-[17px] font-medium">{title}</h3>
-
-                  {index < 4 && (
-                    <motion.div
-                      animate={{ x: [0, 7, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute -right-[10px] top-1/2 z-20 hidden lg:block"
-                    >
-                      <ArrowRight size={12} className="text-[#7046e6]" />
-                    </motion.div>
+                  {index < architectureStack.length - 1 && (
+                    <ArrowRight
+                      size={13}
+                      className="absolute bottom-6 right-6 hidden text-[#9878ef]/50 lg:block"
+                    />
                   )}
-                </motion.div>
-              ))}
-            </div>
+                </motion.article>
+              ),
+            )}
+          </div>
 
-            <div className="mt-3 grid gap-3 md:grid-cols-3">
-              {[
-                {
-                  Icon: ShieldCheck,
-                  title: "Security",
-                  text: "Identity · secrets · policy",
-                },
-                {
-                  Icon: Activity,
-                  title: "Observability",
-                  text: "Logs · metrics · traces",
-                },
-                {
-                  Icon: RefreshCw,
-                  title: "Automation",
-                  text: "Deploy · scale · recover",
-                },
-              ].map(({ Icon, title, text }) => (
-                <div
-                  key={title}
-                  className="flex items-center gap-4 rounded-[18px] border border-white/[0.07] bg-black p-5"
-                >
-                  <Icon size={14} className="text-[#9675ed]" />
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            {[
+              {
+                Icon: ShieldCheck,
+                title: "Security",
+                text: "Identity · secrets · policy",
+              },
+              {
+                Icon: Activity,
+                title: "Observability",
+                text: "Logs · metrics · traces",
+              },
+              {
+                Icon: RefreshCw,
+                title: "Automation",
+                text: "Deploy · scale · recover",
+              },
+            ].map(({ Icon, title, text }) => (
+              <div
+                key={title}
+                className="flex items-center gap-4 rounded-[18px] border border-white/[0.07] bg-[#080609] p-5"
+              >
+                <Icon size={14} className="text-[#9878ef]" />
 
-                  <div>
-                    <p className="text-[11px] text-white/60">{title}</p>
-                    <p className="mt-1 font-mono text-[5px] tracking-[0.12em] text-white/20">
-                      {text}
-                    </p>
-                  </div>
+                <div>
+                  <p className="hyi-p">{title}</p>
+                  <p className="mt-1 font-mono text-[5px] tracking-[0.12em] text-white/25">
+                    {text}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* =====================================================
           LIFECYCLE
       ===================================================== */}
-
-      <section className="bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
+      <section className="relative overflow-hidden py-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="grid gap-16 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-                04 / DEPLOYMENT LIFECYCLE
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+              <h2 className="hyi-h1 hyi-white">
                 From commit to
-                <span className="block text-[#cbbbf4]">
+                <span className="block hyi-blue">
                   production intelligence.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[500px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[500px] hyi-p">
                 Deployment should behave as a continuous engineering
                 system. Every release moves through controlled stages
                 before becoming part of the production AI environment.
@@ -1089,30 +1006,25 @@ export default function ApplicationDeploymentPage() {
             </div>
 
             <div>
-              {lifecycle.map(({ Icon, title, description }, index) => (
+              {lifecycle.map(({ Icon, title, description }) => (
                 <motion.div
                   key={title}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 25 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="grid gap-5 border-t border-white/[0.07] py-7 md:grid-cols-[60px_0.55fr_1.25fr]"
+                  className="grid gap-5 border-t border-white/[0.07] py-8 md:grid-cols-[0.15fr_0.7fr_1.15fr]"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/25 bg-[#7046e6]/10">
-                    <Icon size={15} className="text-[#b9a3f0]" />
+                    <Icon size={15} className="text-[#b69df4]" />
                   </div>
 
                   <div>
-                    <p className="font-mono text-[5px] tracking-[0.18em] text-white/20">
-                      STAGE 0{index + 1}
-                    </p>
-
-                    <h3 className="mt-2 text-xl font-medium">{title}</h3>
+                    <h3 className="mt-2 hyi-h3 hyi-white">
+                      {title}
+                    </h3>
                   </div>
 
-                  <p className="text-[12px] leading-7 text-white/[0.43]">
-                    {description}
-                  </p>
+                  <p className="hyi-p">{description}</p>
                 </motion.div>
               ))}
 
@@ -1125,49 +1037,42 @@ export default function ApplicationDeploymentPage() {
       {/* =====================================================
           AI WORKLOADS
       ===================================================== */}
-
-      <section className="border-y border-white/[0.07] bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[1000px]">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              05 / DEPLOYABLE AI SYSTEMS
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="mx-auto max-w-[1000px] text-center">
+            <h2 className="hyi-h1 hyi-white">
               Built for modern
-              <span className="block text-[#cbbbf4]">
+              <span className="block hyi-blue">
                 AI applications.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {workloads.map(({ Icon, tag, title, text }, index) => (
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {workloads.map(({ Icon, title, text }, index) => (
               <motion.article
                 key={title}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{
-                  y: -7,
+                  y: -6,
                   borderColor: "rgba(112,70,230,.4)",
                 }}
-                className="min-h-[330px] rounded-[29px] border border-white/[0.07] bg-[#030303] p-7"
+                className=" rounded-[28px] border border-white/[0.07] bg-[#080609] p-7"
               >
                 <div className="flex items-center justify-between">
-                  <Icon size={18} className="text-[#9675ed]" />
-
-                  <span className="font-mono text-[5px] tracking-[0.17em] text-[#9675ed]">
-                    {tag}
-                  </span>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/10">
+                    <Icon size={16} className="text-[#bba4f6]" />
+                  </div>
                 </div>
 
-                <h3 className="mt-16 text-2xl font-medium">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">
+                  {title}
+                </h3>
 
-                <p className="mt-5 text-[12px] leading-7 text-white/[0.43]">
-                  {text}
-                </p>
+                <p className="mt-2 hyi-p">{text}</p>
               </motion.article>
             ))}
           </div>
@@ -1175,24 +1080,19 @@ export default function ApplicationDeploymentPage() {
       </section>
 
       {/* =====================================================
-          OPERATIONS DASHBOARD
+          PRODUCTION OPERATIONS
       ===================================================== */}
-
-      <section className="bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <section className="relative overflow-hidden py-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1000px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              06 / PRODUCTION OPERATIONS
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Deployment doesn&apos;t end
-              <span className="block text-[#cbbbf4]">
+              <span className="block hyi-blue">
                 when production begins.
               </span>
             </h2>
 
-            <p className="mx-auto mt-8 max-w-[750px] text-[13px] leading-7 text-white/[0.45]">
+            <p className="mx-auto mt-2 max-w-[750px] hyi-p">
               Production systems need continuous operational evidence
               across releases, application services, model runtimes
               and infrastructure.
@@ -1203,7 +1103,7 @@ export default function ApplicationDeploymentPage() {
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mx-auto mt-16 max-w-[1150px] overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#020202]"
+            className="mx-auto mt-5 max-w-[1150px] overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#080609]"
           >
             <div className="flex items-center justify-between border-b border-white/[0.07] p-6">
               <div className="flex items-center gap-3">
@@ -1256,10 +1156,10 @@ export default function ApplicationDeploymentPage() {
                   width: "82%",
                 },
               ].map(({ Icon, label, value, width }, index) => (
-                <div key={label} className="bg-[#020202] p-7">
+                <div key={label} className="bg-[#080609] p-7">
                   <Icon size={14} className="text-[#9675ed]" />
 
-                  <p className="mt-12 font-mono text-[5px] tracking-[0.16em] text-white/25">
+                  <p className="mt-4 font-mono text-[5px] tracking-[0.16em] text-white/25">
                     {label}
                   </p>
 
@@ -1302,9 +1202,7 @@ export default function ApplicationDeploymentPage() {
                   ].map((line, index) => (
                     <motion.div
                       key={line}
-                      animate={{
-                        opacity: [0.25, 0.8, 0.25],
-                      }}
+                      animate={{ opacity: [0.25, 0.8, 0.25] }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
@@ -1312,7 +1210,7 @@ export default function ApplicationDeploymentPage() {
                       }}
                       className="flex items-center gap-4 font-mono text-[6px] text-white/30"
                     >
-                      <span className="text-[#9675ed]">0{index + 1}</span>
+                      <span className="h-1 w-1 rounded-full bg-[#9675ed]" />
                       <span>{line}</span>
                     </motion.div>
                   ))}
@@ -1326,23 +1224,18 @@ export default function ApplicationDeploymentPage() {
       {/* =====================================================
           PRINCIPLES
       ===================================================== */}
-
-      <section className="border-y border-white/[0.07] bg-[#000000] py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="grid gap-16 lg:grid-cols-[0.6fr_1.4fr]">
+      <section className="relative overflow-hidden py-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="grid gap-16 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-                07 / DEPLOYMENT PRINCIPLES
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+              <h2 className="hyi-h1 hyi-white">
                 Production should
-                <span className="block text-[#cbbbf4]">
+                <span className="block hyi-blue">
                   never be a mystery.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[480px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[470px] hyi-p">
                 Reliable AI deployment depends on repeatability,
                 visibility and controlled change—not manual release
                 procedures that only one engineer understands.
@@ -1350,29 +1243,25 @@ export default function ApplicationDeploymentPage() {
             </div>
 
             <div>
-              {principles.map(({ Icon, title, description }, index) => (
+              {principles.map(({ Icon, title, description }) => (
                 <motion.div
                   key={title}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 25 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="grid gap-6 border-t border-white/[0.07] py-8 md:grid-cols-[70px_0.7fr_1.2fr]"
+                  className="grid gap-5 border-t border-white/[0.07] py-8 md:grid-cols-[0.15fr_0.7fr_1.15fr]"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/25 bg-[#7046e6]/10">
-                    <Icon size={15} className="text-[#b9a3f0]" />
+                    <Icon size={15} className="text-[#b69df4]" />
                   </div>
 
                   <div>
-                    <span className="font-mono text-[6px] tracking-[0.18em] text-white/20">
-                      PRINCIPLE 0{index + 1}
-                    </span>
-
-                    <h3 className="mt-3 text-xl font-medium">{title}</h3>
+                    <h3 className="mt-2 hyi-h3 hyi-white">
+                      {title}
+                    </h3>
                   </div>
 
-                  <p className="text-[12px] leading-7 text-white/[0.43]">
-                    {description}
-                  </p>
+                  <p className="hyi-p">{description}</p>
                 </motion.div>
               ))}
 
@@ -1380,91 +1269,6 @@ export default function ApplicationDeploymentPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* =====================================================
-          CLOSING
-      ===================================================== */}
-
-      <section className="relative overflow-hidden bg-[#000000] px-5 py-36 md:px-10 md:py-52">
-        <div
-          className="absolute inset-0 opacity-[0.1]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px)",
-            backgroundSize: "70px 70px",
-            maskImage:
-              "radial-gradient(circle at center,black,transparent 72%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at center,black,transparent 72%)",
-          }}
-        />
-
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mx-auto max-w-[1250px] text-center"
-        >
-          <motion.div
-            animate={{
-              borderColor: [
-                "rgba(112,70,230,.2)",
-                "rgba(112,70,230,.7)",
-                "rgba(112,70,230,.2)",
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-            }}
-            className="mx-auto flex h-20 w-20 items-center justify-center rounded-[25px] border bg-black"
-          >
-            <Rocket
-              size={31}
-              strokeWidth={1.2}
-              className="text-[#cbbbf4]"
-            />
-          </motion.div>
-
-          <p className="mt-10 font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-            HYI.AI / AI APPLICATION DEPLOYMENT
-          </p>
-
-          <h2 className="mt-7 text-[clamp(4rem,8vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.075em]">
-            Build intelligence.
-            <span className="block text-[#cbbbf4]">
-              Ship it reliably.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-9 max-w-[800px] text-[13px] leading-7 text-white/[0.45] md:text-[14px]">
-            Connect application engineering, AI runtimes, cloud
-            infrastructure and production operations through a
-            deployment architecture designed for modern intelligent
-            systems.
-          </p>
-
-          <div className="mx-auto mt-14 h-px max-w-[780px] bg-white/[0.08]" />
-
-          <div className="mt-10 flex flex-wrap justify-center gap-x-9 gap-y-4">
-            {[
-              "AI APPS",
-              "MODEL RUNTIME",
-              "CI/CD",
-              "INFERENCE",
-              "COMPUTE",
-              "OBSERVABILITY",
-            ].map((item) => (
-              <span
-                key={item}
-                className="font-mono text-[6px] tracking-[0.2em] text-white/[0.23]"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </section>
 
       <Footer />

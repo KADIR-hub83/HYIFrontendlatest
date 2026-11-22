@@ -22,7 +22,7 @@ export default function BusinessIntelligencePage() {
       <ExecutiveCommandCenter />
       <DecisionIntelligence />
       <BIImpact />
-      <BusinessIntelligenceCTA />
+      {/* <BusinessIntelligenceCTA /> */}
 
       <Footer />
     </main>

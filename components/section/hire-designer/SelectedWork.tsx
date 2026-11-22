@@ -26,20 +26,20 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section className=" bg-[#080808] px-5 py- sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-[1350px]">
-        <div className="mb-16 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+    <section className=" bg-[#080808] px-5 py-10 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1250px]">
+        <div className="mb-5  flex flex-col text-center mx-auto">
           <div>
           
 
-            <h2 className="mt-5 text-[clamp(45px,6vw,90px)] hyi-h1 font-medium leading-[0.9] tracking-[-0.065em]">
+            <h2 className="mt- hyi-h1 hyi-white mx-auto">
               Designed to
               <br />
               <span className="hyi-blue">move business.</span>
             </h2>
           </div>
 
-          <p className="max-w-[360px] hyi-p">
+          <p className="max-w-[560px] hyi-p mx-auto">
             Senior designers who can move between product thinking, interaction
             design and visual execution.
           </p>

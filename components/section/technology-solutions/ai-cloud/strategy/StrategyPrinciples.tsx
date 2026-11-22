@@ -32,17 +32,15 @@ const principles = [
 
 export default function StrategyPrinciples() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28 md:py-36">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className=" bg-[#070707] py-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[.55fr_1.45fr]">
           <div>
-            <p className="font-mono text-[8px] tracking-[0.28em] text-[#9878ef]">
-              10 / PRINCIPLES
-            </p>
+     
 
-            <h2 className="mt-6 text-5xl font-medium leading-[.95] tracking-[-0.055em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Principles
-              <span className="block text-[#7046e6]">before products.</span>
+              <span className="block hyi-blue">before products.</span>
             </h2>
           </div>
 
@@ -54,16 +52,11 @@ export default function StrategyPrinciples() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.06 }}
-                className="min-h-[240px] rounded-[25px] border border-white/[0.07] bg-[#050505] p-7"
+                className=" rounded-[25px] border border-white/[0.07] bg-[#050505] p-7"
               >
-                <div className="flex justify-between">
-                  <CheckCircle2 size={16} className="text-[#9878ef]" />
-                  <span className="font-mono text-[7px] text-[#7046e6]">
-                    0{index + 1}
-                  </span>
-                </div>
-                <h3 className="mt-8 text-xl">{item.title}</h3>
-                <p className="mt-4 text-[13px] leading-7 text-white/[0.46]">
+         
+                <h3 className=" hyi-h3 hyi-white">{item.title}</h3>
+                <p className="mt-2 hyi-p">
                   {item.text}
                 </p>
               </motion.div>

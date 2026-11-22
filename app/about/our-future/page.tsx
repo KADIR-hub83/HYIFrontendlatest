@@ -17,9 +17,9 @@ export default function OurFuturePage() {
         </Card>
       </StickySplit>
 
-      <div className="my-6">
+      {/* <div className="my-6">
         <Marquee items={["Talent", "Technology", "Cybersecurity", "Global Capability Centers"]} reverse />
-      </div>
+      </div> */}
 
       {/* Pillars */}
       <div className="grid gap-6 md:grid-cols-2">
@@ -45,9 +45,9 @@ export default function OurFuturePage() {
       </StickySplit>
 
       <Reveal from="zoom">
-        <Card variant="clay" className="py-14 text-center">
+        <Card variant="clay" className="py-3 text-center">
           <p className="hyi-h3 hyi-white mx-auto max-w-3xl">{future.finaleText}</p>
-          <p className="hyi-h2 hyi-white mt-8">{future.tagline}</p>
+          <p className="hyi-h3 hyi-white mt-3">{future.tagline}</p>
         </Card>
       </Reveal>
     </AboutShell>

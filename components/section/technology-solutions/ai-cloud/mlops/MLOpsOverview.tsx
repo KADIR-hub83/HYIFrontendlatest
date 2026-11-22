@@ -4,31 +4,27 @@ export default function MLOpsOverview() {
   return (
     <section
       id="mlops-overview"
-      className="border-y border-white/[0.06] bg-[#070707] py-28"
+      className=" bg-[#070707] "
     >
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="max-w-[850px]">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              01 / ML LIFECYCLE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="flex flex-col text-center mx-auto">
+          <div className="max-w-[850px] mx-auto">
+            <h2 className="hyi-h1 hyi-white">
               Machine learning is
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 a continuous system.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-[500px] text-[12px] leading-7 text-white/[0.45]">
+          <p className="max-w-[730px] hyi-p mx-auto">
             MLOps connects data, experimentation, training, validation,
             deployment and production monitoring so models can move through a
             controlled, repeatable lifecycle instead of isolated manual steps.
           </p>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-5">
           <LifecyclePipelineModel />
         </div>
       </div>

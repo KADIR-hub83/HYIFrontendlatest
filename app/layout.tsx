@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
 import "./globals.css";
 import "./hyi-hire.css"; 
 import { Toaster } from "sonner";
 import Head from "next/head";
 
+import { Figtree } from "next/font/google";
+
 const figtree = Figtree({
-  // variable: "--font-geist-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
-  fallback: ["Figtree"],
 });
 
 export const metadata: Metadata = {

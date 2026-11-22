@@ -44,28 +44,26 @@ const architecture = [
 
 export default function ServingArchitecture() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#030303] py-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[0.62fr_1.38fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              02 / SERVING ARCHITECTURE
-            </p>
+          
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+            <h2 className="hyi-h1 hyi-white">
               Separate the model
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 from the application.
               </span>
             </h2>
 
-            <p className="mt-7 text-[12px] leading-7 text-white/[0.45]">
+            <p className="mt-2 hyi-p">
               A serving layer gives applications a stable interface while
               model replicas, runtime capacity and infrastructure can evolve
               behind it.
             </p>
 
-            <div className="mt-9 space-y-3">
+            <div className="mt-5 space-y-3">
               {architecture.map(({ Icon, title, text }) => (
                 <div
                   key={title}
@@ -74,8 +72,8 @@ export default function ServingArchitecture() {
                   <Icon size={14} className="mt-1 shrink-0 text-[#9878ef]" />
 
                   <div>
-                    <h3 className="text-sm">{title}</h3>
-                    <p className="mt-2 text-[10px] leading-5 text-white/[0.38]">
+                    <h3 className="hyi-h3 hyi-white">{title}</h3>
+                    <p className="mt-2 hyi-p">
                       {text}
                     </p>
                   </div>

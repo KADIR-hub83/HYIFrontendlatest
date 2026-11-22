@@ -41,7 +41,7 @@ export default function MLOpsMissionControl() {
       initial={{ opacity: 0, y: 45, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1 }}
-      className="relative mx-auto max-w-[1450px]"
+      className="relative mx-auto max-w-[1250px]"
     >
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 bg-[#7046e6]/20 blur-[160px]" />
 

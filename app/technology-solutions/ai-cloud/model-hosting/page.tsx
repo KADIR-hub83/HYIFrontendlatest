@@ -32,7 +32,7 @@ export default function ModelHostingPage() {
       <HostingWorkflow />
       <HostingPrinciples />
       <HostingUseCases />
-      <ModelHostingCTA />
+      {/* <ModelHostingCTA /> */}
 
       <Footer />
     </main>

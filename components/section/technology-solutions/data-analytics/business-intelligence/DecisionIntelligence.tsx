@@ -39,29 +39,29 @@ export default function DecisionIntelligence() {
   }, []);
 
   return (
-    <section className="border-y border-white/[0.06] bg-[#090806] py-28 md:py-44">
-      <div className="mx-auto max-w-[1500px] px-4 md:px-8">
+    <section className=" bg-[#090806] py-10">
+      <div className="mx-auto max-w-[1350px] px-4 md:px-8">
         <div className="grid gap-5 lg:grid-cols-[.8fr_1.2fr]">
           <div className="rounded-[38px] border border-white/[0.08] bg-[#0c0b09] p-8 md:p-12">
             <BrainCircuit
               size={26}
               strokeWidth={1.2}
-              className="text-violet-100/70"
+              className="hyi-white-icon"
             />
 
-            <h2 className="mt-10 text-5xl font-medium tracking-[-0.055em] md:text-7xl">
+            <h2 className="mt-3 hyi-h1 hyi-white">
               From dashboard
-              <span className="block text-white/55">to decision.</span>
+              <span className="block hyi-blue">to decision.</span>
             </h2>
 
-            <p className="mt-8 max-w-[580px] text-[15px] leading-8 text-white/65">
+            <p className="mt-3 max-w-[580px] hyi-p">
               Intelligence should do more than display data. AI-assisted
               analytics can surface changes, explain patterns and help teams
               focus on the decisions that matter.
             </p>
           </div>
 
-          <div className="relative min-h-[620px] overflow-hidden rounded-[38px] border border-white/[0.08] bg-gradient-to-br from-[#15110e] to-[#080807] p-8 md:p-11">
+          <div className="relative  overflow-hidden rounded-[38px] border border-white/[0.08] bg-gradient-to-br from-[#15110e] to-[#080807] p-8 md:p-11">
             <div
               className="absolute inset-0 opacity-20"
               style={{
@@ -73,41 +73,41 @@ export default function DecisionIntelligence() {
 
             <div className="relative flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Sparkles size={14} className="text-violet-200/70" />
+                <Sparkles size={14} className="hyi-white-icon" />
 
-                <span className="text-[8px] tracking-[0.22em] text-white/35">
+                <span className="text-[12px] tracking-[0.22em] text-white/35">
                   HYI.AI / LIVE INSIGHT ENGINE
                 </span>
               </div>
 
-              <span className="flex items-center gap-2 text-[7px] text-emerald-300/60">
+              <span className="flex items-center gap-2 text-[12px] text-emerald-300/60">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 ANALYZING
               </span>
             </div>
 
-            <div className="relative mt-20">
+            <div className="relative mt-6">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, y: 25, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[8px] uppercase tracking-[0.25em] text-violet-200/55">
+                  <span className="text-[12px] uppercase tracking-[0.25em] text-violet-200/55">
                     Intelligence signal
                   </span>
 
-                  <h3 className="mt-7 max-w-[750px] text-4xl font-medium tracking-[-0.04em] md:text-6xl">
+                  <h3 className="mt-3 max-w-[750px] hyi-h1 hyi-white">
                     {insights[active].title}
                   </h3>
 
-                  <p className="mt-7 max-w-[680px] text-[15px] leading-8 text-white/60">
+                  <p className="mt-3 max-w-[680px] hyi-p">
                     {insights[active].text}
                   </p>
 
-                  <div className="mt-12 text-6xl font-light tracking-[-0.06em] text-violet-100">
+                  <div className="mt-2 hyi-h1 hyi-white">
                     {insights[active].metric}
                   </div>
                 </motion.div>

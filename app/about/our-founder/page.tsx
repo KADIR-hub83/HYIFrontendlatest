@@ -14,7 +14,7 @@ export const metadata = { title: "Our Founder | HYI.AI" };
 export default function OurFounderPage() {
   return (
     <AboutShell title="Our Founder" accent={["Founder"]}>
-      <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:items-start">
+      <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:items-start max-lg:gap-7">
         {/* Sticky profile */}
         <div className="space-y-6 lg:sticky lg:top-28">
           <Reveal from="left">
@@ -44,7 +44,7 @@ export default function OurFounderPage() {
             </Card>
           </Reveal>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1 max-lg:pt-15">
             <Reveal from="zoom">
               <Card variant="neu" className="!p-5">
                 <p className="hyi-eyebrow">Founded in</p>

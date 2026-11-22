@@ -23,29 +23,27 @@ const regions = [
 
 export default function GlobalDeliveryNetwork() {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-24 md:py-32">
+    <section className="relative overflow-hidden py-10 bg-[#020203] ">
       <div className="pointer-events-none absolute left-1/2 top-[55%] h-[600px] w-[950px] -translate-x-1/2 rounded-full bg-purple-800/[0.08] blur-[180px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1380px] px-5 md:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[820px] text-center">
-          <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-            Global Engineering Network
-          </p>
+     
 
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+          <h2 className="hyi-h1 hyi-white">
             Distributed globally.
-            <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7758ff] bg-clip-text text-transparent">
+            <span className="block hyi-blue">
               Engineered as one team.
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-[700px] text-[14px] leading-7 text-white/35">
+          <p className="mx-auto mt-2 max-w-[700px] hyi-p">
             Create a connected delivery network combining global business
             proximity with scalable engineering capability.
           </p>
         </div>
 
-        <div className="relative mt-16 h-[520px] overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#060609] md:h-[620px]">
+        <div className="relative mt-6 h-[520px] overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#060609] md:h-[620px]">
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{

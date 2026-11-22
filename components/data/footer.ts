@@ -322,7 +322,7 @@ export const footerSections = {
   ForTalents: {
     heading: "For Talent",
     links: [
-      ["Resume Builder", "/resume-builder"],
+      // ["Resume Builder", "/resume-builder"],
       ["Job Opportunity", "https://va.hyi.ai/talent-login"],
       ["How To Get Hired", "/get-hired"],
       ["Mock Test", "https://va.hyi.ai/talent-login"],
@@ -339,33 +339,33 @@ export const footerSections = {
   // (header ke "Hire Talent" menu ke saare options)
   // ==================================================
 
-  ForCompanies: {
-    heading: "For Companies",
-    links: [
-      ["Hire Developer", "/hire-developer"],
-      ["Hire Designer", "/hire-designer"],
-      ["Project Manager", "/project-manager"],
-      ["Product Designer", "/hire/product-designer"],
-      ["Hire Finance Consultant", "/hire/hire-finance-consultant"],
-      ["Hire CXO", "/hire/hire-cxo"],
-      ["Build Your Team", "/hire/build-your-team"],
-    ],
-  },
+  // ForCompanies: {
+  //   heading: "For Companies",
+  //   links: [
+  //     ["Hire Developer", "/hire-developer"],
+  //     ["Hire Designer", "/hire-designer"],
+  //     ["Project Manager", "/project-manager"],
+  //     ["Product Designer", "/hire/product-designer"],
+  //     ["Hire Finance Consultant", "/hire/hire-finance-consultant"],
+  //     ["Hire CXO", "/hire/hire-cxo"],
+  //     ["Build Your Team", "/hire/build-your-team"],
+  //   ],
+  // },
 
   // ==================================================
   // 3. INTEGRATE AI
   // ==================================================
 
-  IntegrateAI: {
-    heading: "Integrate AI",
-    links: [
-      ["KPI & KRA", "/integrate-AI/KPI&KRA"],
-      ["Project Tracking", "/integrate-AI/project-tracking"],
-      ["Price Tracking", "/integrate-AI/price-tracking"],
-      ["Talent Matching", "/integrate-AI/talent-matching"],
-      ["Strategy & Planning", "/integrate-AI/strategy&planning"],
-    ],
-  },
+  // IntegrateAI: {
+  //   heading: "Integrate AI",
+  //   links: [
+  //     ["KPI & KRA", "/integrate-AI/KPI&KRA"],
+  //     ["Project Tracking", "/integrate-AI/project-tracking"],
+  //     ["Price Tracking", "/integrate-AI/price-tracking"],
+  //     ["Talent Matching", "/integrate-AI/talent-matching"],
+  //     ["Strategy & Planning", "/integrate-AI/strategy&planning"],
+  //   ],
+  // },
 
   // ==================================================
   // 4. TECHNOLOGY SOLUTIONS

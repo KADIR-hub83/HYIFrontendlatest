@@ -12,24 +12,24 @@ const contextSteps = [
 
 export default function CloudUseCases({ service }: { service: CloudService }) {
   return (
-    <section className="relative overflow-hidden bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
+    <section className="relative overflow-hidden bg-[#030303] px-5 md:px-10  lg:px-20">
       <div className="pointer-events-none absolute left-1/2 top-[28%] h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-[#7c3aed]/[0.07] blur-[180px]" />
 
-      <div className="relative mx-auto max-w-[1320px]">
+      <div className="relative mx-auto max-w-[1350px]">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
         >
-          <p className="hyi-h3 hyi-blue">06 / WHERE IT APPLIES</p>
 
-          <h2 className="hyi-h1 mt-4 max-w-[800px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+
+          <h2 className="hyi-h1  lg:max-w-[800px] text-center mx-auto">
             <span className="hyi-white">Business situations</span>
             <span className="block hyi-blue">where it creates value.</span>
           </h2>
 
-          <p className="hyi-p mt-4 max-w-[760px]">
+          <p className="hyi-p mt-1 lg:max-w-[760px] text-center mx-auto">
             {service.title} becomes valuable when technology decisions must
             respond to real operational requirements, business constraints and
             changing demand. These scenarios show where the capability can
@@ -47,21 +47,19 @@ export default function CloudUseCases({ service }: { service: CloudService }) {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.55, delay: index * 0.07 }}
               whileHover={{ y: -6 }}
-              className="hyi-skeu group relative overflow-hidden p-6 md:p-7"
+                className={`${
+        index === 0 ? "hyi-glass" : "hyi-skeu"
+      } group relative overflow-hidden p-6 md:p-7`}
             >
               <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-full bg-[#7c3aed]/10 blur-3xl" />
 
               <div className="relative flex items-center justify-between">
-                <BriefcaseBusiness size={20} className="hyi-blue-icon" />
-                <span className="font-mono text-[12px] text-white/50">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <BriefcaseBusiness size={20} className="hyi-white-icon" />
+            
               </div>
 
-              <div className="relative mt-6">
-                <span className="font-mono text-[12px] tracking-[0.2em] text-[#a78bfa]">
-                  BUSINESS SCENARIO
-                </span>
+              <div className="relative mt-2">
+          
                 <h3 className="hyi-h3 hyi-white mt-3">{item.title}</h3>
                 <p className="hyi-p mt-2 pr-8">{item.description}</p>
               </div>
@@ -80,11 +78,11 @@ export default function CloudUseCases({ service }: { service: CloudService }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="hyi-skeu mt-4 grid gap-6 p-6 md:p-8 lg:grid-cols-[.8fr_1.2fr]"
+          className="hyi-glass mt-4 grid gap-6 p-6 md:p-8 lg:grid-cols-[.8fr_1.2fr] w-full"
         >
           <div>
-            <Sparkles size={20} className="hyi-blue-icon" />
-            <p className="hyi-h3 hyi-blue mt-4">BUSINESS CONTEXT</p>
+            <Sparkles size={20} className="hyi-white-icon" />
+            <p className="hyi-h3 hyi-white mt-4">BUSINESS CONTEXT</p>
             <h3 className="hyi-h1 hyi-white mt-3 max-w-[480px] text-[26px] font-medium leading-[1.15] tracking-[-0.035em] md:text-[32px]">
               Technology becomes useful when it solves the right problem.
             </h3>

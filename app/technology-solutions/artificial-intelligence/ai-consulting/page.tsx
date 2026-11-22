@@ -1,40 +1,14 @@
-import Header from "@/components/section/general/header";
-import Footer from "@/components/section/general/footer";
+import type { Metadata } from "next";
+import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
+import { getAIService } from "@/data/ai-services.data";
 
-import AIConsultingHero from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIConsultingHero";
-import AIDiagnostic from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIDiagnostic";
-import ConsultingPillars from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/ConsultingPillars";
-import TransformationRoadmap from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/TransformationRoadmap";
-import AIMaturityMatrix from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIMaturityMatrix";
-import AIGovernance from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIGovernance";
-import AIOperatingModel from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIOperatingModel";
-import ConsultingEngagement from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/ConsultingEngagement";
-import AIConsultingImpact from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIConsultingImpact";
-import AIConsultingCTA from "@/components/section/technology-solutions/artificial-intelligence/ai-consulting/AIConsultingCTA";
+const service = getAIService("ai-consulting");
 
-export const metadata = {
-  title: "AI Consulting & Transformation | HYI.AI",
-  description:
-    "AI strategy, transformation, governance, architecture and enterprise AI consulting services from HYI.AI.",
+export const metadata: Metadata = {
+  title: "AI Consulting and Transformation | HYI.AI",
+  description: "Align AI strategy, operating models, architecture and governance with business priorities through a practical transformation programme.",
 };
 
-export default function AIConsultingPage() {
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-[#020203] text-white">
-      <Header />
-
-      <AIConsultingHero />
-      <AIDiagnostic />
-      <ConsultingPillars />
-      <TransformationRoadmap />
-      <AIMaturityMatrix />
-      <AIGovernance />
-      <AIOperatingModel />
-      <ConsultingEngagement />
-      <AIConsultingImpact />
-      <AIConsultingCTA />
-
-      <Footer />
-    </main>
-  );
+export default function AiConsultingPage() {
+  return <AIServiceShell service={service} />;
 }

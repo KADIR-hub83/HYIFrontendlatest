@@ -12,11 +12,11 @@ export default function OurStoryPage() {
     <AboutShell title="Our Story" accent={["Story"]}>
       <Timeline items={story.chapters} />
 
-      <div className="mt-24">
+      <div className="mt-5 max-md:mt-15">
         <Reveal from="zoom">
-          <Card variant="clay" className="py-14 text-center">
+          <Card variant="clay" className="py-14 max-md:py-4 text-center">
             <ScrollText text={story.finale} className="hyi-h1 hyi-white" />
-            <p className="hyi-h3 hyi-white mt-8 opacity-90">{story.tagline}</p>
+            <p className="hyi-h3 hyi-white mt-3 opacity-90">{story.tagline}</p>
           </Card>
         </Reveal>
       </div>

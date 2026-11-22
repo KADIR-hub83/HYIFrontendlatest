@@ -34,7 +34,7 @@ export default function Timeline({ items }: { items: { label: string; paras: str
       <div className="absolute left-5 top-0 h-full w-px bg-white/10 md:left-1/2" />
       <div className="hyi-tl-fill absolute left-5 top-0 -ml-[1px] h-full w-[3px] rounded-full md:left-1/2" />
 
-      <div className="space-y-16">
+      <div className="space-y-16 max-lg:space-y-5">
         {items.map((it, i) => {
           const left = i % 2 === 0;
           return (

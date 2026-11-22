@@ -110,7 +110,7 @@ const outcomes = [
 
 export default function BusinessProcessServicesPage() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#020204] text-white">
+    <div className="relative  w-full overflow-hidden bg-[#020204] text-white">
       {/* ==================================================
           GLOBAL BACKGROUND
       ================================================== */}
@@ -126,7 +126,7 @@ export default function BusinessProcessServicesPage() {
             PREMIUM BPS HERO
         ================================================== */}
 
-        <section className="relative min-h-screen overflow-hidden border-b border-white/[0.05] bg-[#020204]">
+        <section className="relative  overflow-hidden bg-[#020204]">
           {/* ambient background */}
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-[25%] h-[900px] w-[1200px] -translate-x-1/2 rounded-full bg-[#6f21bd]/[0.10] blur-[180px]" />
@@ -152,25 +152,19 @@ export default function BusinessProcessServicesPage() {
             }}
           />
 
-          <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-24 pt-16 md:px-10 md:pt-20 lg:px-16">
-            {/* badge */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-3 rounded-full border border-purple-400/[0.16] bg-purple-500/[0.055] px-4 py-2 text-[10px] uppercase tracking-[2px] text-purple-200/70 backdrop-blur-xl md:text-[11px]">
-                <span className="h-[5px] w-[5px] rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,110,255,1)]" />
-                HYI.AI Global Capability Center
-              </div>
-            </div>
+          <div className="relative z-10 mx-auto max-w-[1350px] px-5  pt-20 md:px-10 md:pt-30 lg:px-16">
+    
 
             {/* heading */}
             <div className="relative z-20 mx-auto mt-8 max-w-[1150px] text-center">
-              <h1 className="text-[43px] font-semibold leading-[0.98] tracking-[-2px] text-white sm:text-[55px] md:text-[72px] md:tracking-[-3px] lg:text-[86px]">
+              <h1 className="hyi-h1 hyi-white">
                 Business Process
-                <span className="ml-0 block bg-gradient-to-r from-[#dfb0ff] via-[#a962ff] to-[#775cff] bg-clip-text text-transparent md:ml-3 md:inline">
+                <span className="ml-0 block hyi-blue">
                   Services
                 </span>
               </h1>
 
-              <p className="mx-auto mt-7 max-w-[680px] text-[13px] uppercase tracking-[2px] text-white/25 md:text-[14px]">
+              <p className="mx-auto mt-3 max-w-[680px] hyi-p">
                 Intelligent Global Operations · Delivered Through HYI.AI
               </p>
 
@@ -183,84 +177,17 @@ export default function BusinessProcessServicesPage() {
             </div>
 
             {/* description */}
-            <div className="relative z-30 mx-auto -mt-4 max-w-[850px] text-center md:-mt-8">
-              <p className="mx-auto max-w-[790px] text-[15px] leading-8 text-white/46 md:text-[18px]">
+            <div className="relative z-30 mx-auto -mt-4 max-w-[850px] text-center md:-mt-12">
+              <p className="mx-auto max-w-[790px] hyi-p">
                 Build intelligent global operations through specialized talent,
                 AI-powered workflows, structured governance and scalable
                 business process capabilities — managed through your Global
                 Capability Center.
               </p>
 
-              {/* buttons */}
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <button className="group relative overflow-hidden rounded-full border border-purple-300/20 bg-gradient-to-r from-[#762de8] via-[#9250ff] to-[#7447ff] px-8 py-4 text-[14px] font-medium text-white shadow-[0_10px_45px_rgba(124,58,237,.30)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_55px_rgba(124,58,237,.45)]">
-                  <span className="relative z-10 flex items-center gap-3">
-                    Transform Your Operations
-
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </span>
-
-                  <div className="absolute inset-y-0 left-[-40%] w-[35%] rotate-[18deg] bg-white/20 blur-xl transition-all duration-700 group-hover:left-[120%]" />
-                </button>
-
-                <button className="rounded-full border border-white/[0.09] bg-white/[0.025] px-8 py-4 text-[14px] text-white/65 backdrop-blur-xl transition-all duration-300 hover:border-purple-400/25 hover:bg-purple-500/[0.06] hover:text-white">
-                  Explore Capabilities
-                </button>
-              </div>
             </div>
 
-            {/* metrics */}
-            <div className="relative z-30 mx-auto mt-16 grid max-w-[940px] grid-cols-2 overflow-hidden rounded-[24px] border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl md:grid-cols-4">
-              {[
-                {
-                  value: "Global",
-                  label: "Delivery Network",
-                },
-                {
-                  value: "24/7",
-                  label: "Operations",
-                },
-                {
-                  value: "AI",
-                  label: "Enabled Workflows",
-                },
-                {
-                  value: "360°",
-                  label: "Governance",
-                },
-              ].map((item, index) => (
-                <div
-                  key={item.label}
-                  className={`
-                    relative
-                    px-5
-                    py-6
-                    text-center
-                    md:py-7
-                    ${
-                      index !== 3
-                        ? "md:border-r md:border-white/[0.06]"
-                        : ""
-                    }
-                    ${
-                      index < 2
-                        ? "border-b border-white/[0.06] md:border-b-0"
-                        : ""
-                    }
-                  `}
-                >
-                  <div className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-xl font-semibold text-transparent md:text-2xl">
-                    {item.value}
-                  </div>
-
-                  <div className="mt-2 text-[9px] uppercase tracking-[1.5px] text-white/30 md:text-[10px]">
-                    {item.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+        
           </div>
 
           <div className="pointer-events-none absolute bottom-0 left-0 h-[180px] w-full bg-gradient-to-b from-transparent to-[#020204]" />
@@ -270,7 +197,7 @@ export default function BusinessProcessServicesPage() {
             SMARTER BUSINESS OPERATIONS
         ================================================== */}
 
-        <section className="relative py-28 md:py-36">
+        <section className="relative py-10">
           <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-20 px-6 md:px-10 lg:grid-cols-2 lg:px-16">
             {/* DASHBOARD */}
             <div className="relative flex min-h-[520px] items-center justify-center">
@@ -337,24 +264,22 @@ export default function BusinessProcessServicesPage() {
 
             {/* TEXT */}
             <div>
-              <div className="mb-5 inline-flex rounded-full border border-purple-400/[0.15] bg-purple-500/[0.06] px-4 py-2 text-xs uppercase tracking-[2px] text-purple-300">
-                Smarter Business Operations
-              </div>
+           
 
-              <h2 className="max-w-[650px] text-3xl font-semibold leading-tight tracking-[-1px] md:text-[46px]">
+              <h2 className="max-w-[650px] hyi-h1 hyi-white">
                 Go Beyond Traditional
-                <span className="block bg-gradient-to-r from-white via-purple-100 to-purple-400 bg-clip-text text-transparent">
+                <span className="block hyi-blue">
                   Business Process Outsourcing
                 </span>
               </h2>
 
-              <p className="mt-7 max-w-[680px] text-[16px] leading-8 text-white/50">
+              <p className="mt-2 max-w-[680px] hyi-p">
                 HYI.AI combines global talent, process expertise, intelligent
                 automation, and GCC governance to create scalable business
                 operations aligned with your enterprise objectives.
               </p>
 
-              <p className="mt-5 max-w-[680px] text-[16px] leading-8 text-white/50">
+              <p className="mt-2 max-w-[680px] hyi-p">
                 Instead of simply executing tasks, our model continuously
                 improves processes, measures outcomes, identifies automation
                 opportunities, and creates long-term operational capability.
@@ -369,9 +294,9 @@ export default function BusinessProcessServicesPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 text-sm text-white/65"
+                    className="flex items-center gap-3 hyi-p"
                   >
-                    <div className="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-purple-400/20 bg-purple-500/[0.08] text-[10px] text-purple-300">
+                    <div className="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-purple-400/20 bg-purple-500/[0.08] text-[10px] hyi-white">
                       ✓
                     </div>
 
@@ -387,21 +312,19 @@ export default function BusinessProcessServicesPage() {
             BUSINESS PROCESS SERVICES
         ================================================== */}
 
-        <section className="relative overflow-hidden border-y border-white/[0.05] bg-[#05050a] py-28">
+        <section className="relative overflow-hidden  bg-[#05050a] py-10">
           <div className="pointer-events-none absolute left-1/2 top-[-300px] h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/[0.11] blur-[170px]" />
 
-          <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16">
-            <div className="mx-auto mb-16 max-w-[830px] text-center">
-              <div className="mb-5 inline-flex rounded-full bg-gradient-to-r from-[#2c153f] to-[#17162e] px-5 py-2 text-sm text-purple-100">
-                What We Offer
-              </div>
+          <div className="relative mx-auto max-w-[1350px] px-6 md:px-10 lg:px-16">
+            <div className="mx-auto mb-6 max-w-[830px] text-center">
+           
 
-              <h2 className="text-3xl font-semibold leading-tight tracking-[-1px] md:text-[45px]">
+              <h2 className="hyi-h1 hyi-white">
                 Business Processes Built For
-                <span className="text-purple-300"> Modern Enterprises</span>
+                <span className="hyi-blue"> Modern Enterprises</span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-[700px] text-[16px] leading-7 text-white/45">
+              <p className="mx-auto mt-2 max-w-[700px] hyi-p">
                 Specialized process capabilities designed around efficiency,
                 service quality, scalability, governance, and automation.
               </p>
@@ -411,34 +334,32 @@ export default function BusinessProcessServicesPage() {
               {services.map((service) => (
                 <article
                   key={service.title}
-                  className="group relative min-h-[340px] overflow-hidden rounded-[27px] border border-white/[0.075] bg-gradient-to-br from-[#10111d] via-[#090a11] to-[#060608] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/30"
+                  className="group relative overflow-hidden rounded-[27px] border border-white/[0.075] bg-gradient-to-br from-[#10111d] via-[#090a11] to-[#060608] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/30"
                 >
                   <div className="pointer-events-none absolute bottom-[-100px] right-[-80px] h-[260px] w-[260px] rounded-full bg-purple-600/0 blur-[80px] transition-all duration-500 group-hover:bg-purple-600/[0.22]" />
 
                   <div className="relative z-10 flex h-full flex-col">
-                    <div className="flex items-center justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/[0.18] bg-purple-500/[0.06] text-sm font-semibold text-purple-300">
-                        {service.number}
-                      </div>
+                    <div className="flex items-center justify-end">
+                    
 
                       <span className="text-xl text-white/15 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-purple-300">
                         ↗
                       </span>
                     </div>
 
-                    <h3 className="mt-8 text-xl font-semibold">
+                    <h3 className="mt-2 hyi-h3 hyi-white">
                       {service.title}
                     </h3>
 
-                    <p className="mt-4 flex-1 text-[15px] leading-7 text-white/48">
+                    <p className="mt-2 flex-1 hyi-p">
                       {service.description}
                     </p>
 
-                    <div className="mt-7 flex flex-wrap gap-2">
+                    <div className="mt-2 flex flex-wrap gap-2">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-white/[0.06] bg-white/[0.025] px-3 py-1.5 text-[11px] text-white/40"
+                          className="rounded-full border border-white/[0.06] bg-white/[0.025] px-3 py-1.5 hyi-p text-[12px]"
                         >
                           {tag}
                         </span>
@@ -455,22 +376,20 @@ export default function BusinessProcessServicesPage() {
             TECHNOLOGY
         ================================================== */}
 
-        <section className="relative py-28 md:py-36">
+        <section className="relative ">
           <div className="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16">
             <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
-                <div className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-purple-400">
-                  Connected Operations
-                </div>
 
-                <h2 className="text-3xl font-semibold leading-tight tracking-[-1px] md:text-[45px]">
+
+                <h2 className="hyi-h1 hyi-white">
                   Technology Powered
-                  <span className="block text-white/40">
+                  <span className="block hyi-blue">
                     Business Operations
                   </span>
                 </h2>
 
-                <p className="mt-6 max-w-[520px] text-[16px] leading-8 text-white/48">
+                <p className="mt-2 max-w-[520px] hyi-p">
                   Integrate human expertise with modern enterprise platforms,
                   automation, analytics, AI, and workflow technologies to create
                   intelligent operations.
@@ -505,24 +424,22 @@ export default function BusinessProcessServicesPage() {
             OPERATING MODEL
         ================================================== */}
 
-        <section className="relative overflow-hidden border-y border-white/[0.05] bg-[#060610] py-28">
+        <section className="relative overflow-hidden  py-10">
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[650px] w-[950px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/[0.07] blur-[170px]" />
 
-          <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16">
-            <div className="mb-16 max-w-[800px]">
-              <div className="mb-5 inline-flex rounded-full border border-white/[0.07] bg-white/[0.025] px-4 py-2 text-sm text-white/60">
-                Our Operating Model
-              </div>
+          <div className="relative mx-auto max-w-[1350px] px-6 md:px-10 lg:px-16">
+            <div className="mb-6 mx-auto text-center ">
+        
 
-              <h2 className="text-3xl font-semibold leading-tight md:text-[46px]">
+              <h2 className="hyi-h1 hyi-white">
                 From Existing Processes To
-                <span className="text-purple-300">
+                <span className="hyi-blue">
                   {" "}
                   High-Performance Operations
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-[690px] text-[16px] leading-7 text-white/42">
+              <p className="mt-2 max-w-[690px] hyi-p mx-auto">
                 A structured operating model designed to transition, manage,
                 govern, and continuously improve enterprise processes.
               </p>
@@ -532,23 +449,17 @@ export default function BusinessProcessServicesPage() {
               {operationSteps.map((item, index) => (
                 <div
                   key={item.number}
-                  className="group relative min-h-[345px] overflow-hidden rounded-[26px] border border-white/[0.07] bg-gradient-to-b from-white/[0.035] to-transparent p-7 transition duration-300 hover:border-purple-400/[0.25]"
+                  className="group relative ] overflow-hidden rounded-[26px] border border-white/[0.07] bg-gradient-to-b from-white/[0.035] to-transparent p-7 transition duration-300 hover:border-purple-400/[0.25]"
                 >
                   {index < operationSteps.length - 1 && (
                     <div className="absolute right-[-20px] top-[64px] z-20 hidden h-px w-10 bg-purple-500/30 lg:block" />
                   )}
 
-                  <span className="text-sm font-medium text-purple-400">
-                    / {item.number}
-                  </span>
 
-                  <div className="mt-14 flex h-[62px] w-[62px] items-center justify-center rounded-[20px] border border-purple-500/[0.18] bg-purple-500/[0.055]">
-                    <div className="h-3 w-3 rounded-full bg-purple-400 shadow-[0_0_20px_rgba(168,85,247,1)]" />
-                  </div>
+            
+                  <h3 className="mt-2 hyi-h3 hyi-white">{item.title}</h3>
 
-                  <h3 className="mt-7 text-xl font-semibold">{item.title}</h3>
-
-                  <p className="mt-4 text-[14px] leading-7 text-white/43">
+                  <p className="mt-2 hyi-p">
                     {item.description}
                   </p>
                 </div>
@@ -561,33 +472,30 @@ export default function BusinessProcessServicesPage() {
             GOVERNANCE
         ================================================== */}
 
-        <section className="relative py-28">
-          <div className="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16">
+        <section className="relative ">
+          <div className="mx-auto max-w-[1350px] px-6 md:px-10 lg:px-16">
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="relative overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-br from-[#111020] via-[#090911] to-[#060609] p-8 md:p-11">
+              <div className="relative overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-br from-[#111020] via-[#090911] to-[#060609] p-5 md:p-5">
                 <div className="absolute right-[-150px] top-[-150px] h-[400px] w-[400px] rounded-full bg-purple-600/[0.16] blur-[100px]" />
 
                 <div className="relative">
-                  <div className="text-xs uppercase tracking-[3px] text-purple-400">
-                    Operational Governance
-                  </div>
-
-                  <h3 className="mt-6 max-w-[600px] text-3xl font-semibold leading-tight">
+             
+                  <h3 className=" max-w-[600px] hyi-h1 hyi-white">
                     Every Process Managed Through
-                    <span className="text-purple-300">
+                    <span className="hyi-blue">
                       {" "}
                       Measurable Performance
                     </span>
                   </h3>
 
-                  <p className="mt-5 max-w-[650px] text-[15px] leading-7 text-white/45">
+                  <p className="mt-2 max-w-[650px] hyi-p">
                     Structured SLAs, KPIs, quality controls, workflow
                     visibility, risk management, and continuous improvement
                     ensure your GCC operations remain aligned with business
                     objectives.
                   </p>
 
-                  <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+                  <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
                     {["KPI", "SLA", "Quality", "Compliance"].map((label) => (
                       <div
                         key={label}
@@ -603,25 +511,23 @@ export default function BusinessProcessServicesPage() {
               <div className="relative overflow-hidden rounded-[30px] border border-purple-400/[0.11] bg-gradient-to-br from-purple-950/40 to-[#07070b] p-8 md:p-10">
                 <div className="absolute bottom-[-130px] left-1/2 h-[330px] w-[330px] -translate-x-1/2 rounded-full bg-purple-500/[0.18] blur-[90px]" />
 
-                <div className="relative flex h-full min-h-[340px] flex-col">
-                  <p className="text-xs uppercase tracking-[3px] text-purple-300">
-                    Continuous Improvement
-                  </p>
+                <div className="relative flex  flex-col">
+          
 
-                  <h3 className="mt-6 text-2xl font-semibold leading-snug">
+                  <h3 className="hyi-h1 hyi-white">
                     Operate.
-                    <br />
+                 
                     Measure.
-                    <br />
+                   
                     Automate.
-                    <br />
+                    
                     Improve.
                   </h3>
 
-                  <div className="mt-auto pt-10">
+                  <div className="mt-2">
                     <div className="h-px w-full bg-gradient-to-r from-purple-400/50 to-transparent" />
 
-                    <p className="mt-5 text-sm leading-6 text-white/40">
+                    <p className="mt-2 hyi-p">
                       Build operations that become smarter with every cycle.
                     </p>
                   </div>
@@ -635,100 +541,6 @@ export default function BusinessProcessServicesPage() {
             OUTCOMES
         ================================================== */}
 
-        <section className="relative pb-28">
-          <div className="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16">
-            <div className="overflow-hidden rounded-[35px] border border-purple-400/[0.12] bg-gradient-to-br from-[#11091f] via-[#080810] to-[#060608]">
-              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
-                <div className="p-8 md:p-14 lg:p-16">
-                  <p className="text-xs uppercase tracking-[3px] text-purple-400">
-                    Designed For Scale
-                  </p>
-
-                  <h2 className="mt-6 max-w-[530px] text-3xl font-semibold leading-tight md:text-[43px]">
-                    Business Operations That
-                    <span className="block text-purple-300">
-                      Grow With You
-                    </span>
-                  </h2>
-
-                  <p className="mt-6 max-w-[560px] text-[15px] leading-8 text-white/45">
-                    Build an adaptable operating capability that can expand
-                    across functions, regions, technologies, and business
-                    priorities.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 border-t border-white/[0.06] lg:border-l lg:border-t-0">
-                  {outcomes.map((item) => (
-                    <div
-                      key={item.title}
-                      className="flex min-h-[210px] flex-col justify-center border-b border-r border-white/[0.06] p-7"
-                    >
-                      <div className="bg-gradient-to-r from-white to-purple-300 bg-clip-text text-3xl font-semibold text-transparent md:text-4xl">
-                        {item.value}
-                      </div>
-
-                      <p className="mt-3 text-sm font-medium text-white/65">
-                        {item.title}
-                      </p>
-
-                      <p className="mt-2 max-w-[190px] text-xs leading-5 text-white/30">
-                        {item.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================
-            CTA
-        ================================================== */}
-
-        <section className="relative px-6 pb-28 md:px-10 lg:px-16">
-          <div className="pointer-events-none absolute bottom-[30px] left-1/2 h-[330px] w-[750px] -translate-x-1/2 rounded-full bg-purple-700/[0.13] blur-[130px]" />
-
-          <div className="relative mx-auto max-w-[1250px] overflow-hidden rounded-[36px] border border-purple-300/[0.13] bg-gradient-to-br from-purple-950/55 via-[#0d0817] to-[#060609] px-7 py-16 text-center md:px-12 md:py-20">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.06]"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px),
-                  linear-gradient(90deg,rgba(255,255,255,.25) 1px, transparent 1px)
-                `,
-                backgroundSize: "45px 45px",
-              }}
-            />
-
-            <div className="relative z-10">
-              <div className="mb-7 inline-flex rounded-full border border-purple-400/[0.18] bg-purple-500/[0.08] px-5 py-2 text-sm text-purple-200">
-                Build Smarter Operations
-              </div>
-
-              <h2 className="mx-auto max-w-[900px] text-3xl font-semibold leading-tight tracking-[-1px] md:text-[50px]">
-                Transform Your Business Processes
-                <span className="block bg-gradient-to-r from-purple-300 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
-                  Through HYI.AI GCC
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-6 max-w-[680px] text-[16px] leading-7 text-white/46">
-                Build scalable operations with specialized talent, intelligent
-                automation, structured governance, and continuous improvement.
-              </p>
-
-              <button className="group mt-9 rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,255,255,0.13)]">
-                Start Your GCC Transformation
-
-                <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

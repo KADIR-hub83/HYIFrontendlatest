@@ -5,24 +5,25 @@ import { Check, ChevronDown, Plus } from "lucide-react";
 
 export default function DesignSystemLab() {
   return (
-    <section className="px-5 py-10 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-[1450px]">
+    <section className="px-5  sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1250px]">
         <div className="grid gap-14 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
-          <div>
-   
+<div>
+  <h2 className="hyi-h1 hyi-white">
+    Design once.
+    <br />
+    <span className="hyi-blue">Scale everywhere.</span>
+  </h2>
 
-            <h2 className="hyi-h1 hyi-white text-[clamp(45px,5vw,82px)] font-medium leading-[0.92] tracking-[-0.065em]">
-              Design once.
-              <br />
-              <span className="hyi-blue">Scale everywhere.</span>
-            </h2>
-
-            <p className="mt-7 max-w-[380px] hyi-p">
-              Your designer doesn&apos;t stop at beautiful screens. They create the
-              tokens, components and rules your entire product team can build
-              from.
-            </p>
-          </div>
+  <p className="mt-2 max-w-[420px] hyi-p">
+    Great design is more than beautiful screens. It creates a scalable
+    design system with reusable components, consistent design tokens
+    <br/>
+    and clear guidelines — empowering your entire product team to build
+    faster, maintain consistency and deliver exceptional digital
+    experiences across every platform.
+  </p>
+</div>
 
           <div className="relative overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#0a0a0c] p-5 sm:p-8">
             <img

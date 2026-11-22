@@ -1,68 +1,65 @@
+"use client";
+
+import { type ReactNode } from "react";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 
 import {
-  Activity,
   ArrowRight,
   Boxes,
-  Check,
   ChevronRight,
   Cloud,
   Code2,
   Database,
   Gauge,
-  GitBranch,
   Layers3,
-  LockKeyhole,
   Network,
   RefreshCcw,
   Rocket,
   Server,
   ShieldCheck,
-  Sparkles,
   Workflow,
-  Zap,
-    type LucideIcon,
+  type LucideIcon,
 } from "lucide-react";
+
+/* =========================================================
+   DATA
+========================================================= */
 
 const modernizationServices = [
   {
-    no: "01",
     icon: RefreshCcw,
     title: "Legacy Application Modernization",
     description:
       "Transform aging applications into maintainable, scalable and modern digital platforms.",
   },
   {
-    no: "02",
     icon: Cloud,
     title: "Cloud Migration",
     description:
       "Move workloads and applications toward flexible cloud-native infrastructure.",
   },
   {
-    no: "03",
     icon: Boxes,
     title: "Monolith to Modular Architecture",
     description:
       "Break complex legacy systems into maintainable services and independent modules.",
   },
   {
-    no: "04",
     icon: Database,
     title: "Database Modernization",
     description:
       "Improve data access, reliability and scalability with modern database architecture.",
   },
   {
-    no: "05",
     icon: Network,
     title: "API Enablement",
     description:
       "Expose legacy capabilities through secure APIs and connect modern applications.",
   },
   {
-    no: "06",
     icon: ShieldCheck,
     title: "Security Modernization",
     description:
@@ -118,62 +115,145 @@ const stack = [
   "Azure",
 ];
 
+/* =========================================================
+   MOTION VARIANTS
+========================================================= */
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+const heroContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: easeOut },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+};
+
+const staggerGrid: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const gridItem: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: easeOut },
+  },
+};
+
+const viewport = { once: true, margin: "-80px" } as const;
+
+/* =========================================================
+   REVEAL COMPONENT
+========================================================= */
+
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  variants?: Variants;
+}
+
+function Reveal({ children, className, variants = fadeUp }: RevealProps) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
 export default function ApplicationModernizationPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#030303] text-white">
+    <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
       <Header />
 
       {/* =========================================================
-          CINEMATIC IMAGE-FIRST HERO
+          HERO
       ========================================================= */}
-      <section className="relative min-h-[100svh] overflow-hidden border-b border-white/[0.08]">
+      <section className="relative overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2200&q=95"
-            alt="Modern cloud infrastructure"
-            className="absolute inset-0 h-full w-full object-cover"
+          <div className="absolute inset-0 bg-[#030303]" />
+
+          <div className="absolute left-1/2 top-[40%] h-[780px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-700/20 blur-[150px]" />
+
+          <div className="absolute -left-[15%] top-[30%] h-[600px] w-[600px] rounded-full bg-purple-800/10 blur-[170px]" />
+
+          <div className="absolute -right-[10%] top-[45%] h-[650px] w-[650px] rounded-full bg-fuchsia-900/10 blur-[180px]" />
+
+          <div
+            className="absolute inset-0 opacity-[0.13]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.065) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.065) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+            }}
           />
 
-          <div className="absolute inset-0 bg-black/60" />
-
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/55 to-[#030303]" />
-
-          <div className="absolute left-1/2 top-[45%] h-[800px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/25 blur-[180px]" />
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center px-5 py-28 text-center md:px-8 lg:px-12">
-          <div className="mx-auto max-w-6xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-black/35 px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm">
-              <Sparkles className="h-4 w-4" />
-              Application Modernization
-            </div>
-
-            <h1 className="mt-7 text-[45px] font-semibold leading-[0.96] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-[94px]">
+        <motion.div
+          className="relative z-10 mx-auto max-w-[1500px] px-5 pb-10 pt-24 text-center md:px-8 lg:px-12 lg:pt-32"
+          variants={heroContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="mx-auto max-w-5xl">
+            <motion.h1 variants={heroItem} className="hyi-h1 hyi-white">
               Transform legacy systems
-              <span className="block bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#EC4899] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 into modern digital platforms.
               </span>
-            </h1>
+            </motion.h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/55 md:text-lg">
+            <motion.p
+              variants={heroItem}
+              className="mx-auto mt-3 max-w-3xl hyi-p"
+            >
               Rebuild aging applications for cloud, performance, scalability
               and the next generation of business growth.
-            </p>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7047E8] to-[#9859F7] px-7 py-4 text-sm font-medium shadow-[0_15px_60px_rgba(124,58,237,.35)]">
-                Modernize Your Application
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </button>
-
-              <button className="rounded-full border border-white/15 bg-black/30 px-7 py-4 text-sm text-white/70 backdrop-blur-xl">
-                Explore Modernization
-              </button>
-            </div>
+            </motion.p>
           </div>
 
-          {/* floating stats */}
-          <div className="mx-auto mt-16 grid w-full max-w-5xl grid-cols-2 gap-3 md:grid-cols-4">
+          {/* stats */}
+          <motion.div
+            variants={heroItem}
+            className="mx-auto mt-8 grid w-full max-w-5xl grid-cols-2 gap-3 md:grid-cols-4"
+          >
             {[
               ["Faster", "Releases"],
               ["Lower", "Technical Debt"],
@@ -182,40 +262,51 @@ export default function ApplicationModernizationPage() {
             ].map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-2xl border border-white/10 bg-black/35 px-5 py-5 backdrop-blur-xl"
+                className="rounded-2xl border border-white/10 bg-white/[0.035] px-5 py-5"
               >
-                <p className="text-xl font-semibold md:text-2xl">{value}</p>
-                <p className="mt-1 text-xs text-white/35">{label}</p>
+                <p className="hyi-h3 hyi-white">{value}</p>
+                <p className="mt-1 hyi-p">{label}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* =========================================================
-          BEFORE / AFTER IMAGE VISUAL
+          BEFORE / AFTER
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="relative min-h-[540px] overflow-hidden rounded-[38px] border border-white/10">
-            <img
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=95"
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <motion.div
+          className="grid gap-4 lg:grid-cols-2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerGrid}
+        >
+          {/* before */}
+          <motion.div
+            variants={gridItem}
+            className="relative min-h-[440px] overflow-hidden rounded-[35px] border border-white/10"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=90"
               alt="Legacy technology system"
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover opacity-60"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 p-8 md:p-10">
-              <p className="text-xs uppercase tracking-[0.3em] text-red-300">
-                Before
-              </p>
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <p className="text-sm font-medium text-red-300">Before</p>
 
-              <h2 className="mt-4 text-3xl font-semibold md:text-4xl">
+              <h2 className="mt-2 hyi-h1 hyi-white">
                 Complex legacy architecture.
               </h2>
 
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {[
                   "Technical Debt",
                   "Slow Releases",
@@ -224,164 +315,162 @@ export default function ApplicationModernizationPage() {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs text-white/50"
+                    className="rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs text-white/60"
                   >
                     {item}
                   </span>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="relative min-h-[540px] overflow-hidden rounded-[38px] border border-purple-400/20">
-            <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=95"
+          {/* after */}
+          <motion.div
+            variants={gridItem}
+            className="relative min-h-[440px] overflow-hidden rounded-[35px] border border-purple-400/20"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=90"
               alt="Modern cloud architecture"
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
             />
 
             <div className="absolute inset-0 bg-purple-950/20" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 p-8 md:p-10">
-              <p className="text-xs uppercase tracking-[0.3em] text-purple-300">
-                After
-              </p>
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <p className="text-sm font-medium text-purple-300">After</p>
 
-              <h2 className="mt-4 text-3xl font-semibold md:text-4xl">
+              <h2 className="mt-2 hyi-h1 hyi-white">
                 Modern cloud-native platform.
               </h2>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {[
-                  "Modular",
-                  "Scalable",
-                  "Secure",
-                  "Cloud Ready",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-purple-300/20 bg-purple-500/10 px-4 py-2 text-xs text-purple-100"
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Modular", "Scalable", "Secure", "Cloud Ready"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-purple-300/20 bg-purple-500/10 px-4 py-2 text-xs text-purple-100"
+                    >
+                      {item}
+                    </span>
+                  )
+                )}
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* =========================================================
-          LARGE TRANSFORMATION IMAGE
+          TRANSFORMATION IMAGE
       ========================================================= */}
-      <section className="px-5 pb-24 md:px-8 lg:px-12 lg:pb-36">
-        <div className="relative mx-auto min-h-[650px] max-w-[1450px] overflow-hidden rounded-[42px] border border-white/10">
-          <img
-            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=2200&q=95"
+      <section className="mx-auto max-w-[1350px] px-5 py-6 md:px-8 lg:px-12">
+        <Reveal className="relative h-[320px] overflow-hidden rounded-[35px] border border-white/10 md:h-[480px] md:rounded-[44px]">
+          <Image
+            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=2200&q=90"
             alt="Application modernization technology"
-            className="absolute inset-0 h-full w-full object-cover opacity-75"
+            fill
+            unoptimized
+            sizes="100vw"
+            className="object-cover opacity-75"
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/10" />
 
-          <div className="relative z-10 flex min-h-[650px] items-end p-8 md:p-12 lg:p-16">
-            <div className="max-w-5xl">
-              <RefreshCcw className="h-8 w-8 text-purple-300" />
-
-              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-                Modernization strategy
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
-                Modernize without rebuilding
-                <span className="block text-white/40">
-                  everything at once.
-                </span>
-              </h2>
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <RefreshCcw className="h-5 w-5 hyi-white-icon" />
             </div>
+
+            <h2 className="mt-3 max-w-5xl hyi-h1 hyi-white">
+              Modernize without rebuilding
+              <span className="block hyi-blue">everything at once.</span>
+            </h2>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* =========================================================
           MODERNIZATION SERVICES
       ========================================================= */}
-      <section className="border-y border-white/[0.08] bg-white/[0.012]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <div className="max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Modernization capabilities
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="text-center">
+            <h2 className="hyi-h1 hyi-white">
               Modernize every layer
-              <span className="block text-white/25">
-                of your technology stack.
-              </span>
+              <span className="block hyi-blue">of your technology stack.</span>
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div
+            className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={staggerGrid}
+          >
             {modernizationServices.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article
+                <motion.article
                   key={item.title}
-                  className="group relative min-h-[320px] overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-8 transition hover:-translate-y-1 hover:border-purple-400/25"
+                  variants={gridItem}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-b from-white/[0.045] to-transparent p-7 transition-colors duration-500 hover:border-purple-500/30 md:p-8"
                 >
-                  <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-purple-700/0 blur-[90px] transition group-hover:bg-purple-700/15" />
+                  <div className="absolute right-[-60px] top-[-60px] h-[180px] w-[180px] rounded-full bg-purple-600/0 blur-[60px] transition duration-500 group-hover:bg-purple-600/15" />
 
-                  <div className="relative flex justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10">
-                      <Icon className="h-5 w-5 text-purple-300" />
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-purple-500/10 hyi-white-icon">
+                      <Icon className="h-5 w-5" />
                     </div>
-
-                    <span className="text-sm text-white/15">{item.no}</span>
                   </div>
 
-                  <h3 className="relative mt-16 text-xl font-semibold md:text-2xl">
-                    {item.title}
-                  </h3>
+                  <div className="relative z-10 mt-3">
+                    <h3 className="hyi-h3">{item.title}</h3>
 
-                  <p className="relative mt-4 text-sm leading-7 text-white/40">
-                    {item.description}
-                  </p>
-                </article>
+                    <p className="mt-2 max-w-sm hyi-p">{item.description}</p>
+                  </div>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* =========================================================
           ARCHITECTURE VISUAL
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative overflow-hidden rounded-[40px] border border-white/[0.08] bg-[#08080C] px-6 py-16 md:px-12 lg:px-16 lg:py-24">
-          <div className="absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/10 blur-[160px]" />
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="relative overflow-hidden rounded-[35px] border border-white/10 bg-[#09090D] px-5 py-8 md:rounded-[44px] md:px-12">
+          <div className="absolute left-1/2 top-1/2 h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/15 blur-[120px]" />
 
           <div className="relative mx-auto max-w-4xl text-center">
-            <Layers3 className="mx-auto h-8 w-8 text-purple-300" />
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Layers3 className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white">
               From monolith
-              <span className="block text-white/25">
-                to modern architecture.
-              </span>
+              <span className="block hyi-blue">to modern architecture.</span>
             </h2>
           </div>
 
-          <div className="relative mx-auto mt-20 max-w-6xl">
+          <div className="relative mx-auto mt-8 max-w-6xl">
             <div className="grid items-center gap-5 md:grid-cols-[1fr_80px_1.4fr]">
               {/* legacy */}
-              <div className="rounded-[30px] border border-red-400/10 bg-red-500/[0.03] p-7 text-center">
-                <Server className="mx-auto h-7 w-7 text-red-300/70" />
+              <div className="rounded-3xl border border-red-400/15 bg-red-500/[0.04] p-6 text-center">
+                <Server className="mx-auto h-6 w-6 text-red-300/80" />
 
-                <p className="mt-5 text-lg font-medium">Legacy Monolith</p>
+                <h3 className="mt-2 hyi-h3 hyi-white">Legacy Monolith</h3>
 
-                <div className="mt-6 space-y-2">
+                <div className="mt-5 space-y-2">
                   {[
                     "Frontend",
                     "Business Logic",
@@ -390,7 +479,7 @@ export default function ApplicationModernizationPage() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="rounded-xl border border-white/[0.06] bg-black/20 px-4 py-3 text-xs text-white/35"
+                      className="rounded-xl border border-white/[0.06] bg-black/20 px-4 py-3 hyi-p"
                     >
                       {item}
                     </div>
@@ -404,49 +493,50 @@ export default function ApplicationModernizationPage() {
               </div>
 
               {/* modern */}
-              <div className="grid grid-cols-2 gap-3">
-               {(
-  [
-    ["Frontend", Code2],
-    ["API Services", Network],
-    ["Cloud", Cloud],
-    ["Data", Database],
-    ["Automation", Workflow],
-    ["Security", ShieldCheck],
-  ] as [string, LucideIcon][]
-).map(([title, Icon]) => (
-  <div
-    key={title}
-    className="rounded-[24px] border border-purple-400/15 bg-purple-500/[0.05] p-6 text-center"
-  >
-    <Icon className="mx-auto h-5 w-5 text-purple-300" />
-    <p className="mt-4 text-sm">{title}</p>
-  </div>
-))}
-              </div>
+              <motion.div
+                className="grid grid-cols-2 gap-3"
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                variants={staggerGrid}
+              >
+                {(
+                  [
+                    ["Frontend", Code2],
+                    ["API Services", Network],
+                    ["Cloud", Cloud],
+                    ["Data", Database],
+                    ["Automation", Workflow],
+                    ["Security", ShieldCheck],
+                  ] as [string, LucideIcon][]
+                ).map(([title, Icon]) => (
+                  <motion.div
+                    key={title}
+                    variants={gridItem}
+                    className="rounded-3xl border border-purple-500/30 bg-purple-500/10 p-5 text-center"
+                  >
+                    <Icon className="mx-auto h-6 w-6 hyi-white-icon" />
+                    <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* =========================================================
           PERFORMANCE DASHBOARD
       ========================================================= */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <div className="overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#0A0A0F]">
-            <div className="flex flex-col justify-between gap-5 border-b border-white/[0.07] p-7 md:flex-row md:items-end md:p-10">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-                  Modernization impact
-                </p>
+      <section className="bg-[#080808]">
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="overflow-hidden rounded-[35px] border border-white/10 bg-[#0A0A0F] md:rounded-[44px]">
+            <div className="flex flex-col justify-between gap-5 border-b border-white/[0.07] p-6 md:flex-row md:items-end md:p-8">
+              <h2 className="hyi-h1 hyi-white">
+                Performance after modernization.
+              </h2>
 
-                <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
-                  Performance after modernization.
-                </h2>
-              </div>
-
-              <div className="flex items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/[0.05] px-4 py-2 text-xs text-emerald-300">
+              <div className="flex w-fit items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/[0.05] px-4 py-2 text-xs text-emerald-300">
                 <span className="h-2 w-2 rounded-full bg-emerald-400" />
                 Platform healthy
               </div>
@@ -456,16 +546,16 @@ export default function ApplicationModernizationPage() {
               <div className="rounded-[28px] border border-white/[0.07] bg-black/20 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">System Performance</p>
-                    <p className="mt-1 text-xs text-white/25">
+                    <h3 className="hyi-h3 hyi-white">System Performance</h3>
+                    <p className="mt-1 hyi-p">
                       Before vs modernized platform
                     </p>
                   </div>
 
-                  <Gauge className="h-5 w-5 text-purple-300" />
+                  <Gauge className="h-5 w-5 hyi-white-icon" />
                 </div>
 
-                <div className="mt-10 flex h-[270px] items-end gap-3">
+                <div className="mt-8 flex h-[270px] items-end gap-3">
                   {[
                     [30, 70],
                     [38, 76],
@@ -476,23 +566,37 @@ export default function ApplicationModernizationPage() {
                   ].map(([legacy, modern], index) => (
                     <div
                       key={index}
-                      className="flex flex-1 items-end justify-center gap-1.5"
+                      className="flex h-full flex-1 items-end justify-center gap-1.5"
                     >
-                      <div
+                      <motion.div
                         className="w-[38%] rounded-t-lg bg-white/10"
-                        style={{ height: `${legacy}%` }}
+                        initial={{ height: "0%" }}
+                        whileInView={{ height: `${legacy}%` }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.8,
+                          delay: index * 0.06,
+                          ease: easeOut,
+                        }}
                       />
 
-                      <div
+                      <motion.div
                         className="w-[38%] rounded-t-lg bg-gradient-to-t from-purple-800 to-purple-300"
-                        style={{ height: `${modern}%` }}
+                        initial={{ height: "0%" }}
+                        whileInView={{ height: `${modern}%` }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.8,
+                          delay: index * 0.06 + 0.1,
+                          ease: easeOut,
+                        }}
                       />
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-5 flex justify-center gap-6 text-xs">
-                  <span className="flex items-center gap-2 text-white/30">
+                  <span className="flex items-center gap-2 text-white/40">
                     <span className="h-2 w-2 rounded-full bg-white/20" />
                     Legacy
                   </span>
@@ -513,161 +617,120 @@ export default function ApplicationModernizationPage() {
                 ].map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-[24px] border border-white/[0.07] bg-white/[0.025] p-6"
+                    className="rounded-[24px] border border-white/10 bg-white/[0.035] p-5"
                   >
-                    <p className="text-2xl font-semibold">{value}</p>
-                    <p className="mt-2 text-xs text-white/30">{label}</p>
+                    <p className="hyi-h3 hyi-white">{value}</p>
+                    <p className="mt-2 hyi-p">{label}</p>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* =========================================================
           CLOUD IMAGE
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative min-h-[650px] overflow-hidden rounded-[42px] border border-white/10">
-          <img
-            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=2200&q=95"
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="relative h-[320px] overflow-hidden rounded-[35px] border border-white/10 md:h-[480px] md:rounded-[44px]">
+          <Image
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=2200&q=90"
             alt="Cloud infrastructure modernization"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            unoptimized
+            sizes="100vw"
+            className="object-cover"
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/15" />
 
-          <div className="relative flex min-h-[650px] items-end p-8 md:p-12 lg:p-16">
-            <div className="max-w-5xl">
-              <Cloud className="h-8 w-8 text-purple-300" />
-
-              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-                Cloud ready
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
-                Infrastructure designed to
-                <span className="block text-white/40">
-                  scale with demand.
-                </span>
-              </h2>
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Cloud className="h-5 w-5 hyi-white-icon" />
             </div>
+
+            <h2 className="mt-3 max-w-5xl hyi-h1 hyi-white">
+              Infrastructure designed to
+              <span className="block hyi-blue">scale with demand.</span>
+            </h2>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* =========================================================
           PROCESS
       ========================================================= */}
-      <section className="border-y border-white/[0.08]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-          <div className="max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Modernization roadmap
-            </p>
+      <section className="mx-auto max-w-[1350px] px-5 md:px-8 lg:px-12">
+        <Reveal className="mx-auto text-center">
+          <h2 className="hyi-h1 hyi-white">
+            Transform incrementally.
+            <span className="block hyi-blue">Reduce transformation risk.</span>
+          </h2>
+        </Reveal>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
-              Transform incrementally.
-              <span className="block text-white/25">
-                Reduce transformation risk.
-              </span>
-            </h2>
-          </div>
+        <motion.div
+          className="mt-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerGrid}
+        >
+          {stages.map((step) => (
+            <motion.div
+              key={step.no}
+              variants={gridItem}
+              className="group grid gap-4 border-t border-white/10 py-6 transition md:grid-cols-[100px_1fr_1.3fr] md:gap-10"
+            >
+              <span className="hyi-white">{step.no}</span>
 
-          <div className="mt-16">
-            {stages.map((item) => (
-              <div
-                key={item.no}
-                className="grid gap-4 border-t border-white/[0.08] py-9 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 md:py-11"
-              >
-                <span className="text-sm text-purple-400">{item.no}</span>
+              <h3 className="hyi-h3 hyi-white">{step.title}</h3>
 
-                <h3 className="text-xl font-semibold md:text-2xl">
-                  {item.title}
-                </h3>
-
-                <p className="max-w-2xl text-sm leading-7 text-white/40 md:text-base">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+              <p className="max-w-xl hyi-p">{step.text}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* =========================================================
           STACK
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Modern technology stack
-          </p>
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <h2 className="hyi-h1 hyi-white">
+              Replace technical debt
+              <span className="block hyi-blue">
+                with a future-ready foundation.
+              </span>
+            </h2>
+          </Reveal>
 
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
-            Replace technical debt
-            <span className="block text-white/25">
-              with a future-ready foundation.
-            </span>
-          </h2>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {stack.map((item) => (
-            <div
-              key={item}
-              className="flex h-28 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.018] text-sm text-white/50 transition hover:border-purple-400/25 hover:bg-purple-500/[0.07] hover:text-white"
-            >
-              <Code2 className="mr-2 h-4 w-4 text-purple-400" />
-              {item}
-            </div>
-          ))}
+          <motion.div
+            className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={staggerGrid}
+          >
+            {stack.map((item) => (
+              <motion.div
+                key={item}
+                variants={gridItem}
+                className="group flex h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/[0.08] hover:text-white md:text-base"
+              >
+                <Code2 className="mr-2 h-4 w-4 hyi-white-icon" />
+                {item}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* =========================================================
-          FINAL IMAGE CTA
+          FINAL CTA
       ========================================================= */}
-      <section className="px-5 pb-28 md:px-8 lg:px-12 lg:pb-40">
-        <div className="relative mx-auto min-h-[680px] max-w-[1450px] overflow-hidden rounded-[44px] border border-white/10">
-          <img
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2200&q=95"
-            alt="Modern digital technology environment"
-            className="absolute inset-0 h-full w-full object-cover opacity-70"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/25" />
-
-          <div className="relative z-10 flex min-h-[680px] items-end justify-center px-6 py-16 text-center md:px-12 lg:py-20">
-            <div className="max-w-5xl">
-              <Rocket className="mx-auto h-8 w-8 text-purple-300" />
-
-              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-                Modernize with HYI
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
-                Your existing application
-                <span className="block text-white/40">
-                  can become your next advantage.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-7 max-w-2xl leading-8 text-white/50">
-                Modernize architecture, infrastructure, security and
-                performance without losing the business value already inside
-                your platform.
-              </p>
-
-              <button className="group mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 px-8 py-4 font-medium shadow-[0_15px_60px_rgba(124,58,237,.35)]">
-                Start Your Modernization
-                <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       <Footer />
     </main>

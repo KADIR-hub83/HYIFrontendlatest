@@ -43,36 +43,34 @@ const stack = [
 
 export default function GPUArchitecture() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#030303] ">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              02 / GPU ARCHITECTURE
-            </p>
+           
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+            <h2 className="mt-2 hyi-h1 hyi-white">
               Schedule intelligence,
-              <span className="block text-[#7653df]">not just hardware.</span>
+              <span className="block hyi-blue">not just hardware.</span>
             </h2>
 
-            <p className="mt-7 text-[12px] leading-7 text-white/[0.45]">
+            <p className="mt-2 hyi-p">
               GPU capacity becomes significantly more useful when workloads can
               be placed according to their compute profile, runtime,
               dependencies, topology and operational requirements.
             </p>
 
-            <div className="mt-9 space-y-3">
+            <div className="mt-5 space-y-3">
               {stack.map(({ Icon, title, text }) => (
                 <div
                   key={title}
                   className="flex gap-4 rounded-[18px] border border-white/[0.06] bg-[#080808] p-5"
                 >
-                  <Icon size={14} className="mt-1 shrink-0 text-[#9878ef]" />
+                  <Icon size={14} className="mt-1 shrink-0 hyi-blue-icon" />
 
                   <div>
-                    <h3 className="text-sm">{title}</h3>
-                    <p className="mt-2 text-[10px] leading-5 text-white/[0.38]">
+                    <h3 className="hyi-h3 hyi-white">{title}</h3>
+                    <p className="hyi-p">
                       {text}
                     </p>
                   </div>

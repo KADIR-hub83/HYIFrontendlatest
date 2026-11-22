@@ -45,24 +45,21 @@ const principles = [
 
 export default function DataPlatformPrinciples() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070707] py-28">
+    <section className="relative overflow-hidden  bg-[#070707] ">
       <div className="absolute -right-[250px] top-[10%] h-[650px] w-[650px] rounded-full bg-[#390b44]/40 blur-[180px]" />
 
       <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[0.6fr_1.4fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              11 / DESIGN PRINCIPLES
-            </p>
-
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+        
+            <h2 className="hyi-h1 hyi-white">
               Build for what
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 comes next.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-[470px] text-[13px] leading-7 text-white/[0.5]">
+            <p className="mt-2 max-w-[670px] hyi-p">
               Data technologies will continue changing. Strong platform
               principles create a more durable foundation than architecture
               built around one temporary tool or isolated workload.
@@ -80,19 +77,17 @@ export default function DataPlatformPrinciples() {
                 whileHover={{
                   borderColor: "rgba(112,70,230,.4)",
                 }}
-                className="min-h-[270px] rounded-[24px] border border-white/[0.07] bg-[#030303] p-6"
+                className=" rounded-[24px] border border-white/[0.07] bg-[#030303] p-6"
               >
                 <div className="flex items-center justify-between">
                   <Icon size={15} className="text-[#9875ec]" />
 
-                  <span className="font-mono text-[6px] text-[#7046e6]">
-                    PRINCIPLE 0{index + 1}
-                  </span>
+          
                 </div>
 
-                <h3 className="mt-10 text-xl">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-5 text-[11px] leading-6 text-white/[0.47]">
+                <p className="mt-1 hyi-p">
                   {text}
                 </p>
               </motion.article>

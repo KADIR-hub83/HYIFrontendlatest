@@ -1,32 +1,14 @@
-import Header from "@/components/section/general/header";
-import Footer from "@/components/section/general/footer";
+import type { Metadata } from "next";
+import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
+import { getAIService } from "@/data/ai-services.data";
 
-import AIChatbotHero from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/AIChatbotCTA";
-import ConversationEngine from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/ConversationEngine";
-import IntelligenceLayer from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/IntelligenceLayer";
-import ChatbotCapabilities from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/ChatbotCapabilities";
-import OmnichannelExperience from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/OmnichannelExperience";
-import EnterpriseIntegrations from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/EnterpriseIntegrations";
-import ConversationCommandCenter from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/ConversationCommandCenter";
-import ChatbotImpact from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/ChatbotImpact";
-import AIChatbotCTA from "@/components/section/technology-solutions/artificial-intelligence/ai-chatbots/AIChatbotCTA";
+const service = getAIService("ai-chatbots");
 
-export default function AIChatbotsPage() {
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#030305] text-white">
-      <Header />
+export const metadata: Metadata = {
+  title: "AI Chatbot Development | HYI.AI",
+  description: "Build intelligent chatbots that understand user intent, answer with relevant context and connect conversations to your business systems.",
+};
 
-      <AIChatbotHero />
-      <ConversationEngine />
-      <IntelligenceLayer />
-      <ChatbotCapabilities />
-      <OmnichannelExperience />
-      <EnterpriseIntegrations />
-      <ConversationCommandCenter />
-      <ChatbotImpact />
-      <AIChatbotCTA />
-
-      <Footer />
-    </main>
-  );
+export default function AiChatbotsPage() {
+  return <AIServiceShell service={service} />;
 }

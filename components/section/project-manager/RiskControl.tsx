@@ -129,23 +129,30 @@ export default function RiskControl() {
             </div>
           </div>
 
-          <div className="lg:pl-10">
-          
+    <div className="flex flex-col justify-center items-start text-left w-full max-w-[560px] mx-auto lg:mx-0">
 
-            <h2 className="mt-5 text-[clamp(45px,5vw,32px)] ">
-              Problems are cheaper
-              <br />
-              <span className="text-white/25">
-                before they happen.
-              </span>
-            </h2>
+  <h2 className="hyi-h1 hyi-white leading-[1.15] tracking-tight">
+    Problems Are Cheaper
+    <br />
+    <span className="hyi-blue">
+      Before They Happen.
+    </span>
+  </h2>
 
-            <p className="mt-7 max-w-[430px] hyi-p hyi-gray">
-              Experienced project managers continuously surface risks,
-              dependencies and capacity issues so your team can act before
-              timelines are affected.
-            </p>
-          </div>
+  <p className="mt-2 max-w-[500px] hyi-p leading-[1.8] text-white/70">
+    Successful project delivery starts with identifying risks before
+    they become expensive problems. Experienced project managers
+    continuously monitor dependencies, resource availability,
+    delivery capacity and potential bottlenecks to keep every
+    project on track.
+    <br />
+    By proactively addressing challenges, coordinating teams and
+    making informed decisions, they help prevent unexpected delays,
+    maintain quality standards and ensure your project moves forward
+    with clarity, confidence and predictable outcomes.
+  </p>
+
+</div>
         </div>
       </div>
     </section>

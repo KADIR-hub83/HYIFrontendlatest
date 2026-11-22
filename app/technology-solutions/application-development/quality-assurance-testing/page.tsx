@@ -1,8 +1,10 @@
 "use client";
 
+import { type ReactNode } from "react";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
-import { motion } from "framer-motion";
 
 import {
   Activity,
@@ -11,27 +13,20 @@ import {
   BarChart3,
   Bot,
   Bug,
-  Check,
   CheckCircle2,
   ChevronRight,
   CircleDot,
   Code2,
-  Database,
-  Gauge,
   GitBranch,
   Globe2,
   Layers3,
   MonitorCheck,
-  Play,
-  Search,
-  Server,
+  Gauge,
+  Rocket,
   ShieldCheck,
-  Sparkles,
   TestTube2,
-  Timer,
   Workflow,
   Zap,
-  Rocket
 } from "lucide-react";
 
 /* =========================================================
@@ -55,37 +50,31 @@ const testingServices = [
 
 const capabilities = [
   {
-    no: "01",
     icon: MonitorCheck,
     title: "Functional Testing",
     text: "Validate critical workflows, requirements, user journeys and business functionality before release.",
   },
   {
-    no: "02",
     icon: Bot,
     title: "Test Automation",
     text: "Automate repeatable test scenarios to accelerate releases and improve regression coverage.",
   },
   {
-    no: "03",
     icon: Gauge,
     title: "Performance Testing",
     text: "Measure responsiveness, concurrency, load handling and system behavior under demanding conditions.",
   },
   {
-    no: "04",
     icon: ShieldCheck,
     title: "Security Validation",
     text: "Identify vulnerabilities and verify authentication, authorization and sensitive application workflows.",
   },
   {
-    no: "05",
     icon: Globe2,
     title: "Cross-Platform QA",
     text: "Validate user experience across browsers, devices, operating systems and screen configurations.",
   },
   {
-    no: "06",
     icon: Workflow,
     title: "Continuous QA",
     text: "Integrate testing into development and delivery pipelines for faster feedback across every release.",
@@ -141,52 +130,80 @@ const stack = [
 ];
 
 /* =========================================================
-   FRAMER MOTION CONFIG
+   MOTION VARIANTS
 ========================================================= */
 
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 45,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
+const easeOut = [0.16, 1, 0.3, 1] as const;
 
-const fadeScale = {
-  hidden: {
-    opacity: 0,
-    scale: 0.94,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
-const stagger = {
+const heroContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
     },
   },
 };
 
-const viewport = {
-  once: true,
-  amount: 0.18,
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: easeOut },
+  },
 };
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+};
+
+const staggerGrid: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const gridItem: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: easeOut },
+  },
+};
+
+const viewport = { once: true, margin: "-80px" } as const;
+
+/* =========================================================
+   REVEAL COMPONENT
+========================================================= */
+
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  variants?: Variants;
+}
+
+function Reveal({ children, className, variants = fadeUp }: RevealProps) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 /* =========================================================
    PAGE
@@ -194,138 +211,68 @@ const viewport = {
 
 export default function QualityAssuranceTestingPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#030303] text-white">
+    <main className=" overflow-hidden bg-[#050505] text-white">
       <Header />
 
-      {/* =====================================================
+      {/* =========================================================
           HERO
-      ===================================================== */}
-      <section className="relative min-h-[1080px] overflow-hidden border-b border-white/[0.08]">
-        <div className="absolute inset-0 bg-[#030303]" />
+      ========================================================= */}
+      <section className="relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[#030303]" />
 
-        <motion.div
-          animate={{
-            scale: [1, 1.12, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-1/2 top-[28%] h-[900px] w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/20 blur-[190px]"
-        />
+          <div className="absolute left-1/2 top-[30%] h-[780px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-700/20 blur-[150px]" />
 
-        <div className="absolute -left-[15%] top-[30%] h-[550px] w-[550px] rounded-full bg-indigo-900/10 blur-[160px]" />
-        <div className="absolute -right-[15%] top-[36%] h-[650px] w-[650px] rounded-full bg-fuchsia-900/10 blur-[180px]" />
+          <div className="absolute -left-[15%] top-[30%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[170px]" />
 
-        <div
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px)",
-            backgroundSize: "65px 65px",
-          }}
-        />
+          <div className="absolute -right-[10%] top-[40%] h-[650px] w-[650px] rounded-full bg-fuchsia-900/10 blur-[180px]" />
 
-        <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[#030303] via-[#030303]/85 to-transparent" />
+          <div
+            className="absolute inset-0 opacity-[0.13]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.065) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.065) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+            }}
+          />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-10 pt-24 md:px-8 lg:px-12 lg:pt-32">
+          {/* Hero text */}
           <motion.div
+            className="relative z-30 mx-auto max-w-5xl text-center"
+            variants={heroContainer}
             initial="hidden"
             animate="visible"
-            variants={stagger}
-            className="mx-auto max-w-6xl text-center"
           >
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/[0.08] px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm"
-            >
-              <TestTube2 className="h-4 w-4" />
-              Quality Assurance & Testing
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="mt-7 text-[44px] font-semibold leading-[0.96] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-[94px]"
-            >
+            <motion.h1 variants={heroItem} className="hyi-h1 hyi-white">
               Ship software with
-              <span className="block bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#EC4899] bg-clip-text text-transparent">
-                confidence built in.
-              </span>
+              <span className="block hyi-blue">confidence built in.</span>
             </motion.h1>
 
             <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/45 md:text-lg"
+              variants={heroItem}
+              className="mx-auto mt-3 max-w-3xl hyi-p"
             >
               HYI combines automation, performance engineering, functional
               validation and continuous QA to help digital products move fast
               without compromising reliability.
             </motion.p>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-9 flex flex-wrap justify-center gap-3"
-            >
-              <motion.button
-                whileHover={{
-                  scale: 1.04,
-                  y: -2,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7047E8] to-[#9259F4] px-7 py-4 text-sm font-medium shadow-[0_15px_60px_rgba(124,58,237,.35)]"
-              >
-                Test Your Product
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{
-                  scale: 1.04,
-                  backgroundColor: "rgba(255,255,255,.07)",
-                }}
-                className="rounded-full border border-white/10 bg-white/[0.035] px-7 py-4 text-sm text-white/65 backdrop-blur-xl"
-              >
-                Explore QA Services
-              </motion.button>
-            </motion.div>
           </motion.div>
 
-          {/* =================================================
-              QA COMMAND CENTER
-          ================================================= */}
+          {/* QA COMMAND CENTER */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 80,
-              scale: 0.94,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            transition={{
-              delay: 0.5,
-              duration: 1.1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="relative mx-auto mt-20 max-w-[1300px]"
+            className="relative mx-auto mt-5 max-w-[1300px]"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: easeOut }}
           >
             <div className="absolute left-1/2 top-1/2 h-[450px] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[120px]" />
 
-            <motion.div
-              whileHover={{
-                y: -5,
-              }}
-              transition={{
-                duration: 0.4,
-              }}
-              className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#09090E]/95 shadow-[0_50px_160px_rgba(0,0,0,.8)] backdrop-blur-2xl"
-            >
+            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#09090E]/95 shadow-[0_50px_160px_rgba(0,0,0,.8)]">
               {/* browser */}
               <div className="flex h-14 items-center justify-between border-b border-white/[0.07] px-5">
                 <div className="flex gap-2">
@@ -341,22 +288,13 @@ export default function QualityAssuranceTestingPage() {
                 <Activity className="h-4 w-4 text-white/25" />
               </div>
 
-              <div className="grid min-h-[600px] lg:grid-cols-[220px_1fr]">
+              <div className="grid lg:grid-cols-[220px_1fr]">
                 {/* sidebar */}
                 <div className="hidden border-r border-white/[0.07] bg-black/20 p-5 lg:block">
                   <div className="flex items-center gap-3">
-                    <motion.div
-                      animate={{
-                        rotate: [0, 6, -6, 0],
-                      }}
-                      transition={{
-                        duration: 5,
-                        repeat: Infinity,
-                      }}
-                      className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/15"
-                    >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/15">
                       <TestTube2 className="h-5 w-5 text-purple-300" />
-                    </motion.div>
+                    </div>
 
                     <div>
                       <p className="text-sm font-medium">Quality Lab</p>
@@ -366,7 +304,7 @@ export default function QualityAssuranceTestingPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 space-y-2">
+                  <div className="mt-4 space-y-2">
                     {[
                       "Overview",
                       "Test Runs",
@@ -375,11 +313,8 @@ export default function QualityAssuranceTestingPage() {
                       "Performance",
                       "Reports",
                     ].map((item, index) => (
-                      <motion.div
+                      <div
                         key={item}
-                        whileHover={{
-                          x: 5,
-                        }}
                         className={`flex items-center justify-between rounded-xl px-3 py-3 text-xs ${
                           index === 0
                             ? "bg-purple-500/15 text-purple-200"
@@ -388,7 +323,7 @@ export default function QualityAssuranceTestingPage() {
                       >
                         {item}
                         <ChevronRight className="h-3 w-3" />
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -397,36 +332,21 @@ export default function QualityAssuranceTestingPage() {
                 <div className="p-4 sm:p-6 md:p-8">
                   <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                     <div>
-                      <p className="text-xs text-white/30">
-                        Release quality
-                      </p>
+                      <p className="text-xs text-white/30">Release quality</p>
 
                       <h3 className="mt-2 text-xl font-semibold sm:text-2xl">
                         QA Operations
                       </h3>
                     </div>
 
-                    <motion.div
-                      animate={{
-                        boxShadow: [
-                          "0 0 0 rgba(52,211,153,0)",
-                          "0 0 24px rgba(52,211,153,.14)",
-                          "0 0 0 rgba(52,211,153,0)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                      className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-500/[0.06] px-3 py-2 text-[10px] text-emerald-300"
-                    >
+                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-500/[0.06] px-3 py-2 text-[10px] text-emerald-300">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       Release candidate healthy
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* metrics */}
-                  <div className="mt-7 grid grid-cols-2 gap-3 xl:grid-cols-4">
+                  <div className="mt-6 grid grid-cols-2 gap-3 xl:grid-cols-4">
                     {[
                       ["2,184", "Tests executed"],
                       ["98.7%", "Pass rate"],
@@ -435,21 +355,9 @@ export default function QualityAssuranceTestingPage() {
                     ].map(([value, label], index) => (
                       <motion.div
                         key={label}
-                        initial={{
-                          opacity: 0,
-                          y: 20,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          delay: 0.8 + index * 0.1,
-                        }}
-                        whileHover={{
-                          y: -5,
-                          borderColor: "rgba(168,85,247,.3)",
-                        }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1 }}
                         className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4 sm:p-5"
                       >
                         <p className="text-xl font-semibold sm:text-2xl">
@@ -464,17 +372,10 @@ export default function QualityAssuranceTestingPage() {
 
                   <div className="mt-4 grid gap-4 xl:grid-cols-[1.55fr_1fr]">
                     {/* test chart */}
-                    <motion.div
-                      whileHover={{
-                        scale: 1.01,
-                      }}
-                      className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5"
-                    >
+                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-medium">
-                            Test Execution
-                          </p>
+                          <p className="text-sm font-medium">Test Execution</p>
                           <p className="mt-1 text-[10px] text-white/25">
                             Automated test coverage
                           </p>
@@ -483,21 +384,18 @@ export default function QualityAssuranceTestingPage() {
                         <BarChart3 className="h-5 w-5 text-purple-300" />
                       </div>
 
-                      <div className="mt-8 flex h-[205px] items-end gap-2 sm:gap-3">
+                      <div className="mt-6 flex h-[205px] items-end gap-2 sm:gap-3">
                         {[
                           36, 45, 54, 49, 65, 72, 68, 79, 75, 88, 83, 96,
                         ].map((height, index) => (
                           <motion.div
                             key={index}
-                            initial={{
-                              height: 0,
-                            }}
-                            animate={{
-                              height: `${height}%`,
-                            }}
+                            initial={{ height: "0%" }}
+                            animate={{ height: `${height}%` }}
                             transition={{
-                              delay: 1 + index * 0.06,
-                              duration: 0.65,
+                              duration: 0.8,
+                              delay: 0.9 + index * 0.05,
+                              ease: easeOut,
                             }}
                             className="relative flex-1 rounded-t-md bg-gradient-to-t from-purple-900/30 to-purple-400"
                           >
@@ -512,7 +410,7 @@ export default function QualityAssuranceTestingPage() {
                         <span>Build 03</span>
                         <span>Current</span>
                       </div>
-                    </motion.div>
+                    </div>
 
                     {/* runs */}
                     <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
@@ -521,7 +419,7 @@ export default function QualityAssuranceTestingPage() {
                         Real-time validation
                       </p>
 
-                      <div className="mt-6 space-y-3">
+                      <div className="mt-5 space-y-3">
                         {[
                           ["Authentication", "Passed", true],
                           ["Checkout flow", "Passed", true],
@@ -530,17 +428,9 @@ export default function QualityAssuranceTestingPage() {
                         ].map(([label, status, passed], index) => (
                           <motion.div
                             key={String(label)}
-                            initial={{
-                              opacity: 0,
-                              x: 25,
-                            }}
-                            animate={{
-                              opacity: 1,
-                              x: 0,
-                            }}
-                            transition={{
-                              delay: 1 + index * 0.12,
-                            }}
+                            initial={{ opacity: 0, x: 25 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 1 + index * 0.12 }}
                             className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-black/20 p-3"
                           >
                             <div className="flex items-center gap-3">
@@ -557,9 +447,7 @@ export default function QualityAssuranceTestingPage() {
 
                             <span
                               className={`text-[9px] ${
-                                passed
-                                  ? "text-emerald-300"
-                                  : "text-yellow-300"
+                                passed ? "text-emerald-300" : "text-yellow-300"
                               }`}
                             >
                               {String(status)}
@@ -571,19 +459,14 @@ export default function QualityAssuranceTestingPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* floating QA card */}
             <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute -bottom-8 right-[6%] hidden rounded-2xl border border-purple-400/20 bg-[#100D18]/90 p-4 shadow-2xl backdrop-blur-xl md:block"
+              className="absolute -bottom-6 right-[6%] hidden rounded-2xl border border-white/10 bg-black/50 px-4 py-3 backdrop-blur-xl md:block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 1.2 }}
             >
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/15">
@@ -591,9 +474,7 @@ export default function QualityAssuranceTestingPage() {
                 </div>
 
                 <div>
-                  <p className="text-xs text-white/35">
-                    Automation engine
-                  </p>
+                  <p className="text-xs text-white/30">Automation engine</p>
                   <p className="mt-1 text-sm font-medium">
                     842 tests completed
                   </p>
@@ -604,187 +485,112 @@ export default function QualityAssuranceTestingPage() {
         </div>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           CONTINUOUS SLIDER
-      ===================================================== */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-        variants={fadeUp}
-        className="overflow-hidden border-b border-white/[0.08] bg-[#060606] py-11"
-      >
-        <div className="mb-8 text-center">
-          <p className="text-xs uppercase tracking-[0.28em] text-white/25">
-            Complete Quality Engineering Ecosystem
-          </p>
-        </div>
-
+      ========================================================= */}
+      <Reveal className="overflow-hidden border-y border-white/10 bg-[#080808] py-6">
         <div className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-[#060606] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-[#060606] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-[#080808] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-[#080808] to-transparent" />
 
           <div className="microservices-marquee flex min-w-max gap-4 px-2">
-            {[...testingServices, ...testingServices].map(
-              (service, index) => (
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    y: -4,
-                  }}
-                  key={`${service}-${index}`}
-                  className="group flex h-[84px] min-w-[230px] items-center justify-center rounded-[22px] border border-white/[0.08] bg-white/[0.025] px-7 transition hover:border-purple-400/30 hover:bg-purple-500/[0.08]"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10">
-                      <TestTube2 className="h-4 w-4 text-purple-300" />
-                    </div>
-
-                    <span className="text-sm text-white/60 group-hover:text-white">
-                      {service}
-                    </span>
+            {[...testingServices, ...testingServices].map((service, index) => (
+              <div
+                key={`${service}-${index}`}
+                className="group flex h-[72px] min-w-[230px] items-center justify-center rounded-[22px] border border-white/10 bg-white/[0.025] px-7 transition hover:border-purple-500/30 hover:bg-purple-500/[0.08]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-purple-500/10">
+                    <TestTube2 className="h-4 w-4 hyi-white-icon" />
                   </div>
-                </motion.div>
-              )
-            )}
+
+                  <span className="hyi-p group-hover:text-white">
+                    {service}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </motion.section>
+      </Reveal>
 
-      {/* =====================================================
+      {/* =========================================================
           RELEASE VISUAL
-      ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={fadeScale}
-          className="relative min-h-[680px] overflow-hidden rounded-[42px] border border-white/10"
-        >
-          <img
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2200&q=95"
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="relative h-[320px] overflow-hidden rounded-[35px] border border-white/10 md:h-[480px] md:rounded-[44px]">
+          <Image
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2200&q=90"
             alt="Software quality testing and engineering"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            unoptimized
+            sizes="100vw"
+            className="object-cover"
           />
 
-          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 60,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={viewport}
-            transition={{
-              duration: 0.8,
-              delay: 0.15,
-            }}
-            className="relative flex min-h-[680px] items-end p-8 md:p-12 lg:p-16"
-          >
-            <div className="max-w-5xl">
-              <motion.div
-                animate={{
-                  rotate: [0, 8, -8, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                }}
-              >
-                <Bug className="h-9 w-9 text-purple-300" />
-              </motion.div>
-
-              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-                Quality engineering
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
-                Find defects before
-                <span className="block text-white/40">
-                  your users ever experience them.
-                </span>
-              </h2>
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Bug className="h-5 w-5 hyi-white-icon" />
             </div>
-          </motion.div>
-        </motion.div>
+
+            <h2 className="mt-3 max-w-5xl hyi-h1 hyi-white">
+              Find defects before
+              <span className="block hyi-blue">
+                your users ever experience them.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           CAPABILITIES
-      ===================================================== */}
-      <section className="border-y border-white/[0.08] bg-white/[0.012]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeUp}
-            className="max-w-5xl"
-          >
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              QA capabilities
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      ========================================================= */}
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12">
+          <Reveal className="text-center">
+            <h2 className="hyi-h1 hyi-white">
               Quality at every layer.
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 Confidence at every release.
               </span>
             </h2>
-          </motion.div>
+          </Reveal>
 
           <motion.div
+            className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            variants={stagger}
-            className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+            variants={staggerGrid}
           >
             {capabilities.map((item) => {
               const Icon = item.icon;
 
               return (
                 <motion.article
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -10,
-                    scale: 1.015,
-                    borderColor: "rgba(168,85,247,.32)",
-                  }}
                   key={item.title}
-                  className="group relative min-h-[330px] overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-8"
+                  variants={gridItem}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-b from-white/[0.045] to-transparent p-7 transition-colors duration-500 hover:border-purple-500/30 md:p-8"
                 >
-                  <motion.div
-                    className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-600/0 blur-[90px] group-hover:bg-purple-600/15"
-                  />
+                  <div className="absolute right-[-60px] top-[-60px] h-[180px] w-[180px] rounded-full bg-purple-600/0 blur-[60px] transition duration-500 group-hover:bg-purple-600/15" />
 
-                  <div className="relative flex justify-between">
-                    <motion.div
-                      whileHover={{
-                        rotate: 8,
-                        scale: 1.1,
-                      }}
-                      className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10"
-                    >
-                      <Icon className="h-5 w-5 text-purple-300" />
-                    </motion.div>
-
-                    <span className="text-sm text-white/15">{item.no}</span>
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-purple-500/10 hyi-white-icon">
+                      <Icon className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <h3 className="relative mt-16 text-xl font-semibold md:text-2xl">
-                    {item.title}
-                  </h3>
+                  <div className="relative z-10 mt-3">
+                    <h3 className="hyi-h3">{item.title}</h3>
 
-                  <p className="relative mt-4 text-sm leading-7 text-white/40">
-                    {item.text}
-                  </p>
+                    <p className="mt-2 max-w-sm hyi-p">{item.text}</p>
+                  </div>
                 </motion.article>
               );
             })}
@@ -792,149 +598,96 @@ export default function QualityAssuranceTestingPage() {
         </div>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           AUTOMATION PIPELINE
-      ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={fadeScale}
-          className="relative overflow-hidden rounded-[42px] border border-white/[0.08] bg-[#09090D] px-6 py-16 md:px-12 lg:px-16 lg:py-24"
-        >
-          <div className="absolute left-1/2 top-1/2 h-[650px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/10 blur-[160px]" />
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="relative overflow-hidden rounded-[35px] border border-white/10 bg-[#09090D] px-5 py-8 md:rounded-[44px] md:px-12">
+          <div className="absolute left-1/2 top-1/2 h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/15 blur-[120px]" />
 
-          <motion.div variants={fadeUp} className="relative text-center">
-            <Workflow className="mx-auto h-8 w-8 text-purple-300" />
+          <div className="relative mx-auto max-w-4xl text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Workflow className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white">
               Testing built directly
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 into your delivery pipeline.
               </span>
             </h2>
-          </motion.div>
+          </div>
 
           <motion.div
+            className="relative mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-5"
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            variants={stagger}
-            className="relative mx-auto mt-20 grid max-w-6xl gap-4 md:grid-cols-5"
+            variants={staggerGrid}
           >
             {[
-              {
-                icon: Code2,
-                title: "Code",
-              },
-              {
-                icon: GitBranch,
-                title: "Build",
-              },
-              {
-                icon: Bot,
-                title: "Automate",
-              },
-              {
-                icon: CheckCircle2,
-                title: "Validate",
-              },
-              {
-                icon: Rocket,
-                title: "Release",
-              },
+              { icon: Code2, title: "Code" },
+              { icon: GitBranch, title: "Build" },
+              { icon: Bot, title: "Automate" },
+              { icon: CheckCircle2, title: "Validate" },
+              { icon: Rocket, title: "Release" },
             ].map((item, index) => {
               const Icon = item.icon;
 
               return (
                 <motion.div
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -8,
-                  }}
                   key={item.title}
+                  variants={gridItem}
                   className="relative"
                 >
-                  <div className="rounded-[26px] border border-white/[0.08] bg-white/[0.025] p-6 text-center">
-                    <motion.div
-                      animate={{
-                        y: [0, -5, 0],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.25,
-                      }}
-                      className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10"
-                    >
-                      <Icon className="h-5 w-5 text-purple-300" />
-                    </motion.div>
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6 text-center">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10">
+                      <Icon className="h-5 w-5 hyi-white-icon" />
+                    </div>
 
-                    <p className="mt-5 text-sm font-medium">{item.title}</p>
+                    <h3 className="mt-3 hyi-h3 hyi-white">{item.title}</h3>
                   </div>
 
                   {index < 4 && (
-                    <ChevronRight className="absolute -right-5 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-purple-500/40 md:block" />
+                    <ChevronRight className="absolute -right-5 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-purple-400/50 md:block" />
                   )}
                 </motion.div>
               );
             })}
           </motion.div>
-        </motion.div>
+        </Reveal>
       </section>
 
-      {/* =====================================================
-          PERFORMANCE / QUALITY GRAPH
-      ===================================================== */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeScale}
-            className="overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#0A0A0F]"
-          >
-            <div className="flex flex-col justify-between gap-5 border-b border-white/[0.07] p-7 md:flex-row md:items-end md:p-10">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-                  Quality intelligence
-                </p>
+      {/* =========================================================
+          QUALITY GRAPH
+      ========================================================= */}
+      <section className="bg-[#080808]">
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12">
+          <Reveal className="overflow-hidden rounded-[35px] border border-white/10 bg-[#0A0A0F] md:rounded-[44px]">
+            <div className="flex flex-col justify-between gap-5 border-b border-white/[0.07] p-6 md:flex-row md:items-end md:p-8">
+              <h2 className="hyi-h1 hyi-white">
+                Watch release quality improve.
+              </h2>
 
-                <h2 className="mt-4 text-3xl font-semibold md:text-5xl">
-                  Watch release quality improve.
-                </h2>
-              </div>
-
-              <motion.div
-                animate={{
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-                className="rounded-full border border-emerald-400/15 bg-emerald-400/[0.05] px-4 py-2 text-xs text-emerald-300"
-              >
+              <div className="w-fit rounded-full border border-emerald-400/15 bg-emerald-400/[0.05] px-4 py-2 text-xs text-emerald-300">
                 ● Continuous QA active
-              </motion.div>
+              </div>
             </div>
 
             <div className="grid gap-4 p-5 md:p-8 lg:grid-cols-[1.6fr_1fr]">
               <div className="rounded-[28px] border border-white/[0.07] bg-black/20 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">Release Confidence</p>
-                    <p className="mt-1 text-xs text-white/25">
+                    <h3 className="hyi-h3 hyi-white">Release Confidence</h3>
+                    <p className="mt-1 hyi-p">
                       Quality score across releases
                     </p>
                   </div>
 
-                  <Activity className="h-5 w-5 text-purple-300" />
+                  <Activity className="h-5 w-5 hyi-white-icon" />
                 </div>
 
-                <div className="mt-8 h-[300px]">
+                <div className="mt-6 h-[300px]">
                   <svg
                     viewBox="0 0 800 300"
                     className="h-full w-full overflow-visible"
@@ -971,159 +724,103 @@ export default function QualityAssuranceTestingPage() {
                       />
                     ))}
 
+                    <path
+                      d="M0 250 C60 235,100 220,140 215 S220 190,260 178 S340 160,390 140 S470 122,520 112 S600 95,650 78 S730 65,800 48 L800 300 L0 300 Z"
+                      fill="url(#qaFill)"
+                    />
+
                     <motion.path
-                      initial={{
-                        pathLength: 0,
-                      }}
-                      whileInView={{
-                        pathLength: 1,
-                      }}
-                      viewport={viewport}
-                      transition={{
-                        duration: 2,
-                        ease: "easeInOut",
-                      }}
-                      d="
-                        M0 250
-                        C60 235,100 220,140 215
-                        S220 190,260 178
-                        S340 160,390 140
-                        S470 122,520 112
-                        S600 95,650 78
-                        S730 65,800 48
-                      "
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 2, ease: "easeInOut" }}
+                      d="M0 250 C60 235,100 220,140 215 S220 190,260 178 S340 160,390 140 S470 122,520 112 S600 95,650 78 S730 65,800 48"
                       fill="none"
                       stroke="#A78BFA"
                       strokeWidth="4"
                       strokeLinecap="round"
                     />
-
-                    <path
-                      d="
-                        M0 250
-                        C60 235,100 220,140 215
-                        S220 190,260 178
-                        S340 160,390 140
-                        S470 122,520 112
-                        S600 95,650 78
-                        S730 65,800 48
-                        L800 300
-                        L0 300 Z
-                      "
-                      fill="url(#qaFill)"
-                    />
                   </svg>
                 </div>
               </div>
 
-              <motion.div variants={stagger} className="grid gap-3">
+              <div className="grid gap-3">
                 {[
                   ["98.7%", "Test pass rate"],
                   ["87%", "Automation coverage"],
                   ["3.4×", "Faster regression"],
                   ["62%", "Defect leakage reduction"],
                 ].map(([value, label]) => (
-                  <motion.div
-                    variants={fadeUp}
-                    whileHover={{
-                      x: 5,
-                      borderColor: "rgba(168,85,247,.3)",
-                    }}
+                  <div
                     key={label}
-                    className="rounded-[24px] border border-white/[0.07] bg-white/[0.025] p-6"
+                    className="rounded-[24px] border border-white/10 bg-white/[0.035] p-5"
                   >
-                    <p className="text-2xl font-semibold">{value}</p>
-                    <p className="mt-2 text-xs text-white/30">{label}</p>
-                  </motion.div>
+                    <p className="hyi-h3 hyi-white">{value}</p>
+                    <p className="mt-2 hyi-p">{label}</p>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           DEVICE LAB
-      ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={fadeScale}
-          className="relative min-h-[650px] overflow-hidden rounded-[42px] border border-white/10"
-        >
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=95"
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="relative h-[320px] overflow-hidden rounded-[35px] border border-white/10 md:h-[480px] md:rounded-[44px]">
+          <Image
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=90"
             alt="Software testing workspace"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            unoptimized
+            sizes="100vw"
+            className="object-cover"
           />
 
-          <div className="absolute inset-0 bg-black/65" />
-
+          <div className="absolute inset-0 bg-black/55" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 70,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={viewport}
-            transition={{
-              duration: 0.9,
-            }}
-            className="relative flex min-h-[650px] items-end p-8 md:p-12 lg:p-16"
-          >
-            <div className="max-w-5xl">
-              <Layers3 className="h-8 w-8 text-purple-300" />
-
-              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-                Multi-platform validation
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
-                One product.
-                <span className="block text-white/40">
-                  Hundreds of real-world environments.
-                </span>
-              </h2>
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Layers3 className="h-5 w-5 hyi-white-icon" />
             </div>
-          </motion.div>
-        </motion.div>
+
+            <h2 className="mt-3 max-w-5xl hyi-h1 hyi-white">
+              One product.
+              <span className="block hyi-blue">
+                Hundreds of real-world environments.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           DEFECT BOARD
-      ===================================================== */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeUp}
-            className="mx-auto max-w-5xl text-center"
-          >
-            <Bug className="mx-auto h-8 w-8 text-purple-300" />
+      ========================================================= */}
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5 md:px-8 lg:px-12">
+          <Reveal className="mx-auto max-w-5xl text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Bug className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="mt-3 hyi-h1 hyi-white">
               Turn defects into
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 actionable engineering intelligence.
               </span>
             </h2>
-          </motion.div>
+          </Reveal>
 
           <motion.div
+            className="mt-8 grid gap-4 lg:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            variants={stagger}
-            className="mt-16 grid gap-4 lg:grid-cols-3"
+            variants={staggerGrid}
           >
             {[
               {
@@ -1149,30 +846,25 @@ export default function QualityAssuranceTestingPage() {
 
               return (
                 <motion.div
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -10,
-                  }}
                   key={item.title}
-                  className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-7"
+                  variants={gridItem}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="rounded-[30px] border border-white/10 bg-white/[0.03] p-7"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10">
-                      <Icon className="h-5 w-5 text-purple-300" />
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-purple-500/10 hyi-white-icon">
+                      <Icon className="h-5 w-5" />
                     </div>
 
-                    <span className="rounded-full border border-white/[0.08] px-3 py-1 text-[10px] text-white/40">
+                    <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] text-white/50">
                       {item.status}
                     </span>
                   </div>
 
-                  <h3 className="mt-10 text-xl font-semibold">
-                    {item.title}
-                  </h3>
+                  <h3 className="mt-4 hyi-h3 hyi-white">{item.title}</h3>
 
-                  <p className="mt-3 text-sm leading-7 text-white/35">
-                    {item.text}
-                  </p>
+                  <p className="mt-2 hyi-p">{item.text}</p>
                 </motion.div>
               );
             })}
@@ -1180,194 +872,74 @@ export default function QualityAssuranceTestingPage() {
         </div>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           PROCESS
-      ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-40">
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] py-10 px-5 md:px-8 lg:px-12">
+        <Reveal className="mx-auto text-center">
+          <h2 className="hyi-h1 hyi-white">
+            Test continuously.
+            <span className="block hyi-blue">Release confidently.</span>
+          </h2>
+        </Reveal>
+
         <motion.div
+          className="mt-6"
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          variants={fadeUp}
-          className="max-w-5xl"
+          variants={staggerGrid}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Quality engineering process
-          </p>
-
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
-            Test continuously.
-            <span className="block text-white/25">
-              Release confidently.
-            </span>
-          </h2>
-        </motion.div>
-
-        <div className="mt-16">
-          {process.map((item, index) => (
+          {process.map((step) => (
             <motion.div
-              initial={{
-                opacity: 0,
-                x: index % 2 === 0 ? -40 : 40,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={viewport}
-              transition={{
-                duration: 0.7,
-              }}
-              key={item.no}
-              className="group grid gap-4 border-t border-white/[0.08] py-9 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 md:py-11"
+              key={step.no}
+              variants={gridItem}
+              className="group grid gap-4 border-t border-white/10 py-6 transition md:grid-cols-[100px_1fr_1.3fr] md:gap-10"
             >
-              <motion.span
-                whileHover={{
-                  scale: 1.2,
-                }}
-                className="text-sm text-purple-400"
-              >
-                {item.no}
-              </motion.span>
+              <span className="hyi-white">{step.no}</span>
 
-              <h3 className="text-xl font-semibold md:text-2xl">
-                {item.title}
-              </h3>
+              <h3 className="hyi-h3 hyi-white">{step.title}</h3>
 
-              <p className="max-w-2xl text-sm leading-7 text-white/40 md:text-base">
-                {item.text}
-              </p>
+              <p className="max-w-xl hyi-p">{step.text}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* =====================================================
+      {/* =========================================================
           QA STACK
-      ===================================================== */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            variants={fadeUp}
-            className="mx-auto max-w-4xl text-center"
-          >
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Quality engineering stack
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      ========================================================= */}
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <h2 className="hyi-h1 hyi-white">
               Modern tools for
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 modern quality engineering.
               </span>
             </h2>
-          </motion.div>
+          </Reveal>
 
           <motion.div
+            className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
-            variants={stagger}
-            className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+            variants={staggerGrid}
           >
             {stack.map((item) => (
               <motion.div
-                variants={fadeUp}
-                whileHover={{
-                  y: -7,
-                  scale: 1.03,
-                  backgroundColor: "rgba(139,92,246,.08)",
-                  borderColor: "rgba(168,85,247,.28)",
-                }}
                 key={item}
-                className="flex h-28 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.018] text-sm text-white/50"
+                variants={gridItem}
+                className="group flex h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/[0.08] hover:text-white md:text-base"
               >
-                <TestTube2 className="mr-2 h-4 w-4 text-purple-400" />
+                <TestTube2 className="mr-2 h-4 w-4 hyi-white-icon" />
                 {item}
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-
-      {/* =====================================================
-          FINAL CTA
-      ===================================================== */}
-      <section className="px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={fadeScale}
-          whileHover={{
-            borderColor: "rgba(192,132,252,.28)",
-          }}
-          className="relative mx-auto max-w-[1450px] overflow-hidden rounded-[44px] border border-purple-400/15 bg-[#0B0710] px-6 py-20 text-center md:px-12 lg:py-32"
-        >
-          <motion.div
-            animate={{
-              scale: [1, 1.15, 1],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-            }}
-            className="absolute left-1/2 top-[-250px] h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[170px]"
-          />
-
-          <motion.div variants={stagger} className="relative mx-auto max-w-5xl">
-            <motion.div variants={fadeUp}>
-              <Zap className="mx-auto h-8 w-8 text-purple-300" />
-            </motion.div>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300"
-            >
-              Test with HYI
-            </motion.p>
-
-            <motion.h2
-              variants={fadeUp}
-              className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl"
-            >
-              Release faster.
-              <span className="block text-white/25">
-                Break less.
-              </span>
-            </motion.h2>
-
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-7 max-w-2xl leading-8 text-white/40"
-            >
-              Build continuous quality into your software lifecycle with
-              testing strategies designed for modern products and rapid
-              release cycles.
-            </motion.p>
-
-            <motion.button
-              variants={fadeUp}
-              whileHover={{
-                scale: 1.05,
-                y: -3,
-                boxShadow: "0 20px 70px rgba(124,58,237,.38)",
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
-              className="group mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 px-8 py-4 font-medium shadow-[0_15px_60px_rgba(124,58,237,.3)]"
-            >
-              Talk to Our QA Experts
-              <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </section>
-
       <Footer />
     </main>
   );

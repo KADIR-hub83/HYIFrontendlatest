@@ -470,7 +470,7 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           CINEMATIC HERO
       ========================================================= */}
-      <section className="relative min-h-[100svh] overflow-hidden border-b border-white/10">
+      <section className="relative min-h-[100svh] overflow-hidden ">
         {/* Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#030303]" />
@@ -501,55 +501,33 @@ export default function MobileAppDevelopmentPage() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div
-              variants={heroItem}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm"
-            >
-              <Sparkles className="h-4 w-4" />
-              Mobile Application Engineering
-            </motion.div>
+   
 
             <motion.h1
               variants={heroItem}
-              className="text-[44px] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[92px]"
+              className=" hyi-h1 hyi-white"
             >
               Mobile products
-              <span className="block bg-gradient-to-r from-[#585462] via-[#d1cbd8] to-[#161516] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 people love to use.
               </span>
             </motion.h1>
 
             <motion.p
               variants={heroItem}
-              className="mx-auto mt-7 max-w-3xl text-base leading-7 text-white/50 sm:text-lg md:leading-8"
+              className="mx-auto mt-3 max-w-3xl hyi-p"
             >
               HYI engineers premium mobile applications that combine intuitive
               product experiences, scalable technology and production-grade
               performance across iOS and Android.
             </motion.p>
 
-            <motion.div
-              variants={heroItem}
-              className="mt-9 flex flex-wrap justify-center gap-3"
-            >
-              <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#1d1d1f] to-[#cfcbd9] px-7 py-4 text-sm font-medium text-black shadow-[0_15px_50px_rgba(124,58,237,.25)] transition hover:scale-[1.02]">
-                Build Your Mobile App
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </button>
-
-              <a
-                href="#hire-developers"
-                className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.035] px-7 py-4 text-sm text-white/70 backdrop-blur-xl transition hover:bg-white/[0.07]"
-              >
-                <Play className="h-4 w-4" />
-                Explore Capabilities
-              </a>
-            </motion.div>
+          
           </motion.div>
 
           {/* Phone visual */}
           <motion.div
-            className="relative mx-auto mt-16 h-[560px] w-full max-w-[1180px] md:h-[680px] lg:mt-8 lg:h-[720px]"
+            className="relative mx-auto mt-10 h-[560px] w-full max-w-[1180px] md:h-[680px] lg:mt-8 lg:h-[720px]"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease: easeOut }}
@@ -795,20 +773,18 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           PRODUCT INTRO
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
+      <section className="mx-auto max-w-[1450px] px-5 py-10 md:px-8 lg:px-12 ">
         <Reveal className="mx-auto max-w-5xl text-center">
-          <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-            More than an application
-          </p>
+        
 
-          <h2 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             We build mobile products that
-            <span className="block text-white/30">
+            <span className="block hyi-blue">
               become part of everyday life.
             </span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/50 md:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl hyi-p">
             Successful mobile products combine effortless usability,
             responsive interfaces and dependable technology behind the scenes.
             HYI brings product design, mobile engineering, backend systems and
@@ -818,7 +794,7 @@ export default function MobileAppDevelopmentPage() {
         </Reveal>
 
         <motion.div
-          className="mt-16 grid grid-cols-2 gap-3 border-y border-white/10 py-10 sm:grid-cols-4 lg:mt-24"
+          className="mt-8 grid grid-cols-2 gap-3 border-y border-white/10 py-5 sm:grid-cols-4 "
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -835,8 +811,8 @@ export default function MobileAppDevelopmentPage() {
               variants={gridItem}
               className="border-white/10 px-3 text-center sm:border-r last:border-r-0"
             >
-              <p className="text-2xl font-semibold sm:text-3xl">{title}</p>
-              <p className="mt-2 text-xs text-white/35 sm:text-sm">
+              <p className="hyi-h3 hyi-white">{title}</p>
+              <p className="mt-2 hyi-p">
                 {subtitle}
               </p>
             </motion.div>
@@ -847,23 +823,21 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           CAPABILITIES
       ========================================================= */}
-      <section className="border-y border-white/10 bg-white/[0.015]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-32">
-          <Reveal className="max-w-4xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-              Mobile engineering capabilities
-            </p>
+      <section className="">
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 ">
+          <Reveal className="text-center">
+         
 
-            <h2 className="mt-5 text-4xl font-semibold leading-tight md:text-6xl">
+            <h2 className=" hyi-h1 hyi-white">
               From the first screen
-              <span className="block text-white/30">
+              <span className="block hyi-blue">
                 to the entire ecosystem.
               </span>
             </h2>
           </Reveal>
 
           <motion.div
-            className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+            className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -878,24 +852,24 @@ export default function MobileAppDevelopmentPage() {
                   variants={gridItem}
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative min-h-[320px] overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-b from-white/[0.045] to-transparent p-7 transition-colors duration-500 hover:border-purple-500/30 md:p-8"
+                  className="group relative  overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-b from-white/[0.045] to-transparent p-7 transition-colors duration-500 hover:border-purple-500/30 md:p-8"
                 >
                   <div className="absolute right-[-60px] top-[-60px] h-[180px] w-[180px] rounded-full bg-purple-600/0 blur-[60px] transition duration-500 group-hover:bg-purple-600/15" />
 
                   <div className="relative z-10 flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/10 text-purple-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-purple-500/10 hyi-white-icon">
                       <Icon className="h-5 w-5" />
                     </div>
 
-                    <span className="text-sm text-white/20">{item.number}</span>
+    
                   </div>
 
-                  <div className="relative z-10 mt-16">
-                    <h3 className="text-xl font-semibold md:text-2xl">
+                  <div className="relative z-10 mt-3">
+                    <h3 className="hyi-h3">
                       {item.title}
                     </h3>
 
-                    <p className="mt-4 max-w-sm text-sm leading-7 text-white/40 md:text-base">
+                    <p className="mt-2 max-w-sm hyi-p">
                       {item.description}
                     </p>
                   </div>
@@ -909,31 +883,31 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           FULL PRODUCT EXPERIENCE
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
+      <section className="mx-auto max-w-[1350px] px-5 py-6 md:px-8 lg:px-12 ">
         <Reveal className="overflow-hidden rounded-[35px] border border-white/10 bg-[#09090D] md:rounded-[44px]">
-          <div className="relative min-h-[780px] px-6 pb-12 pt-16 md:px-12 lg:min-h-[820px] lg:px-16">
+          <div className="relative min-h-[480px] px-6 pb-3 pt-3 md:px-12 lg:min-h-[420px] lg:px-16">
             <div className="absolute left-[50%] top-[55%] h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/15 blur-[120px]" />
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
-                <MonitorSmartphone className="h-5 w-5 text-purple-300" />
+                <MonitorSmartphone className="h-5 w-5 hyi-white-icon" />
               </div>
 
-              <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+              <h2 className=" hyi-h1 hyi-white">
                 One product.
-                <span className="block text-white/30">
+                <span className="block hyi-blue">
                   Every screen feels intentional.
                 </span>
               </h2>
 
-              <p className="mx-auto mt-6 max-w-2xl leading-8 text-white/45">
+              <p className="mx-auto mt-2 max-w-2xl hyi-p">
                 The mobile experience is treated as a complete digital system,
                 not a collection of disconnected screens.
               </p>
             </div>
 
             {/* device deck */}
-            <div className="relative z-10 mx-auto mt-20 flex max-w-5xl items-end justify-center">
+            <div className="relative z-10 mx-auto mt-5 flex max-w-5xl items-end justify-center">
               <div className="hidden h-[440px] w-[230px] -rotate-[8deg] rounded-[38px] border border-white/10 bg-[#111119] p-2 opacity-70 md:block">
                 <div className="h-full rounded-[31px] bg-gradient-to-b from-[#29233F] via-[#15141E] to-[#08080C] p-5">
                   <div className="mt-7 h-24 rounded-3xl bg-purple-500/20" />
@@ -1009,29 +983,27 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           ARCHITECTURE
       ========================================================= */}
-      <section className="relative border-y border-white/10 py-24 lg:py-36">
+      <section className="relative py-">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-950/[0.08] via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-[1450px] px-5 md:px-8 lg:px-12">
           <Reveal className="mx-auto max-w-4xl text-center">
-            <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-              Connected architecture
-            </p>
+        
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className=" hyi-h1 hyi-white">
               What users see is only
-              <span className="block text-white/30">
+              <span className="block hyi-blue">
                 one layer of the product.
               </span>
             </h2>
           </Reveal>
 
-          <div className="mx-auto mt-20 max-w-5xl">
+          <div className="mx-auto mt-8 max-w-5xl">
             {/* Mobile */}
             <Reveal className="mx-auto w-full max-w-md rounded-3xl border border-purple-500/30 bg-purple-500/10 p-5 text-center">
-              <Smartphone className="mx-auto h-6 w-6 text-purple-300" />
-              <h3 className="mt-3 font-medium">Mobile Experience Layer</h3>
-              <p className="mt-1 text-xs text-white/35">
+              <Smartphone className="mx-auto h-6 w-6 hyi-white-icon" />
+              <h3 className="mt-2 hyi-h3 hyi-white">Mobile Experience Layer</h3>
+              <p className="mt-1 hyi-p">
                 iOS · Android · Cross-platform
               </p>
             </Reveal>
@@ -1040,11 +1012,11 @@ export default function MobileAppDevelopmentPage() {
 
             {/* API */}
             <Reveal className="mx-auto w-full max-w-2xl rounded-3xl border border-white/10 bg-white/[0.035] p-5 text-center">
-              <Network className="mx-auto h-6 w-6 text-purple-300" />
-              <h3 className="mt-3 font-medium">
+              <Network className="mx-auto h-6 w-6 hyi-white-icon" />
+              <h3 className="mt-3 hyi-h3 hyi-white">
                 API & Application Services
               </h3>
-              <p className="mt-1 text-xs text-white/35">
+              <p className="mt-1 hyi-p">
                 Authentication · Business Logic · Integrations
               </p>
             </Reveal>
@@ -1083,9 +1055,9 @@ export default function MobileAppDevelopmentPage() {
                     variants={gridItem}
                     className="rounded-3xl border border-white/10 bg-white/[0.025] p-6 text-center"
                   >
-                    <Icon className="mx-auto h-6 w-6 text-purple-300" />
-                    <h3 className="mt-4 font-medium">{item.title}</h3>
-                    <p className="mt-2 text-xs text-white/35">{item.sub}</p>
+                    <Icon className="mx-auto h-6 w-6 hyi-white-icon" />
+                    <h3 className="mt-2 hyi-h3 hyi-white">{item.title}</h3>
+                    <p className="mt-2 hyi-p">{item.sub}</p>
                   </motion.div>
                 );
               })}
@@ -1097,27 +1069,27 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           SECURITY + PERFORMANCE
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
+      <section className="mx-auto max-w-[1350px] px-2 py-10 md:px-8 lg:px-12 ">
         <div className="grid gap-5 lg:grid-cols-2">
-          <Reveal className="relative min-h-[540px] overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#171025] to-[#070708] p-8 md:p-12">
+          <Reveal className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#171025] to-[#070708] p-6 md:p-6">
             <div className="absolute right-[-120px] top-[-100px] h-[350px] w-[350px] rounded-full bg-purple-700/20 blur-[100px]" />
 
             <div className="relative">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/15">
-                <ShieldCheck className="h-5 w-5 text-purple-300" />
+                <ShieldCheck className="h-5 w-5 hyi-white-icon" />
               </div>
 
-              <h2 className="mt-8 text-3xl font-semibold md:text-5xl">
+              <h2 className="mt-3 hyi-white hyi-h1">
                 Security engineered into every layer.
               </h2>
 
-              <p className="mt-6 max-w-lg leading-8 text-white/45">
+              <p className="mt-3 max-w-lg hyi-p">
                 Authentication, authorization, encrypted communication,
                 protected data and secure API architecture are considered
                 throughout the product lifecycle.
               </p>
 
-              <div className="mt-10 space-y-3">
+              <div className="mt-6 space-y-3">
                 {[
                   "Secure authentication",
                   "Role-based permissions",
@@ -1129,17 +1101,17 @@ export default function MobileAppDevelopmentPage() {
                     key={item}
                     className="flex items-center gap-3 text-sm text-white/65"
                   >
-                    <Check className="h-4 w-4 text-purple-400" />
+                    <Check className="h-4 w-4 hyi-white-icon" />
                     {item}
                   </div>
                 ))}
               </div>
 
-              <Fingerprint className="absolute -bottom-20 -right-5 h-[230px] w-[230px] text-purple-500/[0.07]" />
+              <Fingerprint className="absolute -bottom-20 -right-5 h-[230px] w-[230px] text-white/60" />
             </div>
           </Reveal>
 
-          <Reveal className="relative min-h-[540px] overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#10101D] to-[#070708] p-8 md:p-12">
+          <Reveal className="relative  overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#10101D] to-[#070708] p-6 md:p-6">
             <div className="absolute bottom-[-100px] left-[-100px] h-[350px] w-[350px] rounded-full bg-indigo-700/20 blur-[100px]" />
 
             <div className="relative">
@@ -1147,16 +1119,16 @@ export default function MobileAppDevelopmentPage() {
                 <Gauge className="h-5 w-5 text-blue-300" />
               </div>
 
-              <h2 className="mt-8 text-3xl font-semibold md:text-5xl">
+              <h2 className="mt-3 hyi-white hyi-h1 ">
                 Built to feel fast everywhere.
               </h2>
 
-              <p className="mt-6 max-w-lg leading-8 text-white/45">
+              <p className="mt-3 max-w-lg hyi-p">
                 Performance is optimized across rendering, networking, caching,
                 data loading, application state and backend infrastructure.
               </p>
 
-              <div className="mt-10 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-2 gap-3">
                 {[
                   ["60 FPS", "Smooth UI"],
                   ["Fast", "Cold Starts"],
@@ -1167,13 +1139,13 @@ export default function MobileAppDevelopmentPage() {
                     key={label}
                     className="rounded-2xl border border-white/10 bg-white/[0.035] p-5"
                   >
-                    <p className="text-xl font-semibold">{value}</p>
-                    <p className="mt-2 text-xs text-white/35">{label}</p>
+                    <p className="hyi-h3 hyi-white">{value}</p>
+                    <p className="mt-2 hyi-p">{label}</p>
                   </div>
                 ))}
               </div>
 
-              <Wifi className="absolute -bottom-16 -right-4 h-[220px] w-[220px] text-blue-500/[0.05]" />
+              <Wifi className="absolute -bottom-16 -right-4 h-[220px] w-[220px] text-white/60" />
             </div>
           </Reveal>
         </div>
@@ -1182,23 +1154,21 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           SOLUTIONS
       ========================================================= */}
-      <section className="border-y border-white/10 bg-[#080808]">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-32">
+      <section className="bg-[#080808]">
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 ">
           <Reveal className="mx-auto max-w-4xl text-center">
-            <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-              Product possibilities
-            </p>
+        
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className=" hyi-h1 hyi-white">
               Mobile experiences for
-              <span className="block text-white/30">
+              <span className="block hyi-blue">
                 every kind of business.
               </span>
             </h2>
           </Reveal>
 
           <motion.div
-            className="mx-auto mt-14 flex max-w-5xl flex-wrap justify-center gap-3"
+            className="mx-auto mt-6 flex max-w-5xl flex-wrap justify-center gap-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -1208,7 +1178,7 @@ export default function MobileAppDevelopmentPage() {
               <motion.div
                 key={item}
                 variants={gridItem}
-                className="rounded-full border border-white/10 bg-white/[0.025] px-5 py-3 text-sm text-white/55 transition hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
+                className="rounded-full border border-white/10 bg-white/[0.025] px-5 py-3 hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
               >
                 {item}
               </motion.div>
@@ -1220,20 +1190,18 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           HIRE A DEVELOPER — every discipline, one page
       ========================================================= */}
-      <section id="hire-developers" className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
+      <section id="hire-developers" className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12 ">
         <Reveal className="mx-auto max-w-4xl text-center">
-          <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-            Extend your team
-          </p>
 
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+
+          <h2 className="hyi-h1 hyi-white">
             Hire the developer
-            <span className="block text-white/30">
+            <span className="block hyi-blue">
               your project actually needs.
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl leading-8 text-white/45">
+          <p className="mx-auto mt-3 max-w-2xl hyi-p">
             Whether it&apos;s one specialist for a single sprint or a full team for
             an entire product, every discipline is available to hire on a
             dedicated, project or hourly basis.
@@ -1241,21 +1209,21 @@ export default function MobileAppDevelopmentPage() {
         </Reveal>
 
         {/* Category tabs */}
-        <div className="mt-12 flex flex-wrap justify-center gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           {developerCategories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
                 activeCategory === cat.id
-                  ? "text-black"
+                  ? "text-white"
                   : "text-white/50 hover:text-white/80"
               }`}
             >
               {activeCategory === cat.id && (
                 <motion.span
                   layoutId="activeDevTab"
-                  className="absolute inset-0 rounded-full bg-white"
+                  className="absolute inset-0 rounded-full bg-[#7046e6]"
                   transition={{ type: "spring", stiffness: 400, damping: 32 }}
                 />
               )}
@@ -1265,7 +1233,7 @@ export default function MobileAppDevelopmentPage() {
         </div>
 
         {/* Developer grid */}
-        <div className="relative mt-10 min-h-[280px]">
+        <div className="relative mt-5 ">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -1283,24 +1251,21 @@ export default function MobileAppDevelopmentPage() {
                     key={dev.title}
                     className="group relative flex flex-col rounded-[26px] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:border-purple-500/30 hover:bg-purple-500/[0.06]"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-purple-400/20 bg-purple-500/10 text-purple-300">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-purple-400/20 bg-purple-500/10 hyi-white-icon">
                       <Icon className="h-5 w-5" />
                     </div>
 
-                    <h3 className="mt-5 text-lg font-semibold">{dev.title}</h3>
+                    <h3 className="mt-3 hyi-h3 hyi-white">{dev.title}</h3>
 
                     <p className="mt-1 text-xs text-purple-300/70">
                       {dev.stack}
                     </p>
 
-                    <p className="mt-3 flex-1 text-sm leading-6 text-white/40">
+                    <p className="mt-2 flex-1 hyi-p">
                       {dev.description}
                     </p>
 
-                    <button className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition group-hover:text-white">
-                      Hire {dev.title.split(" ")[0]}
-                      <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-                    </button>
+          
                   </div>
                 );
               })}
@@ -1308,7 +1273,7 @@ export default function MobileAppDevelopmentPage() {
           </AnimatePresence>
         </div>
 
-        <Reveal className="mt-14 flex flex-col items-center justify-between gap-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-8 text-center sm:flex-row sm:text-left md:p-10">
+        <Reveal className="mt-5 flex flex-col items-center justify-between gap-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-8 text-center sm:flex-row sm:text-left ">
           <div>
             <p className="text-lg font-medium">
               Don&apos;t see the exact role you need?
@@ -1319,7 +1284,7 @@ export default function MobileAppDevelopmentPage() {
             </p>
           </div>
 
-          <button className="inline-flex shrink-0 items-center gap-3 rounded-full bg-gradient-to-r from-[#1d1d1f] to-[#cfcbd9] px-7 py-4 text-sm font-medium text-black shadow-[0_15px_50px_rgba(124,58,237,.25)] transition hover:scale-[1.02]">
+          <button className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#7046e6] text-white px-7 py-4 text-sm font-medium  shadow-[0_15px_50px_rgba(124,58,237,.25)] transition hover:scale-[1.02]">
             Talk to Our Team
             <ArrowRight className="h-4 w-4" />
           </button>
@@ -1329,22 +1294,20 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           DEVELOPMENT PROCESS
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
-        <Reveal className="max-w-4xl">
-          <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-            Development journey
-          </p>
+      <section className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 ">
+        <Reveal className="mx-auto text-center">
+         
 
-          <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
+          <h2 className=" hyi-h1 hyi-white">
             From product idea
-            <span className="block text-white/30">
+            <span className="block hyi-blue">
               to millions of interactions.
             </span>
           </h2>
         </Reveal>
 
         <motion.div
-          className="mt-16"
+          className="mt-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -1354,17 +1317,17 @@ export default function MobileAppDevelopmentPage() {
             <motion.div
               key={step.number}
               variants={gridItem}
-              className="group grid gap-4 border-t border-white/10 py-8 transition md:grid-cols-[100px_1fr_1.3fr] md:gap-10 md:py-10"
+              className="group grid gap-4 border-t border-white/10 py-6 transition md:grid-cols-[100px_1fr_1.3fr] md:gap-10 "
             >
-              <span className="font-medium text-purple-400">
+              <span className="hyi-white">
                 {step.number}
               </span>
 
-              <h3 className="text-xl font-semibold transition group-hover:text-purple-200 md:text-2xl">
+              <h3 className="hyi-h3 hyi-white">
                 {step.title}
               </h3>
 
-              <p className="max-w-xl text-sm leading-7 text-white/40 md:text-base">
+              <p className="max-w-xl hyi-p">
                 {step.description}
               </p>
             </motion.div>
@@ -1375,23 +1338,21 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           TECHNOLOGY STACK
       ========================================================= */}
-      <section className="border-y border-white/10">
-        <div className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-32">
+      <section className="">
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12 ">
           <Reveal className="mx-auto max-w-4xl text-center">
-            <p className="text-xs uppercase tracking-[0.28em] text-purple-400 sm:text-sm">
-              Engineering stack
-            </p>
+   
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white ">
               Modern technology behind
-              <span className="block text-white/30">
+              <span className="block hyi-blue">
                 modern mobile products.
               </span>
             </h2>
           </Reveal>
 
           <motion.div
-            className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+            className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -1401,9 +1362,9 @@ export default function MobileAppDevelopmentPage() {
               <motion.div
                 key={item}
                 variants={gridItem}
-                className="group flex h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] text-sm font-medium text-white/55 transition hover:border-purple-500/30 hover:bg-purple-500/[0.08] hover:text-white md:text-base"
+                className="group flex h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02]  hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/[0.08] hover:text-white md:text-base"
               >
-                <Code2 className="mr-2 h-4 w-4 text-purple-400 opacity-60" />
+                <Code2 className="mr-2 h-4 w-4 hyi-white-icon" />
                 {item}
               </motion.div>
             ))}
@@ -1414,7 +1375,7 @@ export default function MobileAppDevelopmentPage() {
       {/* =========================================================
           APP STORE READY
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
+      {/* <section className="mx-auto max-w-[1450px] px-5 py-24 md:px-8 lg:px-12 lg:py-36">
         <Reveal className="relative overflow-hidden rounded-[38px] border border-purple-500/20 bg-gradient-to-br from-[#120C1C] via-[#0B0910] to-[#050505] px-7 py-16 text-center md:px-12 md:py-24">
           <div className="absolute left-1/2 top-[-250px] h-[600px] w-[700px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[160px]" />
 
@@ -1451,9 +1412,9 @@ export default function MobileAppDevelopmentPage() {
             </div>
           </div>
         </Reveal>
-      </section>
+      </section> */}
 
-      <TalkToExpertSection />
+      {/* <TalkToExpertSection /> */}
 
       <Footer />
     </main>

@@ -360,7 +360,7 @@ function MiniServer({
 
 function AIEnterpriseBuilding() {
   return (
-    <div className="relative mx-auto mt-16 h-[820px] max-w-[1180px]">
+    <div className="relative mx-auto  h-[820px] max-w-[1180px]">
       {/* vertical traffic */}
 
       <DataPacket delay={0} left="38%" />
@@ -766,14 +766,14 @@ function StrategyOrbit() {
 
 export default function DigitalStrategyPage() {
   return (
-    <main className="overflow-hidden bg-[#000000] text-white selection:bg-[#7046e6] selection:text-white">
+    <main className="overflow-hidden bg-[#000000]  text-white selection:bg-[#7046e6] selection:hyi-white">
       <Header />
 
       {/* =====================================================
           HERO
       ===================================================== */}
 
-      <section className="relative min-h-screen overflow-hidden bg-[#000000] px-5 pb-24 pt-32 md:px-10 md:pt-40">
+      <section className="relative overflow-hidden bg-[#000000] px-5  md:px-10 pt-30 max-w-[1350px] mx-auto">
         {/* grid */}
 
         <div
@@ -804,29 +804,23 @@ export default function DigitalStrategyPage() {
             }}
             className="mx-auto max-w-[1250px] text-center"
           >
-            <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
-              <StatusLight />
+        
 
-              <span className="font-mono text-[7px] tracking-[0.27em] text-white/40">
-                HYI.AI / DIGITAL TRANSFORMATION / DIGITAL STRATEGY
-              </span>
-            </div>
-
-            <h1 className="mt-9 text-[clamp(4rem,8.6vw,9rem)] font-semibold leading-[0.84] tracking-[-0.078em]">
+            <h1 className="hyi-h1 hyi-white">
               Rebuild the enterprise
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 around intelligence.
               </span>
             </h1>
 
-            <p className="mx-auto mt-9 max-w-[900px] text-[13px] leading-7 text-white/[0.5] md:text-[15px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[900px] hyi-p">
               Create a digital strategy that connects business
               transformation with applications, data, cloud
               infrastructure, automation and artificial intelligence
               as one enterprise technology system.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
               {[
                 "AI Strategy",
                 "Digital Architecture",
@@ -841,7 +835,7 @@ export default function DigitalStrategyPage() {
                     y: -3,
                     borderColor: "rgba(112,70,230,.5)",
                   }}
-                  className="rounded-full border border-white/[0.08] bg-black px-4 py-2.5 font-mono text-[6px] tracking-[0.16em] text-white/[0.35]"
+                  className="rounded-full border border-white/[0.08] bg-black px-4 py-2.5 font-mono hyi-p tracking-[0.16em] text-white/[0.35]"
                 >
                   {item.toUpperCase()}
                 </motion.span>
@@ -851,20 +845,7 @@ export default function DigitalStrategyPage() {
 
           <AIEnterpriseBuilding />
 
-          <motion.a
-            href="#strategy"
-            animate={{
-              y: [0, 6, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-            }}
-            className="mx-auto flex w-fit items-center gap-3 font-mono text-[7px] tracking-[0.2em] text-white/30"
-          >
-            EXPLORE DIGITAL STRATEGY
-            <ArrowDown size={11} />
-          </motion.a>
+     
         </div>
       </section>
 
@@ -874,7 +855,7 @@ export default function DigitalStrategyPage() {
 
       <section
         id="strategy"
-        className="border-y border-white/[0.07] bg-black py-28 md:py-40"
+        className=" bg-black py-10 max-w-[1350px] mx-auto"
       >
         <div className="mx-auto grid max-w-[1500px] items-center gap-20 px-5 md:px-10 lg:grid-cols-[0.9fr_1.1fr]">
           <motion.div
@@ -889,18 +870,16 @@ export default function DigitalStrategyPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              01 / STRATEGIC FOUNDATION
-            </p>
+         
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Technology follows
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 direction.
               </span>
             </h2>
 
-            <p className="mt-8 max-w-[620px] text-[13px] leading-7 text-white/[0.5]">
+            <p className="mt-2 max-w-[620px] hyi-p">
               Digital transformation becomes difficult when cloud,
               applications, data and AI evolve as independent
               initiatives. Digital strategy creates a common direction
@@ -908,14 +887,14 @@ export default function DigitalStrategyPage() {
               organization.
             </p>
 
-            <p className="mt-5 max-w-[620px] text-[13px] leading-7 text-white/[0.4]">
+            <p className="mt-2 max-w-[620px] hyi-p">
               The goal is not simply to adopt more technology. It is to
               create an enterprise architecture capable of adapting as
               products, customer expectations, operating models and AI
               capabilities continue to evolve.
             </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-2">
+            <div className="mt-4 grid grid-cols-2 gap-2">
               {[
                 ["BUSINESS", "Value"],
                 ["TECHNOLOGY", "Architecture"],
@@ -930,11 +909,11 @@ export default function DigitalStrategyPage() {
                   transition={{ delay: index * 0.08 }}
                   className="rounded-[18px] border border-white/[0.07] bg-[#030303] p-5"
                 >
-                  <p className="font-mono text-[5px] tracking-[0.18em] text-white/20">
+                  <p className="font-mono hyi-p racking-[0.18em] text-white/20">
                     {label}
                   </p>
 
-                  <p className="mt-3 text-[14px] text-white/65">
+                  <p className="mt-1 hyi-h3">
                     {value}
                   </p>
                 </motion.div>
@@ -963,21 +942,19 @@ export default function DigitalStrategyPage() {
           CAPABILITIES
       ===================================================== */}
 
-      <section className="bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[1100px]">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              02 / DIGITAL CAPABILITIES
-            </p>
+      <section className="bg-black py-10">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="max-w-[1100px text-center mx-auto">
+        
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               Strategy across the
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 digital enterprise.
               </span>
             </h2>
 
-            <p className="mt-8 max-w-[760px] text-[13px] leading-7 text-white/[0.45]">
+            <p className="mt-2 max-w-[760px] mx-auto hyi-p">
               Transformation requires more than a single platform or
               application. The strategy should define how major
               technology capabilities work together and where shared
@@ -985,7 +962,7 @@ export default function DigitalStrategyPage() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map(
               (
                 {
@@ -1015,7 +992,7 @@ export default function DigitalStrategyPage() {
                     y: -8,
                     borderColor: "rgba(112,70,230,.38)",
                   }}
-                  className="group min-h-[390px] rounded-[30px] border border-white/[0.07] bg-[#030303] p-7"
+                  className="group  rounded-[30px] border border-white/[0.07] bg-[#030303] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <motion.div
@@ -1031,20 +1008,18 @@ export default function DigitalStrategyPage() {
                       />
                     </motion.div>
 
-                    <span className="font-mono text-[6px] text-white/20">
-                      {number}
-                    </span>
+          
                   </div>
 
-                  <p className="mt-14 font-mono text-[6px] tracking-[0.2em] text-[#9675ed]">
+                  <p className="mt-2 hyi-p hyi-blue ">
                     {label}
                   </p>
 
-                  <h3 className="mt-4 text-2xl font-medium tracking-[-0.03em]">
+                  <h3 className="mt-2  hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.45]">
+                  <p className="mt-2 hyi-p">
                     {description}
                   </p>
                 </motion.article>
@@ -1058,21 +1033,19 @@ export default function DigitalStrategyPage() {
           AI OPERATING SYSTEM
       ===================================================== */}
 
-      <section className="border-y border-white/[0.07] bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <section className=" bg-black ">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1050px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              03 / ENTERPRISE INTELLIGENCE
-            </p>
+            
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               AI becomes part of the
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 operating system.
               </span>
             </h2>
 
-            <p className="mx-auto mt-8 max-w-[800px] text-[13px] leading-7 text-white/[0.45]">
+            <p className="mx-auto mt-2 max-w-[800px] hyi-p">
               Instead of treating artificial intelligence as an
               isolated innovation program, digital strategy can
               position AI as a reusable capability across products,
@@ -1080,7 +1053,7 @@ export default function DigitalStrategyPage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-16 max-w-[1150px] rounded-[34px] border border-white/[0.08] bg-[#020202] p-5 md:p-8">
+          <div className="mx-auto mt-5 max-w-[1150px] rounded-[34px] border border-white/[0.08] bg-[#020202] p-5 md:p-8">
             <div className="grid gap-3 lg:grid-cols-5">
               {[
                 {
@@ -1140,25 +1113,23 @@ export default function DigitalStrategyPage() {
                     whileHover={{
                       y: -6,
                     }}
-                    className="relative min-h-[245px] rounded-[22px] border border-white/[0.07] bg-black p-5"
+                    className="relative  rounded-[22px] border border-white/[0.07] bg-black p-5"
                   >
                     <div className="flex items-center justify-between">
                       <Icon
-                        size={16}
+                        size={19}
                         className="text-white/65"
                       />
 
-                      <span className="font-mono text-[5px] text-white/15">
-                        {number}
-                      </span>
+                 
                     </div>
 
-                    <div className="mt-20">
-                      <p className="font-mono text-[5px] tracking-[0.18em] text-[#9675ed]">
+                    <div className="mt-2">
+                      <p className="hyi-p hyi-blue">
                         {label}
                       </p>
 
-                      <h3 className="mt-3 text-[16px] font-medium">
+                      <h3 className="mt-1 hyi-h3 hyi-white">
                         {title}
                       </h3>
                     </div>
@@ -1216,11 +1187,11 @@ export default function DigitalStrategyPage() {
                   />
 
                   <div>
-                    <p className="font-mono text-[5px] tracking-[0.18em] text-[#9675ed]">
+                    <p className="hyi-p">
                       {label}
                     </p>
 
-                    <p className="mt-1 text-[9px] text-white/25">
+                    <p className="mt-1 hyi-h3">
                       {text}
                     </p>
                   </div>
@@ -1235,8 +1206,8 @@ export default function DigitalStrategyPage() {
           ROADMAP
       ===================================================== */}
 
-      <section className="bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <section className="bg-black py-10">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.6fr_1.4fr]">
             <motion.div
               initial={{
@@ -1249,36 +1220,34 @@ export default function DigitalStrategyPage() {
               }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-                04 / TRANSFORMATION ROADMAP
-              </p>
+            
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+              <h2 className="hyi-h1 hyi-white">
                 Strategy becomes
-                <span className="block text-[#cfcfcf]">
+                <span className="block hyi-blue">
                   execution.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[480px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[480px] hyi-p">
                 A transformation roadmap converts strategic direction
                 into an ordered sequence of decisions, platform
                 changes and delivery initiatives.
               </p>
 
-              <div className="mt-10 rounded-[22px] border border-white/[0.07] bg-[#030303] p-6">
+              <div className="mt-5 rounded-[22px] border border-white/[0.07] bg-[#030303] p-6">
                 <div className="flex items-center gap-3">
                   <Terminal
-                    size={14}
+                    size={19}
                     className="text-white/60"
                   />
 
-                  <span className="font-mono text-[5px] tracking-[0.18em] text-white/25">
+                  <span className="hyi-p">
                     TRANSFORMATION ENGINE
                   </span>
                 </div>
 
-                <div className="mt-6 space-y-3">
+                <div className="mt-3 space-y-3">
                   {[
                     "business priorities",
                     "technology architecture",
@@ -1295,7 +1264,7 @@ export default function DigitalStrategyPage() {
                         repeat: Infinity,
                         delay: index * 0.45,
                       }}
-                      className="flex items-center gap-3 font-mono text-[6px] text-white/30"
+                      className="flex items-center gap-3 font-mono hyi-h6"
                     >
                       <span className="text-[#9675ed]">
                         0{index + 1}
@@ -1350,16 +1319,14 @@ export default function DigitalStrategyPage() {
                     </motion.div>
 
                     <div>
-                      <p className="font-mono text-[5px] tracking-[0.18em] text-[#9675ed]">
-                        {step} / {label}
-                      </p>
+               
 
-                      <h3 className="mt-3 text-xl font-medium">
+                      <h3 className="mt-1 hyi-h3 hyi-white">
                         {title}
                       </h3>
                     </div>
 
-                    <p className="text-[12px] leading-7 text-white/[0.43]">
+                    <p className="hyi-p">
                       {description}
                     </p>
                   </motion.div>
@@ -1376,16 +1343,13 @@ export default function DigitalStrategyPage() {
           LIVE STRATEGY CONSOLE
       ===================================================== */}
 
-      <section className="border-y border-white/[0.07] bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <section className=" bg-black ">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1000px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              05 / DIGITAL CONTROL PLANE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+      
+            <h2 className="hyi-h1 hyi-white">
               See transformation
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 as a system.
               </span>
             </h2>
@@ -1401,7 +1365,7 @@ export default function DigitalStrategyPage() {
               y: 0,
             }}
             viewport={{ once: true }}
-            className="mx-auto mt-16 max-w-[1150px] overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#020202]"
+            className="mx-auto mt-5 max-w-[1150px] overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#020202]"
           >
             <div className="flex items-center justify-between border-b border-white/[0.07] p-6">
               <div className="flex items-center gap-3">
@@ -1578,22 +1542,20 @@ export default function DigitalStrategyPage() {
           PRINCIPLES
       ===================================================== */}
 
-      <section className="bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <section className="bg-black py-10">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.6fr_1.4fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-                06 / STRATEGY PRINCIPLES
-              </p>
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+              <h2 className="hyi-h1 hyi-white">
                 Build foundations
-                <span className="block text-[#cfcfcf]">
+                <span className="block hyi-blue">
                   that survive change.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[480px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-3 max-w-[480px] hyi-p">
                 Technology products change quickly. Strong digital
                 strategy therefore focuses on architectural principles
                 and reusable capabilities that remain valuable as the
@@ -1636,16 +1598,14 @@ export default function DigitalStrategyPage() {
                     </div>
 
                     <div>
-                      <span className="font-mono text-[5px] tracking-[0.18em] text-[#9675ed]">
-                        PRINCIPLE {number}
-                      </span>
+                     
 
-                      <h3 className="mt-3 text-xl font-medium">
+                      <h3 className="mt-1 hyi-h3 hyi-white ">
                         {title}
                       </h3>
                     </div>
 
-                    <p className="text-[12px] leading-7 text-white/[0.43]">
+                    <p className="hyi-p">
                       {text}
                     </p>
                   </motion.div>
@@ -1662,22 +1622,20 @@ export default function DigitalStrategyPage() {
           OUTCOMES
       ===================================================== */}
 
-      <section className="border-y border-white/[0.07] bg-black py-28 md:py-40">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[950px]">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-              07 / STRATEGIC OUTCOMES
-            </p>
+      <section className=" bg-black py-">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="max-w-[950px] text-center mx-auto">
+      
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               A clearer path from
-              <span className="block text-[#cfcfcf]">
+              <span className="block hyi-blue">
                 technology to value.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
             {outcomes.map(
               ({ Icon, title, text }, index) => (
                 <motion.article
@@ -1699,7 +1657,7 @@ export default function DigitalStrategyPage() {
                     borderColor:
                       "rgba(112,70,230,.35)",
                   }}
-                  className="min-h-[320px] rounded-[28px] border border-white/[0.07] bg-[#030303] p-7"
+                  className="rounded-[28px] border border-white/[0.07] bg-[#030303] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <Icon
@@ -1707,16 +1665,14 @@ export default function DigitalStrategyPage() {
                       className="text-white/65"
                     />
 
-                    <span className="font-mono text-[5px] text-white/15">
-                      0{index + 1}
-                    </span>
+                
                   </div>
 
-                  <h3 className="mt-20 text-xl font-medium">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.42]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -1726,112 +1682,7 @@ export default function DigitalStrategyPage() {
         </div>
       </section>
 
-      {/* =====================================================
-          CLOSING
-      ===================================================== */}
-
-      <section className="relative overflow-hidden bg-black px-5 py-36 md:px-10 md:py-52">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.09]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px)",
-            backgroundSize: "72px 72px",
-            maskImage:
-              "radial-gradient(circle at center,black,transparent 70%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at center,black,transparent 70%)",
-          }}
-        />
-
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          className="relative mx-auto max-w-[1250px] text-center"
-        >
-          <div className="relative mx-auto flex h-24 w-24 items-center justify-center">
-            <motion.div
-              animate={{
-                rotate: 360,
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute inset-0 rounded-full border border-dashed border-white/20"
-            />
-
-            <motion.div
-              animate={{
-                rotate: -360,
-              }}
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute inset-[10px] rounded-full border border-dotted border-[#7046e6]/60"
-            />
-
-            <BrainCircuit
-              size={29}
-              strokeWidth={1.2}
-              className="text-white/75"
-            />
-          </div>
-
-          <p className="mt-10 font-mono text-[7px] tracking-[0.28em] text-[#9675ed]">
-            HYI.AI / DIGITAL STRATEGY
-          </p>
-
-          <h2 className="mt-7 text-[clamp(4rem,8vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.075em]">
-            Transform digitally.
-            <span className="block text-[#cfcfcf]">
-              Operate intelligently.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-9 max-w-[820px] text-[13px] leading-7 text-white/[0.45] md:text-[14px]">
-            Build a digital strategy that connects business direction,
-            enterprise architecture, cloud, data and artificial
-            intelligence into a technology foundation designed for
-            continuous transformation.
-          </p>
-
-          <div className="mx-auto mt-14 h-px max-w-[800px] bg-white/[0.08]" />
-
-          <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
-            {[
-              "DIGITAL",
-              "AI",
-              "DATA",
-              "CLOUD",
-              "AUTOMATION",
-              "GOVERNANCE",
-            ].map((item) => (
-              <motion.span
-                key={item}
-                whileHover={{
-                  color: "rgba(255,255,255,.7)",
-                }}
-                className="font-mono text-[6px] tracking-[0.22em] text-white/[0.22]"
-              >
-                {item}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      <Footer />
+  <Footer />
     </main>
   );
 }

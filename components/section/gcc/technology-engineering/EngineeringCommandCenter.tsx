@@ -25,30 +25,28 @@ export default function EngineeringCommandCenter() {
   return (
     <section
       id="engineering-command-center"
-      className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-24 md:py-32"
+      className="relative overflow-hidden  bg-[#020203] py-10"
     >
       <div className="pointer-events-none absolute right-[-200px] top-[10%] h-[650px] w-[650px] rounded-full bg-purple-800/[0.08] blur-[180px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1380px] px-5 md:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[850px] text-center">
-          <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-            Engineering Intelligence
-          </p>
+  
 
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+          <h2 className="hyi-h1 hyi-white">
             One engineering system.
-            <span className="block bg-gradient-to-r from-[#ddaaff] via-[#a35cff] to-[#7657ff] bg-clip-text text-transparent">
+            <span className="block hyi-blue">
               Continuous visibility.
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-[720px] text-[14px] leading-7 text-white/36">
+          <p className="mx-auto mt-2 max-w-[720px] hyi-p">
             Bring architecture, engineering workflows, quality, security,
             DevOps and cloud delivery into one connected operating environment.
           </p>
         </div>
 
-        <div className="mt-16 overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#060609] shadow-[0_35px_120px_rgba(0,0,0,.55)]">
+        <div className="mt-6 overflow-hidden rounded-[32px] border border-white/[0.07] bg-[#060609] shadow-[0_35px_120px_rgba(0,0,0,.55)]">
           {/* terminal top */}
           <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 md:px-7">
             <div className="flex gap-2">

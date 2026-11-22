@@ -57,24 +57,22 @@ const capabilities = [
 
 export default function PlatformCapabilities() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070707] py-28">
+    <section className="relative overflow-hidden bg-[#070707] py-">
       <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#390b44]/25 blur-[190px]" />
 
-      <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="max-w-[900px]">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            09 / CAPABILITIES
-          </p>
+      <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="max-w-[900px] text-center mx-auto">
+       
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             Everything between
-            <span className="block text-[#7046e6]">
+            <span className="block hyi-blue">
               source and intelligence.
             </span>
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {capabilities.map(({ Icon, title, text }, index) => (
             <motion.article
               key={title}
@@ -86,21 +84,17 @@ export default function PlatformCapabilities() {
                 y: -6,
                 borderColor: "rgba(112,70,230,.4)",
               }}
-              className="min-h-[310px] rounded-[25px] border border-white/[0.07] bg-[#030303] p-6"
+              className=" rounded-[25px] border border-white/[0.07] bg-[#030303] p-6"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-[13px] border border-[#7046e6]/25 bg-[#7046e6]/[0.08]">
                   <Icon size={15} className="text-[#9c7bed]" />
                 </div>
-
-                <span className="font-mono text-[6px] text-white/[0.16]">
-                  0{index + 1}
-                </span>
               </div>
 
-              <h3 className="mt-14 text-xl">{title}</h3>
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-              <p className="mt-5 text-[11px] leading-6 text-white/[0.45]">
+              <p className="mt-1 hyi-p">
                 {text}
               </p>
             </motion.article>

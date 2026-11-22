@@ -2,19 +2,17 @@ import FeaturePipelineModel from "./FeaturePipelineModel";
 
 export default function FeaturePipelineSection() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto grid max-w-[1500px] gap-14 px-5 md:px-10 lg:grid-cols-[0.5fr_1.5fr]">
+    <section className="bg-[#030303] py-10">
+      <div className="mx-auto grid max-w-[1350px] gap-14 px-5 md:px-10 lg:grid-cols-[0.5fr_1.5fr]">
         <div>
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            06 / FEATURE PIPELINE
-          </p>
+        
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+          <h2 className="hyi-h1 hyi-white">
             Connect data to
-            <span className="block text-[#7046e6]">model behavior.</span>
+            <span className="block hyi-blue">model behavior.</span>
           </h2>
 
-          <p className="mt-7 text-[12px] leading-7 text-white/[0.44]">
+          <p className="mt-2 hyi-p">
             Operational ML pipelines coordinate data preparation and feature
             transformations so training and inference can consume
             intentionally managed inputs.

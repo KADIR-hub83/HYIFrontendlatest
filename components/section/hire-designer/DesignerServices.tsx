@@ -524,7 +524,7 @@ export default function DesignerServices() {
   const handle = "absolute h-2 w-2 border border-violet-500 bg-white";
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#07060f] px-5 py-10 text-white sm:px-8 lg:px-12 ">
+    <section className="relative isolate overflow-hidden bg-[#07060f] px-5  text-white sm:px-8 lg:px-12 ">
       <style>{KEYFRAMES}</style>
 
       {/* design-canvas backdrop: dot grid + colour */}
@@ -544,8 +544,8 @@ export default function DesignerServices() {
         <div className="absolute bottom-[-160px] left-1/3 h-[480px] w-[600px] rounded-full bg-fuchsia-600/20 blur-[160px]" />
       </div>
 
-      <div className="mx-auto max-w-[1450px]">
-        <div className="mb-24 grid gap-10 lg:grid-cols-2">
+      <div className="mx-auto max-w-[1250px]">
+        <div className="mb-10 grid gap-10 lg:grid-cols-2">
           {/* headline, selected like an object on a canvas */}
           <div>
             <div className="relative block w-fit max-w-full p-5 sm:p-6">
@@ -555,8 +555,8 @@ export default function DesignerServices() {
               <span aria-hidden className={`${handle} -bottom-1 -left-1`} />
               <span aria-hidden className={`${handle} -bottom-1 -right-1`} />
 
-              <h2 className="max-w-[720px] hyi-h1  text-[clamp(40px,5.2vw,78px)] font-medium leading-[0.96] tracking-[-0.06em] text-transparent">
-                Design talent for every stage of <span className="hyi-blue">your product.</span>
+              <h2 className="max-w-[720px] hyi-h1 hyi-white">
+                Design talent for every stage of <br /> <span className="hyi-blue">your product.</span>
               </h2>
 
               <span aria-hidden className="absolute left-1/2 top-full mt-2.5 -translate-x-1/2 rounded bg-violet-500 px-2 py-0.5 text-[10px] font-medium text-white">

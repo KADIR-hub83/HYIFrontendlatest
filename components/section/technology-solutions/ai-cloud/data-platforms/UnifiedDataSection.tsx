@@ -16,7 +16,7 @@ export default function UnifiedDataSection() {
     <section className="relative overflow-hidden bg-[#030303] py-28">
       <div className="absolute -left-[300px] top-[20%] h-[650px] w-[650px] rounded-full bg-[#7046e6]/15 blur-[180px]" />
 
-      <div className="mx-auto grid max-w-[1500px] items-center gap-14 px-5 md:px-10 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1350px] items-center gap-14 px-5 md:px-10 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -38,7 +38,7 @@ export default function UnifiedDataSection() {
               CONNECTED FOUNDATION
             </p>
 
-            <p className="mt-3 max-w-[500px] text-[11px] leading-6 text-white/[0.5]">
+            <p className="mt-2 max-w-[500px] hyi-h3">
               A shared platform provides a consistent place for data to become
               discoverable, reusable and available to downstream systems.
             </p>
@@ -50,25 +50,23 @@ export default function UnifiedDataSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            04 / UNIFIED DATA
-          </p>
+      
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             From fragmented
-            <span className="block text-[#7046e6]">
+            <span className="block hyi-blue">
               to connected.
             </span>
           </h2>
 
-          <p className="mt-7 max-w-[580px] text-[13px] leading-7 text-white/[0.52]">
+          <p className="mt-2 max-w-[580px] hyi-p">
             Enterprise information often lives across operational databases,
             SaaS applications, cloud services and departmental systems. A
             unified platform creates intentional connections between these
             sources.
           </p>
 
-          <div className="mt-9 space-y-3">
+          <div className="mt-4 space-y-3 mx-auto">
             {items.map((item) => (
               <div
                 key={item}
@@ -79,7 +77,7 @@ export default function UnifiedDataSection() {
                   className="shrink-0 text-[#8f6ce8]"
                 />
 
-                <span className="text-[11px] text-white/[0.55]">
+                <span className="hyi-h3">
                   {item}
                 </span>
               </div>

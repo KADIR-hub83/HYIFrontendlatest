@@ -35,8 +35,8 @@ export default function AICloudStrategyPage() {
       {/* <OperatingModel /> */}
       <StrategyPrinciples />
       <StrategyUseCases />
-      <StrategyOutcomes />
-      <AICloudStrategyCTA />
+      {/* <StrategyOutcomes />
+      <AICloudStrategyCTA /> */}
 
       <Footer />
     </main>

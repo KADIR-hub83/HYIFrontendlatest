@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Certificate of Completion</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --purple: #7145db;
+    --purple-dark: #5e35ce;
+    --text: #303030;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ececec;
+    font-family: "Inter", Arial, sans-serif;
+    color: var(--text);
+    padding: 25px;
+}
+
+/* ========================================
+   CERTIFICATE CANVAS
+======================================== */
+
+.certificate {
+    width: 1280px;
+    height: 905px;
+    max-width: 100%;
+    aspect-ratio: 1280 / 905;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+
+    /* Your original blank certificate image */
+    background-image: url("./certificate.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Responsive canvas */
+.certificate-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.brand {
+    position: absolute;
+    left: 13.8%;
+    top: 10.1%;
+    z-index: 2;
+
+    font-size: 55px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -5px;
+
+    color: #7145db;
+}
+
+.brand .dot {
+    letter-spacing: -3px;
+}
+
+/* ========================================
+   MAIN TITLE
+======================================== */
+
+.title-block {
+    position: absolute;
+    left: 13.8%;
+    top: 25.2%;
+    z-index: 2;
+}
+
+.certificate-title {
+    color: var(--purple);
+    font-size: 70px;
+    line-height: 1.05;
+    letter-spacing: -3.5px;
+    font-weight: 800;
+}
+
+.certificate-subtitle {
+    color: #303030;
+    font-size: 29px;
+    font-weight: 700;
+    margin-top: 9px;
+}
+
+/* ========================================
+   RECIPIENT
+======================================== */
+
+.presented-label {
+    position: absolute;
+    left: 13.9%;
+    top: 44.9%;
+    z-index: 2;
+
+    font-size: 20px;
+    font-weight: 400;
+    color: #3c3c3c;
+}
+
+.recipient-name {
+    position: absolute;
+    left: 13.8%;
+    top: 51.7%;
+    z-index: 2;
+
+    font-size: 43px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -1.6px;
+
+    color: #303030;
+    max-width: 47%;
+}
+
+/* ========================================
+   ORIGINAL PYTHON LOGO
+======================================== */
+
+.python-logo {
+    position: absolute;
+    top: 28.1%;
+    right: 15.4%;
+    width: 250px;
+    height: 250px;
+    z-index: 2;
+
+    object-fit: contain;
+}
+
+/* ========================================
+   COURSE INFORMATION
+======================================== */
+
+.course-block {
+    position: absolute;
+    left: 13.8%;
+    right: 13.8%;
+    top: 64.3%;
+    z-index: 2;
+}
+
+.course-title {
+    color: var(--purple);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+}
+
+.course-description {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #343434;
+    max-width: 100%;
+}
+
+/* ========================================
+   CERTIFICATE NUMBER & URL
+======================================== */
+
+.certificate-meta {
+    position: absolute;
+    left: 13.8%;
+    right: 13.8%;
+    top: 75.7%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px;
+
+    font-size: 12px;
+    color: #333333;
+}
+
+.meta-item {
+    display: flex;
+    gap: 4px;
+    align-items: baseline;
+}
+
+.meta-item strong {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.meta-item span {
+    font-weight: 400;
+}
+
+/* ========================================
+   DATE
+======================================== */
+
+.date-block {
+    position: absolute;
+    left: 15.4%;
+    bottom: 7.4%;
+    width: 170px;
+    z-index: 2;
+    text-align: center;
+}
+
+.date-value {
+    font-size: 21px;
+    font-weight: 700;
+    color: #333333;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.date-line {
+    width: 100%;
+    height: 2px;
+    background: #333333;
+}
+
+.date-label {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 9px;
+}
+
+/* ========================================
+   SIGNATURE
+======================================== */
+
+.signature-block {
+    position: absolute;
+    right: 18.7%;
+    bottom: 7.4%;
+    width: 165px;
+    z-index: 2;
+    text-align: center;
+}
+
+.signature-svg {
+    width: 165px;
+    height: 65px;
+    display: block;
+    margin: 0 auto 4px;
+}
+
+.signature-line {
+    width: 100%;
+    height: 2px;
+    background: #333333;
+}
+
+.signature-label {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 9px;
+}
+
+/* ========================================
+   PRINT / PDF
+======================================== */
+
+@page {
+    size: A4 landscape;
+    margin: 0;
+}
+
+@media print {
+
+    html,
+    body {
+        width: 297mm;
+        height: 210mm;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .certificate-wrapper {
+        width: 297mm;
+        height: 210mm;
+        max-width: none;
+    }
+
+    .certificate {
+        width: 297mm;
+        height: 210mm;
+        max-width: none;
+        margin: 0;
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+/* ========================================
+   SCREEN RESPONSIVE PREVIEW
+======================================== */
+
+@media screen and (max-width: 1280px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .certificate {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1280 / 905;
+    }
+
+    .brand {
+        font-size: clamp(20px, 4.3vw, 55px);
+    }
+
+    .certificate-title {
+        font-size: clamp(30px, 5.5vw, 70px);
+    }
+
+    .certificate-subtitle {
+        font-size: clamp(14px, 2.3vw, 29px);
+    }
+
+    .presented-label {
+        font-size: clamp(11px, 1.55vw, 20px);
+    }
+
+    .recipient-name {
+        font-size: clamp(18px, 3.4vw, 43px);
+    }
+
+    .python-logo {
+        width: 19.5%;
+        height: auto;
+    }
+
+    .course-title {
+        font-size: clamp(17px, 2.5vw, 32px);
+    }
+
+    .course-description {
+        font-size: clamp(9px, 1.18vw, 15px);
+    }
+
+    .certificate-meta {
+        font-size: clamp(7px, .94vw, 12px);
+        gap: 2.7%;
+    }
+
+    .date-block {
+        width: 13.3%;
+    }
+
+    .date-value {
+        font-size: clamp(10px, 1.65vw, 21px);
+    }
+
+    .date-label,
+    .signature-label {
+        font-size: clamp(10px, 1.4vw, 18px);
+    }
+
+    .signature-block {
+        width: 13%;
+    }
+
+    .signature-svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* ========================================
+   SMALL SCREEN
+======================================== */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 0;
+    }
+
+    .certificate {
+        width: 100%;
+    }
+
+    .certificate-title {
+        letter-spacing: -1px;
+    }
+
+    .recipient-name {
+        max-width: 48%;
+    }
+
+    .course-description {
+        line-height: 1.35;
+    }
+
+    .certificate-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="certificate-wrapper">
+
+    <main class="certificate">
+
+        <!-- BRAND -->
+        <div class="brand">
+            hyi<span class="dot">.ai</span>
+        </div>
+
+        <!-- CERTIFICATE TITLE -->
+        <section class="title-block">
+
+            <h1 class="certificate-title">
+                Certificate
+            </h1>
+
+            <h2 class="certificate-subtitle">
+                Of Completion
+            </h2>
+
+        </section>
+
+        <!-- STUDENT NAME -->
+        <p class="presented-label">
+            This Certificate is Presented To
+        </p>
+
+        <h2 class="recipient-name">
+            Ashwin Santiago
+        </h2>
+
+        <!-- OFFICIAL PYTHON LOGO -->
+        <img
+            class="python-logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+            alt="Official Python Programming Language Logo"
+        />
+
+        <!-- COURSE -->
+        <section class="course-block">
+
+            <h2 class="course-title">
+                Python, HTML, CSS &amp; AI/ML Assessment
+            </h2>
+
+            <p class="course-description">
+                This certificate is proudly presented in recognition of your
+                successful completion of the assessment and your dedication
+                to Python programming, web development and Artificial
+                Intelligence &amp; Machine Learning.
+            </p>
+
+        </section>
+
+        <!-- CERTIFICATE INFORMATION -->
+        <section class="certificate-meta">
+
+            <div class="meta-item">
+                <strong>Certificate No:</strong>
+                <span>GS-DSC-2025-0423-PK</span>
+            </div>
+
+            <div class="meta-item">
+                <strong>Certificate URL:</strong>
+                <span>
+                    https://cert.hyi.ai/certificate/GS-DSC-2025-0423-PK
+                </span>
+            </div>
+
+        </section>
+
+        <!-- DATE -->
+        <section class="date-block">
+
+            <div class="date-value">
+                30 April 2025
+            </div>
+
+            <div class="date-line"></div>
+
+            <div class="date-label">
+                Date
+            </div>
+
+        </section>
+
+        <!-- SIGNATURE -->
+        <section class="signature-block">
+
+            <!-- Decorative signature illustration -->
+            <svg
+                class="signature-svg"
+                viewBox="0 0 220 100"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+
+                <path
+                    d="
+                    M10 75
+                    C25 50 45 30 55 35
+                    C65 40 35 90 55 85
+                    C75 80 85 30 90 20
+                    C95 10 90 70 100 75
+                    C115 90 125 40 140 40
+                    C155 40 135 85 150 80
+                    C165 75 170 35 180 45
+                    C190 55 185 75 200 70
+                    "
+                    fill="none"
+                    stroke="#34258D"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+            </svg>
+
+            <div class="signature-line"></div>
+
+            <div class="signature-label">
+                Director
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

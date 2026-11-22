@@ -45,22 +45,20 @@ const principles = [
 
 export default function GPUCloudPrinciples() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#030303] py-">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              10 / ENGINEERING PRINCIPLES
-            </p>
+       
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+            <h2 className=" hyi-h1 hyi-white">
               More compute
-              <span className="block text-[#7653df]">
+              <span className="block hyi-blue">
                 is not the architecture.
               </span>
             </h2>
 
-            <p className="mt-7 max-w-[500px] text-[12px] leading-7 text-white/[0.44]">
+            <p className="mt-2 max-w-[500px] hyi-p">
               GPU cloud engineering is about making specialized compute
               consumable, scalable, observable and economically aligned with
               the workloads it exists to support.
@@ -76,19 +74,15 @@ export default function GPUCloudPrinciples() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07 }}
                 whileHover={{ y: -5 }}
-                className="min-h-[230px] rounded-[24px] border border-white/[0.07] bg-[#080808] p-7"
+                className=" rounded-[24px] border border-white/[0.07] bg-[#080808] p-7"
               >
                 <div className="flex items-center justify-between">
-                  <Icon size={15} className="text-[#9878ef]" />
-
-                  <span className="font-mono text-[6px] text-[#7046e6]">
-                    PRINCIPLE 0{index + 1}
-                  </span>
+                  <Icon size={15} className="hyi-blue-icon" />
                 </div>
 
-                <h3 className="mt-10 text-xl">{title}</h3>
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-                <p className="mt-4 text-[11px] leading-6 text-white/[0.4]">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
               </motion.div>

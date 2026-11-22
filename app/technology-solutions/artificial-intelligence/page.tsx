@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import ServicePageClient from "@/components/section/footer-technology-pages/ServicePageClient";
+import { AIServiceIndex } from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
 
 export const metadata: Metadata = {
-  title: "Artificial Intelligence | HYI.AI",
-  description: "Machine learning and generative AI solutions by HYI.AI.",
+  title: "Artificial Intelligence Solutions | HYI.AI",
+  description: "Explore HYI.AI artificial intelligence services including machine learning, generative AI, AI agents, computer vision, NLP and intelligent automation.",
 };
 
-export default function Page() {
-  return <ServicePageClient pageKey="artificial-intelligence" />;
+export default function ArtificialIntelligencePage() {
+  return <AIServiceIndex />;
 }

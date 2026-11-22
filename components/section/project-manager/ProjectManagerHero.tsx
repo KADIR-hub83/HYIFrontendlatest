@@ -94,10 +94,10 @@ export default function ProjectManagerHero() {
         }}
       /> */}
 
-      <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-20 sm:px-10 lg:px-20">
+      <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-30 sm:px-10 lg:px-20">
         {/* Heading */}
 
-        <div className="grid items-end gap-12 lg:grid-cols-[1fr_380px]">
+        <div className="flex flex-col text-center mx-auto">
           <div>
        
 
@@ -108,12 +108,12 @@ export default function ProjectManagerHero() {
                 duration: 0.9,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="max-w-[1120px] text-[clamp(58px,5vw,140px)] font-medium leading-[0.83] tracking-[-0.075em]"
+              className="max-w-[1120px] mx-auto hyi-h1 hyi-white"
             >
               Projects move.
               <br />
 
-              <span className="text-white/25">We keep them</span>{" "}
+              <span className="hyi-blue">We keep them</span>{" "}
 
               <span className="relative inline-block">
                 moving.
@@ -145,7 +145,7 @@ export default function ProjectManagerHero() {
             transition={{ delay: 0.35 }}
             className="pb-3"
           >
-            <p className="max-w-[350px] hyi-p ">
+            <p className="max-w-[650px] mt-3 hyi-p mx-auto">
               Hire experienced project managers who bring structure to
               complexity, align teams and turn ambitious roadmaps into
               predictable delivery.
@@ -173,7 +173,7 @@ export default function ProjectManagerHero() {
             duration: 1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="relative mt-10 overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090b]"
+          className="relative mt-3 overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090b]"
         >
           <img
             src="/Card-bg-03.webp"

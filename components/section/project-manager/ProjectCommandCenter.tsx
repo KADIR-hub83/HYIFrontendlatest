@@ -13,16 +13,16 @@ export default function ProjectCommandCenter() {
   return (
     <section className=" bg-[#080808] px-5 py-10 sm:px-10 lg:px-20">
       <div className="mx-auto max-w-[1450px]">
-        <div className="grid gap-14 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
+        <div className="grid gap-14 lg:grid-cols-[.65fr_1.35fr] lg:items-startr">
           <div>
          
 
-            <h2 className="mt-5 font-bold hyi-h1 hyi-white">
+            <h2 className="mt-5  hyi-h1 hyi-white">
               See the whole
-              <br />
+   
               project.
               <br />
-              <span className="text-white/25">Not fragments.</span>
+              <span className="hyi-blue">Not fragments.</span>
             </h2>
 
             <p className="mt-5 max-w-[380px] hyi-p">

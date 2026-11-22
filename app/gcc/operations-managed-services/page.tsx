@@ -57,9 +57,6 @@ function OperationsCore() {
     <div className="relative mx-auto h-[480px] w-full max-w-[1050px] md:h-[620px]">
       <div className="absolute left-1/2 top-1/2 h-[440px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/[0.12] blur-[130px]" />
 
-      <div className="absolute left-1/2 top-[4%] -translate-x-1/2 whitespace-nowrap text-[8px] uppercase tracking-[3px] text-purple-200/40 md:text-[9px]">
-        ● &nbsp; Global Operations Command Network &nbsp; ●
-      </div>
 
       {/* orbital system */}
       <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 md:h-[500px] md:w-[500px]">
@@ -112,17 +109,6 @@ function OperationsCore() {
         </div>
       ))}
 
-      <div className="absolute bottom-[3%] left-1/2 -translate-x-1/2 rounded-full border border-white/[0.07] bg-black/40 px-5 py-2 backdrop-blur-xl">
-        <div className="flex items-center gap-3 whitespace-nowrap">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-40" />
-            <span className="relative h-2 w-2 rounded-full bg-green-400" />
-          </span>
-          <span className="text-[8px] uppercase tracking-[2px] text-white/30">
-            All operational systems active
-          </span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -226,7 +212,7 @@ export default function OperationsManagedServicesPage() {
       <Header />
 
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden border-b border-white/[0.05]">
+      <section className="relative overflow-hidden ">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-[32%] h-[900px] w-[1200px] -translate-x-1/2 rounded-full bg-purple-800/[0.10] blur-[180px]" />
         </div>
@@ -244,29 +230,18 @@ export default function OperationsManagedServicesPage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-24 pt-28 md:px-10 md:pt-32 lg:px-16">
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-purple-400/[0.16] bg-purple-500/[0.05] px-4 py-2 backdrop-blur-xl">
-              <span className="h-[5px] w-[5px] rounded-full bg-purple-400 shadow-[0_0_12px_#a855f7]" />
-              <span className="text-[9px] uppercase tracking-[2px] text-purple-100/55">
-                HYI.AI Global Capability Center
-              </span>
-            </div>
-          </div>
+        <div className="relative z-10 mx-auto max-w-[1350px] px-5  pt-28 md:px-10 md:pt-32 lg:px-16">
+          <div className="mx-auto mt-3 max-w-[1100px] text-center">
+       
 
-          <div className="mx-auto mt-8 max-w-[1100px] text-center">
-            <p className="mb-5 text-[9px] uppercase tracking-[4px] text-white/25">
-              Run • Monitor • Optimize • Scale
-            </p>
-
-            <h1 className="text-[43px] font-semibold leading-[.98] tracking-[-2.5px] sm:text-[58px] md:text-[76px] lg:text-[88px]">
+            <h1 className="hyi-h1 hyi-white">
               Operations &
-              <span className="block bg-gradient-to-r from-[#dfafff] via-[#a45cff] to-[#7657ff] bg-clip-text text-transparent md:ml-4 md:inline">
+              <span className="block hyi-blue">
                 Managed Services
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-[800px] text-[14px] leading-7 text-white/40 md:text-[17px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[800px] hyi-p">
               Run globally distributed business operations through dedicated
               teams, intelligent workflows, measurable service levels and
               continuous operational governance.
@@ -276,139 +251,57 @@ export default function OperationsManagedServicesPage() {
           <div className="-mt-4">
             <OperationsCore />
           </div>
-
-          <div className="relative z-30 mx-auto -mt-7 text-center">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("managed-services")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce5] via-[#9250ff] to-[#7447ff] px-8 py-4 text-[13px] font-medium shadow-[0_12px_45px_rgba(124,58,237,.30)] transition duration-300 hover:-translate-y-1"
-            >
-              <span className="flex items-center gap-3">
-                Transform Your Operations
-                <span className="transition group-hover:translate-x-1">→</span>
-              </span>
-            </button>
-          </div>
-
-          <div className="mx-auto mt-14 grid max-w-[1000px] grid-cols-2 overflow-hidden rounded-[24px] border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl md:grid-cols-4">
-            {[
-              ["24/7", "Operations"],
-              ["AI", "Enabled"],
-              ["Global", "Delivery"],
-              ["360°", "Governance"],
-            ].map(([value, label], index) => (
-              <div
-                key={label}
-                className={`px-5 py-6 text-center ${
-                  index !== 3 ? "md:border-r md:border-white/[0.06]" : ""
-                } ${
-                  index < 2
-                    ? "border-b border-white/[0.06] md:border-b-0"
-                    : ""
-                }`}
-              >
-                <div className="bg-gradient-to-r from-white to-purple-300 bg-clip-text text-2xl font-semibold text-transparent">
-                  {value}
-                </div>
-                <div className="mt-2 text-[9px] uppercase tracking-[1.6px] text-white/25">
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
+     
         </div>
       </section>
 
-      {/* PREMIUM IMAGE */}
-      <section className="relative bg-[#020203] px-5 py-24 md:px-10 lg:px-16">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="relative h-[420px] overflow-hidden rounded-[34px] border border-white/[0.08] md:h-[620px]">
-            <Image
-              src="/images/gcc/operations-command-center.jpg"
-              alt="Global operations command center"
-              fill
-              className="object-cover opacity-55"
-              sizes="100vw"
-            />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020203] via-[#020203]/25 to-black/25" />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-950/35 via-transparent to-black/20" />
-
-            <div className="absolute left-6 top-6 rounded-full border border-white/10 bg-black/30 px-4 py-2 backdrop-blur-xl md:left-10 md:top-10">
-              <span className="text-[8px] uppercase tracking-[2px] text-white/50">
-                Global Delivery Environment
-              </span>
-            </div>
-
-            <div className="absolute bottom-8 left-7 max-w-[700px] md:bottom-12 md:left-12">
-              <p className="text-[9px] uppercase tracking-[3px] text-purple-200/50">
-                Operational Intelligence
-              </p>
-
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-1px] md:text-5xl">
-                Visibility across every
-                <span className="block bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-                  critical operation.
-                </span>
-              </h2>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* SERVICES */}
       <section
         id="managed-services"
-        className="relative border-y border-white/[0.05] bg-[#030305] py-24 md:py-32"
+        className="relative bg-[#030305] py-10"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[800px] text-center">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-              Managed Capabilities
-            </p>
-
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+       
+            <h2 className="hyi-h1 hyi-white">
               Operations built to
-              <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7758ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 perform continuously.
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-[680px] text-[14px] leading-7 text-white/35">
+            <p className="mx-auto mt-2 max-w-[680px] hyi-p">
               Integrated managed services that combine specialized people,
               structured processes, technology and operational intelligence.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
               <article
                 key={service.no}
-                className={`group relative min-h-[290px] overflow-hidden rounded-[27px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/20 md:p-8 ${
+                className={`group relative overflow-hidden rounded-[27px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/20 md:p-8 ${
                   index === 1 || index === 4 ? "lg:translate-y-8" : ""
                 }`}
               >
                 <div className="absolute -right-20 -top-20 h-[220px] w-[220px] rounded-full bg-purple-600/[0.06] blur-[70px] transition group-hover:bg-purple-600/[0.15]" />
 
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-[9px] tracking-[2px] text-purple-300/40">
-                    {service.no}
-                  </span>
+                <div className="relative z-10 flex items-center justify-end">
+            
 
                   <span className="rounded-full border border-white/[0.06] px-3 py-1 text-[7px] tracking-[1.5px] text-white/25">
                     {service.tag}
                   </span>
                 </div>
 
-                <div className="relative z-10 mt-16">
-                  <h3 className="text-xl font-medium text-white/90">
+                <div className="relative z-10 mt-3">
+                  <h3 className="hyi-h3 hyi-white">
                     {service.title}
                   </h3>
 
-                  <p className="mt-4 text-[13px] leading-7 text-white/35">
+                  <p className="mt-2 hyi-p">
                     {service.text}
                   </p>
                 </div>
@@ -421,7 +314,7 @@ export default function OperationsManagedServicesPage() {
       </section>
 
       {/* CONTROL + IMAGE */}
-      <section className="relative bg-[#020203] py-24 md:py-32">
+      <section className="relative bg-[#020203] py-10">
         <div className="mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="grid items-stretch gap-5 lg:grid-cols-2">
             <LiveOperationsConsole />
@@ -442,11 +335,11 @@ export default function OperationsManagedServicesPage() {
                   Dedicated Delivery
                 </span>
 
-                <h3 className="mt-3 max-w-[450px] text-2xl font-medium md:text-3xl">
+                <h3 className="mt-3 max-w-[450px] hyi-h1 hyi-white">
                   Human expertise supported by intelligent operations.
                 </h3>
 
-                <p className="mt-4 max-w-[470px] text-[13px] leading-6 text-white/38">
+                <p className="mt-2 max-w-[470px] hyi-p">
                   Dedicated specialists operate alongside automation,
                   performance intelligence and structured governance.
                 </p>
@@ -457,22 +350,20 @@ export default function OperationsManagedServicesPage() {
       </section>
 
       {/* OPERATING MODEL */}
-      <section className="border-y border-white/[0.05] bg-[#030305] py-24 md:py-32">
+      <section className=" bg-[#030305] ">
         <div className="mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[800px] text-center">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-              Operating Model
-            </p>
+     
 
-            <h2 className="mt-5 text-3xl font-semibold md:text-5xl">
+            <h2 className=" hyi-h1 hyi-whitw">
               A continuous cycle of
-              <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7958ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 operational excellence.
               </span>
             </h2>
           </div>
 
-          <div className="relative mt-16 grid gap-4 md:grid-cols-4">
+          <div className="relative mt-6 grid gap-4 md:grid-cols-4">
             <div className="absolute left-[10%] right-[10%] top-[42px] hidden h-px bg-gradient-to-r from-transparent via-purple-400/25 to-transparent md:block" />
 
             {[
@@ -489,11 +380,11 @@ export default function OperationsManagedServicesPage() {
                   {no}
                 </div>
 
-                <h3 className="mt-9 text-lg font-medium text-white/85">
+                <h3 className="mt-3 hyi-h3 hyi-white">
                   {title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-6 text-white/34">
+                <p className="mt-2 hyi-p">
                   {text}
                 </p>
               </div>
@@ -502,36 +393,7 @@ export default function OperationsManagedServicesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#020203] px-5 py-24 md:px-10 md:py-32 lg:px-16">
-        <div className="relative mx-auto max-w-[1350px] overflow-hidden rounded-[34px] border border-purple-400/[0.11] bg-[#07060b] px-6 py-20 text-center">
-          <div className="absolute left-1/2 top-1/2 h-[450px] w-[750px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/[0.11] blur-[120px]" />
 
-          <div className="cta-ring absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.07]" />
-
-          <div className="relative z-10 mx-auto max-w-[850px]">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-200/35">
-              HYI.AI Managed Operations
-            </p>
-
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
-              Run smarter.
-              <span className="block bg-gradient-to-r from-[#e0b0ff] via-[#a45dff] to-[#7758ff] bg-clip-text text-transparent">
-                Operate globally.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-[650px] text-[14px] leading-7 text-white/38">
-              Build a managed operating environment designed for performance,
-              visibility and continuous global scale.
-            </p>
-
-            <button className="mt-9 rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce4] to-[#8951ff] px-9 py-4 text-[13px] font-medium shadow-[0_15px_45px_rgba(124,58,237,.25)] transition hover:-translate-y-1">
-              Start Your Operations Transformation →
-            </button>
-          </div>
-        </div>
-      </section>
 
       <Footer />
 

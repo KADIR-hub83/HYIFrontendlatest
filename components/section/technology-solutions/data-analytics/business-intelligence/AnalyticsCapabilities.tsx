@@ -45,20 +45,18 @@ const capabilities = [
 
 export default function AnalyticsCapabilities() {
   return (
-    <section className="bg-[#050505] py-28 md:py-44">
-      <div className="mx-auto max-w-[1500px] px-4 md:px-8">
-        <div className="max-w-[950px]">
-          <span className="text-[8px] uppercase tracking-[0.4em] text-violet-200/60">
-            BI capabilities
-          </span>
+    <section className="bg-[#050505] ">
+      <div className="mx-auto max-w-[1350px] px-4 md:px-8">
+        <div className="text-center">
+        
 
-          <h2 className="mt-7 text-5xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             Intelligence built around
-            <span className="block text-white/55">how business moves.</span>
+            <span className="block hyi-blue">how business moves.</span>
           </h2>
         </div>
 
-        <div className="mt-20 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map(({ Icon, title, text }, index) => (
             <motion.article
               key={title}
@@ -67,25 +65,23 @@ export default function AnalyticsCapabilities() {
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
               transition={{ delay: (index % 3) * 0.08 }}
-              className="group relative min-h-[400px] overflow-hidden rounded-[34px] border border-white/[0.08] bg-gradient-to-b from-[#11100e] to-[#080807] p-8"
+              className="group relative  overflow-hidden rounded-[34px] border border-white/[0.08] bg-gradient-to-b from-[#11100e] to-[#080807] p-8"
             >
               <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-violet-500/[0.04] blur-[80px] transition duration-500 group-hover:bg-violet-500/[0.11]" />
 
               <div className="relative flex h-full flex-col justify-between">
                 <div className="flex items-start justify-between">
                   <div className="flex h-16 w-16 items-center justify-center rounded-[20px] border border-violet-200/[0.14] bg-violet-200/[0.035]">
-                    <Icon size={22} className="text-violet-100/70" />
+                    <Icon size={22} className="hyi-white-icon" />
                   </div>
 
-                  <span className="text-[8px] text-white/20">
-                    0{index + 1}
-                  </span>
+                 
                 </div>
 
                 <div>
-                  <h3 className="text-2xl text-white/90">{title}</h3>
+                  <h3 className="hyi-h3 mt-2 hyi-white">{title}</h3>
 
-                  <p className="mt-5 text-sm leading-7 text-white/60">{text}</p>
+                  <p className="mt-2  hyi-p">{text}</p>
                 </div>
               </div>
             </motion.article>

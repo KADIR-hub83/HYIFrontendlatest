@@ -137,14 +137,7 @@ function AIIntelligenceCore() {
         ))}
       </div>
 
-      {/* label */}
-      <div className="absolute left-1/2 top-[3%] z-40 -translate-x-1/2">
-        <div className="flex items-center gap-3 whitespace-nowrap text-[8px] uppercase tracking-[3px] text-purple-200/40 md:text-[9px]">
-          <span className="h-1 w-1 rounded-full bg-purple-400" />
-          Enterprise Intelligence Network
-          <span className="h-1 w-1 rounded-full bg-purple-400" />
-        </div>
-      </div>
+ 
 
       <div
         ref={modelRef}
@@ -373,19 +366,7 @@ function AIIntelligenceCore() {
         </div>
       </div>
 
-      {/* bottom system state */}
-      <div className="absolute bottom-[2%] left-1/2 z-40 -translate-x-1/2">
-        <div className="flex items-center gap-3 rounded-full border border-white/[0.07] bg-black/40 px-5 py-2 backdrop-blur-xl">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-40" />
-            <span className="relative h-2 w-2 rounded-full bg-green-400" />
-          </span>
-
-          <span className="whitespace-nowrap text-[8px] uppercase tracking-[2px] text-white/30">
-            Enterprise Intelligence Online
-          </span>
-        </div>
-      </div>
+    
     </div>
   );
 }
@@ -561,14 +542,14 @@ function AIProcessingConsole() {
 
 export default function AIDataAnalyticsCentresPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#020203] text-white">
+    <main className=" overflow-hidden bg-[#020203] text-white">
       <Header />
 
       {/* =====================================================
           HERO
       ====================================================== */}
 
-      <section className="relative min-h-screen overflow-hidden border-b border-white/[0.05]">
+      <section className="relative overflow-hidden border-b border-white/[0.05]">
         {/* ambient background */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-[33%] h-[950px] w-[1250px] -translate-x-1/2 rounded-full bg-purple-800/[0.11] blur-[190px]" />
@@ -592,32 +573,20 @@ export default function AIDataAnalyticsCentresPage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-24 pt-28 md:px-10 md:pt-32 lg:px-16">
-          {/* badge */}
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-purple-400/[0.16] bg-purple-500/[0.05] px-4 py-2 backdrop-blur-xl">
-              <span className="h-[5px] w-[5px] rounded-full bg-purple-400 shadow-[0_0_12px_#a855f7]" />
+        <div className="relative z-10 mx-auto max-w-[1500px] px-5  pt-28 md:px-10 md:pt-32 lg:px-16">
 
-              <span className="text-[9px] uppercase tracking-[2.2px] text-purple-100/55">
-                HYI.AI Global Capability Center
-              </span>
-            </div>
-          </div>
 
           {/* headline + paragraph */}
-          <div className="relative z-30 mx-auto mt-8 max-w-[1180px] text-center">
-            <p className="mb-5 text-[9px] uppercase tracking-[4px] text-white/25 md:text-[10px]">
-              Intelligence • Data • AI • Decisions
-            </p>
-
-            <h1 className="text-[42px] font-semibold leading-[0.98] tracking-[-2.5px] sm:text-[57px] md:text-[74px] lg:text-[86px]">
+          <div className="relative z-30 mx-auto mt-4 max-w-[1180px] text-center">
+      
+            <h1 className="hyi-h1 hyi-white">
               AI, Data &
-              <span className="block bg-gradient-to-r from-[#e0b0ff] via-[#a65cff] to-[#7657ff] bg-clip-text text-transparent md:ml-4 md:inline">
+              <span className="block hyi-blue">
                 Analytics Centres
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-[850px] text-[14px] leading-7 text-white/42 md:text-[17px] md:leading-8">
+            <p className="mx-auto mt-3 max-w-[850px] hyi-p">
               Build an enterprise intelligence engine that transforms connected
               data into predictive insights, AI-powered decisions and scalable
               business outcomes. HYI.AI combines data engineering, advanced
@@ -635,72 +604,16 @@ export default function AIDataAnalyticsCentresPage() {
           <div className="relative z-40 mx-auto -mt-8 max-w-[850px] text-center md:-mt-12">
             <div className="mx-auto h-px w-[220px] bg-gradient-to-r from-transparent via-purple-400/50 to-transparent" />
 
-            <p className="mx-auto mt-6 max-w-[720px] text-[13px] leading-7 text-white/35 md:text-[14px]">
+            <p className="mx-auto mt-3 max-w-[720px] hyi-p">
               From enterprise data foundations to production AI, create one
               intelligence ecosystem capable of learning, predicting and
               continuously improving business decisions.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("ai-capabilities")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="group relative overflow-hidden rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce5] via-[#9250ff] to-[#7447ff] px-8 py-4 text-[13px] font-medium shadow-[0_12px_45px_rgba(124,58,237,.30)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(124,58,237,.45)]"
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  Explore AI Capabilities
-                  <span className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
 
-                <span className="absolute inset-y-0 left-[-45%] w-[35%] rotate-[18deg] bg-white/20 blur-xl transition-all duration-700 group-hover:left-[125%]" />
-              </button>
-
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("intelligence-engine")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="rounded-full border border-white/[0.09] bg-white/[0.025] px-8 py-4 text-[13px] text-white/50 backdrop-blur-xl transition duration-300 hover:border-purple-400/25 hover:bg-purple-500/[0.05] hover:text-white"
-              >
-                View Intelligence Engine
-              </button>
-            </div>
           </div>
 
-          {/* stats */}
-          <div className="relative z-30 mx-auto mt-16 grid max-w-[1050px] grid-cols-2 overflow-hidden rounded-[24px] border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl md:grid-cols-4">
-            {[
-              ["AI-Native", "Architecture"],
-              ["Real-Time", "Intelligence"],
-              ["Enterprise", "Data Fabric"],
-              ["360°", "AI Governance"],
-            ].map(([value, label], index) => (
-              <div
-                key={label}
-                className={`px-5 py-6 text-center md:py-7 ${
-                  index !== 3 ? "md:border-r md:border-white/[0.06]" : ""
-                } ${
-                  index < 2
-                    ? "border-b border-white/[0.06] md:border-b-0"
-                    : ""
-                }`}
-              >
-                <div className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-xl font-semibold text-transparent md:text-2xl">
-                  {value}
-                </div>
 
-                <div className="mt-2 text-[8px] uppercase tracking-[1.6px] text-white/25">
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -710,35 +623,33 @@ export default function AIDataAnalyticsCentresPage() {
 
       <section
         id="ai-capabilities"
-        className="relative overflow-hidden border-b border-white/[0.05] bg-[#030305] py-24 md:py-32"
+        className="relative overflow-hidden bg-[#030305] py-10"
       >
         <div className="pointer-events-none absolute left-1/2 top-[25%] h-[750px] w-[1100px] -translate-x-1/2 rounded-full bg-purple-900/[0.07] blur-[180px]" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[850px] text-center">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-              Intelligence Capabilities
-            </p>
+        
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+            <h2 className=" hyi-h1 hyi-white">
               Build intelligence into
-              <span className="block bg-gradient-to-r from-[#ddaaff] via-[#a55cff] to-[#7958ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 every layer of the enterprise.
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-[700px] text-[14px] leading-7 text-white/36">
+            <p className="mx-auto mt-2 max-w-[700px] hyi-p">
               Specialized AI and data capabilities designed to move enterprises
               from fragmented information to continuously improving
               intelligence.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item, index) => (
               <article
                 key={item.no}
-                className={`ai-card group relative min-h-[300px] overflow-hidden rounded-[28px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/25 md:p-8 ${
+                className={`ai-card group relative  overflow-hidden rounded-[28px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/25 md:p-8 ${
                   index === 1 || index === 4 ? "lg:translate-y-8" : ""
                 }`}
               >
@@ -746,26 +657,22 @@ export default function AIDataAnalyticsCentresPage() {
 
                 <div className="card-scan absolute left-[-40%] top-0 h-full w-[25%] rotate-[15deg] bg-gradient-to-r from-transparent via-purple-200/[0.035] to-transparent" />
 
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-[9px] tracking-[2px] text-purple-300/40">
-                    {item.no}
-                  </span>
+                <div className="relative z-10 flex items-center justify-end">
+       
 
                   <span className="rounded-full border border-white/[0.06] bg-white/[0.015] px-3 py-1 text-[7px] tracking-[1.5px] text-white/25">
                     {item.tag}
                   </span>
                 </div>
 
-                <div className="relative z-10 mt-16">
-                  <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-xl border border-purple-400/[0.12] bg-purple-500/[0.05]">
-                    <span className="h-[8px] w-[8px] rounded-full bg-purple-300 shadow-[0_0_15px_4px_rgba(192,132,252,.35)]" />
-                  </div>
+                <div className="relative z-10 mt-6">
+              
 
-                  <h3 className="text-xl font-medium text-white/90">
+                  <h3 className="hyi-h3 hyi-white">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-[13px] leading-7 text-white/35">
+                  <p className="mt-2 hyi-p">
                     {item.description}
                   </p>
                 </div>
@@ -783,35 +690,28 @@ export default function AIDataAnalyticsCentresPage() {
 
       <section
         id="intelligence-engine"
-        className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-24 md:py-32"
+        className="relative overflow-hidden  bg-[#020203] py-10"
       >
         <div className="pointer-events-none absolute right-[5%] top-[10%] h-[600px] w-[600px] rounded-full bg-purple-800/[0.07] blur-[170px]" />
 
         <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/[0.12] bg-purple-500/[0.04] px-4 py-2">
-                <span className="h-1 w-1 rounded-full bg-purple-400" />
-
-                <span className="text-[8px] uppercase tracking-[2px] text-purple-200/40">
-                  Enterprise Intelligence Engine
-                </span>
-              </div>
-
-              <h2 className="mt-7 max-w-[580px] text-3xl font-semibold leading-[1.08] tracking-[-1.3px] md:text-5xl">
+      
+              <h2 className="mt-3 max-w-[580px] hyi-h1 hyi-white">
                 Data becomes valuable
-                <span className="block bg-gradient-to-r from-[#dba9ff] via-[#a15bff] to-[#7657ff] bg-clip-text text-transparent">
+                <span className="block hyi-blue">
                   when it drives action.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-[550px] text-[14px] leading-7 text-white/38">
+              <p className="mt-3 max-w-[550px] hyi-p">
                 HYI.AI connects data engineering, analytics, machine learning
                 and generative AI into a single intelligence pipeline — moving
                 information from ingestion to enterprise decision-making.
               </p>
 
-              <div className="mt-9 space-y-4">
+              <div className="mt-4 space-y-3">
                 {[
                   "Connected enterprise data foundation",
                   "Real-time analytics and intelligence",
@@ -826,7 +726,7 @@ export default function AIDataAnalyticsCentresPage() {
                       0{index + 1}
                     </span>
 
-                    <span className="text-[13px] text-white/52">{item}</span>
+                    <span className="hyi-p">{item}</span>
                   </div>
                 ))}
               </div>
@@ -841,24 +741,22 @@ export default function AIDataAnalyticsCentresPage() {
           INTELLIGENCE FLOW
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#030305] py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#030305] ">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[950px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900/[0.06] blur-[180px]" />
 
         <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[820px] text-center">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-              Intelligence Lifecycle
-            </p>
+        
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.2px] md:text-5xl">
+            <h2 className="hyi-h1 hyi-white">
               From connected data to
-              <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7958ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 autonomous intelligence.
               </span>
             </h2>
           </div>
 
-          <div className="relative mt-16 grid gap-4 md:grid-cols-4">
+          <div className="relative mt-6 grid gap-4 md:grid-cols-4">
             <div className="absolute left-[10%] right-[10%] top-[43px] hidden h-px bg-gradient-to-r from-transparent via-purple-400/25 to-transparent md:block" />
 
             {intelligenceLayers.map((layer) => (
@@ -870,11 +768,11 @@ export default function AIDataAnalyticsCentresPage() {
                   {layer.number}
                 </div>
 
-                <h3 className="mt-9 text-lg font-medium text-white/85">
+                <h3 className="mt-3 hyi-h3 hyi-white">
                   {layer.title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-6 text-white/34">
+                <p className="mt-2 hyi-p">
                   {layer.description}
                 </p>
 
@@ -883,44 +781,7 @@ export default function AIDataAnalyticsCentresPage() {
             ))}
           </div>
 
-          {/* =================================================
-              CTA
-          ================================================== */}
-
-          <div className="relative mt-20 overflow-hidden rounded-[34px] border border-purple-400/[0.11] bg-[#07060b] px-6 py-20 text-center">
-            <div className="absolute left-1/2 top-1/2 h-[450px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/[0.11] blur-[120px]" />
-
-            <div className="cta-ai-ring absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.07]" />
-
-            <div className="cta-ai-ring-two absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.04]" />
-
-            <div className="relative z-10 mx-auto max-w-[850px]">
-              <p className="text-[9px] uppercase tracking-[3px] text-purple-200/35">
-                HYI.AI Intelligence Centres
-              </p>
-
-              <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
-                Turn enterprise data into
-                <span className="block bg-gradient-to-r from-[#e0b0ff] via-[#a45dff] to-[#7758ff] bg-clip-text text-transparent">
-                  intelligent advantage.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-6 max-w-[650px] text-[14px] leading-7 text-white/38">
-                Build an AI, Data & Analytics Centre designed to continuously
-                learn, predict and create measurable enterprise value.
-              </p>
-
-              <button className="group mt-9 rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce4] to-[#8951ff] px-9 py-4 text-[13px] font-medium shadow-[0_15px_45px_rgba(124,58,237,.25)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(124,58,237,.40)]">
-                <span className="flex items-center gap-3">
-                  Build Your AI Centre
-                  <span className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-              </button>
-            </div>
-          </div>
+  
         </div>
       </section>
 

@@ -16,7 +16,7 @@ export default function ProjectManagerPage() {
     <main className="overflow-hidden bg-[#050505] text-white">
         <Header/>
       <ProjectManagerHero />
-      <ProjectMarquee />
+      {/* <ProjectMarquee /> */}
       <ProjectCapabilities />
       <ProjectCommandCenter />
       <DeliveryWorkflow />
@@ -24,7 +24,7 @@ export default function ProjectManagerPage() {
       <RiskControl />
       <ProjectReporting />
       {/* <WhyProjectManagers /> */}
-      <ProjectManagerCTA />
+      {/* <ProjectManagerCTA /> */}
       <Footer/>
     </main>
   );

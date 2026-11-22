@@ -1,3 +1,4 @@
+
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 
@@ -15,13 +16,11 @@ import {
   Gauge,
   GitBranch,
   Globe2,
-  Layers3,
   LockKeyhole,
   Network,
   Orbit,
   Puzzle,
   Rocket,
-  Server,
   Settings2,
   ShieldCheck,
   Sparkles,
@@ -171,40 +170,27 @@ export default function CustomSoftwareDevelopmentPage() {
 
         <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#030303] via-[#030303]/90 to-transparent" />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
+        <div className="relative z-10 mx-auto max-w-[1350px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
           <div className="mx-auto max-w-6xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/[0.08] px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm">
-              <Sparkles className="h-4 w-4" />
-              Custom Software Development
-            </div>
-
-            <h1 className="mt-7 text-[43px] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[90px]">
+        
+            <h1 className="hyi-h1 hyi-white mt-7">
               Software shaped around
-              <span className="block bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#E879F9] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 how your business works.
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-3xl text-base leading-8 text-white/45 md:text-lg">
+            <p className="hyi-p mx-auto mt-3 max-w-3xl">
               HYI designs and engineers custom software systems that solve
               specific business problems, automate operations and create
               long-term technology advantages.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7047E8] to-[#8B5CF6] px-7 py-4 text-sm font-medium shadow-[0_15px_60px_rgba(124,58,237,.3)] transition hover:scale-[1.02]">
-                Build Your Software
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </button>
 
-              <button className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-7 py-4 text-sm text-white/65 backdrop-blur-xl transition hover:bg-white/[0.07]">
-                Explore Capabilities
-              </button>
-            </div>
           </div>
 
           {/* SOFTWARE CONTROL SYSTEM */}
-          <div className="relative mx-auto mt-20 max-w-[1320px]">
+          <div className="relative mx-auto mt-8 max-w-[1320px]">
             <div className="absolute left-1/2 top-1/2 h-[470px] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[130px]" />
 
             <div className="relative overflow-hidden rounded-[30px] border border-white/[0.09] bg-[#0A0A0F]/95 shadow-[0_50px_160px_rgba(0,0,0,.75)] backdrop-blur-2xl">
@@ -231,7 +217,7 @@ export default function CustomSoftwareDevelopmentPage() {
                 <aside className="hidden border-r border-white/[0.07] bg-black/20 p-5 lg:block">
                   <div className="mb-8 flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/15">
-                      <Puzzle className="h-5 w-5 text-purple-300" />
+                      <Puzzle className="h-5 w-5 hyi-blue-icon" />
                     </div>
 
                     <div>
@@ -273,7 +259,7 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="text-xs text-white/30">
                         Business intelligence
                       </p>
-                      <h3 className="mt-2 text-xl font-semibold sm:text-2xl">
+                      <h3 className="hyi-h3 hyi-white mt-2">
                         Operations Dashboard
                       </h3>
                     </div>
@@ -319,7 +305,7 @@ export default function CustomSoftwareDevelopmentPage() {
                           </p>
                         </div>
 
-                        <Gauge className="h-5 w-5 text-purple-300" />
+                        <Gauge className="h-5 w-5 hyi-blue-icon" />
                       </div>
 
                       <div className="mt-9 flex h-[190px] items-end gap-2 sm:h-[220px] sm:gap-3">
@@ -394,7 +380,7 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="absolute -bottom-8 right-[6%] hidden rounded-2xl border border-purple-400/20 bg-[#100D18]/90 p-4 shadow-2xl backdrop-blur-xl md:block">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/15">
-                  <BrainCircuit className="h-4 w-4 text-purple-300" />
+                  <BrainCircuit className="h-4 w-4 hyi-blue-icon" />
                 </div>
 
                 <div>
@@ -412,27 +398,25 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           INTRO
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
+      <section className="mx-auto max-w-[1350px] px-5 md:px-8 lg:px-12 ">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Built around your reality
-          </p>
+ 
 
-          <h2 className="mt-7 text-4xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl">
+          <h2 className="hyi-h1 hyi-white mt-7">
             Your business should not adapt
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               to off-the-shelf software.
             </span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/45 md:text-lg">
+          <p className="hyi-p mx-auto mt-3 max-w-3xl">
             Custom software gives you the freedom to design technology around
             your workflows, users and business model instead of forcing your
             organization into generic systems.
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 border-y border-white/[0.08] py-10 md:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 border-y border-white/[0.08] py-4 md:grid-cols-4">
           {[
             ["Tailored", "Business Logic"],
             ["Connected", "Systems"],
@@ -445,8 +429,8 @@ export default function CustomSoftwareDevelopmentPage() {
                 index !== 3 ? "md:border-r md:border-white/[0.08]" : ""
               }`}
             >
-              <p className="text-xl font-semibold md:text-3xl">{value}</p>
-              <p className="mt-2 text-xs text-white/30">{label}</p>
+              <p className="hyi-h3 hyi-white">{value}</p>
+              <p className="mt-2 hyi-p">{label}</p>
             </div>
           ))}
         </div>
@@ -455,46 +439,44 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           CAPABILITIES
       ========================================================= */}
-      <section className="border-y border-white/[0.08] bg-white/[0.012]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Custom development capabilities
-            </p>
+      <section className=" bg-white/[0.012]">
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 ">
+          <div className="mx-auto max-w-5xl text-center">
+       
 
-            <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-6xl">
+            <h2 className="hyi-h1 hyi-white mt-6">
               Software engineered for
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 your exact business requirements.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {capabilities.map((item) => {
               const Icon = item.icon;
 
               return (
                 <article
                   key={item.title}
-                  className="group relative min-h-[340px] overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-7 transition duration-500 hover:-translate-y-1 hover:border-purple-400/25 md:p-9"
+                  className="group relative  overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-5 transition duration-500 hover:-translate-y-1 hover:border-purple-400/25 md:p-9"
                 >
                   <div className="absolute -right-20 -top-20 h-[240px] w-[240px] rounded-full bg-purple-700/0 blur-[90px] transition group-hover:bg-purple-700/15" />
 
                   <div className="relative flex justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/15 bg-purple-500/10">
-                      <Icon className="h-5 w-5 text-purple-300" />
+                      <Icon className="h-5 w-5 hyi-white-icon" />
                     </div>
 
-                    <span className="text-sm text-white/15">{item.no}</span>
+            
                   </div>
 
-                  <div className="relative mt-20">
-                    <h3 className="text-xl font-semibold md:text-2xl">
+                  <div className="relative mt-3">
+                    <h3 className="hyi-h3 hyi-white">
                       {item.title}
                     </h3>
 
-                    <p className="mt-4 max-w-sm text-sm leading-7 text-white/40">
+                    <p className="hyi-p mt-2 max-w-sm">
                       {item.description}
                     </p>
                   </div>
@@ -508,33 +490,33 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           SOFTWARE ARCHITECTURE
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative overflow-hidden rounded-[40px] border border-white/[0.08] bg-[#08080C] px-5 py-16 md:px-10 lg:px-16 lg:py-24">
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12 ">
+        <div className="relative overflow-hidden rounded-[40px] border border-white/[0.08] bg-[#08080C] px-5 py-5 md:px-10 lg:px-16 ">
           <div className="absolute left-1/2 top-1/2 h-[650px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-800/10 blur-[160px]" />
 
           <div className="relative mx-auto max-w-4xl text-center">
-            <Orbit className="mx-auto h-8 w-8 text-purple-300" />
+            <Orbit className="mx-auto h-8 w-8 hyi-white-icon" />
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white mt-3">
               A complete software ecosystem,
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 not just another interface.
               </span>
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl leading-8 text-white/40">
+            <p className="hyi-p mx-auto mt-3 max-w-2xl">
               Custom software becomes the connection point between people,
               processes, data and business intelligence.
             </p>
           </div>
 
-          <div className="relative mx-auto mt-20 max-w-5xl">
+          <div className="relative mx-auto mt-6 max-w-5xl">
             <div className="mx-auto max-w-md rounded-2xl border border-purple-400/25 bg-purple-500/10 p-5 text-center">
-              <Globe2 className="mx-auto h-5 w-5 text-purple-300" />
-              <p className="mt-3 text-sm font-medium">
+              <Globe2 className="mx-auto h-5 w-5 hyi-white-icon" />
+              <p className="mt-3 hyi-h3 hyi-white">
                 User Experience Layer
               </p>
-              <p className="mt-1 text-[10px] text-white/30">
+              <p className="mt-1 hyi-p">
                 Web · Mobile · Admin · Portals
               </p>
             </div>
@@ -542,11 +524,11 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="mx-auto h-12 w-px bg-gradient-to-b from-purple-400/50 to-white/10" />
 
             <div className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center">
-              <Network className="mx-auto h-5 w-5 text-purple-300" />
-              <p className="mt-3 text-sm font-medium">
+              <Network className="mx-auto h-5 w-5 hyi-white-icon" />
+              <p className="mt-3 hyi-h3 hyi-white">
                 Application Services
               </p>
-              <p className="mt-1 text-[10px] text-white/30">
+              <p className="mt-1 hyi-p">
                 Business Logic · APIs · Authentication · Automation
               </p>
             </div>
@@ -578,9 +560,9 @@ export default function CustomSoftwareDevelopmentPage() {
                     key={item.title}
                     className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 text-center"
                   >
-                    <Icon className="mx-auto h-5 w-5 text-purple-300" />
-                    <p className="mt-4 text-sm font-medium">{item.title}</p>
-                    <p className="mt-2 text-[10px] text-white/25">
+                    <Icon className="mx-auto h-5 w-5 hyi-white-icon" />
+                    <p className="mt-2 hyi-white hyi-h3">{item.title}</p>
+                    <p className="mt-2 hyi-p">
                       {item.text}
                     </p>
                   </div>
@@ -591,11 +573,11 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="mx-auto h-12 w-px bg-white/10" />
 
             <div className="mx-auto max-w-3xl rounded-2xl border border-white/[0.08] bg-black/30 p-5 text-center">
-              <Cloud className="mx-auto h-5 w-5 text-purple-300" />
-              <p className="mt-3 text-sm font-medium">
+              <Cloud className="mx-auto h-5 w-5 hyi-white-icon" />
+              <p className="mt-2 hyi-h3 hyi-white">
                 Scalable Cloud Infrastructure
               </p>
-              <p className="mt-1 text-[10px] text-white/25">
+              <p className="mt-1 hyi-p">
                 Compute · Deployment · Monitoring · Scaling
               </p>
             </div>
@@ -606,24 +588,22 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           AUTOMATION FLOW
       ========================================================= */}
-      <section className="relative border-y border-white/[0.08] py-28 lg:py-40">
+      <section className="relative  ">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-950/[0.08] via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-[1450px] px-5 md:px-8 lg:px-12">
           <div className="mx-auto max-w-5xl text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Business automation
-            </p>
+     
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl lg:text-7xl">
+            <h2 className="hyi-h1 hyi-white ">
               Turn manual work
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 into intelligent systems.
               </span>
             </h2>
           </div>
 
-          <div className="mx-auto mt-20 max-w-6xl overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090D] p-5 md:p-10">
+          <div className="mx-auto mt-6 max-w-6xl overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#09090D] p-5 md:p-6">
             <div className="grid items-center gap-5 md:grid-cols-[1fr_80px_1fr_80px_1fr]">
               {[
                 {
@@ -648,16 +628,16 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div key={item.title} className="contents">
                     <div className="rounded-3xl border border-white/[0.08] bg-white/[0.025] p-7 text-center">
                       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10">
-                        <Icon className="h-5 w-5 text-purple-300" />
+                        <Icon className="h-5 w-5 hyi-white-icon" />
                       </div>
-                      <p className="mt-5 font-medium">{item.title}</p>
-                      <p className="mt-2 text-xs text-white/30">{item.text}</p>
+                      <p className="mt-3 hyi-h3 hyi-white">{item.title}</p>
+                      <p className="mt-2 hyi-p">{item.text}</p>
                     </div>
 
                     {index < 2 && (
                       <div className="hidden items-center md:flex">
                         <div className="h-px flex-1 bg-gradient-to-r from-white/5 to-purple-400/50" />
-                        <ChevronRight className="h-4 w-4 text-purple-400" />
+                        <ChevronRight className="h-4 w-4 hyi-blue-icon" />
                       </div>
                     )}
                   </div>
@@ -671,25 +651,22 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           SOFTWARE TYPES
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12 ">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            What we can build
-          </p>
-
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+     
+          <h2 className="hyi-h1 hyi-white ">
             One development partner,
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               unlimited software possibilities.
             </span>
           </h2>
         </div>
 
-        <div className="mx-auto mt-14 flex max-w-5xl flex-wrap justify-center gap-3">
+        <div className="mx-auto mt-6 flex max-w-5xl flex-wrap justify-center gap-3">
           {softwareTypes.map((item) => (
             <div
               key={item}
-              className="rounded-full border border-white/[0.08] bg-white/[0.02] px-5 py-3 text-sm text-white/45 transition hover:border-purple-400/25 hover:bg-purple-500/[0.08] hover:text-white"
+              className="rounded-full border border-white/[0.08] bg-white/[0.02] hyi-p px-5 py-3  transition hover:border-purple-400/25 hover:bg-purple-500/[0.08] hover:text-white"
             >
               {item}
             </div>
@@ -700,25 +677,25 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           SECURITY / RELIABILITY
       ========================================================= */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+      <section className=" bg-[#070707]">
+        <div className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 ">
           <div className="grid gap-5 lg:grid-cols-2">
-            <div className="relative min-h-[520px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#150D20] to-[#070708] p-8 md:p-12">
+            <div className="relative  overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#150D20] to-[#070708] p-5 md:p-6">
               <div className="absolute right-[-120px] top-[-100px] h-[350px] w-[350px] rounded-full bg-purple-700/20 blur-[100px]" />
 
               <div className="relative">
-                <LockKeyhole className="h-7 w-7 text-purple-300" />
+                <LockKeyhole className="h-7 w-7 hyi-white-icon" />
 
-                <h2 className="mt-7 text-3xl font-semibold md:text-5xl">
+                <h2 className="hyi-h1 hyi-white mt-3">
                   Secure by architecture.
                 </h2>
 
-                <p className="mt-6 max-w-lg leading-8 text-white/40">
+                <p className="hyi-p mt-2 max-w-lg">
                   Security is designed into authentication, permissions,
                   APIs, data access and cloud infrastructure.
                 </p>
 
-                <div className="mt-10 space-y-3">
+                <div className="mt-5 space-y-3">
                   {[
                     "Authentication & authorization",
                     "Role-based permissions",
@@ -730,32 +707,32 @@ export default function CustomSoftwareDevelopmentPage() {
                       key={item}
                       className="flex items-center gap-3 text-sm text-white/60"
                     >
-                      <Check className="h-4 w-4 text-purple-400" />
+                      <Check className="h-4 w-4 hyi-blue-icon" />
                       {item}
                     </div>
                   ))}
                 </div>
 
-                <Fingerprint className="absolute -bottom-24 -right-5 h-[230px] w-[230px] text-purple-500/[0.06]" />
+                <Fingerprint className="absolute -bottom-24 -right-5 h-[230px] w-[230px] text-white/60" />
               </div>
             </div>
 
-            <div className="relative min-h-[520px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#10101D] to-[#070708] p-8 md:p-12">
+            <div className="relative  overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#10101D] to-[#070708] p-6 md:p-5">
               <div className="absolute bottom-[-100px] left-[-100px] h-[350px] w-[350px] rounded-full bg-indigo-700/20 blur-[100px]" />
 
               <div className="relative">
-                <Gauge className="h-7 w-7 text-blue-300" />
+                <Gauge className="h-7 w-7 hyi-blue-icon" />
 
-                <h2 className="mt-7 text-3xl font-semibold md:text-5xl">
+                <h2 className="hyi-h1 hyi-white mt-3">
                   Built for real business load.
                 </h2>
 
-                <p className="mt-6 max-w-lg leading-8 text-white/40">
+                <p className="hyi-p mt-2 max-w-lg">
                   Performance, scalability and reliability are considered
                   across application code, database access and infrastructure.
                 </p>
 
-                <div className="mt-10 grid grid-cols-2 gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   {[
                     ["Fast", "Response"],
                     ["Stable", "Workflows"],
@@ -766,8 +743,8 @@ export default function CustomSoftwareDevelopmentPage() {
                       key={label}
                       className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
                     >
-                      <p className="text-xl font-semibold">{value}</p>
-                      <p className="mt-2 text-xs text-white/30">{label}</p>
+                      <p className="hyi-h3 hyi-white">{value}</p>
+                      <p className="mt-2 hyi-p">{label}</p>
                     </div>
                   ))}
                 </div>
@@ -780,35 +757,33 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           PROCESS
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Development process
-          </p>
+      <section className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 py-10">
+        <div className="mx-auto max-w-5xl text-center ">
+    
 
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+          <h2 className="hyi-h1 hyi-white">
             From business problem
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               to production software.
             </span>
           </h2>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-6">
           {process.map((item) => (
             <div
               key={item.no}
-              className="group grid gap-4 border-t border-white/[0.08] py-9 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 md:py-11"
+              className="group grid gap-4 border-t border-white/[0.08] py-6 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 "
             >
-              <span className="text-sm font-medium text-purple-400">
+              <span className="text-sm font-medium hyi-blue">
                 {item.no}
               </span>
 
-              <h3 className="text-xl font-semibold md:text-2xl">
+              <h3 className="hyi-h3 hyi-white">
                 {item.title}
               </h3>
 
-              <p className="max-w-2xl text-sm leading-7 text-white/40 md:text-base">
+              <p className="hyi-p max-w-2xl">
                 {item.description}
               </p>
             </div>
@@ -819,28 +794,26 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           TECH STACK
       ========================================================= */}
-      <section className="border-y border-white/[0.08]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+      <section className="">
+        <div className="mx-auto max-w-[1350px] px-5 md:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              Technology foundation
-            </p>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+
+            <h2 className="hyi-h1 hyi-white ">
               Built with modern technology,
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 selected for your system.
               </span>
             </h2>
           </div>
 
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {stack.map((item) => (
               <div
                 key={item}
                 className="flex h-28 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.018] text-sm text-white/50 transition hover:border-purple-400/25 hover:bg-purple-500/[0.07] hover:text-white"
               >
-                <Code2 className="mr-2 h-4 w-4 text-purple-400" />
+                <Code2 className="mr-2 h-4 w-4 hyi-blue-icon" />
                 {item}
               </div>
             ))}
@@ -851,19 +824,19 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           SCALE / VALUE
       ========================================================= */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+      <section className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12 py-10">
         <div className="mx-auto max-w-5xl text-center">
-          <Zap className="mx-auto h-8 w-8 text-purple-300" />
+          <Zap className="mx-auto h-8 w-8 hyi-white-icon" />
 
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+          <h2 className="hyi-h1 hyi-white mt-3">
             Software that creates
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               measurable operational value.
             </span>
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Faster", "business operations"],
             ["Lower", "manual workload"],
@@ -872,10 +845,10 @@ export default function CustomSoftwareDevelopmentPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="rounded-[28px] border border-white/[0.08] bg-white/[0.02] px-6 py-10 text-center"
+              className="rounded-[28px] border border-white/[0.08] bg-white/[0.02] px-3 py-6 text-center"
             >
-              <p className="text-2xl font-semibold md:text-3xl">{value}</p>
-              <p className="mt-3 text-sm text-white/30">{label}</p>
+              <p className="hyi-h3 hyi-white">{value}</p>
+              <p className="mt-3 hyi-p">{label}</p>
             </div>
           ))}
         </div>
@@ -884,25 +857,25 @@ export default function CustomSoftwareDevelopmentPage() {
       {/* =========================================================
           FINAL CTA
       ========================================================= */}
-      <section className="px-5 pb-28 md:px-8 lg:px-12 lg:pb-40">
+      {/* <section className="px-5 pb-28 md:px-8 lg:px-12 lg:pb-40">
         <div className="relative mx-auto max-w-[1450px] overflow-hidden rounded-[42px] border border-purple-400/15 bg-[#0B0710] px-6 py-20 text-center md:px-12 lg:py-32">
           <div className="absolute left-1/2 top-[-260px] h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[170px]" />
 
           <div className="relative mx-auto max-w-5xl">
-            <Rocket className="mx-auto h-8 w-8 text-purple-300" />
+            <Rocket className="mx-auto h-8 w-8 hyi-blue-icon" />
 
-            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
+            <p className="mt-6 text-xs uppercase tracking-[0.3em] hyi-blue">
               Build with HYI
             </p>
 
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
+            <h2 className="hyi-h1 hyi-white mt-6">
               Turn your business logic
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 into powerful software.
               </span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-2xl leading-8 text-white/40">
+            <p className="hyi-p mx-auto mt-7 max-w-2xl">
               Partner with HYI to build custom software that fits your
               operations, supports your team and evolves with your business.
             </p>
@@ -913,7 +886,7 @@ export default function CustomSoftwareDevelopmentPage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </main>

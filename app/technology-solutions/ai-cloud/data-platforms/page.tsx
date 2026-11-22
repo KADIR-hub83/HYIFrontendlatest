@@ -32,7 +32,7 @@ export default function DataPlatformsPage() {
       <PlatformCapabilities />
       <DataPlatformUseCases />
       <DataPlatformPrinciples />
-      <DataPlatformClosing />
+      {/* <DataPlatformClosing /> */}
 
       <Footer />
     </main>

@@ -764,23 +764,23 @@ const capabilities = [
 
 export default function ProjectCapabilities() {
   return (
-    <section className="relative px-5 py-10 sm:px-10 lg:px-20">
+    <section className="relative px-5 py-1 sm:px-10 lg:px-20">
       <div className="mx-auto max-w-[1450px]">
         {/* heading */}
 
-        <div className="mb-16 grid gap-10 lg:grid-cols-2">
+        <div className="mb-5 flex flex-col text-center mx-auto">
           <div>
           
 
-            <h2 className="mt-5 max-w-[720px] hyi-h1 hyi-white font-bold">
+            <h2 className="mt-5  hyi-h1 hyi-white ">
               Structure for every
               <br />
-              <span className="text-white/25">moving part.</span>
+              <span className="hyi-blue">moving part.</span>
             </h2>
           </div>
 
-          <div className="flex items-end lg:justify-end">
-            <p className="max-w-[420px] hyi-p hyi-gray">
+          <div className="flex mx-auto">
+            <p className="max-w-[620px] hyi-p ">
               Bring clarity to scope, people, priorities and timelines with
               experienced project managers who know how modern digital teams
               operate.
@@ -902,7 +902,7 @@ export default function ProjectCapabilities() {
                   >
                     <h3
                       className={`
-                        font-medium tracking-[-0.04em]
+                        
                         ${
                           isPlanning || isReporting
                             ? "hyi-h3 hyi-white"
@@ -913,7 +913,7 @@ export default function ProjectCapabilities() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 max-w-[520px] hyi-p hyi-gray">
+                    <p className="mt-3 max-w-[520px] hyi-p ">
                       {item.text}
                     </p>
 

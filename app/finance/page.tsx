@@ -341,7 +341,7 @@ export default function FinancePage() {
             <RevealBlock className={s.chips} delay={D * 10}>
               <span>FY 2017 → 2026</span>
               <span>{done.length} years reported</span>
-              <span className={s.chipPending}>{rows.length - done.length} pending update</span>
+           
             </RevealBlock>
           </div>
 

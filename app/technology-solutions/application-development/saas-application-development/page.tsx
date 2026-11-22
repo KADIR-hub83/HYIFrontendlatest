@@ -1,22 +1,21 @@
+"use client";
+
+import type { ReactNode } from "react";
 import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 
 import {
-  Activity,
   ArrowRight,
-  BadgeCheck,
   BarChart3,
-  Boxes,
   BrainCircuit,
   Check,
-  ChevronRight,
   Cloud,
   Code2,
   CreditCard,
   Database,
   Gauge,
-  Globe2,
   Layers3,
   LockKeyhole,
   Network,
@@ -25,51 +24,46 @@ import {
   Server,
   Settings2,
   ShieldCheck,
-  Sparkles,
   Users,
-  Workflow,
-  Zap,
   type LucideIcon,
 } from "lucide-react";
 
+/* =========================================================
+   DATA
+========================================================= */
+
 const services = [
   {
-    no: "01",
     icon: Layers3,
     title: "Multi-Tenant SaaS Architecture",
     description:
       "Secure SaaS architecture designed to serve multiple customers while maintaining data isolation, performance and operational efficiency.",
   },
   {
-    no: "02",
     icon: CreditCard,
     title: "Subscription & Billing Systems",
     description:
       "Flexible subscriptions, plans, trials, upgrades, invoicing and payment workflows engineered directly into your SaaS platform.",
   },
   {
-    no: "03",
     icon: Users,
     title: "Customer Portals",
     description:
       "Intuitive customer workspaces with onboarding, account settings, dashboards, team management and usage visibility.",
   },
   {
-    no: "04",
     icon: BarChart3,
     title: "SaaS Analytics",
     description:
       "Track users, subscriptions, engagement, revenue, churn and product behavior through actionable dashboards.",
   },
   {
-    no: "05",
     icon: Network,
     title: "Third-Party Integrations",
     description:
       "Connect payment providers, CRMs, communication tools, external APIs and business systems into one product ecosystem.",
   },
   {
-    no: "06",
     icon: BrainCircuit,
     title: "AI-Powered SaaS",
     description:
@@ -146,72 +140,155 @@ const stack = [
   "Stripe",
 ];
 
+/* =========================================================
+   MOTION VARIANTS
+========================================================= */
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
+const heroContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: easeOut },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+};
+
+const staggerGrid: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const gridItem: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: easeOut },
+  },
+};
+
+const viewport = { once: true, margin: "-80px" } as const;
+
+/* =========================================================
+   REVEAL COMPONENT
+========================================================= */
+
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  variants?: Variants;
+}
+
+function Reveal({ children, className, variants = fadeUp }: RevealProps) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
 export default function SaaSApplicationDevelopmentPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#030303] text-white">
+    <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
       <Header />
 
-      {/* HERO */}
-      <section className="relative min-h-[1120px] overflow-hidden border-b border-white/[0.08]">
-        <div className="absolute inset-0 bg-black" />
+      {/* =========================================================
+          HERO
+      ========================================================= */}
+      <section className="relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[#030303]" />
 
-        <Image
-          src="https://images.pexels.com/photos/26559578/pexels-photo-26559578/free-photo-of-an-abstract-background-with-purple-and-blue-blocks.jpeg?auto=compress&dpr=1&w=1920"
-          alt="Futuristic 3D SaaS technology architecture"
-          fill
-          priority
-          className="object-cover opacity-35"
-        />
+          <div className="absolute left-1/2 top-[32%] h-[780px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-700/20 blur-[150px]" />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/75 to-[#030303]" />
+          <div className="absolute -left-[15%] top-[30%] h-[600px] w-[600px] rounded-full bg-purple-800/10 blur-[170px]" />
 
-        <div className="absolute left-1/2 top-[34%] h-[850px] w-[950px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/20 blur-[180px]" />
+          <div className="absolute -right-[10%] top-[45%] h-[650px] w-[650px] rounded-full bg-fuchsia-900/10 blur-[180px]" />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
-          <div className="mx-auto max-w-6xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-black/40 px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm">
-              <Sparkles className="h-4 w-4" />
-              SaaS Application Development
-            </div>
+          <div
+            className="absolute inset-0 opacity-[0.13]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.065) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.065) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+            }}
+          />
 
-            <h1 className="mt-7 text-[44px] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[94px]">
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-10 pt-24 md:px-8 lg:px-12 lg:pt-32">
+          {/* Hero text */}
+          <motion.div
+            className="relative z-30 mx-auto max-w-5xl text-center"
+            variants={heroContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.h1 variants={heroItem} className="hyi-h1 hyi-white">
               Build SaaS products
-              <span className="block bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#EC4899] bg-clip-text text-transparent">
-                built to scale.
-              </span>
-            </h1>
+              <span className="block hyi-blue">built to scale.</span>
+            </motion.h1>
 
-            <p className="mx-auto mt-7 max-w-3xl text-base leading-8 text-white/50 md:text-lg">
+            <motion.p
+              variants={heroItem}
+              className="mx-auto mt-3 max-w-3xl hyi-p"
+            >
               HYI engineers high-performance SaaS platforms with scalable
               architecture, subscription systems, analytics, automation,
               security and exceptional product experiences.
-            </p>
-
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 px-7 py-4 text-sm font-medium shadow-[0_15px_60px_rgba(124,58,237,.35)]">
-                Build Your SaaS Product
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </button>
-
-              <button className="rounded-full border border-white/15 bg-black/30 px-7 py-4 text-sm text-white/70 backdrop-blur-xl">
-                Explore SaaS Capabilities
-              </button>
-            </div>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* 3D SaaS CARD DECK */}
-          <div
-            className="relative mx-auto mt-20 h-[650px] max-w-[1300px]"
+          <motion.div
+            className="relative mx-auto mt-10 h-[600px] max-w-[1300px]"
             style={{ perspective: "1700px" }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: easeOut }}
           >
             <div className="absolute left-1/2 top-[48%] h-[400px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[110px]" />
 
             {/* left 3d panel */}
             <div
-              className="absolute left-[4%] top-[15%] hidden w-[280px] rounded-[26px] border border-white/10 bg-[#0C0C12]/95 p-5 shadow-2xl backdrop-blur-xl md:block lg:left-[8%]"
+              className="absolute left-[4%] top-[15%] hidden w-[280px] rounded-[26px] border border-white/10 bg-[#0C0C12]/95 p-5 shadow-2xl md:block lg:left-[8%]"
               style={{
-                transform:
-                  "rotateY(25deg) rotateX(5deg) rotateZ(-4deg)",
+                transform: "rotateY(25deg) rotateX(5deg) rotateZ(-4deg)",
               }}
             >
               <p className="text-xs text-white/30">Customer growth</p>
@@ -224,10 +301,16 @@ export default function SaaSApplicationDevelopmentPage() {
               <div className="mt-8 flex h-36 items-end gap-2">
                 {[35, 48, 41, 60, 54, 72, 66, 82, 76, 95].map(
                   (value, index) => (
-                    <div
+                    <motion.div
                       key={index}
+                      initial={{ height: "0%" }}
+                      animate={{ height: `${value}%` }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.9 + index * 0.05,
+                        ease: easeOut,
+                      }}
                       className="flex-1 rounded-t-md bg-gradient-to-t from-purple-800/30 to-purple-400"
-                      style={{ height: `${value}%` }}
                     />
                   )
                 )}
@@ -236,10 +319,9 @@ export default function SaaSApplicationDevelopmentPage() {
 
             {/* main center dashboard */}
             <div
-              className="absolute left-1/2 top-[3%] z-20 w-[92%] max-w-[850px] -translate-x-1/2 overflow-hidden rounded-[34px] border border-white/10 bg-[#09090E]/95 shadow-[0_50px_150px_rgba(0,0,0,.8)] backdrop-blur-2xl"
+              className="absolute left-1/2 top-[3%] z-20 w-[92%] max-w-[850px] -translate-x-1/2 overflow-hidden rounded-[34px] border border-white/10 bg-[#09090E]/95 shadow-[0_50px_150px_rgba(0,0,0,.8)]"
               style={{
-                transform:
-                  "translateX(-50%) rotateX(5deg)",
+                transform: "translateX(-50%) rotateX(5deg)",
                 transformOrigin: "center bottom",
               }}
             >
@@ -260,9 +342,7 @@ export default function SaaSApplicationDevelopmentPage() {
               <div className="p-5 md:p-8">
                 <div className="flex items-end justify-between">
                   <div>
-                    <p className="text-xs text-white/30">
-                      Product overview
-                    </p>
+                    <p className="text-xs text-white/30">Product overview</p>
                     <h3 className="mt-2 text-xl font-semibold md:text-2xl">
                       SaaS Performance
                     </h3>
@@ -273,7 +353,7 @@ export default function SaaSApplicationDevelopmentPage() {
                   </div>
                 </div>
 
-                <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
                   {[
                     ["$184K", "MRR"],
                     ["4.8%", "Churn"],
@@ -285,9 +365,7 @@ export default function SaaSApplicationDevelopmentPage() {
                       className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4"
                     >
                       <p className="text-xl font-semibold">{value}</p>
-                      <p className="mt-2 text-[10px] text-white/25">
-                        {label}
-                      </p>
+                      <p className="mt-2 text-[10px] text-white/25">{label}</p>
                     </div>
                   ))}
                 </div>
@@ -305,16 +383,22 @@ export default function SaaSApplicationDevelopmentPage() {
                       <BarChart3 className="h-5 w-5 text-purple-300" />
                     </div>
 
-                    <div className="mt-7 flex h-[180px] items-end gap-2">
-                      {[
-                        31, 42, 37, 50, 55, 63, 59, 72, 77, 84, 88, 96,
-                      ].map((height, index) => (
-                        <div
-                          key={index}
-                          className="relative flex-1 rounded-t-md bg-gradient-to-t from-purple-900/30 to-purple-400"
-                          style={{ height: `${height}%` }}
-                        />
-                      ))}
+                    <div className="mt-6 flex h-[180px] items-end gap-2">
+                      {[31, 42, 37, 50, 55, 63, 59, 72, 77, 84, 88, 96].map(
+                        (height, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ height: "0%" }}
+                            animate={{ height: `${height}%` }}
+                            transition={{
+                              duration: 0.8,
+                              delay: 0.9 + index * 0.05,
+                              ease: easeOut,
+                            }}
+                            className="relative flex-1 rounded-t-md bg-gradient-to-t from-purple-900/30 to-purple-400"
+                          />
+                        )
+                      )}
                     </div>
                   </div>
 
@@ -326,9 +410,7 @@ export default function SaaSApplicationDevelopmentPage() {
 
                       <div className="text-center">
                         <p className="text-2xl font-semibold">68%</p>
-                        <p className="text-[9px] text-white/25">
-                          Pro plans
-                        </p>
+                        <p className="text-[9px] text-white/25">Pro plans</p>
                       </div>
                     </div>
                   </div>
@@ -338,15 +420,12 @@ export default function SaaSApplicationDevelopmentPage() {
 
             {/* right 3d panel */}
             <div
-              className="absolute right-[5%] top-[20%] hidden w-[270px] rounded-[26px] border border-white/10 bg-[#0D0B14]/95 p-5 shadow-2xl backdrop-blur-xl md:block lg:right-[8%]"
+              className="absolute right-[5%] top-[20%] hidden w-[270px] rounded-[26px] border border-white/10 bg-[#0D0B14]/95 p-5 shadow-2xl md:block lg:right-[8%]"
               style={{
-                transform:
-                  "rotateY(-27deg) rotateX(5deg) rotateZ(4deg)",
+                transform: "rotateY(-27deg) rotateX(5deg) rotateZ(4deg)",
               }}
             >
-              <p className="text-xs text-white/30">
-                Subscription activity
-              </p>
+              <p className="text-xs text-white/30">Subscription activity</p>
 
               <div className="mt-6 space-y-4">
                 {[
@@ -363,15 +442,19 @@ export default function SaaSApplicationDevelopmentPage() {
                       <p className="text-sm font-medium">{price}</p>
                     </div>
 
-                    <p className="mt-2 text-[10px] text-purple-300">
-                      {info}
-                    </p>
+                    <p className="mt-2 text-[10px] text-purple-300">{info}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="absolute bottom-[4%] left-1/2 z-30 -translate-x-1/2 rounded-2xl border border-purple-400/20 bg-black/70 px-5 py-4 backdrop-blur-xl">
+            {/* floating label */}
+            <motion.div
+              className="absolute bottom-[2%] left-1/2 z-30 -translate-x-1/2 rounded-2xl border border-white/10 bg-black/60 px-5 py-3 backdrop-blur-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.2 }}
+            >
               <div className="flex items-center gap-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/15">
                   <BrainCircuit className="h-5 w-5 text-purple-300" />
@@ -386,59 +469,58 @@ export default function SaaSApplicationDevelopmentPage() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* SaaS intro */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            SaaS product engineering
-          </p>
-
-          <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
+      {/* =========================================================
+          INTRO
+      ========================================================= */}
+      <section className="mx-auto max-w-[1450px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-5xl text-center">
+          <h2 className="hyi-h1 hyi-white">
             A SaaS platform is more than
-            <span className="block text-white/25">
-              software behind a login.
-            </span>
+            <span className="block hyi-blue">software behind a login.</span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/45 md:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl hyi-p">
             Successful SaaS products combine product experience, recurring
             revenue infrastructure, analytics, integrations and architecture
             that can grow without slowing the business down.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-20 grid grid-cols-2 border-y border-white/[0.08] py-10 md:grid-cols-4">
+        <motion.div
+          className="mt-8 grid grid-cols-2 gap-3 border-y border-white/10 py-5 sm:grid-cols-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerGrid}
+        >
           {[
             ["Multi-Tenant", "Architecture"],
             ["Recurring", "Revenue"],
             ["Real-Time", "Analytics"],
             ["Elastic", "Scaling"],
-          ].map(([value, label], index) => (
-            <div
-              key={value}
-              className={`text-center ${
-                index < 3 ? "md:border-r md:border-white/[0.08]" : ""
-              }`}
+          ].map(([title, subtitle]) => (
+            <motion.div
+              key={title}
+              variants={gridItem}
+              className="border-white/10 px-3 text-center sm:border-r last:border-r-0"
             >
-              <p className="text-xl font-semibold md:text-3xl">
-                {value}
-              </p>
-              <p className="mt-2 text-xs text-white/30">
-                {label}
-              </p>
-            </div>
+              <p className="hyi-h3 hyi-white">{title}</p>
+              <p className="mt-2 hyi-p">{subtitle}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* image showcase */}
-      <section className="mx-auto max-w-[1450px] px-5 pb-28 md:px-8 lg:px-12 lg:pb-40">
-        <div className="relative h-[420px] overflow-hidden rounded-[40px] border border-white/10 md:h-[650px]">
+      {/* =========================================================
+          IMAGE SHOWCASE
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 py-6 md:px-8 lg:px-12">
+        <Reveal className="relative h-[320px] overflow-hidden rounded-[35px] border border-white/10 md:h-[480px] md:rounded-[44px]">
           <Image
             src="https://images.pexels.com/photos/26559578/pexels-photo-26559578/free-photo-of-an-abstract-background-with-purple-and-blue-blocks.jpeg?auto=compress&dpr=1&w=1920"
             alt="3D SaaS infrastructure"
@@ -448,151 +530,170 @@ export default function SaaSApplicationDevelopmentPage() {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/20" />
 
-          <div className="absolute inset-x-0 bottom-0 p-7 md:p-12">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-300">
-              Scalable by architecture
-            </p>
-
-            <h2 className="mt-4 max-w-4xl text-3xl font-semibold md:text-5xl">
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <h2 className="max-w-4xl hyi-h1 hyi-white">
               Infrastructure that evolves as your SaaS product grows.
             </h2>
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      {/* capabilities */}
-      <section className="border-y border-white/[0.08] bg-white/[0.012]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              SaaS capabilities
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      {/* =========================================================
+          CAPABILITIES
+      ========================================================= */}
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="text-center">
+            <h2 className="hyi-h1 hyi-white">
               Everything required to
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 operate a modern SaaS product.
               </span>
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div
+            className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={staggerGrid}
+          >
             {services.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article
+                <motion.article
                   key={item.title}
-                  className="group relative min-h-[340px] overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-8 transition hover:-translate-y-1 hover:border-purple-400/25"
+                  variants={gridItem}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-b from-white/[0.045] to-transparent p-7 transition-colors duration-500 hover:border-purple-500/30 md:p-8"
                 >
-                  <div className="flex justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10">
-                      <Icon className="h-5 w-5 text-purple-300" />
-                    </div>
+                  <div className="absolute right-[-60px] top-[-60px] h-[180px] w-[180px] rounded-full bg-purple-600/0 blur-[60px] transition duration-500 group-hover:bg-purple-600/15" />
 
-                    <span className="text-sm text-white/15">
-                      {item.no}
-                    </span>
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-purple-500/10 hyi-white-icon">
+                      <Icon className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <h3 className="mt-20 text-xl font-semibold md:text-2xl">
-                    {item.title}
-                  </h3>
+                  <div className="relative z-10 mt-3">
+                    <h3 className="hyi-h3">{item.title}</h3>
 
-                  <p className="mt-4 text-sm leading-7 text-white/40">
-                    {item.description}
-                  </p>
-                </article>
+                    <p className="mt-2 max-w-sm hyi-p">{item.description}</p>
+                  </div>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* multi tenant architecture */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative overflow-hidden rounded-[40px] border border-white/[0.08] bg-[#09090D] px-6 py-20 md:px-12">
-          <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/10 blur-[150px]" />
+      {/* =========================================================
+          MULTI-TENANT ARCHITECTURE
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12">
+        <Reveal className="relative overflow-hidden rounded-[35px] border border-white/10 bg-[#09090D] px-5 py-8 md:rounded-[44px] md:px-12">
+          <div className="absolute left-1/2 top-1/2 h-[520px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/15 blur-[120px]" />
 
           <div className="relative mx-auto max-w-4xl text-center">
-            <Orbit className="mx-auto h-8 w-8 text-purple-300" />
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Orbit className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white">
               Multi-tenant at the core.
-              <span className="block text-white/25">
-                Secure at every layer.
-              </span>
+              <span className="block hyi-blue">Secure at every layer.</span>
             </h2>
           </div>
 
-          <div className="relative mx-auto mt-20 max-w-5xl">
-            <div className="grid gap-3 md:grid-cols-3">
-              {["Customer A", "Customer B", "Customer C"].map(
-                (customer) => (
-                  <div
-                    key={customer}
-                    className="rounded-2xl border border-purple-500/20 bg-purple-500/[0.07] p-5 text-center"
-                  >
-                    <Users className="mx-auto h-5 w-5 text-purple-300" />
-                    <p className="mt-3 text-sm">{customer}</p>
-                  </div>
-                )
-              )}
-            </div>
+          <div className="relative mx-auto mt-8 max-w-5xl">
+            <motion.div
+              className="grid gap-3 md:grid-cols-3"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewport}
+              variants={staggerGrid}
+            >
+              {["Customer A", "Customer B", "Customer C"].map((customer) => (
+                <motion.div
+                  key={customer}
+                  variants={gridItem}
+                  className="rounded-3xl border border-purple-500/30 bg-purple-500/10 p-5 text-center"
+                >
+                  <Users className="mx-auto h-6 w-6 hyi-white-icon" />
+                  <h3 className="mt-2 hyi-h3 hyi-white">{customer}</h3>
+                </motion.div>
+              ))}
+            </motion.div>
 
-            <div className="mx-auto h-14 w-px bg-purple-400/30" />
+            <div className="mx-auto h-12 w-px bg-purple-400/30" />
 
-            <div className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center">
-              <Server className="mx-auto h-5 w-5 text-purple-300" />
-              <p className="mt-3 font-medium">
+            <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-white/[0.035] p-5 text-center">
+              <Server className="mx-auto h-6 w-6 hyi-white-icon" />
+              <h3 className="mt-2 hyi-h3 hyi-white">
                 Shared SaaS Application Layer
-              </p>
+              </h3>
             </div>
 
-            <div className="mx-auto h-14 w-px bg-white/10" />
+            <div className="mx-auto h-12 w-px bg-white/10" />
 
-            <div className="grid gap-3 md:grid-cols-3">
+            <motion.div
+              className="grid gap-3 md:grid-cols-3"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewport}
+              variants={staggerGrid}
+            >
               {(
-  [
-    ["Database", Database],
-    ["Cloud", Cloud],
-    ["Security", ShieldCheck],
-  ] as [string, LucideIcon][]
-).map(([title, Icon]) => (
-  <div
-    key={title}
-    className="rounded-2xl border border-white/[0.08] bg-black/20 p-6 text-center"
-  >
-    <Icon className="mx-auto h-5 w-5 text-purple-300" />
-    <p className="mt-3 text-sm">{title}</p>
-  </div>
-))}
-            </div>
+                [
+                  ["Database", Database],
+                  ["Cloud", Cloud],
+                  ["Security", ShieldCheck],
+                ] as [string, LucideIcon][]
+              ).map(([title, Icon]) => (
+                <motion.div
+                  key={title}
+                  variants={gridItem}
+                  className="rounded-3xl border border-white/10 bg-white/[0.025] p-6 text-center"
+                >
+                  <Icon className="mx-auto h-6 w-6 hyi-white-icon" />
+                  <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      {/* billing section */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="mx-auto max-w-5xl text-center">
-            <CreditCard className="mx-auto h-8 w-8 text-purple-300" />
+      {/* =========================================================
+          BILLING
+      ========================================================= */}
+      {/* <section className="bg-[#080808]">
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="mx-auto max-w-5xl text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <CreditCard className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="mt-3 hyi-h1 hyi-white">
               Subscription infrastructure
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 built directly into the product.
               </span>
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="mx-auto mt-16 grid max-w-6xl gap-4 md:grid-cols-3">
+          <motion.div
+            className="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={staggerGrid}
+          >
             {[
-              {
-                plan: "Starter",
-                price: "$39",
-                users: "Small teams",
-              },
+              { plan: "Starter", price: "$39", users: "Small teams" },
               {
                 plan: "Professional",
                 price: "$99",
@@ -604,27 +705,22 @@ export default function SaaSApplicationDevelopmentPage() {
                 users: "Large organizations",
               },
             ].map((item, index) => (
-              <div
+              <motion.div
                 key={item.plan}
+                variants={gridItem}
                 className={`rounded-[30px] border p-7 ${
                   index === 1
                     ? "border-purple-400/35 bg-purple-500/[0.08]"
-                    : "border-white/[0.08] bg-white/[0.02]"
+                    : "border-white/10 bg-white/[0.03]"
                 }`}
               >
-                <p className="text-sm text-white/40">
-                  {item.plan}
-                </p>
+                <h3 className="hyi-h3 hyi-white">{item.plan}</h3>
 
-                <p className="mt-5 text-4xl font-semibold">
-                  {item.price}
-                </p>
+                <p className="mt-3 hyi-h1 hyi-white">{item.price}</p>
 
-                <p className="mt-2 text-xs text-white/25">
-                  {item.users}
-                </p>
+                <p className="mt-1 hyi-p">{item.users}</p>
 
-                <div className="mt-8 space-y-3">
+                <div className="mt-6 space-y-3">
                   {[
                     "Subscription management",
                     "Usage tracking",
@@ -633,63 +729,72 @@ export default function SaaSApplicationDevelopmentPage() {
                   ].map((feature) => (
                     <div
                       key={feature}
-                      className="flex items-center gap-3 text-sm text-white/50"
+                      className="flex items-center gap-3 hyi-p"
                     >
-                      <Check className="h-4 w-4 text-purple-400" />
+                      <Check className="h-4 w-4 shrink-0 hyi-white-icon" />
                       {feature}
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </section> */}
 
-      {/* SaaS use cases */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            SaaS possibilities
-          </p>
-
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      {/* =========================================================
+          SOLUTIONS
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <Reveal className="mx-auto max-w-4xl text-center">
+          <h2 className="hyi-h1 hyi-white">
             SaaS for every
-            <span className="block text-white/25">
-              modern business model.
-            </span>
+            <span className="block hyi-blue">modern business model.</span>
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="mx-auto mt-14 flex max-w-5xl flex-wrap justify-center gap-3">
+        <motion.div
+          className="mx-auto mt-6 flex max-w-5xl flex-wrap justify-center gap-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerGrid}
+        >
           {solutions.map((item) => (
-            <div
+            <motion.div
               key={item}
-              className="rounded-full border border-white/[0.08] bg-white/[0.02] px-5 py-3 text-sm text-white/45 transition hover:border-purple-400/25 hover:bg-purple-500/[0.08] hover:text-white"
+              variants={gridItem}
+              className="rounded-full border border-white/10 bg-white/[0.025] px-5 py-3 hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
             >
               {item}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* security */}
-      <section className="border-y border-white/[0.08]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="grid gap-5 lg:grid-cols-2">
-            <div className="relative min-h-[500px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#140D20] to-[#070708] p-9 md:p-12">
-              <LockKeyhole className="h-8 w-8 text-purple-300" />
+      {/* =========================================================
+          SECURITY + SCALE
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-2 py-10 md:px-8 lg:px-12">
+        <div className="grid gap-5 lg:grid-cols-2">
+          <Reveal className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#171025] to-[#070708] p-6">
+            <div className="absolute right-[-120px] top-[-100px] h-[350px] w-[350px] rounded-full bg-purple-700/20 blur-[100px]" />
 
-              <h2 className="mt-7 text-3xl font-semibold md:text-5xl">
+            <div className="relative">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/15">
+                <LockKeyhole className="h-5 w-5 hyi-white-icon" />
+              </div>
+
+              <h2 className="mt-3 hyi-white hyi-h1">
                 SaaS security from day one.
               </h2>
 
-              <p className="mt-6 leading-8 text-white/40">
+              <p className="mt-3 max-w-lg hyi-p">
                 Tenant isolation, authentication, permissions and protected
                 APIs are engineered into the SaaS architecture.
               </p>
 
-              <div className="mt-10 space-y-4">
+              <div className="mt-6 space-y-3">
                 {[
                   "Tenant isolation",
                   "Role-based access",
@@ -699,28 +804,34 @@ export default function SaaSApplicationDevelopmentPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 text-sm text-white/60"
+                    className="flex items-center gap-3 text-sm text-white/65"
                   >
-                    <Check className="h-4 w-4 text-purple-400" />
+                    <Check className="h-4 w-4 hyi-white-icon" />
                     {item}
                   </div>
                 ))}
               </div>
             </div>
+          </Reveal>
 
-            <div className="relative min-h-[500px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#10101D] to-[#070708] p-9 md:p-12">
-              <Gauge className="h-8 w-8 text-blue-300" />
+          <Reveal className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#10101D] to-[#070708] p-6">
+            <div className="absolute bottom-[-100px] left-[-100px] h-[350px] w-[350px] rounded-full bg-indigo-700/20 blur-[100px]" />
 
-              <h2 className="mt-7 text-3xl font-semibold md:text-5xl">
+            <div className="relative">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10">
+                <Gauge className="h-5 w-5 text-blue-300" />
+              </div>
+
+              <h2 className="mt-3 hyi-white hyi-h1">
                 Built for thousands to millions.
               </h2>
 
-              <p className="mt-6 leading-8 text-white/40">
+              <p className="mt-3 max-w-lg hyi-p">
                 Your SaaS platform is designed to scale across traffic,
                 customers, subscriptions and growing datasets.
               </p>
 
-              <div className="mt-10 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-2 gap-3">
                 {[
                   ["Elastic", "Infrastructure"],
                   ["Fast", "Responses"],
@@ -729,120 +840,116 @@ export default function SaaSApplicationDevelopmentPage() {
                 ].map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
+                    className="rounded-2xl border border-white/10 bg-white/[0.035] p-5"
                   >
-                    <p className="text-xl font-semibold">
-                      {value}
-                    </p>
-                    <p className="mt-2 text-xs text-white/30">
-                      {label}
-                    </p>
+                    <p className="hyi-h3 hyi-white">{value}</p>
+                    <p className="mt-2 hyi-p">{label}</p>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* process */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            SaaS development process
-          </p>
-
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      {/* =========================================================
+          PROCESS
+      ========================================================= */}
+      <section className="mx-auto max-w-[1350px] px-5 md:px-8 lg:px-12">
+        <Reveal className="mx-auto text-center">
+          <h2 className="hyi-h1 hyi-white">
             From product concept
-            <span className="block text-white/25">
-              to scalable SaaS company.
-            </span>
+            <span className="block hyi-blue">to scalable SaaS company.</span>
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="mt-16">
-          {process.map((item) => (
-            <div
-              key={item.no}
-              className="grid gap-4 border-t border-white/[0.08] py-9 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 md:py-11"
+        <motion.div
+          className="mt-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerGrid}
+        >
+          {process.map((step) => (
+            <motion.div
+              key={step.no}
+              variants={gridItem}
+              className="group grid gap-4 border-t border-white/10 py-6 transition md:grid-cols-[100px_1fr_1.3fr] md:gap-10"
             >
-              <span className="text-sm text-purple-400">
-                {item.no}
-              </span>
+              <span className="hyi-white">{step.no}</span>
 
-              <h3 className="text-xl font-semibold md:text-2xl">
-                {item.title}
-              </h3>
+              <h3 className="hyi-h3 hyi-white">{step.title}</h3>
 
-              <p className="max-w-2xl text-sm leading-7 text-white/40 md:text-base">
-                {item.description}
-              </p>
-            </div>
+              <p className="max-w-xl hyi-p">{step.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* technology */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              SaaS technology stack
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+      {/* =========================================================
+          TECHNOLOGY STACK
+      ========================================================= */}
+      <section>
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <h2 className="hyi-h1 hyi-white">
               Modern infrastructure
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 behind modern SaaS products.
               </span>
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <motion.div
+            className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+            variants={staggerGrid}
+          >
             {stack.map((item) => (
-              <div
+              <motion.div
                 key={item}
-                className="flex h-28 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.018] text-sm text-white/50 transition hover:border-purple-400/25 hover:bg-purple-500/[0.07] hover:text-white"
+                variants={gridItem}
+                className="group flex h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] hyi-p transition hover:border-purple-500/30 hover:bg-purple-500/[0.08] hover:text-white md:text-base"
               >
-                <Code2 className="mr-2 h-4 w-4 text-purple-400" />
+                <Code2 className="mr-2 h-4 w-4 hyi-white-icon" />
                 {item}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* final CTA */}
-      <section className="px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative mx-auto max-w-[1450px] overflow-hidden rounded-[42px] border border-purple-400/15 bg-[#0B0710] px-6 py-20 text-center md:px-12 lg:py-32">
-          <div className="absolute left-1/2 top-[-260px] h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[170px]" />
+      {/* =========================================================
+          FINAL CTA
+      ========================================================= */}
+      {/* <section className="mx-auto max-w-[1350px] px-5 pb-10 md:px-8 lg:px-12">
+        <Reveal className="relative overflow-hidden rounded-[36px] border border-white/10 bg-[#0B0710] px-6 py-10 text-center md:px-12">
+          <div className="absolute left-1/2 top-[-260px] h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[140px]" />
 
-          <div className="relative mx-auto max-w-5xl">
-            <Rocket className="mx-auto h-8 w-8 text-purple-300" />
+          <div className="relative mx-auto max-w-4xl">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+              <Rocket className="h-5 w-5 hyi-white-icon" />
+            </div>
 
-            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-              Launch with HYI
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
+            <h2 className="mt-3 hyi-h1 hyi-white">
               Build a SaaS product
-              <span className="block text-white/25">
-                people keep paying for.
-              </span>
+              <span className="block hyi-blue">people keep paying for.</span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-2xl leading-8 text-white/40">
+            <p className="mx-auto mt-3 max-w-2xl hyi-p">
               Partner with HYI to transform your SaaS idea into a secure,
               scalable and commercially ready digital product.
             </p>
 
-            <button className="group mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 px-8 py-4 font-medium">
+            <button className="group mt-6 inline-flex items-center gap-3 rounded-full bg-[#7046e6] px-7 py-4 text-sm font-medium text-white shadow-[0_15px_50px_rgba(124,58,237,.25)] transition hover:scale-[1.02]">
               Talk to Our SaaS Experts
-              <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </button>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      </section> */}
 
       <Footer />
     </main>

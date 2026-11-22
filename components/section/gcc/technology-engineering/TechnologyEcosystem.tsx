@@ -57,30 +57,28 @@ function TechRow({
 
 export default function TechnologyEcosystem() {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-24 md:py-32">
+    <section className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-10">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[950px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-800/[0.07] blur-[170px]" />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[800px] text-center">
-          <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-            Technology Ecosystem
-          </p>
+     
 
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-1.3px] md:text-5xl">
+          <h2 className="hyi-h1 hyi-white">
             Built around the
-            <span className="block bg-gradient-to-r from-[#ddaaff] to-[#7758ff] bg-clip-text text-transparent">
+            <span className="block hyi-blue">
               technologies that matter.
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-[680px] text-[14px] leading-7 text-white/35">
+          <p className="mx-auto mt-2 max-w-[680px] hyi-p">
             Modern frameworks, cloud platforms, data systems and AI
             technologies combined into one engineering ecosystem.
           </p>
         </div>
       </div>
 
-      <div className="relative mt-16 space-y-4">
+      <div className="relative mt-6 space-y-4">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[15%] bg-gradient-to-r from-[#020203] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[15%] bg-gradient-to-l from-[#020203] to-transparent" />
 
@@ -89,7 +87,7 @@ export default function TechnologyEcosystem() {
         <TechRow items={technologies.slice(4).concat(technologies.slice(0, 4))} />
       </div>
 
-      <div className="mx-auto mt-16 max-w-[1050px] px-5">
+      <div className="mx-auto mt-6 max-w-[1050px] px-5">
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[25px] border border-white/[0.06] bg-white/[0.06] md:grid-cols-4">
           {[
             ["Frontend", "Digital Experience"],
@@ -98,10 +96,10 @@ export default function TechnologyEcosystem() {
             ["AI & Data", "Intelligence"],
           ].map(([title, sub]) => (
             <div key={title} className="bg-[#050507] px-5 py-6 text-center">
-              <div className="text-[13px] font-medium text-white/65">
+              <div className="hyi-h3 hyi-white">
                 {title}
               </div>
-              <div className="mt-2 text-[7px] uppercase tracking-[1.3px] text-white/20">
+              <div className="mt-2 hyi-p">
                 {sub}
               </div>
             </div>

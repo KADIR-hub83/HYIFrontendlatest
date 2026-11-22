@@ -46,20 +46,16 @@ const useCases = [
 
 export default function MLOpsUseCases() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28">
+    <section className="bg-[#070707] ">
       <div className="mx-auto max-w-[1500px] px-5 md:px-10">
         <div className="mx-auto max-w-[900px] text-center">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            11 / WHERE MLOPS APPLIES
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             When models become
-            <span className="text-[#7046e6]"> production assets.</span>
+            <span className="hyi-blue"> production assets.</span>
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map(({ Icon, title, text }, index) => (
             <motion.article
               key={title}
@@ -68,7 +64,7 @@ export default function MLOpsUseCases() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
               whileHover={{ y: -7 }}
-              className="group min-h-[340px] rounded-[28px] border border-white/[0.07] bg-[#030303] p-7"
+              className="group  rounded-[28px] border border-white/[0.07] bg-[#030303] p-7"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/[0.07]">
@@ -81,13 +77,10 @@ export default function MLOpsUseCases() {
                 />
               </div>
 
-              <p className="mt-12 font-mono text-[6px] text-[#7046e6]">
-                USE CASE 0{index + 1}
-              </p>
 
-              <h3 className="mt-4 text-2xl">{title}</h3>
+              <h3 className="mt-1 hyi-h3 hyi-white">{title}</h3>
 
-              <p className="mt-5 text-[10px] leading-6 text-white/[0.4]">
+              <p className="mt-1 hyi-p">
                 {text}
               </p>
             </motion.article>

@@ -519,64 +519,64 @@ export const headerData: HeaderDataProps = {
   ],
 },
 
-    {
-      label: "Artificial Intelligence",
-      text: "",
-      children: [
-        {
-          label: "Generative AI",
-          href: "/technology-solutions/artificial-intelligence/generative-ai",
-        },
-        {
-          label: "AI Consulting",
-          href: "/technology-solutions/artificial-intelligence/ai-consulting",
-        },
-        {
-          label: "Machine Learning",
-          href: "/technology-solutions/artificial-intelligence/machine-learning",
-        },
-        {
-          label: "Deep Learning",
-          href: "/technology-solutions/artificial-intelligence/deep-learning",
-        },
-        {
-          label: "Natural Language Processing",
-          href: "/technology-solutions/artificial-intelligence/nlp",
-        },
-        {
-          label: "Computer Vision",
-          href: "/technology-solutions/artificial-intelligence/computer-vision",
-        },
-        {
-          label: "AI Chatbots & Virtual Assistants",
-          href: "/technology-solutions/artificial-intelligence/ai-chatbots",
-        },
-        {
-          label: "Predictive AI",
-          href: "/technology-solutions/artificial-intelligence/predictive-ai",
-        },
-        {
-          label: "AI Automation",
-          href: "/technology-solutions/artificial-intelligence/ai-automation",
-        },
-        {
-          label: "AI Agents",
-          href: "/technology-solutions/artificial-intelligence/ai-agents",
-        },
-        {
-          label: "Recommendation Systems",
-          href: "/technology-solutions/artificial-intelligence/recommendation-systems",
-        },
-        {
-          label: "AI Model Development",
-          href: "/technology-solutions/artificial-intelligence/ai-model-development",
-        },
-        {
-          label: "Responsible AI",
-          href: "/technology-solutions/artificial-intelligence/responsible-ai",
-        },
-      ],
-    },
+    // {
+    //   label: "Artificial Intelligence",
+    //   text: "",
+    //   children: [
+    //     {
+    //       label: "Generative AI",
+    //       href: "/technology-solutions/artificial-intelligence/generative-ai",
+    //     },
+    //     {
+    //       label: "AI Consulting",
+    //       href: "/technology-solutions/artificial-intelligence/ai-consulting",
+    //     },
+    //     {
+    //       label: "Machine Learning",
+    //       href: "/technology-solutions/artificial-intelligence/machine-learning",
+    //     },
+    //     {
+    //       label: "Deep Learning",
+    //       href: "/technology-solutions/artificial-intelligence/deep-learning",
+    //     },
+    //     {
+    //       label: "Natural Language Processing",
+    //       href: "/technology-solutions/artificial-intelligence/nlp",
+    //     },
+    //     {
+    //       label: "Computer Vision",
+    //       href: "/technology-solutions/artificial-intelligence/computer-vision",
+    //     },
+    //     {
+    //       label: "AI Chatbots & Virtual Assistants",
+    //       href: "/technology-solutions/artificial-intelligence/ai-chatbots",
+    //     },
+    //     {
+    //       label: "Predictive AI",
+    //       href: "/technology-solutions/artificial-intelligence/predictive-ai",
+    //     },
+    //     {
+    //       label: "AI Automation",
+    //       href: "/technology-solutions/artificial-intelligence/ai-automation",
+    //     },
+    //     {
+    //       label: "AI Agents",
+    //       href: "/technology-solutions/artificial-intelligence/ai-agents",
+    //     },
+    //     {
+    //       label: "Recommendation Systems",
+    //       href: "/technology-solutions/artificial-intelligence/recommendation-systems",
+    //     },
+    //     {
+    //       label: "AI Model Development",
+    //       href: "/technology-solutions/artificial-intelligence/ai-model-development",
+    //     },
+    //     {
+    //       label: "Responsible AI",
+    //       href: "/technology-solutions/artificial-intelligence/responsible-ai",
+    //     },
+    //   ],
+    // },
 
     {
       label: "Data Analytics",
@@ -963,37 +963,37 @@ export const headerData: HeaderDataProps = {
       ],
     },
 
-    {
-  label: "AI-Powered Business Processes",
-  text: "",
-  children: [
-    {
-      label: "KPI & KRA",
-      href: "/integrate-AI/KPI&KRA",
-      text: "Automate performance mapping using AI to ensure accurate goal alignment.",
-    },
-    {
-      label: "Price Tracking",
-      href: "/integrate-AI/price-tracking",
-      text: "AI-powered price tracking and market intelligence.",
-    },
-    {
-      label: "Strategy & Planning",
-      href: "/integrate-AI/strategy&planning",
-      text: "Drive measurable value through strategic AI adoption.",
-    },
-    {
-      label: "Project Tracking",
-      href: "/integrate-AI/project-tracking",
-      text: "Track projects with real-time AI-powered updates.",
-    },
-    {
-      label: "Talent Matching",
-      href: "/integrate-AI/talent-matching",
-      text: "AI-powered talent matching based on hiring requirements.",
-    },
-  ],
-},
+//     {
+//   label: "AI-Powered Business Processes",
+//   text: "",
+//   children: [
+//     {
+//       label: "KPI & KRA",
+//       href: "/integrate-AI/KPI&KRA",
+//       text: "Automate performance mapping using AI to ensure accurate goal alignment.",
+//     },
+//     {
+//       label: "Price Tracking",
+//       href: "/integrate-AI/price-tracking",
+//       text: "AI-powered price tracking and market intelligence.",
+//     },
+//     {
+//       label: "Strategy & Planning",
+//       href: "/integrate-AI/strategy&planning",
+//       text: "Drive measurable value through strategic AI adoption.",
+//     },
+//     {
+//       label: "Project Tracking",
+//       href: "/integrate-AI/project-tracking",
+//       text: "Track projects with real-time AI-powered updates.",
+//     },
+//     {
+//       label: "Talent Matching",
+//       href: "/integrate-AI/talent-matching",
+//       text: "AI-powered talent matching based on hiring requirements.",
+//     },
+//   ],
+// },
     
   ],
 },
@@ -2029,11 +2029,11 @@ export const headerData: HeaderDataProps = {
         },
       ],
     },
-    {
-      label: "Leadership",
-      href: "/leadership",
-      text: "",
-    },
+    // {
+    //   label: "Leadership",
+    //   href: "/leadership",
+    //   text: "",
+    // },
     {
       label: "Investor",
       href: "/investor",
@@ -2059,14 +2059,14 @@ export const headerData: HeaderDataProps = {
       href: "/media",
       text: "",
     },
+    // {
+    //   label: "Grievance and Compliances",
+    //   href: "/documents/privacy-policy",
+    //   text: "",
+    // },
     {
-      label: "Grievance and Compliances",
-      href: "/documents/privacy-policy",
-      text: "",
-    },
-    {
-      label: "Contact Us",
-      href: "/talk-to-our-expert",
+      label: "Help",
+      href: "/help",
       text: "",
     },
   ],

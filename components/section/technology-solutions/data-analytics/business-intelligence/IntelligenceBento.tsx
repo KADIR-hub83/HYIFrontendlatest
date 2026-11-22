@@ -20,22 +20,20 @@ export default function IntelligenceBento() {
   return (
     <section
       id="intelligence"
-      className="border-y border-white/[0.06] bg-[#090806] py-28 md:py-40"
+      className=" bg-[#090806] py-10 max-md:py-5 "
     >
-      <div className="mx-auto max-w-[1500px] px-4 md:px-8">
-        <div className="mb-16 grid gap-8 lg:grid-cols-2 lg:items-end">
+      <div className="mx-auto max-w-[1350px] px-4 md:px-8">
+        <div className="mb-6 grid gap-8 max-lg:gap-0 lg:grid-cols-2 lg:items-end max-lg:text-center ">
           <div>
-            <span className="text-[8px] uppercase tracking-[0.4em] text-violet-200/60">
-              Intelligence everywhere
-            </span>
+          
 
-            <h2 className="mt-7 text-5xl font-medium tracking-[-0.055em] md:text-7xl">
+            <h2 className=" hyi-h1 hyi-white">
               One business.
-              <span className="block text-white/55">One source of truth.</span>
+              <span className="block hyi-blue">One source of truth.</span>
             </h2>
           </div>
 
-          <p className="max-w-[600px] text-[15px] leading-8 text-white/65">
+          <p className="max-w-[600px] hyi-p mx-auto">
             Bring financial, operational, customer and commercial data into a
             unified intelligence environment built for faster decisions.
           </p>
@@ -46,15 +44,15 @@ export default function IntelligenceBento() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="min-h-[650px] rounded-[38px] border border-white/[0.09] bg-gradient-to-b from-[#15110e] to-[#080807] p-8 lg:col-span-7 md:p-11"
+            className=" rounded-[38px] border border-white/[0.09] bg-gradient-to-b from-[#15110e] to-[#080807] p-5 lg:col-span-7 md:p-8"
           >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-3xl font-semibold">
+                <h3 className="hyi-h1 hyi-white">
                   Global performance intelligence
                 </h3>
 
-                <p className="mt-5 max-w-[620px] text-[15px] leading-8 text-white/60">
+                <p className="mt-2 max-w-[620px] hyi-p">
                   Compare performance across markets, business units and
                   regions from a single executive view.
                 </p>
@@ -63,7 +61,7 @@ export default function IntelligenceBento() {
               <Globe2
                 size={28}
                 strokeWidth={1}
-                className="text-violet-100/60"
+                className="hyi-white-icon"
               />
             </div>
 
@@ -106,21 +104,19 @@ export default function IntelligenceBento() {
             <article className="rounded-[38px] border border-white/[0.09] bg-[#0c0b09] p-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[8px] tracking-[0.2em] text-white/35">
-                    REGIONAL PERFORMANCE
-                  </span>
-                  <h3 className="mt-4 text-2xl">Market pulse</h3>
+            
+                  <h3 className="mt-2 hyi-h1 hyi-white">Market pulse</h3>
                 </div>
 
-                <BarChart3 size={20} className="text-violet-200/60" />
+                <BarChart3 size={20} className="hyi-white-icon" />
               </div>
 
-              <div className="mt-9 space-y-6">
+              <div className="mt-4 space-y-6">
                 {regions.map(([region, score], index) => (
                   <div key={region as string}>
                     <div className="mb-2 flex justify-between text-[10px]">
-                      <span className="text-white/50">{region}</span>
-                      <span className="text-white/35">{score}%</span>
+                      <span className="hyi-p">{region}</span>
+                      <span className="hyi-p">{score}%</span>
                     </div>
 
                     <div className="h-[4px] overflow-hidden rounded-full bg-white/[0.06]">
@@ -142,49 +138,47 @@ export default function IntelligenceBento() {
 
             <article className="rounded-[38px] border border-white/[0.09] bg-gradient-to-br from-[#15110e] to-[#080807] p-8">
               <div className="flex items-center gap-3">
-                <Sparkles size={15} className="text-violet-200/70" />
+                <Sparkles size={15} className="hyi-white-icon" />
 
-                <span className="text-[8px] tracking-[0.2em] text-white/35">
-                  AI INSIGHT
-                </span>
+                
               </div>
 
-              <p className="mt-7 text-2xl leading-9 text-white/85">
+              <p className="mt-3 hyi-white hyi-h1">
                 Enterprise demand is accelerating faster than the current
                 quarterly forecast.
               </p>
 
-              <p className="mt-5 text-sm leading-7 text-white/50">
+              <p className="mt-2 hyi-p">
                 Pipeline velocity increased across three high-value segments
                 while average sales-cycle duration declined.
               </p>
 
               <div className="mt-8 flex items-center justify-between border-t border-white/[0.07] pt-5">
-                <span className="text-[9px] text-emerald-300/60">
+                <span className="thyi-p text-emerald-300/60">
                   96% confidence
                 </span>
 
-                <ArrowUpRight size={14} className="text-white/35" />
+                <ArrowUpRight size={19} className="hyi-white-icon" />
               </div>
             </article>
           </div>
 
           <article className="rounded-[38px] border border-white/[0.09] bg-[#0c0b09] p-8 lg:col-span-5">
-            <Database size={21} className="text-violet-200/65" />
+            <Database size={21} className="hyi-white-icon" />
 
-            <h3 className="mt-8 text-3xl">Connected data foundation</h3>
+            <h3 className="mt-3 hyi-white hyi-h1">Connected data foundation</h3>
 
-            <p className="mt-5 text-[15px] leading-8 text-white/60">
+            <p className="mt-2 hyi-p">
               Connect business applications, warehouses, APIs and operational
               systems into a governed analytics layer.
             </p>
 
-            <div className="mt-9 grid grid-cols-3 gap-3">
+            <div className="mt-3 grid grid-cols-3 gap-3">
               {["ERP", "CRM", "WAREHOUSE", "APIs", "FINANCE", "PRODUCT"].map(
                 (item) => (
                   <div
                     key={item}
-                    className="rounded-[16px] border border-white/[0.07] bg-black/20 px-3 py-4 text-center text-[7px] tracking-[0.15em] text-white/40"
+                    className="rounded-[16px] border border-white/[0.07] bg-black/20 px-3 py-4 text-center text-[12px] tracking-[0.15em] text-white/40"
                   >
                     {item}
                   </div>
@@ -194,16 +188,14 @@ export default function IntelligenceBento() {
           </article>
 
           <article className="relative overflow-hidden rounded-[38px] border border-white/[0.09] bg-gradient-to-br from-[#17120e] to-[#090807] p-8 lg:col-span-7">
-            <span className="text-[8px] tracking-[0.2em] text-white/35">
-              DECISION VELOCITY
-            </span>
+          
 
-            <div className="mt-7 flex items-end gap-5">
-              <span className="text-7xl font-light tracking-[-0.07em]">
+            <div className=" flex flex-col items-start gap-5">
+              <span className="hyi-h1 hyi-white">
                 4.8×
               </span>
 
-              <span className="mb-2 text-sm text-white/45">
+              <span className="mb-2 hyi-p">
                 faster insight-to-action
               </span>
             </div>

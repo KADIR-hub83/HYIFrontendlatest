@@ -150,19 +150,11 @@ function GlobalExpansionNetwork() {
   }, []);
 
   return (
-    <div className="relative mx-auto h-[500px] w-full max-w-[1150px] md:h-[650px]">
+    <div className="relative mx-auto h-[500px] w-full max-w-[1350px] md:h-[650px]">
       {/* background aura */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/[0.10] blur-[130px]" />
 
-      {/* top label */}
-      <div className="absolute left-1/2 top-[4%] z-40 -translate-x-1/2">
-        <div className="flex items-center gap-3 whitespace-nowrap text-[8px] uppercase tracking-[3px] text-purple-200/40 md:text-[9px]">
-          <span className="h-[4px] w-[4px] rounded-full bg-purple-400" />
-          Global Expansion Intelligence Network
-          <span className="h-[4px] w-[4px] rounded-full bg-purple-400" />
-        </div>
-      </div>
-
+ 
       <div
         ref={networkRef}
         className="absolute inset-0 transition-transform duration-700 ease-out [transform-style:preserve-3d]"
@@ -427,19 +419,7 @@ function GlobalExpansionNetwork() {
         </div>
       </div>
 
-      {/* bottom network status */}
-      <div className="absolute bottom-[3%] left-1/2 z-30 -translate-x-1/2 md:bottom-[5%]">
-        <div className="flex items-center gap-3 rounded-full border border-white/[0.07] bg-black/30 px-4 py-2 backdrop-blur-xl">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-40" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-          </span>
-
-          <span className="whitespace-nowrap text-[8px] uppercase tracking-[2px] text-white/30">
-            Expansion Network Active
-          </span>
-        </div>
-      </div>
+ 
     </div>
   );
 }
@@ -561,14 +541,14 @@ export default function EntitySetupExpansionPage() {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#020203] text-white">
+    <main className=" overflow-hidden bg-[#020203] text-white">
       <Header />
 
       {/* =====================================================
           HERO
       ====================================================== */}
 
-      <section className="relative min-h-screen overflow-hidden border-b border-white/[0.05] bg-[#020203]">
+      <section className="relative  overflow-hidden bg-[#020203]">
         {/* background atmosphere */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-[38%] h-[850px] w-[1200px] -translate-x-1/2 rounded-full bg-[#7020bd]/[0.11] blur-[180px]" />
@@ -594,32 +574,21 @@ export default function EntitySetupExpansionPage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pb-24 pt-28 md:px-10 md:pt-32 lg:px-16">
-          {/* badge */}
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-purple-400/[0.17] bg-purple-500/[0.055] px-4 py-2 backdrop-blur-xl">
-              <span className="h-[5px] w-[5px] rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,110,255,1)]" />
-
-              <span className="text-[9px] uppercase tracking-[2.2px] text-purple-100/60">
-                HYI.AI Global Capability Center
-              </span>
-            </div>
-          </div>
+        <div className="relative z-10 mx-auto max-w-[1350px] px-5  pt-28 md:px-10 md:pt-32 lg:px-16">
+      
 
           {/* title */}
-          <div className="relative z-30 mx-auto mt-8 max-w-[1150px] text-center">
-            <p className="mb-5 text-[9px] uppercase tracking-[4px] text-white/25 md:text-[10px]">
-              Establish • Operate • Expand
-            </p>
+          <div className="relative z-30 mx-auto  max-w-[1150px] text-center">
+   
 
-            <h1 className="text-[42px] font-semibold leading-[0.98] tracking-[-2.5px] text-white sm:text-[56px] md:text-[74px] lg:text-[88px]">
+            <h1 className="hyi-h1 hyi-white">
               Entity Setup &
-              <span className="ml-0 block bg-gradient-to-r from-[#dfafff] via-[#a55cff] to-[#7657ff] bg-clip-text text-transparent md:ml-4 md:inline">
+              <span className="ml-2 hyi-blue">
                 Expansion
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-[800px] text-[14px] leading-7 text-white/42 md:text-[17px] md:leading-8">
+            <p className="mx-auto mt-3 max-w-[800px] hyi-p">
               Establish and scale your Global Capability Center through a
               structured expansion model connecting entity formation,
               governance, talent, technology and global operations.
@@ -635,69 +604,12 @@ export default function EntitySetupExpansionPage() {
           <div className="relative z-40 mx-auto -mt-5 max-w-[820px] text-center md:-mt-10">
             <div className="mx-auto h-px w-[200px] bg-gradient-to-r from-transparent via-purple-400/45 to-transparent" />
 
-            <p className="mx-auto mt-6 max-w-[690px] text-[13px] leading-7 text-white/35 md:text-[14px]">
+            <p className="mx-auto mt-2 max-w-[690px] hyi-p">
               One integrated framework for building the legal, operational and
               workforce foundation required to launch and expand global
               capabilities.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={scrollToCapabilities}
-                className="group relative overflow-hidden rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce5] via-[#9250ff] to-[#7447ff] px-8 py-4 text-[13px] font-medium text-white shadow-[0_12px_45px_rgba(124,58,237,.30)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(124,58,237,.45)]"
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  Build Your Global Entity
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-
-                <span className="absolute inset-y-0 left-[-45%] w-[35%] rotate-[18deg] bg-white/20 blur-xl transition-all duration-700 group-hover:left-[125%]" />
-              </button>
-
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("expansion-framework")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="rounded-full border border-white/[0.09] bg-white/[0.025] px-8 py-4 text-[13px] text-white/55 backdrop-blur-xl transition duration-300 hover:border-purple-400/25 hover:bg-purple-500/[0.06] hover:text-white"
-              >
-                View Expansion Model
-              </button>
-            </div>
-          </div>
-
-          {/* metrics */}
-          <div className="relative z-30 mx-auto mt-16 grid max-w-[1000px] grid-cols-2 overflow-hidden rounded-[24px] border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl md:grid-cols-4">
-            {[
-              ["Global", "Market Reach"],
-              ["360°", "Setup Framework"],
-              ["End-to-End", "Operations"],
-              ["Scalable", "GCC Model"],
-            ].map(([value, label], index) => (
-              <div
-                key={label}
-                className={`px-5 py-6 text-center md:py-7 ${
-                  index !== 3
-                    ? "md:border-r md:border-white/[0.06]"
-                    : ""
-                } ${
-                  index < 2
-                    ? "border-b border-white/[0.06] md:border-b-0"
-                    : ""
-                }`}
-              >
-                <div className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-xl font-semibold text-transparent md:text-2xl">
-                  {value}
-                </div>
-
-                <div className="mt-2 text-[9px] uppercase tracking-[1.6px] text-white/25">
-                  {label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -710,35 +622,32 @@ export default function EntitySetupExpansionPage() {
 
       <section
         id="expansion-capabilities"
-        className="relative overflow-hidden border-b border-white/[0.05] bg-[#030305] py-24 md:py-32"
+        className="relative overflow-hidden bg-[#030305] py-10"
       >
         <div className="pointer-events-none absolute left-1/2 top-[20%] h-[700px] w-[1000px] -translate-x-1/2 rounded-full bg-purple-900/[0.07] blur-[170px]" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[850px] text-center">
-            <div className="inline-flex rounded-full border border-white/[0.07] bg-white/[0.02] px-4 py-2 text-[9px] uppercase tracking-[2px] text-white/35">
-              Expansion Infrastructure
-            </div>
-
-            <h2 className="mt-6 text-3xl font-semibold tracking-[-1.2px] md:text-5xl">
+         
+            <h2 className="hyi-h1 hyi-white ">
               Everything required to establish
-              <span className="block bg-gradient-to-r from-[#dcaaff] via-[#a45cff] to-[#7958ff] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 and scale globally.
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-[690px] text-[14px] leading-7 text-white/38">
+            <p className="mx-auto mt-2 max-w-[690px] hyi-p">
               A connected entity setup framework designed around operational
               readiness, global talent and long-term scalability.
             </p>
           </div>
 
           {/* unusual staggered cards */}
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item, index) => (
               <article
                 key={item.number}
-                className={`group relative min-h-[285px] overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/20 md:p-8 ${
+                className={`group relative overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#08070d]/80 p-7 transition duration-500 hover:-translate-y-2 hover:border-purple-400/20 md:p-8 ${
                   index === 1 || index === 4 ? "lg:translate-y-8" : ""
                 }`}
               >
@@ -747,23 +656,21 @@ export default function EntitySetupExpansionPage() {
                 <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-purple-500/25 to-transparent" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] tracking-[2px] text-purple-300/40">
-                      {item.number}
-                    </span>
+                  <div className="flex items-center justify-end">
+                
 
                     <span className="rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1 text-[7px] tracking-[1.5px] text-white/25">
                       {item.tag}
                     </span>
                   </div>
 
-                  <div className="mt-14 flex items-end justify-between gap-5">
+                  <div className="mt-3 flex items-end justify-between gap-5">
                     <div>
-                      <h3 className="text-xl font-medium tracking-[-0.4px] text-white/90">
+                      <h3 className="hyi-h3 hyi-white">
                         {item.title}
                       </h3>
 
-                      <p className="mt-4 text-[13px] leading-7 text-white/35">
+                      <p className="mt-2 hyi-p">
                         {item.description}
                       </p>
                     </div>
@@ -785,7 +692,7 @@ export default function EntitySetupExpansionPage() {
 
       <section
         id="expansion-framework"
-        className="relative overflow-hidden border-b border-white/[0.05] bg-[#020203] py-24 md:py-32"
+        className="relative overflow-hidden  bg-[#020203] "
       >
         <div className="pointer-events-none absolute right-[5%] top-[10%] h-[550px] w-[550px] rounded-full bg-purple-800/[0.07] blur-[160px]" />
 
@@ -793,28 +700,22 @@ export default function EntitySetupExpansionPage() {
           <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             {/* copy */}
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/[0.12] bg-purple-500/[0.04] px-4 py-2">
-                <span className="h-1 w-1 rounded-full bg-purple-400" />
+          
 
-                <span className="text-[8px] uppercase tracking-[2px] text-purple-200/40">
-                  HYI Expansion Engine
-                </span>
-              </div>
-
-              <h2 className="mt-7 max-w-[570px] text-3xl font-semibold leading-[1.08] tracking-[-1.3px] md:text-5xl">
+              <h2 className=" max-w-[570px] hyi-h1 hyi-white">
                 Expansion engineered as
-                <span className="block bg-gradient-to-r from-[#dba9ff] via-[#a15bff] to-[#7657ff] bg-clip-text text-transparent">
+                <span className="block hyi-blue">
                   one connected system.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-[540px] text-[14px] leading-7 text-white/38">
+              <p className="mt-2 max-w-[540px] hyi-p">
                 Instead of treating entity setup, hiring, governance and
                 operations as disconnected activities, HYI.AI brings them
                 together into one coordinated expansion framework.
               </p>
 
-              <div className="mt-9 space-y-4">
+              <div className="mt-5 space-y-4">
                 {[
                   "Global market and operating assessment",
                   "Entity and governance architecture",
@@ -846,25 +747,23 @@ export default function EntitySetupExpansionPage() {
           EXPANSION JOURNEY
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#030305] py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#030305] py-10">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[550px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900/[0.06] blur-[170px]" />
 
         <div className="relative z-10 mx-auto max-w-[1350px] px-5 md:px-10 lg:px-16">
           <div className="mx-auto max-w-[800px] text-center">
-            <p className="text-[9px] uppercase tracking-[3px] text-purple-300/40">
-              Expansion Journey
-            </p>
+        
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-1.2px] md:text-5xl">
+            <h2 className="hyi-h1 hyi-white">
               From market decision to
-              <span className="bg-gradient-to-r from-[#ddaaff] to-[#7d59ff] bg-clip-text text-transparent">
+              <span className="hyi-blue">
                 {" "}
                 global scale.
               </span>
             </h2>
           </div>
 
-          <div className="relative mt-16 grid gap-4 md:grid-cols-4">
+          <div className="relative mt-6 grid gap-4 md:grid-cols-4">
             {/* connector */}
             <div className="absolute left-[10%] right-[10%] top-[42px] hidden h-px bg-gradient-to-r from-transparent via-purple-400/25 to-transparent md:block" />
 
@@ -877,53 +776,18 @@ export default function EntitySetupExpansionPage() {
                   {phase.number}
                 </div>
 
-                <h3 className="mt-9 text-lg font-medium text-white/85">
+                <h3 className="mt-3 hyi-h3 hyi-white">
                   {phase.title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-6 text-white/34">
+                <p className="mt-2 hyi-p">
                   {phase.text}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* FINAL CTA */}
-          <div className="relative mt-20 overflow-hidden rounded-[32px] border border-purple-400/[0.11] bg-[#07060b] px-6 py-16 text-center md:px-12 md:py-20">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[380px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/[0.11] blur-[110px]" />
-
-            {/* animated rings behind CTA */}
-            <div className="cta-ring pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.07]" />
-
-            <div className="cta-ring-two pointer-events-none absolute left-1/2 top-1/2 h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-400/[0.04]" />
-
-            <div className="relative z-10 mx-auto max-w-[850px]">
-              <p className="text-[9px] uppercase tracking-[3px] text-purple-200/35">
-                Global Capability Center
-              </p>
-
-              <h2 className="mt-5 text-3xl font-semibold tracking-[-1.2px] md:text-5xl">
-                Build once.
-                <span className="block bg-gradient-to-r from-[#e0b0ff] via-[#a45dff] to-[#7758ff] bg-clip-text text-transparent">
-                  Expand without limits.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-6 max-w-[650px] text-[14px] leading-7 text-white/38">
-                Establish the operating foundation your organization needs to
-                launch today and scale globally tomorrow.
-              </p>
-
-              <button className="group mt-9 rounded-full border border-purple-300/20 bg-gradient-to-r from-[#742ce4] to-[#8951ff] px-8 py-4 text-[13px] font-medium text-white shadow-[0_15px_45px_rgba(124,58,237,.25)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(124,58,237,.38)]">
-                <span className="flex items-center gap-3">
-                  Start Your Expansion
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-              </button>
-            </div>
-          </div>
+ 
         </div>
       </section>
 

@@ -34,30 +34,27 @@ const features = [
 
 export default function DataEngineeringSection() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070707] py-28">
+    <section className="relative overflow-hidden ">
       <div className="absolute -right-[300px] top-[20%] h-[700px] w-[700px] rounded-full bg-[#390b44]/40 blur-[190px]" />
 
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              05 / DATA ENGINEERING
-            </p>
-
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+      
+            <h2 className="hyi-h1 hyi-white">
               Turn raw data
-              <span className="block text-[#7046e6]">
+              <span className="block hyi-blue">
                 into usable data.
               </span>
             </h2>
 
-            <p className="mt-7 text-[13px] leading-7 text-white/[0.52]">
+            <p className="mt-2 hyi-p">
               Data engineering provides the workflows that collect, transform,
               validate and organize information before it reaches analytics,
               applications or AI systems.
             </p>
 
-            <div className="mt-10 space-y-3">
+            <div className="mt-5 space-y-3">
               {features.map(({ Icon, title, text }) => (
                 <div
                   key={title}
@@ -68,8 +65,8 @@ export default function DataEngineeringSection() {
                   </div>
 
                   <div>
-                    <h3 className="text-[14px]">{title}</h3>
-                    <p className="mt-2 text-[10px] leading-5 text-white/[0.42]">
+                    <h3 className="hyi-h3 hyi-white">{title}</h3>
+                    <p className="mt-1 hyi-p">
                       {text}
                     </p>
                   </div>
@@ -100,9 +97,9 @@ export default function DataEngineeringSection() {
                 ENGINEERED DATA FLOW
               </p>
 
-              <h3 className="mt-5 max-w-[620px] text-4xl font-medium tracking-[-0.05em] md:text-6xl">
+              <h3 className="mt-2 max-w-[620px] hyi-h1 hyi-white">
                 Reliable pipelines.
-                <span className="block text-white/[0.42]">
+                <span className="block hyi-blue">
                   Repeatable transformations.
                 </span>
               </h3>

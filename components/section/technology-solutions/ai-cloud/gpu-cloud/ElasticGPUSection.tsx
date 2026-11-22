@@ -2,26 +2,24 @@ import ElasticScaleModel from "./ElasticScaleModel";
 
 export default function ElasticGPUSection() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto grid max-w-[1500px] gap-12 px-5 md:px-10 lg:grid-cols-[0.6fr_1.4fr]">
+    <section className="bg-[#030303]">
+      <div className="mx-auto grid max-w-[1350px] gap-12 px-5 md:px-10 lg:grid-cols-[0.6fr_1.4fr]">
         <div>
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            06 / ELASTIC GPU CAPACITY
-          </p>
+        
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+          <h2 className="hyi-h1 hyi-white">
             Capacity that follows
-            <span className="block text-[#7653df]">the workload.</span>
+            <span className="block hyi-blue">the workload.</span>
           </h2>
 
-          <p className="mt-7 text-[12px] leading-7 text-white/[0.45]">
+          <p className="mt-2 hyi-p">
             GPU demand can change across experimentation, training and
             production. A cloud operating model helps teams manage these
             changes through capacity pools, scheduling and lifecycle
             automation.
           </p>
 
-          <p className="mt-5 text-[12px] leading-7 text-white/[0.4]">
+          <p className="mt-2 hyi-p">
             Elasticity should still respect workload startup time, accelerator
             availability, data locality and the economics of specialized
             compute.

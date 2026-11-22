@@ -373,19 +373,16 @@
 
 
 
-
-
-
 "use client";
 
-// React Imports
+// React
 import React, { useState } from "react";
 
-// Next Imports
+// Next
 import Image from "next/image";
 import Link from "next/link";
 
-// Shadcn Imports
+// Shadcn
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -397,18 +394,18 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-// Components Imports
+// Components
 import CustomButton from "@/components/shared/customButton";
 import { ShimmerButton } from "@/components/shared/customShimmerButton";
 
-// Image Imports
+// Assets
 import MobileNavIcon from "@/assets/arrowIcons/menu-03.svg";
 import arrowDownIcon from "@/assets/arrowIcons/chevron-down.svg";
 
-// Icon Imports
+// Icons
 import { X } from "lucide-react";
 
-// Types Imports
+// Types
 import { SubMenuNavProps } from "./headerLinks";
 
 // ==================================================
@@ -417,7 +414,7 @@ import { SubMenuNavProps } from "./headerLinks";
 
 interface LinkItem {
   label: string;
-  href?: string; 
+  href?: string;
   text?: string;
   icon?: string;
   children?: LinkItem[];
@@ -432,278 +429,205 @@ interface MobileNavItem {
   links?: LinkItem[];
   linkTo?: string;
   subMenu?: SubMenuNavProps[];
-  agiTraining?: {
-    heading: string;
-    links: LinkItem[];
-  };
-  itCourses?: {
-    heading: string;
-    links: LinkItem[];
-  };
-  plans?: LinkItem[];
 }
 
 interface MobileNavProps {
   companyData: MobileNavItem[];
 }
 
+type AuthMode = "login" | "signup" | null;
+
+// ==================================================
+// SMALL REUSABLE PIECES
+// ==================================================
+
+/** Chevron that rotates when open */
+function Chevron({ open, size = 18 }: { open: boolean; size?: number }) {
+  return (
+    <span
+      className={`flex shrink-0 items-center justify-center transition-transform duration-300 ${
+        open ? "rotate-180" : "rotate-0"
+      }`}
+      style={{ width: size + 2, height: size + 2 }}
+    >
+      <Image src={arrowDownIcon} alt="" width={size} height={size} />
+    </span>
+  );
+}
+
+/** Smooth expand / collapse wrapper */
+function Collapse({
+  open,
+  children,
+}: {
+  open: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`grid transition-all duration-300 ease-in-out ${
+        open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+      }`}
+    >
+      <div className="overflow-hidden">{children}</div>
+    </div>
+  );
+}
+
+/** One card inside the login / register dropdown */
+function AuthCard({
+  title,
+  description,
+  href,
+  actionLabel,
+  walkthroughHref,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  actionLabel: string;
+  walkthroughHref?: string;
+}) {
+  return (
+    <div className="flex w-full flex-col justify-center gap-2.5 rounded-md border border-white/0 px-3 py-2.5 transition hover:bg-white/[0.07]">
+      <div>
+        <h2 className="bg-gradient-to-b from-white to-white/70 bg-clip-text text-sm font-medium text-transparent">
+          {title}
+        </h2>
+        <p className="text-[10px] text-dark_mode-300">{description}</p>
+      </div>
+
+      <div
+        className={`flex w-full items-center gap-3 ${
+          walkthroughHref ? "justify-between" : "justify-end"
+        }`}
+      >
+        {walkthroughHref && (
+          <Link
+            href={walkthroughHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-dark_mode-300 underline underline-offset-4"
+          >
+            <p className="bg-gradient-to-b from-white to-white/70 bg-clip-text text-xs font-medium text-transparent">
+              Walkthrough Video
+            </p>
+          </Link>
+        )}
+
+        <Link href={href} target="_blank" rel="noopener noreferrer">
+          <CustomButton otherCSSProperty="text-[10px] px-5">
+            {actionLabel}
+          </CustomButton>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 // ==================================================
 // COMPONENT
 // ==================================================
 
-export default function MobileNav({
-  companyData,
-}: MobileNavProps) {
-  // ==================================================
-  // STATES
-  // ==================================================
-
+export default function MobileNav({ companyData }: MobileNavProps) {
+  // ---------- STATE ----------
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openChildKey, setOpenChildKey] = useState<string | null>(null);
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+  const [authMode, setAuthMode] = useState<AuthMode>(null);
 
-  const [openIndex, setOpenIndex] = useState<number | null>(
-    null
-  );
-
-  const [openChildKey, setOpenChildKey] = useState<
-    string | null
-  >(null);
-
-  const [openSubMenu, setOpenSubMenu] = useState<
-    string | null
-  >(null);
-
-  const [dropDownLogin, setDropDownLogin] =
-    useState(false);
-
-  const [dropDownSignup, setDropDownSignup] =
-    useState(false);
-
-  // ==================================================
-  // HELPERS
-  // ==================================================
-
+  // ---------- HELPERS ----------
   const resetNavigationState = () => {
     setOpenIndex(null);
     setOpenChildKey(null);
     setOpenSubMenu(null);
   };
 
-  const resetAuthState = () => {
-    setDropDownLogin(false);
-    setDropDownSignup(false);
-  };
-
-  const closeMobileNav = () => {
-    setIsSheetOpen(false);
-
-    resetNavigationState();
-    resetAuthState();
-  };
-
-  // ==================================================
-  // MAIN NAVIGATION
-  // ==================================================
-
-  const handleMainMenuClick = (index: number) => {
-    setOpenIndex((previousIndex) => {
-      const nextIndex =
-        previousIndex === index ? null : index;
-
-      if (nextIndex !== previousIndex) {
-        setOpenChildKey(null);
-        setOpenSubMenu(null);
-      }
-
-      return nextIndex;
-    });
-  };
-
-  // ==================================================
-  // CHILD NAVIGATION
-  // ==================================================
-
-  const handleChildMenuClick = (
-    parentIndex: number,
-    linkIndex: number
-  ) => {
-    const key = `${parentIndex}-${linkIndex}`;
-
-    setOpenChildKey((previousKey) =>
-      previousKey === key ? null : key
-    );
-  };
-
-  // ==================================================
-  // SUB MENU NAVIGATION
-  // ==================================================
-
-  const handleSubMenuClick = (
-    parentIndex: number,
-    subMenuIndex: number
-  ) => {
-    const key = `${parentIndex}-${subMenuIndex}`;
-
-    setOpenSubMenu((previousKey) =>
-      previousKey === key ? null : key
-    );
-  };
-
-  // ==================================================
-  // AUTH DROPDOWN
-  // ==================================================
-
-  const handleLoginClick = () => {
-    setDropDownSignup(false);
-    setDropDownLogin(true);
-  };
-
-  const handleSignupClick = () => {
-    setDropDownLogin(false);
-    setDropDownSignup(true);
-  };
-
-  const handleAuthClose = () => {
-    resetAuthState();
-  };
-
-  // ==================================================
-  // SHEET STATE
-  // ==================================================
-
   const handleSheetOpenChange = (open: boolean) => {
     setIsSheetOpen(open);
 
     if (!open) {
       resetNavigationState();
-      resetAuthState();
+      setAuthMode(null);
     }
   };
 
-  // ==================================================
-  // DATA
-  // ==================================================
+  const closeMobileNav = () => handleSheetOpenChange(false);
 
-const mobileNavData: MobileNavItem[] = [
-  // All mobile navigation items except GCC and Resources
-  ...companyData.filter(
-    (item) =>
-      item.title !== "GCC" &&
-      item.title !== "Resources"
-  ),
+  const toggleKey = (
+    setter: React.Dispatch<React.SetStateAction<string | null>>,
+    key: string
+  ) => setter((prev) => (prev === key ? null : key));
 
-  // Keep the original Resources item with its dropdown data
-  ...companyData.filter(
-    (item) => item.title === "Resources"
-  ),
-];
-  // ==================================================
-  // RENDER
-  // ==================================================
+  const handleMainMenuClick = (index: number) => {
+    // Closing / switching main item also collapses its inner menus
+    setOpenChildKey(null);
+    setOpenSubMenu(null);
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
 
+  // ---------- DATA ----------
+  // GCC is hidden, Resources is always shown last
+  const mobileNavData: MobileNavItem[] = [
+    ...companyData.filter(
+      (item) => item.title !== "GCC" && item.title !== "Resources"
+    ),
+    ...companyData.filter((item) => item.title === "Resources"),
+  ];
+
+  const authLabel = authMode === "login" ? "Login" : "Register";
+  const authSlug = authMode === "login" ? "login" : "signup";
+
+  // ---------- RENDER ----------
   return (
-    <Sheet
-      open={isSheetOpen}
-      onOpenChange={handleSheetOpenChange}
-    >
-      {/* ==================================================
-          MOBILE MENU TRIGGER
-      ================================================== */}
-
+    <Sheet open={isSheetOpen} onOpenChange={handleSheetOpenChange}>
+      {/* ===== MENU TRIGGER (no background, no border) ===== */}
       <SheetTrigger asChild>
         <Button
           type="button"
-          variant="default"
-          className="bg-background text-white"
+          variant="ghost"
+          size="icon"
           aria-label="Open mobile navigation"
+          className="
+            border-0
+            bg-transparent
+            text-white
+            shadow-none
+            hover:bg-transparent
+            focus-visible:ring-0
+            active:bg-transparent
+          "
         >
-          <Image
-            src={MobileNavIcon}
-            alt=""
-            width={24}
-            height={24}
-          />
+          <Image src={MobileNavIcon} alt="" width={24} height={24} />
         </Button>
       </SheetTrigger>
 
-      {/* ==================================================
-          MOBILE NAVIGATION SHEET
-      ================================================== */}
-
-          <SheetContent
-        className="
-          z-[9999]
-          flex
-          h-dvh
-          flex-col
-          bg-background
-          text-white
-        "
-      >
+      {/* ===== SHEET ===== */}
+      <SheetContent className="z-[9999] flex h-dvh flex-col text-white">
         <SheetHeader>
-          <SheetTitle className="sr-only">
-            Mobile Navigation Menu
-          </SheetTitle>
-
+          <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
           <SheetDescription className="sr-only">
             Navigate to different pages
           </SheetDescription>
         </SheetHeader>
 
-        {/* ==================================================
-            NAVIGATION CONTENT
-        ================================================== */}
-
-        <div
-          className="
-            min-h-0
-            w-full
-            flex-1
-            overflow-y-auto
-            overscroll-contain
-            px-4
-            pb-6
-          "
-        >
+        {/* ===== NAVIGATION ===== */}
+        <div className="min-h-0 w-full flex-1 overflow-y-auto overscroll-contain px-4 pb-6">
           {mobileNavData.map((item, index) => {
             const isOpen = openIndex === index;
-
             const hasLinks = Boolean(item.links?.length);
+            const hasSubMenu = Boolean(item.subMenu?.length);
+            const itemKey = `${item.value}-${index}`;
 
-            const hasSubMenu = Boolean(
-              item.subMenu?.length
-            );
-
-            const hasDropdown =
-              hasLinks || hasSubMenu;
-
-            // ==================================================
-            // DIRECT NAVIGATION LINK
-            // ==================================================
-
-            if (!hasDropdown) {
+            // ----- Direct link (no dropdown) -----
+            if (!hasLinks && !hasSubMenu) {
               return (
-                <div
-                  key={`${item.value}-${index}`}
-                  className="py-1"
-                >
+                <div key={itemKey} className="py-1">
                   <Link
                     href={item.linkTo || "#"}
                     onClick={closeMobileNav}
-                    className="
-                      flex
-                      w-full
-                      items-center
-                      justify-between
-                      rounded-lg
-                      px-2
-                      py-3
-                      text-base
-                      font-normal
-                      text-white
-                      transition-colors
-                      duration-200
-                      hover:bg-white/[0.04]
-                    "
+                    className="flex w-full items-center justify-between rounded-lg px-2 py-3 text-base font-normal text-white transition-colors duration-200 hover:bg-white/[0.04]"
                   >
                     {item.title}
                   </Link>
@@ -711,703 +635,195 @@ const mobileNavData: MobileNavItem[] = [
               );
             }
 
-            // ==================================================
-            // DROPDOWN NAVIGATION ITEM
-            // ==================================================
-
+            // ----- Dropdown item -----
             return (
-              <div
-                key={`${item.value}-${index}`}
-                className="py-1"
-              >
-                {/* Main Dropdown Button */}
-
+              <div key={itemKey} className="py-1">
                 <button
                   type="button"
-                  onClick={() =>
-                    handleMainMenuClick(index)
-                  }
+                  onClick={() => handleMainMenuClick(index)}
                   aria-expanded={isOpen}
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    gap-3
-                    rounded-lg
-                    px-2
-                    py-3
-                    text-left
-                    transition-colors
-                    duration-200
-                    hover:bg-white/[0.04]
-                  "
+                  className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-3 text-left transition-colors duration-200 hover:bg-white/[0.04]"
                 >
                   <span className="text-base font-normal text-white">
                     {item.title}
                   </span>
-
-                  <span
-                    className={`
-                      flex
-                      h-6
-                      w-6
-                      shrink-0
-                      items-center
-                      justify-center
-                      transition-transform
-                      duration-300
-                      ${
-                        isOpen
-                          ? "rotate-180"
-                          : "rotate-0"
-                      }
-                    `}
-                  >
-                    <Image
-                      src={arrowDownIcon}
-                      alt=""
-                      width={22}
-                      height={22}
-                    />
-                  </span>
+                  <Chevron open={isOpen} size={22} />
                 </button>
 
-                {/* ==================================================
-                    MAIN DROPDOWN CONTENT
-                ================================================== */}
+                <Collapse open={isOpen}>
+                  {/* ----- Links (with optional children) ----- */}
+                  {hasLinks && (
+                    <div className="flex flex-col gap-1 py-2 pl-2">
+                      {item.links?.map((link, linkIndex) => {
+                        const childKey = `${index}-${linkIndex}`;
+                        const isChildOpen = openChildKey === childKey;
+                        const hasChildren = Boolean(link.children?.length);
 
-                <div
-                  className={`
-                    grid
-                    transition-all
-                    duration-300
-                    ease-in-out
-                    ${
-                      isOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }
-                  `}
-                >
-                  <div className="overflow-hidden">
-                    {/* ==================================================
-                        LINKS
-                    ================================================== */}
-
-                    {hasLinks && (
-                      <div className="flex flex-col gap-1 py-2 pl-2">
-                        {item.links?.map(
-                          (link, linkIndex) => {
-                            const childKey = `${index}-${linkIndex}`;
-
-                            const isChildOpen =
-                              openChildKey ===
-                              childKey;
-
-                            const hasChildren =
-                              Boolean(
-                                link.children
-                                  ?.length
-                              );
-
-                            return (
-                              <div
-                                key={`${link.label}-${linkIndex}`}
-                                className="w-full"
-                              >
-                                {/* ======================================
-                                    LINK WITH CHILDREN
-                                ====================================== */}
-
-                                {hasChildren ? (
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      handleChildMenuClick(
-                                        index,
-                                        linkIndex
-                                      )
-                                    }
-                                    aria-expanded={
-                                      isChildOpen
-                                    }
-                                    className={`
-                                      flex
-                                      w-full
-                                      items-center
-                                      justify-between
-                                      gap-3
-                                      rounded-lg
-                                      px-3
-                                      py-3
-                                      text-left
-                                      transition-colors
-                                      duration-200
-                                      ${
-                                        isChildOpen
-                                          ? "bg-white/[0.06] text-white"
-                                          : "text-white/70 hover:bg-white/[0.04] hover:text-white"
-                                      }
-                                    `}
-                                  >
-                                    <span
-                                      className="
-                                        text-sm
-                                        font-normal
-                                        leading-5
-                                      "
-                                    >
-                                      {link.label}
-                                    </span>
-
-                                    <span
-                                      className={`
-                                        flex
-                                        h-5
-                                        w-5
-                                        shrink-0
-                                        items-center
-                                        justify-center
-                                        transition-transform
-                                        duration-300
-                                        ${
-                                          isChildOpen
-                                            ? "rotate-180"
-                                            : "rotate-0"
-                                        }
-                                      `}
-                                    >
-                                      <Image
-                                        src={
-                                          arrowDownIcon
-                                        }
-                                        alt=""
-                                        width={18}
-                                        height={18}
-                                      />
-                                    </span>
-                                  </button>
-                                ) : (
-                                  /* ====================================
-                                      NORMAL LINK
-                                  ==================================== */
-
-                                    <Link
-                                    href={link.href || "#"}
-                                    onClick={
-                                      closeMobileNav
-                                    }
-                                    className="
-                                      block
-                                      w-full
-                                      rounded-lg
-                                      px-3
-                                      py-3
-                                      text-sm
-                                      font-normal
-                                      leading-5
-                                      text-white/70
-                                      transition-colors
-                                      duration-200
-                                      hover:bg-white/[0.04]
-                                      hover:text-white
-                                    "
-                                  >
+                        return (
+                          <div
+                            key={`${link.label}-${linkIndex}`}
+                            className="w-full"
+                          >
+                            {hasChildren ? (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    toggleKey(setOpenChildKey, childKey)
+                                  }
+                                  aria-expanded={isChildOpen}
+                                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-3 text-left transition-colors duration-200 ${
+                                    isChildOpen
+                                      ? "bg-white/[0.06] text-white"
+                                      : "text-white/70 hover:bg-white/[0.04] hover:text-white"
+                                  }`}
+                                >
+                                  <span className="text-sm font-normal leading-5">
                                     {link.label}
-                                  </Link>
-                                )}
+                                  </span>
+                                  <Chevron open={isChildOpen} />
+                                </button>
 
-                                {/* ======================================
-                                    CHILDREN DROPDOWN
-                                ====================================== */}
-
-                                {hasChildren && (
-                                  <div
-                                    className={`
-                                      grid
-                                      transition-all
-                                      duration-300
-                                      ease-in-out
-                                      ${
-                                        isChildOpen
-                                          ? "grid-rows-[1fr] opacity-100"
-                                          : "grid-rows-[0fr] opacity-0"
-                                      }
-                                    `}
-                                  >
-                                    <div className="overflow-hidden">
-                                      <div
-                                        className="
-                                          ml-4
-                                          mt-1
-                                          border-l
-                                          border-white/10
-                                          pl-3
-                                        "
+                                <Collapse open={isChildOpen}>
+                                  <div className="ml-4 mt-1 border-l border-white/10 pl-3">
+                                    {link.children?.map((child, childIndex) => (
+                                      <Link
+                                        key={`${child.label}-${childIndex}`}
+                                        href={child.href || "#"}
+                                        onClick={closeMobileNav}
+                                        className="block rounded-md px-3 py-2.5 text-[13px] font-normal leading-5 text-white/50 transition-colors duration-200 hover:bg-white/[0.04] hover:text-white"
                                       >
-                                        {link.children?.map(
-                                          (
-                                            child,
-                                            childIndex
-                                          ) => (
-                                              <Link
-                                              key={`${child.label}-${childIndex}`}
-                                              href={
-                                                child.href || "#"
-                                              }
-                                              onClick={
-                                                closeMobileNav
-                                              }
-                                              className="
-                                                block
-                                                rounded-md
-                                                px-3
-                                                py-2.5
-                                                text-[13px]
-                                                font-normal
-                                                leading-5
-                                                text-white/50
-                                                transition-colors
-                                                duration-200
-                                                hover:bg-white/[0.04]
-                                                hover:text-white
-                                              "
-                                            >
-                                              {
-                                                child.label
-                                              }
-                                            </Link>
-                                          )
-                                        )}
-                                      </div>
-                                    </div>
+                                        {child.label}
+                                      </Link>
+                                    ))}
                                   </div>
-                                )}
-                              </div>
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
-
-                    {/* ==================================================
-                        SUB MENUS
-                    ================================================== */}
-
-                    {hasSubMenu && (
-                      <div className="flex flex-col gap-1 py-2 pl-2">
-                        {item.subMenu?.map(
-                          (
-                            subMenu,
-                            subMenuIndex
-                          ) => {
-                            const subMenuKey = `${index}-${subMenuIndex}`;
-
-                            const isSubMenuOpen =
-                              openSubMenu ===
-                              subMenuKey;
-
-                            const hasSubMenuLinks =
-                              Boolean(
-                                subMenu.links
-                                  ?.length
-                              );
-
-                            return (
-                              <div
-                                key={`${subMenu.heading}-${subMenuIndex}`}
-                                className="w-full"
+                                </Collapse>
+                              </>
+                            ) : (
+                              <Link
+                                href={link.href || "#"}
+                                onClick={closeMobileNav}
+                                className="block w-full rounded-lg px-3 py-3 text-sm font-normal leading-5 text-white/70 transition-colors duration-200 hover:bg-white/[0.04] hover:text-white"
                               >
-                                {/* ======================================
-                                    SUB MENU HEADING
-                                ====================================== */}
+                                {link.label}
+                              </Link>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
 
-                                {hasSubMenuLinks ? (
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      handleSubMenuClick(
-                                        index,
-                                        subMenuIndex
-                                      )
-                                    }
-                                    aria-expanded={
-                                      isSubMenuOpen
-                                    }
-                                    className={`
-                                      flex
-                                      w-full
-                                      items-center
-                                      justify-between
-                                      gap-3
-                                      rounded-lg
-                                      px-3
-                                      py-2.5
-                                      text-left
-                                      transition-colors
-                                      duration-200
-                                      ${
-                                        isSubMenuOpen
-                                          ? "bg-white/[0.06]"
-                                          : "hover:bg-white/[0.04]"
-                                      }
-                                    `}
-                                  >
-                                    <span className="text-sm font-normal text-white/85">
-                                      {
-                                        subMenu.heading
-                                      }
-                                    </span>
+                  {/* ----- Sub menus ----- */}
+                  {hasSubMenu && (
+                    <div className="flex flex-col gap-1 py-2 pl-2">
+                      {item.subMenu?.map((subMenu, subMenuIndex) => {
+                        const subMenuKey = `${index}-${subMenuIndex}`;
+                        const isSubMenuOpen = openSubMenu === subMenuKey;
+                        const hasSubMenuLinks = Boolean(subMenu.links?.length);
 
-                                    <span
-                                      className={`
-                                        flex
-                                        h-5
-                                        w-5
-                                        shrink-0
-                                        items-center
-                                        justify-center
-                                        transition-transform
-                                        duration-300
-                                        ${
-                                          isSubMenuOpen
-                                            ? "rotate-180"
-                                            : "rotate-0"
-                                        }
-                                      `}
-                                    >
-                                      <Image
-                                        src={
-                                          arrowDownIcon
-                                        }
-                                        alt=""
-                                        width={18}
-                                        height={18}
-                                      />
-                                    </span>
-                                  </button>
-                                ) : (
-                                  <div className="px-3 py-2.5 text-sm text-white/85">
-                                    {
-                                      subMenu.heading
-                                    }
-                                  </div>
-                                )}
+                        return (
+                          <div
+                            key={`${subMenu.heading}-${subMenuIndex}`}
+                            className="w-full"
+                          >
+                            {hasSubMenuLinks ? (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    toggleKey(setOpenSubMenu, subMenuKey)
+                                  }
+                                  aria-expanded={isSubMenuOpen}
+                                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left transition-colors duration-200 ${
+                                    isSubMenuOpen
+                                      ? "bg-white/[0.06]"
+                                      : "hover:bg-white/[0.04]"
+                                  }`}
+                                >
+                                  <span className="text-sm font-normal text-white/85">
+                                    {subMenu.heading}
+                                  </span>
+                                  <Chevron open={isSubMenuOpen} />
+                                </button>
 
-                                {/* ======================================
-                                    SUB MENU LINKS
-                                ====================================== */}
-
-                                {hasSubMenuLinks && (
-                                  <div
-                                    className={`
-                                      grid
-                                      transition-all
-                                      duration-300
-                                      ease-in-out
-                                      ${
-                                        isSubMenuOpen
-                                          ? "grid-rows-[1fr] opacity-100"
-                                          : "grid-rows-[0fr] opacity-0"
-                                      }
-                                    `}
-                                  >
-                                    <div className="overflow-hidden">
-                                      <ul
-                                        className="
-                                          ml-4
-                                          flex
-                                          flex-col
-                                          border-l
-                                          border-white/10
-                                          py-1
-                                          pl-3
-                                        "
-                                      >
-                                        {subMenu.links?.map(
-                                          (
-                                            link,
-                                            linkIndex
-                                          ) => (
-                                            <li
-                                              key={`${link.label}-${linkIndex}`}
-                                            >
-                                              <Link
-                                                href={
-                                                  link.href || "#"
-                                                }
-                                                onClick={
-                                                  closeMobileNav
-                                                }
-                                                className="
-                                                  block
-                                                  rounded-md
-                                                  px-3
-                                                  py-2.5
-                                                  text-[13px]
-                                                  font-normal
-                                                  leading-5
-                                                  text-white/55
-                                                  transition-colors
-                                                  duration-200
-                                                  hover:bg-white/[0.04]
-                                                  hover:text-white
-                                                "
-                                              >
-                                                {
-                                                  link.label
-                                                }
-                                              </Link>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </div>
-                                  </div>
-                                )}
+                                <Collapse open={isSubMenuOpen}>
+                                  <ul className="ml-4 flex flex-col border-l border-white/10 py-1 pl-3">
+                                    {subMenu.links?.map((link, linkIndex) => (
+                                      <li key={`${link.label}-${linkIndex}`}>
+                                        <Link
+                                          href={link.href || "#"}
+                                          onClick={closeMobileNav}
+                                          className="block rounded-md px-3 py-2.5 text-[13px] font-normal leading-5 text-white/55 transition-colors duration-200 hover:bg-white/[0.04] hover:text-white"
+                                        >
+                                          {link.label}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </Collapse>
+                              </>
+                            ) : (
+                              <div className="px-3 py-2.5 text-sm text-white/85">
+                                {subMenu.heading}
                               </div>
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Collapse>
               </div>
             );
           })}
         </div>
 
-        {/* ==================================================
-            FOOTER
-        ================================================== */}
-
-        <SheetFooter
-          className="
-            shrink-0
-            border-t
-            border-white/[0.06]
-            bg-background
-          "
-        >
+        {/* ===== FOOTER ===== */}
+        <SheetFooter className="shrink-0 border-t border-white/[0.06] bg-background">
           <div className="w-full px-4 pb-4 pt-4">
             <div className="flex w-full flex-col-reverse gap-4">
-              {/* Get Started */}
-
               <CustomButton
-                onClick={handleSignupClick}
+                onClick={() => setAuthMode("signup")}
                 otherCSSProperty="w-full"
               >
                 Get Started
               </CustomButton>
 
-              {/* Login */}
-
               <ShimmerButton
-                onClick={handleLoginClick}
+                onClick={() => setAuthMode("login")}
                 className="btn-primary w-full px-6"
               >
                 Login
               </ShimmerButton>
 
-              {/* ==================================================
-                  LOGIN / REGISTER DROPDOWN
-              ================================================== */}
-
-              {(dropDownLogin ||
-                dropDownSignup) && (
-                <div
-                  className="
-                    relative
-                    z-50
-                    flex
-                    w-full
-                    flex-col
-                    overflow-x-hidden
-                    rounded-lg
-                    border
-                    border-white/20
-                    bg-black/20
-                    shadow-lg
-                    backdrop-blur-md
-                    transition-all
-                    duration-200
-                    ease-out
-                  "
-                >
-                  {/* ==============================================
-                      TALENT / FREELANCER
-                  ============================================== */}
-
-                  <div
-                    className="
-                      flex
-                      w-full
-                      flex-col
-                      justify-center
-                      gap-2.5
-                      rounded-md
-                      border
-                      border-white/0
-                      px-3
-                      py-2.5
-                      transition
-                      hover:bg-white/[0.07]
-                    "
-                  >
-                    <div>
-                      <h2
-                        className="
-                          bg-gradient-to-b
-                          from-white
-                          to-white/70
-                          bg-clip-text
-                          text-sm
-                          font-medium
-                          text-transparent
-                        "
-                      >
-                        {dropDownLogin
-                          ? "Login"
-                          : "Register"}{" "}
-                        as a Talent/Freelancer
-                      </h2>
-
-                      <p className="text-[10px] text-dark_mode-300">
-                        Showcase your skills.
-                        Highlight your expertise.
-                      </p>
-                    </div>
-
-                    <div className="flex w-full items-center justify-between gap-3">
-                      <Link
-                        href="https://youtu.be/n7BQfAV28tg?feature=shared"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-dark_mode-300 underline underline-offset-4"
-                      >
-                        <p
-                          className="
-                            bg-gradient-to-b
-                            from-white
-                            to-white/70
-                            bg-clip-text
-                            text-xs
-                            font-medium
-                            text-transparent
-                          "
-                        >
-                          Walkthrough Video
-                        </p>
-                      </Link>
-
-                      <Link
-                        href={`https://va.hyi.ai/talent-${
-                          dropDownLogin
-                            ? "login"
-                            : "signup"
-                        }`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <CustomButton otherCSSProperty="text-[10px] px-5">
-                          {dropDownLogin
-                            ? "Login"
-                            : "Register"}
-                        </CustomButton>
-                      </Link>
-                    </div>
-                  </div>
+              {/* ----- Login / Register dropdown ----- */}
+              {authMode && (
+                <div className="relative z-50 flex w-full flex-col overflow-x-hidden rounded-lg border border-white/20 bg-black/20 shadow-lg backdrop-blur-md transition-all duration-200 ease-out">
+                  <AuthCard
+                    title={`${authLabel} as a Talent/Freelancer`}
+                    description="Showcase your skills. Highlight your expertise."
+                    href={`https://va.hyi.ai/talent-${authSlug}`}
+                    actionLabel={authLabel}
+                    walkthroughHref="https://youtu.be/n7BQfAV28tg?feature=shared"
+                  />
 
                   <div className="w-full border-t border-white/15" />
 
-                  {/* ==============================================
-                      COMPANY / STARTUPS
-                  ============================================== */}
-
-                  <div
-                    className="
-                      flex
-                      w-full
-                      flex-col
-                      justify-center
-                      gap-2.5
-                      rounded-md
-                      border
-                      border-white/0
-                      px-3
-                      py-2.5
-                      transition
-                      hover:bg-white/[0.07]
-                    "
-                  >
-                    <div>
-                      <h2
-                        className="
-                          bg-gradient-to-b
-                          from-white
-                          to-white/70
-                          bg-clip-text
-                          text-sm
-                          font-medium
-                          text-transparent
-                        "
-                      >
-                        {dropDownLogin
-                          ? "Login"
-                          : "Register"}{" "}
-                        as a Company/Startups
-                      </h2>
-
-                      <p className="text-[10px] text-dark_mode-300">
-                        Hire easily remote,
-                        hybrid, or in-office
-                        employees.
-                      </p>
-                    </div>
-
-                    <div className="flex w-full items-center justify-end">
-                      <Link
-                        href={`https://va.hyi.ai/company-${
-                          dropDownLogin
-                            ? "login"
-                            : "signup"
-                        }`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <CustomButton otherCSSProperty="text-[10px] px-5">
-                          {dropDownLogin
-                            ? "Login"
-                            : "Register"}
-                        </CustomButton>
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Close Auth Dropdown */}
+                  <AuthCard
+                    title={`${authLabel} as a Company/Startups`}
+                    description="Hire easily remote, hybrid, or in-office employees."
+                    href={`https://va.hyi.ai/company-${authSlug}`}
+                    actionLabel={authLabel}
+                  />
 
                   <button
                     type="button"
-                    onClick={handleAuthClose}
+                    onClick={() => setAuthMode(null)}
                     aria-label="Close login menu"
-                    className="
-                      absolute
-                      right-2
-                      top-2
-                      flex
-                      h-6
-                      w-6
-                      items-center
-                      justify-center
-                    "
+                    className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center"
                   >
-                    <X
-                      size={16}
-                      strokeWidth={1.5}
-                      className="text-white"
-                    />
+                    <X size={16} strokeWidth={1.5} className="text-white" />
                   </button>
                 </div>
               )}

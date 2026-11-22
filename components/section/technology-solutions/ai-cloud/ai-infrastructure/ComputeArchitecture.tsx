@@ -43,38 +43,36 @@ const architecture = [
 
 export default function ComputeArchitecture() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#030303] ">
+      <div className="mx-auto max-w-[1300px] px-5 md:px-10">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              02 / COMPUTE ARCHITECTURE
-            </p>
+       
 
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+            <h2 className="hyi-h1 hyi-white">
               Put every workload
-              <span className="block text-[#7653df]">where it belongs.</span>
+              <span className="block hyi-blue">where it belongs.</span>
             </h2>
 
-            <p className="mt-7 max-w-[520px] text-[12px] leading-7 text-white/[0.45]">
+            <p className="mt-2 max-w-[520px] hyi-p">
               AI infrastructure should allocate resources according to workload
               behavior instead of forcing every model into the same compute
               pattern.
             </p>
 
-            <div className="mt-10 space-y-3">
+            <div className="mt-5 space-y-3">
               {architecture.map(({ Icon, title, text }) => (
                 <div
                   key={title}
                   className="flex gap-4 rounded-[18px] border border-white/[0.06] bg-[#080808] p-5"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#7046e6]/20 bg-[#7046e6]/[0.08]">
-                    <Icon size={13} className="text-[#a98cf4]" />
+                    <Icon size={13} className="hyi-blue-icon" />
                   </div>
 
                   <div>
-                    <h3 className="text-sm">{title}</h3>
-                    <p className="mt-2 text-[10px] leading-5 text-white/[0.38]">
+                    <h3 className="hyi-h3 hyi-white">{title}</h3>
+                    <p className="mt-2 hyi-p">
                       {text}
                     </p>
                   </div>

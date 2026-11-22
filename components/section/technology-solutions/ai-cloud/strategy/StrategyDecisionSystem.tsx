@@ -38,21 +38,19 @@ const outputs = [
 
 export default function StrategyDecisionSystem() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+    <section className=" bg-[#070707] py-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className=" flex flex-col text-center">
           <div>
-            <p className="font-mono text-[8px] tracking-[0.28em] text-[#9878ef]">
-              STRATEGY / DECISION SYSTEM
-            </p>
+     
 
-            <h2 className="mt-6 text-5xl font-medium leading-[.95] tracking-[-0.055em] md:text-7xl">
+            <h2 className=" hyi-h1 hyi-white">
               Turn constraints
-              <span className="block text-[#7046e6]">into direction.</span>
+              <span className="block hyi-blue">into direction.</span>
             </h2>
           </div>
 
-          <p className="max-w-[620px] text-[14px] leading-8 text-white/[0.5] lg:justify-self-end">
+          <p className="max-w-[620px] hyi-p mx-auto">
             A useful cloud strategy does not optimize one dimension in
             isolation. It evaluates business priorities alongside performance,
             risk, security, economics and organizational capability before
@@ -60,7 +58,7 @@ export default function StrategyDecisionSystem() {
           </p>
         </div>
 
-        <div className="relative mt-14 overflow-hidden rounded-[36px] border border-[#7046e6]/20 bg-[#030303] p-7 md:p-10">
+        <div className="relative mt-6 overflow-hidden rounded-[36px] border border-[#7046e6]/20 bg-[#030303] p-7 md:p-10">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.12]"
             style={{

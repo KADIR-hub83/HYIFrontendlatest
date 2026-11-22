@@ -13,43 +13,28 @@ import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 
 const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-  },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
 const scaleIn: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.94,
-  },
+  hidden: { opacity: 0, scale: 0.94 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
 const stagger: Variants = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
+
 const services = [
   {
     title: "Corrective Maintenance",
@@ -153,489 +138,232 @@ export default function ApplicationMaintenanceSupportPage() {
     offset: ["start start", "end start"],
   });
 
-  const heroY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, 120]
-  );
-
-  const heroOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.8],
-    [1, 0]
-  );
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <main className="overflow-hidden bg-[#030303] text-white">
-      <Header/>
+    <main className="min-h-screen overflow-hidden bg-[#030303] text-white max-w-[1350px] mx-auto">
+      <Header />
 
       {/* HERO */}
       <section
         ref={heroRef}
-        className="relative min-h-[92vh] px-6 py-24 lg:px-10"
+        className="relative  overflow-hidden px-5 pt-10 md:px-8 lg:px-12"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(110,60,255,0.18),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(110,60,255,0.18),transparent_90%)]" />
 
         <motion.div
-          style={{
-            y: heroY,
-            opacity: heroOpacity,
-          }}
-          className="relative z-10 mx-auto flex min-h-[75vh] max-w-[1350px] flex-col items-center justify-center text-center"
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 mx-auto flex pt-20  max-w-[1350px] flex-col items-center justify-center text-center"
         >
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="max-w-[980px]"
+            className="w-full max-w-[980px]"
           >
-            <motion.div variants={fadeUp}>
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-violet-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-                Application Maintenance & Support
-              </div>
-            </motion.div>
+       
 
             <motion.h1
               variants={fadeUp}
-              className="mt-7 text-[48px] font-semibold leading-[1.02] tracking-[-0.05em] sm:text-[64px] lg:text-[86px]"
+              className="hyi-h1 hyi-white mt-7"
             >
               Keep Your Applications
               <br />
-
-              <span className="bg-gradient-to-r from-white via-violet-200 to-fuchsia-300 bg-clip-text text-transparent">
-                Running At Their Best
-              </span>
+              <span className="hyi-blue">Running At Their Best</span>
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-7 max-w-[760px] text-base leading-8 text-white/50 sm:text-lg"
+              className="hyi-p mx-auto mt-2 max-w-[760px]"
             >
-              Proactive maintenance, continuous monitoring,
-              performance optimization, security updates,
-              and reliable application support designed to
-              keep your systems stable and future-ready.
+              Proactive maintenance, continuous monitoring, performance
+              optimization, security updates, and reliable application support
+              designed to keep your systems stable and future-ready.
             </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-9 flex flex-wrap justify-center gap-4"
-            >
-              <Link
-                href="/contact"
-                className="rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:scale-105"
-              >
-                Get Support
-              </Link>
-
-              <a
-                href="#services"
-                className="rounded-full border border-white/10 bg-white/[0.03] px-7 py-3.5 text-sm text-white/70 transition hover:bg-white/[0.07]"
-              >
-                Explore Services
-              </a>
-            </motion.div>
+        
           </motion.div>
 
-          {/* HERO VISUAL STRIP */}
 
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            animate="visible"
-            className="mt-16 grid w-full max-w-[1180px] gap-4 md:grid-cols-3"
-          >
-            <div className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-6 text-left">
-              <div className="text-xs uppercase tracking-[0.18em] text-white/30">
-                Uptime
-              </div>
-
-              <div className="mt-3 text-4xl font-semibold">
-                99.9%
-              </div>
-
-              <div className="mt-2 text-sm text-white/40">
-                Stable application availability
-              </div>
-            </div>
-
-            <div className="relative min-h-[220px] overflow-hidden rounded-[28px] border border-white/[0.08]">
-              <Image
-                src="/Card-bg-03.webp"
-                alt="Application support"
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-
-            <div className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-6 text-left">
-              <div className="text-xs uppercase tracking-[0.18em] text-white/30">
-                Support
-              </div>
-
-              <div className="mt-3 text-4xl font-semibold">
-                24/7
-              </div>
-
-              <div className="mt-2 text-sm text-white/40">
-                Continuous maintenance coverage
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </section>
 
       {/* SERVICES */}
-      <section
-        id="services"
-        className="px-6 py-28 lg:px-10"
-      >
+      <section id="services" className="px-5  py-5 md:px-8 lg:px-12">
         <div className="mx-auto max-w-[1350px]">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mx-auto max-w-[850px] text-center"
+            className="mx-auto max-w-[900px] text-center"
           >
-            <div className="text-xs uppercase tracking-[0.22em] text-violet-300">
-              Our Capabilities
-            </div>
+       
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+            <h2 className="hyi-h1 hyi-white ">
               Complete support for every stage
-              <span className="text-white/30">
-                {" "}
-                of your application lifecycle.
-              </span>
+              <span className="hyi-blue"> of your application lifecycle.</span>
             </h2>
           </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.1,
-            }}
-            className="
-  mt-16
-  grid
-  gap-5
-  md:grid-cols-2
-  lg:grid-cols-3
-  auto-rows-[430px]
-"
-          >
-     {services.map((service, index) => (
-  <motion.article
-    key={service.title}
-    variants={fadeUp}
-    whileHover={{
-      y: -8,
-      scale: 1.01,
-    }}
-    transition={{
-      duration: 0.3,
-    }}
-    className={`
-      group
-      relative
-      min-h-[430px]
-      overflow-hidden
-      rounded-[30px]
-      border
-      border-white/[0.08]
-      bg-[#08080a]
-      ${
-        index === 0 || index === 5
-          ? "lg:col-span-2"
-          : ""
-      }
-    `}
-  >
-    {/* ORIGINAL PUBLIC IMAGE */}
-    <Image
-      src={service.image}
-      alt={service.title}
-      fill
-      className="
-        object-cover
-        transition-transform
-        duration-700
-        group-hover:scale-[1.03]
-      "
-    />
-
-    {/* TEXT DIRECTLY ON CARD */}
-    <div
-      className="
-        absolute
-        inset-0
-        z-10
-        flex
-        flex-col
-        justify-between
-        p-7
-      "
+  <div className="mt-5 grid auto-rows-[220px] gap-5 md:grid-cols-2 lg:grid-cols-3">
+  {services.map((service, index) => (
+    <article
+      key={service.title}
+      className={`group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#08080a] p-6 md:p-7 ${
+        index === 0 || index === 5 ? "lg:col-span-2" : ""
+      }`}
     >
-      <div className="flex items-center justify-between">
-        <span
-          className="
-            rounded-full
-            border
-            border-white/10
-            bg-black/20
-            px-3
-            py-1.5
-            text-[10px]
-            uppercase
-            tracking-[0.18em]
-            text-white/60
-            backdrop-blur-sm
-          "
-        >
+      <div className="flex h-full flex-col justify-between">
+
+        <span className="w-fit rounded-full border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-white/60">
           Service {String(index + 1).padStart(2, "0")}
         </span>
-      </div>
 
-      <div
-        className="
-          max-w-[520px]
-          rounded-[22px]
-          border
-          border-white/[0.08]
-          bg-black/25
-          p-5
-          backdrop-blur-[3px]
-        "
-      >
-        <h3
-          className="
-            text-2xl
-            font-semibold
-            tracking-[-0.03em]
-            text-white
-          "
-        >
-          {service.title}
-        </h3>
+        <div className="max-w-[520px]">
+          <h3 className="hyi-h3 hyi-white">
+            {service.title}
+          </h3>
 
-        <p
-          className="
-            mt-3
-            text-sm
-            leading-7
-            text-white/75
-          "
-        >
-          {service.text}
-        </p>
+          <p className="hyi-p mt-3 text-white/75">
+            {service.text}
+          </p>
 
-        <div
-          className="
-            mt-5
-            flex
-            items-center
-            gap-2
-            text-sm
-            text-violet-200
-            transition-all
-            duration-300
-            group-hover:gap-4
-          "
-        >
-          Learn More
-          <span>-&gt;</span>
+          <div className="mt-5 flex items-center gap-2 text-sm text-violet-200 transition-all duration-300 group-hover:gap-4">
+            Learn More <span>→</span>
+          </div>
         </div>
+
       </div>
-    </div>
-  </motion.article>
-))}
-          </motion.div>
+    </article>
+  ))}
+</div>
         </div>
       </section>
 
       {/* SUPPORT PROCESS */}
-      <section className="border-y border-white/[0.06] bg-[#060607] px-6 py-28 lg:px-10">
+      <section className=" bg-[#060607] px-5  md:px-8 lg:px-12">
         <div className="mx-auto max-w-[1350px]">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center"
+            className="mx-auto max-w-[900px] text-center"
           >
-            <div className="text-xs uppercase tracking-[0.22em] text-violet-300">
-              Support Process
-            </div>
+   
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+            <h2 className="hyi-h1 hyi-white mt-5">
               A structured approach to
-              <span className="text-white/30">
-                {" "}
-                long-term reliability.
-              </span>
+              <span className="hyi-blue"> long-term reliability.</span>
             </h2>
           </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            className="mt-16 grid gap-4 md:grid-cols-5"
-          >
-            {process.map((item, index) => (
-              <motion.div
-                variants={fadeUp}
-                key={item.title}
-                className="relative rounded-[24px] border border-white/[0.07] bg-white/[0.025] p-6"
-              >
-                <div className="text-xs font-mono text-violet-300">
-                  {item.number}
-                </div>
+<div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+  {process.map((item, index) => (
+    <div
+      key={item.title}
+      className={`relative rounded-[24px] border border-white/[0.07] p-6 ${
+        index % 2 === 0 ? "hyi-skeu" : "hyi-glass"
+      }`}
+    >
 
-                <h3 className="mt-8 text-xl font-medium">
-                  {item.title}
-                </h3>
 
-                <p className="mt-3 text-sm leading-6 text-white/40">
-                  {item.text}
-                </p>
+      <h3 className="hyi-h3 hyi-white mt-">
+        {item.title}
+      </h3>
 
-                {index !== process.length - 1 && (
-                  <span className="absolute -right-3 top-1/2 hidden text-violet-400/60 md:block">
-                    →
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
+      <p className="hyi-p mt-3">
+        {item.text}
+      </p>
+
+      {index !== process.length - 1 && (
+        <span className="absolute -right-3 top-1/2 hidden text-violet-400/60 md:block">
+          →
+        </span>
+      )}
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
-      {/* BENTO SUPPORT EXPERIENCE */}
-      <section className="px-6 py-28 lg:px-10">
-        <div className="mx-auto max-w-[1350px]">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.12,
-            }}
-            className="grid gap-5 lg:grid-cols-12"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-8 lg:col-span-5"
-            >
-              <div className="text-xs uppercase tracking-[0.18em] text-violet-300">
-                Always Available
-              </div>
+      {/* SUPPORT EXPERIENCE */}
+<section className="px-5 py-5 md:px-8 lg:px-12">
+  <div className="mx-auto grid max-w-[1350px] gap-5 lg:grid-cols-12">
 
-              <h3 className="mt-5 text-3xl font-medium tracking-[-0.03em]">
-                Continuous support without
-                unnecessary downtime.
-              </h3>
+    {/* Card 1 */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="hyi-skeu rounded-[30px] p-7 md:p-8 lg:col-span-5"
+    >
+      <div className="text-xs uppercase tracking-[0.18em] text-violet-300">
+        Always Available
+      </div>
 
-              <p className="mt-5 leading-7 text-white/45">
-                Our maintenance approach combines monitoring,
-                fixes, upgrades, and optimization to keep your
-                systems reliable across changing business needs.
-              </p>
-            </motion.div>
+      <h3 className="hyi-h1 hyi-white mt-5">
+        Continuous support without unnecessary downtime.
+      </h3>
 
-            <motion.div
-              variants={fadeUp}
-              className="relative min-h-[330px] overflow-hidden rounded-[30px] border border-white/[0.08] lg:col-span-7"
-            >
-              <Image
-                src="/Card-bg-08.webp"
-                alt="Support dashboard"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
+      <p className="hyi-p mt-5">
+        Our maintenance approach combines monitoring, fixes, upgrades,
+        and optimization to keep your systems reliable across changing
+        business needs.
+      </p>
+    </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="relative min-h-[280px] overflow-hidden rounded-[30px] border border-white/[0.08] lg:col-span-4"
-            >
-              <Image
-                src="/Card-bg-04.webp"
-                alt="Maintenance service"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
+    {/* Card 2 */}
+ 
 
-            <motion.div
-              variants={fadeUp}
-              className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-8 lg:col-span-4"
-            >
-              <div className="text-4xl font-semibold">
-                Faster
-              </div>
+   
 
-              <div className="mt-2 text-sm text-white/40">
-                issue identification and resolution
-              </div>
+    {/* Card 4 */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="hyi-glass rounded-[30px] p-7 md:p-8 lg:col-span-4"
+    >
+      <div className="hyi-h3 hyi-white">Faster</div>
+      <p className="hyi-p mt-2">
+        Issue identification and resolution
+      </p>
 
-              <div className="my-8 h-px bg-white/[0.06]" />
+      <div className="my-7 h-px bg-white/[0.06]" />
 
-              <div className="text-4xl font-semibold">
-                Safer
-              </div>
+      <div className="hyi-h3 hyi-white">Safer</div>
+      <p className="hyi-p mt-2">
+        Updates and controlled releases
+      </p>
+    </motion.div>
 
-              <div className="mt-2 text-sm text-white/40">
-                updates and controlled releases
-              </div>
-            </motion.div>
+ 
 
-            <motion.div
-              variants={fadeUp}
-              className="relative min-h-[280px] overflow-hidden rounded-[30px] border border-white/[0.08] lg:col-span-4"
-            >
-              <Image
-                src="/Card-bg-05.webp"
-                alt="Security maintenance"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+  </div>
+</section>
 
       {/* BENEFITS */}
-      <section className="px-6 pb-28 lg:px-10">
+      <section className="px-5 py- md:px-8 lg:px-12">
         <div className="mx-auto max-w-[1350px]">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center"
+            className="mx-auto max-w-[900px] text-center"
           >
             <div className="text-xs uppercase tracking-[0.22em] text-violet-300">
               Why HYI.AI
             </div>
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+            <h2 className="hyi-h1 hyi-white mt-2">
               Reliable maintenance that supports
-              <span className="text-white/30">
-                {" "}
-                long-term growth.
-              </span>
+              <span className="hyi-blue"> long-term growth.</span>
             </h2>
           </motion.div>
 
@@ -643,32 +371,22 @@ export default function ApplicationMaintenanceSupportPage() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+            viewport={{ once: true, amount: 0.2 }}
+            className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {benefits.map((item, index) => (
               <motion.div
                 key={item.title}
                 variants={fadeUp}
-                whileHover={{
-                  y: -6,
-                }}
+                whileHover={{ y: -6 }}
                 className="rounded-[24px] border border-white/[0.07] bg-white/[0.025] p-6"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-500/10 text-xs text-violet-300">
                   {String(index + 1).padStart(2, "0")}
                 </div>
 
-                <h3 className="mt-6 text-lg font-medium">
-                  {item.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-white/40">
-                  {item.text}
-                </p>
+                <h3 className="hyi-h3 hyi-white mt-6">{item.title}</h3>
+                <p className="hyi-p mt-3">{item.text}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -676,60 +394,55 @@ export default function ApplicationMaintenanceSupportPage() {
       </section>
 
       {/* TECHNOLOGIES MARQUEE */}
-      <section className="border-y border-white/[0.06] py-8">
+      {/* <section className="border-y border-white/[0.06] py-7">
         <div className="overflow-hidden">
           <motion.div
             className="flex w-max items-center"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
+            animate={{ x: ["0%", "-50%"] }}
             transition={{
               duration: 28,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            {[...technologies, ...technologies].map(
-              (tool, index) => (
-                <div
-                  key={`${tool}-${index}`}
-                  className="mx-3 rounded-full border border-white/[0.07] bg-white/[0.025] px-6 py-3 text-sm text-white/55"
-                >
-                  {tool}
-                </div>
-              )
-            )}
+            {[...technologies, ...technologies].map((tool, index) => (
+              <div
+                key={`${tool}-${index}`}
+                className="mx-3 rounded-full border border-white/[0.07] bg-white/[0.025] px-6 py-3 text-sm text-white/55"
+              >
+                {tool}
+              </div>
+            ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* FINAL CTA */}
-      <section className="px-6 py-28 lg:px-10">
+      {/* <section className="px-5 py-10 md:px-8 lg:px-12">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mx-auto max-w-[1350px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#070708] p-8 sm:p-12 lg:p-16"
+          className="mx-auto max-w-[1350px] overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#070708] p-7 sm:p-10 lg:p-14"
         >
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid items-center gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <div className="text-xs uppercase tracking-[0.2em] text-violet-300">
                 Application Care
               </div>
 
-              <h2 className="mt-5 max-w-[800px] text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              <h2 className="hyi-h1 hyi-white mt-5 max-w-[800px]">
                 Keep every release stable, secure,
-                and ready for what comes next.
+                <span className="hyi-blue"> and ready for what comes next.</span>
               </h2>
 
-              <p className="mt-6 max-w-[680px] leading-7 text-white/45">
-                Partner with HYI.AI for proactive application
-                maintenance, reliable support, and continuous
-                performance improvement.
+              <p className="hyi-p mt-5 max-w-[680px]">
+                Partner with HYI.AI for proactive application maintenance,
+                reliable support, and continuous performance improvement.
               </p>
 
-              <div className="mt-8">
+              <div className="mt-7">
                 <Link
                   href="/contact"
                   className="inline-flex rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:scale-105"
@@ -739,7 +452,7 @@ export default function ApplicationMaintenanceSupportPage() {
               </div>
             </div>
 
-            <div className="relative min-h-[260px] overflow-hidden rounded-[26px] border border-white/[0.08]">
+            <div className="relative min-h-[250px] overflow-hidden rounded-[26px] border border-white/[0.08]">
               <Image
                 src="/Card-bg-02.webp"
                 alt="Application maintenance"
@@ -749,8 +462,9 @@ export default function ApplicationMaintenanceSupportPage() {
             </div>
           </div>
         </motion.div>
-      </section>
-      <Footer/>
+      </section> */}
+
+      <Footer />
     </main>
   );
 }

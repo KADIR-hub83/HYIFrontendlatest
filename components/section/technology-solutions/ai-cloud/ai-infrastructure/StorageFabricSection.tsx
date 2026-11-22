@@ -3,25 +3,23 @@ import StorageFabricModel from "./StorageFabricModel";
 
 export default function StorageFabricSection() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto grid max-w-[1500px] gap-12 px-5 md:px-10 lg:grid-cols-[0.65fr_1.35fr]">
+    <section className="bg-[#030303] ">
+      <div className="mx-auto grid max-w-[1350px] gap-12 px-5 md:px-10 lg:grid-cols-[0.65fr_1.35fr]">
         <div>
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            04 / AI DATA FABRIC
-          </p>
+    
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-6xl">
+          <h2 className="hyi-h1 hyi-white">
             Feed compute
-            <span className="block text-[#7653df]">without starving it.</span>
+            <span className="block hyi-blue">without starving it.</span>
           </h2>
 
-          <p className="mt-7 text-[12px] leading-7 text-white/[0.45]">
+          <p className="mt-2 hyi-p">
             Large AI workloads can create demanding data-access patterns.
             Storage architecture must account for datasets, checkpoints,
             artifacts, metadata and production model access.
           </p>
 
-          <div className="mt-9 space-y-3">
+          <div className="mt-5 space-y-3">
             {[
               {
                 Icon: Database,
@@ -44,8 +42,8 @@ export default function StorageFabricSection() {
                 className="rounded-[20px] border border-white/[0.06] bg-[#080808] p-5"
               >
                 <Icon size={14} className="text-[#9878ef]" />
-                <h3 className="mt-4 text-sm">{title}</h3>
-                <p className="mt-2 text-[10px] leading-5 text-white/[0.38]">
+                <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+                <p className=" hyi-p">
                   {text}
                 </p>
               </div>

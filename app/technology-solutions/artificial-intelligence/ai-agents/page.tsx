@@ -1,34 +1,14 @@
-import Header from "@/components/section/general/header";
-import Footer from "@/components/section/general/footer";
+import type { Metadata } from "next";
+import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
+import { getAIService } from "@/data/ai-services.data";
 
-import AIAgentsHero from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AIAgentsHero";
-import AgentRuntime from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentRuntime";
-import MultiAgentNetwork from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/MultiAgentNetwork";
-import AgentCapabilities from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentCapabilities";
-import AgentArchitecture from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentArchitecture";
-import AgentVisualExperience from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentVisualExperience";
-import AgentCommandCenter from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentCommandCenter";
-import EnterpriseAgents from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/EnterpriseAgents";
-import AgentImpact from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AgentImpact";
-import AIAgentsCTA from "@/components/section/technology-solutions/artificial-intelligence/ai-agents/AIAgentsCTA";
+const service = getAIService("ai-agents");
 
-export default function AIAgentsPage() {
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#020203] text-[#F7F3FB]">
-      <Header />
+export const metadata: Metadata = {
+  title: "AI Agent Development | HYI.AI",
+  description: "Develop autonomous AI agents that understand objectives, reason across enterprise context, collaborate with specialist agents and execute complex multi-step work.",
+};
 
-      <AIAgentsHero />
-      <AgentRuntime />
-      <MultiAgentNetwork />
-      <AgentCapabilities />
-      <AgentArchitecture />
-      <AgentVisualExperience />
-      <AgentCommandCenter />
-      <EnterpriseAgents />
-      <AgentImpact />
-      <AIAgentsCTA />
-
-      <Footer />
-    </main>
-  );
+export default function AiAgentsPage() {
+  return <AIServiceShell service={service} />;
 }

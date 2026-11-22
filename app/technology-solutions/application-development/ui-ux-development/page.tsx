@@ -1,17 +1,16 @@
+"use client";
+
 import Header from "@/components/section/general/header";
 import Footer from "@/components/section/general/footer";
 import UiUx3DModel from "@/components/uiux/UiUx3DModel";
 
 import {
   ArrowRight,
-  Boxes,
   Brush,
   Check,
   ChevronRight,
-  Code2,
   Component,
   Layers3,
-  LayoutDashboard,
   MonitorSmartphone,
   MousePointer2,
   Palette,
@@ -20,7 +19,6 @@ import {
   Sparkles,
   TabletSmartphone,
   WandSparkles,
-  Workflow,
   Zap,
 } from "lucide-react";
 
@@ -122,7 +120,7 @@ export default function UiUxDevelopmentPage() {
           CINEMATIC HERO
       ===================================================== */}
       <section className="relative min-h-[1050px] overflow-hidden border-b border-white/[0.08]">
-        <div className="absolute inset-0 bg-black" />
+        <div className="absolute inset-0 bg-[#030303]" />
 
         <div className="absolute left-1/2 top-[28%] h-[900px] w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/20 blur-[190px]" />
 
@@ -139,48 +137,38 @@ export default function UiUxDevelopmentPage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-[1500px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
-          <div className="mx-auto max-w-6xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/[0.08] px-4 py-2 text-xs text-purple-200 backdrop-blur-xl sm:text-sm">
-              <Sparkles className="h-4 w-4" />
-              UI / UX Design & Development
-            </div>
+        <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-[#030303] via-[#030303]/80 to-transparent" />
 
-            <h1 className="mt-7 text-[44px] font-semibold leading-[0.96] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-[96px]">
+        <div className="relative z-10 mx-auto max-w-[1350px] px-5 pt-24 md:px-8 lg:px-12 lg:pt-32">
+          <div className="mx-auto max-w-6xl text-center">
+       
+
+            <h1 className="hyi-h1 hyi-white mt-7">
               Design experiences
-              <span className="block bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#EC4899] bg-clip-text text-transparent">
+              <span className="block hyi-blue">
                 people understand instantly.
               </span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/45 md:text-lg">
+            <p className="hyi-p mx-auto mt-3 max-w-3xl">
               HYI combines UX thinking, visual design, interaction systems and
               engineering-ready design systems to create digital products that
               feel simple, premium and intuitive.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <button className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7047E8] to-[#9B5CFA] px-7 py-4 text-sm font-medium shadow-[0_18px_60px_rgba(124,58,237,.35)]">
-                Design Your Product
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </button>
-
-              <button className="rounded-full border border-white/10 bg-white/[0.035] px-7 py-4 text-sm text-white/65 backdrop-blur-xl">
-                Explore Our Process
-              </button>
-            </div>
+           
           </div>
 
           {/* =====================================================
               LARGE 3D UI COMPOSITION
           ===================================================== */}
           <div
-            className="relative mx-auto mt-16 h-[650px] max-w-[1300px]"
+            className="relative mx-auto mt-6 h-[650px] max-w-[1350px]  max-md:h-[520px]"
             style={{ perspective: "1600px" }}
           >
             <div className="absolute left-1/2 top-[45%] h-[430px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[120px]" />
 
-            {/* left floating panel */}
+            {/* Left floating panel */}
             <div
               className="absolute left-[2%] top-[22%] hidden w-[270px] rounded-[28px] border border-white/10 bg-[#0C0B12]/95 p-5 shadow-2xl backdrop-blur-xl md:block lg:left-[8%]"
               style={{
@@ -236,15 +224,14 @@ export default function UiUxDevelopmentPage() {
               </div>
             </div>
 
-            {/* center design board */}
+            {/* Center design board */}
             <div
-              className="absolute left-1/2 top-[3%] z-20 w-[92%] max-w-[820px] -translate-x-1/2 overflow-hidden rounded-[34px] border border-white/10 bg-[#0A0A10]/95 shadow-[0_50px_160px_rgba(0,0,0,.8)]"
+              className="absolute left-1/2 top-[3%] z-20 w-[92%] max-w-[820px] -translate-x-1/2 overflow-hidden rounded-[34px] border border-white/10 bg-[#0A0A10]/95 shadow-[0_50px_160px_rgba(0,0,0,.8)] max-md:top-[5%] max-md:w-full"
               style={{
-                transform:
-                  "translateX(-50%) rotateX(4deg)",
+                transform: "translateX(-50%) rotateX(4deg)",
               }}
             >
-              <div className="flex h-14 items-center justify-between border-b border-white/[0.07] px-5">
+              <div className="flex h-14 items-center justify-between  px-">
                 <div className="flex gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                   <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
@@ -255,7 +242,7 @@ export default function UiUxDevelopmentPage() {
                   HYI Design Studio
                 </div>
 
-                <PenTool className="h-4 w-4 text-white/25" />
+                <PenTool className="h-4 w-4 hyi-white-icon" />
               </div>
 
               <div className="grid min-h-[520px] sm:grid-cols-[170px_1fr]">
@@ -286,15 +273,15 @@ export default function UiUxDevelopmentPage() {
                   </div>
                 </aside>
 
-                <div className="p-5 sm:p-7">
-                  <div className="rounded-[26px] border border-white/[0.07] bg-gradient-to-br from-[#161020] to-[#08080C] p-7">
-                    <div className="flex justify-between">
+                <div className="p-4 sm:p-7">
+                  <div className="rounded-[26px] border border-white/[0.07] bg-gradient-to-br from-[#161020] to-[#08080C] p-5 sm:p-7">
+                    <div className="flex justify-between gap-3">
                       <div>
                         <p className="text-[10px] uppercase tracking-[0.2em] text-purple-300">
                           Product experience
                         </p>
 
-                        <h3 className="mt-4 max-w-sm text-3xl font-semibold">
+                        <h3 className="mt-4 max-w-sm text-2xl font-semibold sm:text-3xl">
                           Make complexity
                           <span className="block text-white/30">
                             feel effortless.
@@ -302,10 +289,10 @@ export default function UiUxDevelopmentPage() {
                         </h3>
                       </div>
 
-                      <div className="h-11 w-11 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-500" />
+                      <div className="h-11 w-11 shrink-0 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-500" />
                     </div>
 
-                    <div className="mt-8 grid grid-cols-3 gap-3">
+                    <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3">
                       {[
                         ["12.8K", "Users"],
                         ["92%", "Retention"],
@@ -313,7 +300,7 @@ export default function UiUxDevelopmentPage() {
                       ].map(([value, label]) => (
                         <div
                           key={label}
-                          className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4"
+                          className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-3 sm:p-4"
                         >
                           <p className="font-semibold">{value}</p>
                           <p className="mt-1 text-[9px] text-white/25">
@@ -324,8 +311,8 @@ export default function UiUxDevelopmentPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 grid grid-cols-2 gap-4">
-                    <div className="rounded-[22px] border border-white/[0.07] bg-white/[0.025] p-5">
+                  <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="rounded-[22px] border border-white/[0.07] bg-white/[0.025] p-3 sm:p-5">
                       <p className="text-xs text-white/30">Performance</p>
 
                       <div className="mt-5 flex h-24 items-end gap-2">
@@ -341,14 +328,16 @@ export default function UiUxDevelopmentPage() {
                       </div>
                     </div>
 
-                    <div className="rounded-[22px] border border-white/[0.07] bg-white/[0.025] p-5">
-                      <p className="text-xs text-white/30">Interface states</p>
+                    <div className="rounded-[22px] border border-white/[0.07] bg-white/[0.025] p-3 sm:p-5">
+                      <p className="text-xs text-white/30">
+                        Interface states
+                      </p>
 
                       <div className="mt-5 space-y-3">
                         {[1, 2, 3].map((item) => (
                           <div
                             key={item}
-                            className="flex items-center gap-3 rounded-xl bg-white/[0.03] p-3"
+                            className="flex items-center gap-3 rounded-xl bg-white/[0.03] p-2 sm:p-3"
                           >
                             <div className="h-7 w-7 rounded-lg bg-purple-500/15" />
                             <div className="flex-1">
@@ -364,9 +353,9 @@ export default function UiUxDevelopmentPage() {
               </div>
             </div>
 
-            {/* right prototype */}
+            {/* Right prototype */}
             <div
-              className="absolute right-[2%] top-[24%] hidden w-[250px] rounded-[30px] border border-white/10 bg-[#0C0A12]/95 p-4 shadow-2xl md:block lg:right-[8%]"
+              className="absolute right-[2%] top-[24%] hidden w-[250px] rounded-[30px] border border-white/10 bg-[#0C0A12]/95 p-4 shadow-2xl backdrop-blur-xl md:block lg:right-[8%]"
               style={{
                 transform: "rotateY(-24deg) rotateZ(6deg)",
               }}
@@ -401,9 +390,10 @@ export default function UiUxDevelopmentPage() {
               </div>
             </div>
 
-            <div className="absolute bottom-[4%] left-1/2 z-30 -translate-x-1/2 rounded-2xl border border-purple-400/20 bg-black/75 px-5 py-4 backdrop-blur-xl">
+            {/* Floating prototype label */}
+            <div className="absolute bottom-[4%] left-1/2 z-30 -translate-x-1/2 rounded-2xl border border-purple-400/20 bg-black/75 px-5 py-4 backdrop-blur-xl max-md:bottom-0 max-md:w-max">
               <div className="flex items-center gap-3">
-                <WandSparkles className="h-5 w-5 text-purple-300" />
+                <WandSparkles className="h-5 w-5 hyi-blue-icon" />
 
                 <div>
                   <p className="text-[10px] text-white/30">
@@ -419,36 +409,16 @@ export default function UiUxDevelopmentPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#030303]">
-  <div className="mx-auto max-w-[1450px] px-5 md:px-8 lg:px-12">
-    <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#07070A]">
-      <UiUx3DModel />
+      {/* =====================================================
+          INTERACTIVE 3D EXPERIENCE
+      ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 px-6 pb-10 text-center md:px-12 md:pb-14">
-        <p className="text-xs uppercase tracking-[0.3em] text-purple-300">
-          Interactive 3D Experience
-        </p>
-
-        <h2 className="mx-auto mt-4 max-w-4xl text-3xl font-semibold md:text-5xl lg:text-6xl">
-          Design experiences beyond
-          <span className="block text-white/30">
-            flat interfaces.
-          </span>
-        </h2>
-      </div>
-    </div>
-  </div>
-</section>
 
       {/* =====================================================
           UI / UX PLATFORM SLIDER
       ===================================================== */}
-      <section className="overflow-hidden border-b border-white/[0.08] bg-[#060606] py-12">
-        <div className="mx-auto mb-8 max-w-[1450px] px-5 md:px-8 lg:px-12">
-          <p className="text-center text-xs uppercase tracking-[0.28em] text-white/30">
-            Our UI / UX Design Ecosystem
-          </p>
-        </div>
+      <section className="overflow-hidden  bg-[#060606] py-4">
+
 
         <div className="relative flex overflow-hidden">
           <div className="uiux-marquee flex min-w-max gap-4 px-2">
@@ -459,7 +429,7 @@ export default function UiUxDevelopmentPage() {
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10">
-                    <PenTool className="h-4 w-4 text-purple-300" />
+                    <PenTool className="h-4 w-4 hyi-white-icon" />
                   </div>
 
                   <span className="text-sm font-medium text-white/60 group-hover:text-white">
@@ -475,27 +445,25 @@ export default function UiUxDevelopmentPage() {
       {/* =====================================================
           EXPERIENCE SECTION
       ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
+      <section className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Experience design
-          </p>
+        
 
-          <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
+          <h2 className="hyi-h1 hyi-white mt-6">
             Every interaction should
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               feel completely intentional.
             </span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl leading-8 text-white/45">
+          <p className="hyi-p mx-auto mt-3 max-w-3xl">
             Beautiful interfaces matter, but great UI/UX goes deeper. We design
             the full experience: hierarchy, flow, interaction, feedback,
             navigation, accessibility and consistency.
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 border-y border-white/[0.08] py-10 md:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 border-y border-white/[0.08] py-3 md:grid-cols-4">
           {[
             ["Clear", "User Flows"],
             ["Consistent", "Design Systems"],
@@ -504,16 +472,12 @@ export default function UiUxDevelopmentPage() {
           ].map(([value, label], index) => (
             <div
               key={value}
-              className={`text-center ${
+              className={`px-2 py-3 text-center ${
                 index < 3 ? "md:border-r md:border-white/[0.08]" : ""
               }`}
             >
-              <p className="text-xl font-semibold md:text-3xl">
-                {value}
-              </p>
-              <p className="mt-2 text-xs text-white/30">
-                {label}
-              </p>
+              <p className="hyi-h3 hyi-white">{value}</p>
+              <p className="hyi-p mt-2">{label}</p>
             </div>
           ))}
         </div>
@@ -523,46 +487,41 @@ export default function UiUxDevelopmentPage() {
           CAPABILITIES
       ===================================================== */}
       <section className="border-y border-white/[0.08] bg-white/[0.012]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
-          <div className="max-w-5xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-              UI / UX capabilities
-            </p>
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+          <div className="mx-auto max-w-5xl text-center">
+        
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white ">
               Design every layer
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 of the product experience.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {capabilities.map((item) => {
               const Icon = item.icon;
 
               return (
                 <article
                   key={item.title}
-                  className="group relative min-h-[330px] overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-8 transition duration-500 hover:-translate-y-1 hover:border-purple-400/25"
+                  className="group relative overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-5 transition duration-500 hover:-translate-y-1 hover:border-purple-400/25 md:p-8"
                 >
                   <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-purple-600/0 blur-[80px] transition group-hover:bg-purple-600/15" />
 
-                  <div className="relative flex justify-between">
+                  <div className="relative flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/15 bg-purple-500/10">
-                      <Icon className="h-5 w-5 text-purple-300" />
+                      <Icon className="h-5 w-5 hyi-white-icon" />
                     </div>
 
-                    <span className="text-sm text-white/15">
-                      {item.no}
-                    </span>
                   </div>
 
-                  <h3 className="relative mt-20 text-xl font-semibold md:text-2xl">
+                  <h3 className="hyi-h3 hyi-white relative mt-3">
                     {item.title}
                   </h3>
 
-                  <p className="relative mt-4 text-sm leading-7 text-white/40">
+                  <p className="hyi-p relative mt-3 max-w-sm">
                     {item.text}
                   </p>
                 </article>
@@ -575,25 +534,25 @@ export default function UiUxDevelopmentPage() {
       {/* =====================================================
           DESIGN SYSTEM VISUAL
       ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative overflow-hidden rounded-[42px] border border-white/[0.08] bg-[#09090D] px-6 py-16 md:px-12 lg:px-16 lg:py-24">
+      <section className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
+        <div className="relative overflow-hidden rounded-[36px] border border-white/[0.08] bg-[#09090D] px-5 py-10 md:rounded-[42px] md:px-10 md:py-14 lg:px-16">
           <div className="absolute left-1/2 top-1/2 h-[650px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/10 blur-[160px]" />
 
           <div className="relative mx-auto max-w-4xl text-center">
-            <Layers3 className="mx-auto h-8 w-8 text-purple-300" />
+            <Layers3 className="mx-auto h-8 w-8 hyi-white-icon" />
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white mt-6">
               One design language.
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 Every screen consistent.
               </span>
             </h2>
           </div>
 
-          <div className="relative mt-16 grid gap-4 lg:grid-cols-3">
-            {/* typography */}
-            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-7">
-              <p className="text-xs uppercase tracking-[0.22em] text-purple-300">
+          <div className="relative mt-8 grid gap-4 lg:grid-cols-3">
+            {/* Typography */}
+            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-5 md:p-7">
+              <p className="text-xs uppercase tracking-[0.22em] hyi-blue">
                 Typography
               </p>
 
@@ -601,17 +560,17 @@ export default function UiUxDevelopmentPage() {
                 <p className="text-5xl font-semibold tracking-tight">
                   Aa
                 </p>
-                <p className="text-3xl font-medium">Heading</p>
+                <p className="hyi-h3 hyi-white">Heading</p>
                 <p className="text-xl text-white/70">Subtitle</p>
-                <p className="text-sm text-white/40">
+                <p className="hyi-p">
                   Product body copy and descriptive content.
                 </p>
               </div>
             </div>
 
-            {/* colors */}
-            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-7">
-              <p className="text-xs uppercase tracking-[0.22em] text-purple-300">
+            {/* Colors */}
+            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-5 md:p-7">
+              <p className="text-xs uppercase tracking-[0.22em] hyi-blue">
                 Color System
               </p>
 
@@ -636,17 +595,17 @@ export default function UiUxDevelopmentPage() {
               </div>
             </div>
 
-            {/* components */}
-            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-7">
-              <p className="text-xs uppercase tracking-[0.22em] text-purple-300">
+            {/* Components */}
+            <div className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-5 md:p-7">
+              <p className="text-xs uppercase tracking-[0.22em] hyi-blue">
                 Components
               </p>
 
-              <button className="mt-8 w-full rounded-xl bg-purple-600 py-3 text-sm">
+              <button className="mt-8 w-full rounded-xl bg-purple-600 py-3 text-sm transition hover:bg-purple-500">
                 Primary Button
               </button>
 
-              <button className="mt-3 w-full rounded-xl border border-white/10 py-3 text-sm text-white/50">
+              <button className="mt-3 w-full rounded-xl border border-white/10 py-3 text-sm text-white/50 transition hover:border-purple-400/30 hover:text-white">
                 Secondary
               </button>
 
@@ -663,89 +622,41 @@ export default function UiUxDevelopmentPage() {
       {/* =====================================================
           DEVICE EXPERIENCE
       ===================================================== */}
-      <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-          <div className="mx-auto max-w-5xl text-center">
-            <TabletSmartphone className="mx-auto h-8 w-8 text-purple-300" />
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
-              One experience.
-              <span className="block text-white/25">
-                Every device.
-              </span>
-            </h2>
-          </div>
-
-          <div className="relative mx-auto mt-20 flex max-w-6xl items-end justify-center">
-            {/* Desktop */}
-            <div className="relative w-[80%] overflow-hidden rounded-[26px] border border-white/10 bg-[#0B0B10] p-2 md:w-[70%]">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-gradient-to-br from-[#191126] to-[#08080C] p-5">
-                <div className="h-8 rounded-lg bg-white/[0.04]" />
-
-                <div className="mt-5 grid grid-cols-[180px_1fr] gap-4">
-                  <div className="hidden rounded-xl bg-white/[0.03] md:block" />
-
-                  <div>
-                    <div className="h-28 rounded-2xl bg-purple-500/15" />
-
-                    <div className="mt-4 grid grid-cols-3 gap-3">
-                      <div className="h-20 rounded-xl bg-white/[0.04]" />
-                      <div className="h-20 rounded-xl bg-white/[0.04]" />
-                      <div className="h-20 rounded-xl bg-white/[0.04]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* mobile */}
-            <div className="absolute -bottom-6 right-[3%] w-[135px] rounded-[28px] border border-purple-400/20 bg-[#0C0C12] p-1.5 shadow-2xl sm:w-[170px] md:right-[10%]">
-              <div className="aspect-[9/18] rounded-[23px] bg-gradient-to-b from-[#181124] to-[#07070A] p-3">
-                <div className="mx-auto h-3 w-12 rounded-full bg-black" />
-
-                <div className="mt-6 h-16 rounded-xl bg-purple-500/20" />
-
-                <div className="mt-3 space-y-2">
-                  <div className="h-10 rounded-xl bg-white/[0.04]" />
-                  <div className="h-10 rounded-xl bg-white/[0.04]" />
-                  <div className="h-10 rounded-xl bg-white/[0.04]" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* =====================================================
           UX PROCESS
       ===================================================== */}
-      <section className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
-            Our design process
-          </p>
+      <section
+        id="uiux-process"
+        className="mx-auto max-w-[1350px] px-5  md:px-8 lg:px-12"
+      >
+        <div className="mx-auto max-w-5xl text-center">
+  
 
-          <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+          <h2 className="hyi-h1 hyi-white ">
             From user problem
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               to polished experience.
             </span>
           </h2>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-6">
           {process.map((step) => (
             <div
               key={step.no}
-              className="group grid gap-4 border-t border-white/[0.08] py-9 md:grid-cols-[90px_1fr_1.4fr] md:gap-12 md:py-11"
+              className="group grid gap-3 border-t border-white/[0.08] py-6 md:grid-cols-[90px_1fr_1.4fr] md:gap-12"
             >
-              <span className="text-sm text-purple-400">{step.no}</span>
+              <span className="text-sm font-medium hyi-blue">
+                {step.no}
+              </span>
 
-              <h3 className="text-xl font-semibold md:text-2xl">
+              <h3 className="hyi-h3 hyi-white">
                 {step.title}
               </h3>
 
-              <p className="max-w-2xl text-sm leading-7 text-white/40 md:text-base">
+              <p className="hyi-p max-w-2xl">
                 {step.text}
               </p>
             </div>
@@ -757,19 +668,19 @@ export default function UiUxDevelopmentPage() {
           EXPERIENCE METRICS
       ===================================================== */}
       <section className="border-y border-white/[0.08] bg-[#070707]">
-        <div className="mx-auto max-w-[1450px] px-5 py-28 md:px-8 lg:px-12 lg:py-36">
+        <div className="mx-auto max-w-[1350px] px-5 py-10 md:px-8 lg:px-12">
           <div className="mx-auto max-w-5xl text-center">
-            <Zap className="mx-auto h-8 w-8 text-purple-300" />
+            <Zap className="mx-auto h-8 w-8 hyi-white-icon" />
 
-            <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
+            <h2 className="hyi-h1 hyi-white mt-6">
               Design should create
-              <span className="block text-white/25">
+              <span className="block hyi-blue">
                 measurable product value.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ["Faster", "Product adoption"],
               ["Clearer", "User journeys"],
@@ -778,13 +689,10 @@ export default function UiUxDevelopmentPage() {
             ].map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-[28px] border border-white/[0.08] bg-white/[0.02] px-6 py-10 text-center"
+                className="rounded-[28px] border border-white/[0.08] bg-white/[0.02] px-5 py-7 text-center"
               >
-                <p className="text-2xl font-semibold md:text-3xl">
-                  {value}
-                </p>
-
-                <p className="mt-3 text-sm text-white/30">{label}</p>
+                <p className="hyi-h3 hyi-white">{value}</p>
+                <p className="hyi-p mt-3">{label}</p>
               </div>
             ))}
           </div>
@@ -792,38 +700,9 @@ export default function UiUxDevelopmentPage() {
       </section>
 
       {/* =====================================================
-          CTA
+          FINAL CTA
       ===================================================== */}
-      <section className="px-5 py-28 md:px-8 lg:px-12 lg:py-40">
-        <div className="relative mx-auto max-w-[1450px] overflow-hidden rounded-[44px] border border-purple-400/15 bg-[#0B0710] px-6 py-20 text-center md:px-12 lg:py-32">
-          <div className="absolute left-1/2 top-[-250px] h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[170px]" />
-
-          <div className="relative mx-auto max-w-5xl">
-            <Brush className="mx-auto h-8 w-8 text-purple-300" />
-
-            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-purple-300">
-              Design with HYI
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
-              Make your product
-              <span className="block text-white/25">
-                impossible to ignore.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-7 max-w-2xl leading-8 text-white/40">
-              Transform ideas and complex workflows into digital experiences
-              people understand, trust and enjoy using.
-            </p>
-
-            <button className="group mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 px-8 py-4 font-medium shadow-[0_15px_60px_rgba(124,58,237,.35)]">
-              Talk to Our Design Experts
-              <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
-            </button>
-          </div>
-        </div>
-      </section>
+    
 
       <Footer />
     </main>

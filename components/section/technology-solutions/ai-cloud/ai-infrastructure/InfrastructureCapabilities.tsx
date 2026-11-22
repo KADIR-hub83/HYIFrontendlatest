@@ -65,20 +65,17 @@ const capabilities = [
 
 export default function InfrastructureCapabilities() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="max-w-[800px]">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            07 / CAPABILITIES
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+    <section className=" bg-[#070707] py-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="max-w-[800px] text-center mx-auto">
+      
+          <h2 className=" hyi-h1 hyi-white">
             One infrastructure.
-            <span className="block text-[#7653df]">Many AI workloads.</span>
+            <span className="block hyi-blue">Many AI workloads.</span>
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {capabilities.map(({ Icon, number, title, text }, index) => (
             <motion.article
               key={title}
@@ -87,25 +84,21 @@ export default function InfrastructureCapabilities() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
               whileHover={{ y: -6 }}
-              className="group min-h-[310px] rounded-[26px] border border-white/[0.07] bg-[#030303] p-6"
+              className="group  rounded-[26px] border border-white/[0.07] bg-[#030303] p-6"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/25 bg-[#7046e6]/[0.07]">
-                  <Icon size={15} className="text-[#a98cf4]" />
+                  <Icon size={15} className="hyi-blue-icon" />
                 </div>
-
-                <span className="font-mono text-[6px] text-white/[0.18]">
-                  {number}
-                </span>
               </div>
 
-              <h3 className="mt-14 text-xl">{title}</h3>
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-              <p className="mt-5 text-[11px] leading-6 text-white/[0.4]">
+              <p className="mt-2 hyi-p]">
                 {text}
               </p>
 
-              <div className="mt-8 h-px bg-gradient-to-r from-[#7046e6]/50 to-transparent opacity-40 transition group-hover:opacity-100" />
+              <div className="mt-4 h-px bg-gradient-to-r from-[#7046e6]/50 to-transparent opacity-40 transition group-hover:opacity-100" />
             </motion.article>
           ))}
         </div>

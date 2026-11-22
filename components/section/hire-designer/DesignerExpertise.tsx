@@ -44,29 +44,29 @@ const expertise = [
 
 export default function DesignerExpertise() {
   return (
-    <section className="px-5 py-10 sm:px-8 lg:px-12 ">
-      <div className="mx-auto max-w-[1450px]">
-        <div className="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
+    <section className="px-5  sm:px-8 lg:px-12 ">
+      <div className="mx-auto max-w-[1250px]">
+        <div className="flex flex-col ">
           <div>
-            <div className="sticky top-28">
+            <div className="sticky text-center mx-auto">
              
 
-              <h2 className="hyi-h1 text-[clamp(44px,5vw,78px)] font-medium leading-[0.92] tracking-[-0.06em]">
+              <h2 className="hyi-h1 hyi-white">
                 The right
-                <br />
+               
                 designer,
-                <br />
+      
                 <span className="hyi-blue">right now.</span>
               </h2>
 
-              <p className="mt-3 max-w-[340px] hyi-p">
+              <p className="mt-3 max-w-[540px] hyi-p mx-auto">
                 Add exactly the design capability your team needs without
                 rebuilding your entire hiring pipeline.
               </p>
             </div>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-[28px] border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-[28px] border border-white/[0.07] mt-5 bg-white/[0.07] sm:grid-cols-2">
             {expertise.map(({ icon: Icon, title, text }, index) => (
               <div
                 key={title}
@@ -81,10 +81,10 @@ export default function DesignerExpertise() {
                   />
                 </div>
 
-                <div className="mt-3">
+                <div className="mt-1">
                   <h3 className="hyi-h3 hy-white">{title}</h3>
 
-                  <p className="mt-2 max-w-[260px] hyi-p">
+                  <p className="mt-2 max-w-[460px] hyi-p">
                     {text}
                   </p>
                 </div>

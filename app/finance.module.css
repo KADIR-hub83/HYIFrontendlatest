@@ -2,7 +2,7 @@
 .page {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: #fff;
   background:
     radial-gradient(1200px 700px at 15% -10%, rgba(139, 92, 246, 0.35), transparent 60%),
@@ -412,7 +412,7 @@
 }
 
 .section:last-of-type {
-  padding-bottom: 80px;
+  padding-bottom: 30px;
 }
 
 /* ============ RESPONSIVE ============ */
@@ -424,8 +424,8 @@
 
 @media (max-width: 600px) {
   .wrap { padding: 0 16px; }
-  .hero { padding-top: 90px; gap: 28px; }
-  .section { padding-top: 40px; }
+  .hero { padding-top: 90px; gap: 28px; padding-bottom: 30px; }
+  .section { padding-top: 30px; }
   .kpis { grid-template-columns: 1fr; }
   .kpi > p:first-child { min-height: 0; }
   .chartCard, .kpi { padding: 18px; }

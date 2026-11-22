@@ -46,28 +46,26 @@ const cases = [
 
 export default function StrategyUseCases() {
   return (
-    <section className="bg-[#030303] py-28 md:py-36">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#030303] ">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="mx-auto max-w-[900px] text-center">
-          <p className="font-mono text-[8px] tracking-[0.28em] text-[#9878ef]">
-            11 / WHERE IT APPLIES
-          </p>
-          <h2 className="mt-6 text-5xl font-medium tracking-[-0.055em] md:text-7xl">
+ 
+          <h2 className="mt-2 hyi-h1 hyi-white">
             Transformation moments
-            <span className="block text-[#7046e6]">that need direction.</span>
+            <span className="block hyi-blue">that need direction.</span>
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {cases.map(({ Icon, title, text }, index) => (
             <motion.article
               key={title}
               whileHover={{ y: -6 }}
-              className="group min-h-[350px] rounded-[28px] border border-white/[0.07] bg-[#080808] p-7"
+              className="group  rounded-[28px] border border-white/[0.07] bg-[#080808] p-7"
             >
               <div className="flex justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/25 bg-[#7046e6]/[0.08]">
-                  <Icon size={17} className="text-[#a98cf4]" />
+                  <Icon size={17} className="hyi-blue-icon" />
                 </div>
                 <ArrowUpRight
                   size={15}
@@ -75,11 +73,9 @@ export default function StrategyUseCases() {
                 />
               </div>
 
-              <span className="mt-9 block font-mono text-[7px] text-[#7046e6]">
-                USE CASE 0{index + 1}
-              </span>
-              <h3 className="mt-4 text-[23px] leading-tight">{title}</h3>
-              <p className="mt-5 text-[13px] leading-7 text-white/[0.46]">{text}</p>
+  
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+              <p className="mt-2 hyi-p">{text}</p>
             </motion.article>
           ))}
         </div>

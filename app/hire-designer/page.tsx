@@ -24,7 +24,7 @@ export default function HireDesignerPage() {
       <DesignSystemLab />
       {/* <EngineeringHandoff />
       <WhyHireDesigners /> */}
-      <DesignerCTA />
+      {/* <DesignerCTA /> */}
       <Footer/>
     </main>
   );

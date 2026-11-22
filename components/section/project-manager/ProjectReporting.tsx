@@ -10,21 +10,21 @@ import {
 
 export default function ProjectReporting() {
   return (
-    <section className=" bg-[#080808] px-5 py-10 sm:px-10 lg:px-20">
+    <section className=" bg-[#000000] px-5  sm:px-10 lg:px-20">
       <div className="mx-auto max-w-[1450px]">
-        <div className="mb-10 grid gap-8 lg:grid-cols-2">
+        <div className="mb-10 text-center mx-auto">
           <div>
           
 
-            <h2 className="mt-5 hyi-h1 hyi-white ">
+            <h2 className="mt-5 hyi-h1 hyi-white mx-auto">
               Clarity for everyone
               <br />
-              <span className="text-white/25">who needs it.</span>
+              <span className="hyi-blue">who needs it.</span>
             </h2>
           </div>
 
-          <div className="flex items-end lg:justify-end">
-            <p className="max-w-[390px] hyi-p hyi-gray">
+          <div className="">
+            <p className="max-w-[590px] hyi-p text-center mx-auto">
               Stakeholders get meaningful visibility without pulling your
               delivery team into endless status meetings.
             </p>

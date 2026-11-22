@@ -45,18 +45,16 @@ const capabilities = [
 
 export default function StrategyCapabilities() {
   return (
-    <section className="border-y border-white/[0.06] bg-[#070707] py-28 md:py-36">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <p className="font-mono text-[8px] tracking-[0.28em] text-[#9878ef]">
-          08 / STRATEGIC CAPABILITIES
-        </p>
+    <section className="">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+ 
 
-        <h2 className="mt-6 max-w-[850px] text-5xl font-medium tracking-[-0.055em] md:text-7xl">
+        <h2 className=" max-w-[850px] hyi-h1 hyi-white text-center mx-auto">
           One strategy.
-          <span className="text-[#7046e6]"> Multiple disciplines.</span>
+          <span className="hyi-blue"> Multiple disciplines.</span>
         </h2>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map(({ Icon, title, text }, index) => (
             <motion.div
               key={title}
@@ -65,21 +63,19 @@ export default function StrategyCapabilities() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
               whileHover={{ y: -6 }}
-              className="group min-h-[310px] rounded-[28px] border border-white/[0.07] bg-[#050505] p-7"
+              className="group  rounded-[28px] border border-white/[0.07] bg-[#050505] p-7"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-[#7046e6]/25 bg-[#7046e6]/[0.08]">
-                  <Icon size={17} className="text-[#a98cf4]" />
+                  <Icon size={17} className="hyi-white-icon" />
                 </div>
-                <span className="font-mono text-[8px] text-white/[0.2]">
-                  0{index + 1}
-                </span>
+             
               </div>
 
-              <h3 className="mt-10 text-[22px] tracking-[-0.025em]">{title}</h3>
-              <p className="mt-5 text-[13px] leading-7 text-white/[0.48]">{text}</p>
+              <h3 className="mt-2  hyi-h3 hyi-white">{title}</h3>
+              <p className="mt-2 hyi-p">{text}</p>
 
-              <div className="mt-8 h-px bg-white/[0.06]">
+              <div className="mt-4 h-px bg-white/[0.06]">
                 <div className="h-full w-0 bg-[#7046e6] transition-all duration-500 group-hover:w-full" />
               </div>
             </motion.div>

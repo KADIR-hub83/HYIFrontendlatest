@@ -278,7 +278,7 @@ function AIInfrastructureBuilding() {
       initial={{ opacity: 0, y: 70, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.1, delay: 0.2 }}
-      className="relative mx-auto mt-16 h-[690px] w-full max-w-[1250px]"
+      className="relative mx-auto mt-5 h-[690px] w-full max-w-[1250px]"
     >
       {/* Ground glow */}
       <div className="absolute bottom-[20px] left-1/2 h-[130px] w-[75%] -translate-x-1/2 rounded-full bg-[#7046e6]/30 blur-[90px]" />
@@ -529,21 +529,13 @@ function AIInfrastructureBuilding() {
 
 export default function GenerativeAIInfrastructurePage() {
   return (
-    <main className="overflow-hidden bg-[#030303] text-white selection:bg-[#7046e6] selection:text-white">
+    <main className="overflow-hidden  text-white selection:bg-[#7046e6] selection:text-white">
       <Header />
 
       {/* =====================================================
           HERO
       ===================================================== */}
-      <section className="relative min-h-screen overflow-hidden px-5 pb-24 pt-32 md:px-10 md:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,#16091d_0%,#070509_42%,#030303_75%)]" />
-
-        <PurpleGlow className="left-1/2 top-[32%] h-[800px] w-[1100px] -translate-x-1/2 -translate-y-1/2" />
-
-        <div className="absolute -left-[300px] top-[20%] h-[650px] w-[650px] rounded-full bg-[#7046e6]/10 blur-[180px]" />
-
-        <div className="absolute -right-[350px] top-[25%] h-[700px] w-[700px] rounded-full bg-[#390b44]/40 blur-[180px]" />
-
+      <section className="relative min-h-screen overflow-hidden px-5  pt-30 md:px-10 ">
         <div
           className="absolute inset-0 opacity-[0.16]"
           style={{
@@ -557,45 +549,30 @@ export default function GenerativeAIInfrastructurePage() {
           }}
         />
 
-        <div className="relative mx-auto max-w-[1500px]">
+        <div className="relative mx-auto max-w-[1350px]">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-[1200px] text-center"
           >
-            <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 backdrop-blur-xl">
-              <motion.span
-                animate={{
-                  opacity: [0.25, 1, 0.25],
-                }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-[#b69df4]"
-              />
+         
 
-              <span className="font-mono text-[7px] uppercase tracking-[0.28em] text-[#bda8f4]">
-                HYI.AI / AI CLOUD / GENERATIVE AI INFRASTRUCTURE
-              </span>
-            </div>
-
-            <h1 className="mt-9 text-[clamp(4rem,8.5vw,8.8rem)] font-semibold leading-[0.86] tracking-[-0.075em]">
+            <h1 className="hyi-h1 hyi-white">
               Infrastructure for
-              <span className="block text-[#cdbbf8]">
+              <span className="block hyi-blue">
                 generative intelligence.
               </span>
             </h1>
 
-            <p className="mx-auto mt-9 max-w-[830px] text-[13px] leading-7 text-white/[0.5] md:text-[15px] md:leading-8">
+            <p className="mx-auto mt-2 max-w-[830px] hyi-p">
               Build the compute, model runtime, data, networking,
               security and operational foundations required to move
               generative AI from isolated experiments into
               production enterprise systems.
             </p>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-2">
+            <div className="mt-2 flex flex-wrap justify-center gap-2">
               {[
                 "GPU Compute",
                 "Foundation Models",
@@ -606,7 +583,7 @@ export default function GenerativeAIInfrastructurePage() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2.5 font-mono text-[6px] tracking-[0.17em] text-white/[0.4]"
+                  className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2.5 font-mono hyi-p tracking-[0.17em] text-white/[0.4]"
                 >
                   {item.toUpperCase()}
                 </div>
@@ -615,14 +592,6 @@ export default function GenerativeAIInfrastructurePage() {
           </motion.div>
 
           <AIInfrastructureBuilding />
-
-          <a
-            href="#infrastructure"
-            className="mx-auto mt-4 flex w-fit items-center gap-3 font-mono text-[7px] tracking-[0.22em] text-white/[0.3]"
-          >
-            EXPLORE THE INFRASTRUCTURE
-            <ArrowDown size={11} />
-          </a>
         </div>
       </section>
 
@@ -631,36 +600,34 @@ export default function GenerativeAIInfrastructurePage() {
       ===================================================== */}
       <section
         id="infrastructure"
-        className="relative overflow-hidden border-y border-white/[0.06] bg-[#060407] py-28 md:py-36"
+        className="relative overflow-hidden  py-10"
       >
         <PurpleGlow className="-left-[400px] top-1/2 h-[800px] w-[800px] -translate-y-1/2" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-                01 / AI INFRASTRUCTURE
-              </p>
+            
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 The foundation
-                <span className="block text-[#bda8f4]">
+                <span className="block hyi-blue">
                   beneath the model.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[590px] text-[13px] leading-7 text-white/[0.48]">
+              <p className="mt-2 max-w-[590px] hyi-p">
                 Generative AI applications depend on far more than
                 access to a language model. Production systems require
                 connected compute, storage, model serving, retrieval,
                 networking, security and observability foundations.
               </p>
 
-              <div className="mt-10 space-y-3">
+              <div className="mt-4 space-y-3">
                 {[
                   "Accelerated AI compute",
                   "Model runtime infrastructure",
@@ -677,7 +644,7 @@ export default function GenerativeAIInfrastructurePage() {
                       className="text-[#9878ef]"
                     />
 
-                    <span className="text-[11px] text-white/[0.5]">
+                    <span className="hyi-p">
                       {item}
                     </span>
                   </div>
@@ -727,7 +694,7 @@ export default function GenerativeAIInfrastructurePage() {
                     borderColor:
                       "rgba(112,70,230,.35)",
                   }}
-                  className="min-h-[280px] rounded-[28px] border border-white/[0.07] bg-white/[0.025] p-7"
+                  className=" rounded-[28px] border border-white/[0.07] bg-white/[0.025] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/10">
@@ -736,17 +703,13 @@ export default function GenerativeAIInfrastructurePage() {
                         className="text-[#bba4f6]"
                       />
                     </div>
-
-                    <span className="font-mono text-[6px] text-white/[0.18]">
-                      0{index + 1}
-                    </span>
                   </div>
 
-                  <h3 className="mt-12 text-2xl font-medium">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.43]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -759,32 +722,30 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           CAPABILITIES
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#030303] py-28 md:py-36">
+      <section className="relative overflow-hidden ">
         <PurpleGlow className="-right-[400px] top-1/2 h-[850px] w-[850px] -translate-y-1/2" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div className="max-w-[900px]">
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-                02 / PLATFORM CAPABILITIES
-              </p>
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="flex flex-col text-center mx-auto">
+            <div className="max-w-[900px] mx-auto">
+           
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              <h2 className="hyi-h1 hyi-white">
                 Everything generative AI
-                <span className="block text-[#bda8f4]">
+                <span className="block hyi-blue">
                   needs underneath.
                 </span>
               </h2>
             </div>
 
-            <p className="max-w-[470px] text-[13px] leading-7 text-white/[0.45]">
+            <p className="max-w-[670px] hyi-p mx-auto">
               Create a common infrastructure layer capable of
               supporting models, agents, copilots and emerging
               generative AI applications.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map(
               ({ Icon, number, title, text }, index) => (
                 <motion.article
@@ -806,7 +767,7 @@ export default function GenerativeAIInfrastructurePage() {
                     borderColor:
                       "rgba(112,70,230,.45)",
                   }}
-                  className="group min-h-[340px] rounded-[29px] border border-white/[0.07] bg-[#080609] p-7"
+                  className="group rounded-[29px] border border-white/[0.07] bg-[#080609] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/10">
@@ -815,17 +776,13 @@ export default function GenerativeAIInfrastructurePage() {
                         className="text-[#bba4f6]"
                       />
                     </div>
-
-                    <span className="font-mono text-[6px] tracking-[0.2em] text-[#9878ef]/60">
-                      {number}
-                    </span>
                   </div>
 
-                  <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.43]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -838,30 +795,27 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           PLATFORM STACK
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070508] py-28 md:py-36">
+      <section className="relative overflow-hidden  bg-[#070508] py-10">
         <PurpleGlow className="left-1/2 top-1/2 h-[800px] w-[1000px] -translate-x-1/2 -translate-y-1/2" />
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[950px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-              03 / GENERATIVE AI STACK
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+       
+            <h2 className="hyi-h1 hyi-white">
               One infrastructure.
-              <span className="block text-[#bda8f4]">
+              <span className="block hyi-blue">
                 Multiple AI layers.
               </span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-[720px] text-[13px] leading-7 text-white/[0.44]">
+            <p className="mx-auto mt-2 max-w-[720px] hyi-p">
               Treat generative AI infrastructure as a connected
               technology stack rather than independent model
               endpoints.
             </p>
           </div>
 
-          <div className="mx-auto mt-16 max-w-[1200px]">
+          <div className="mx-auto mt-4 max-w-[1200px]">
             {platformStack.map(
               ({ Icon, label, title, text }, index) => (
                 <motion.div
@@ -880,22 +834,18 @@ export default function GenerativeAIInfrastructurePage() {
                   viewport={{ once: true }}
                   className="group grid gap-5 border-t border-white/[0.07] py-9 md:grid-cols-[0.25fr_0.65fr_1.1fr]"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
                     <Icon
                       size={15}
                       className="text-[#9878ef]"
                     />
-
-                    <span className="font-mono text-[6px] tracking-[0.2em] text-white/[0.25]">
-                      {label}
-                    </span>
                   </div>
 
-                  <h3 className="text-2xl font-medium tracking-[-0.03em]">
+                  <h3 className="hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="max-w-[620px] text-[12px] leading-7 text-white/[0.43]">
+                  <p className="max-w-[620px] hyi-p">
                     {text}
                   </p>
                 </motion.div>
@@ -910,24 +860,21 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           DEPLOYMENT
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#030303] py-28 md:py-36">
-        <PurpleGlow className="-left-[350px] top-1/2 h-[800px] w-[800px] -translate-y-1/2" />
+      <section className="relative overflow-hidden ">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-                04 / DEPLOYMENT ARCHITECTURE
-              </p>
+         
 
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+              <h2 className="hyi-h1 hyi-white">
                 Infrastructure that fits
-                <span className="block text-[#bda8f4]">
+                <span className="block hyi-blue">
                   the AI workload.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[500px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[500px] hyi-p">
                 Generative AI workloads can require different
                 infrastructure boundaries. Architecture should
                 follow application, data, performance and
@@ -955,24 +902,20 @@ export default function GenerativeAIInfrastructurePage() {
                     whileHover={{
                       y: -5,
                     }}
-                    className="min-h-[300px] rounded-[28px] border border-white/[0.07] bg-[#080609] p-7"
+                    className=" rounded-[28px] border border-white/[0.07] bg-[#080609] p-7"
                   >
                     <div className="flex items-center justify-between">
                       <Icon
                         size={18}
                         className="text-[#b69df4]"
                       />
-
-                      <span className="font-mono text-[6px] text-white/[0.18]">
-                        ARCH 0{index + 1}
-                      </span>
                     </div>
 
-                    <h3 className="mt-14 text-xl font-medium">
+                    <h3 className="mt-2 hyi-h3 hyi-white">
                       {title}
                     </h3>
 
-                    <p className="mt-5 text-[12px] leading-7 text-white/[0.43]">
+                    <p className="mt-2 hyi-p">
                       {text}
                     </p>
                   </motion.article>
@@ -986,24 +929,21 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           REQUEST FLOW
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#080609] py-28 md:py-36">
-        <PurpleGlow className="-right-[350px] top-1/2 h-[850px] w-[850px] -translate-y-1/2" />
+      <section className="relative overflow-hidden py-10">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
-          <div className="max-w-[900px]">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-              05 / AI REQUEST FLOW
-            </p>
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
+          <div className="max-w-[900px] text-center mx-auto">
+   
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               From application
-              <span className="block text-[#bda8f4]">
+              <span className="block hyi-blue">
                 to intelligence.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 lg:grid-cols-5">
+          <div className="mt-5 grid gap-3 lg:grid-cols-5">
             {workloadFlow.map(
               ({ number, title, text }, index) => (
                 <motion.article
@@ -1020,19 +960,14 @@ export default function GenerativeAIInfrastructurePage() {
                   transition={{
                     delay: index * 0.08,
                   }}
-                  className="relative min-h-[300px] rounded-[26px] border border-white/[0.07] bg-[#030303]/80 p-6"
+                  className="relative  rounded-[26px] border border-white/[0.07] bg-[#030303]/80 p-6"
                 >
-                  <span className="font-mono text-[7px] tracking-[0.2em] text-[#9878ef]">
-                    {number}
-                  </span>
 
-                  <div className="mt-10 h-px bg-gradient-to-r from-[#7046e6]/70 to-transparent" />
-
-                  <h3 className="mt-8 text-xl font-medium">
+                  <h3 className="hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[11px] leading-6 text-white/[0.42]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
 
@@ -1053,10 +988,9 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           SECURITY
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#030303] py-28 md:py-36">
-        <PurpleGlow className="left-1/2 top-1/2 h-[800px] w-[1000px] -translate-x-1/2 -translate-y-1/2" />
+      <section className="relative overflow-hidden ">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
             <motion.div
               initial={{
@@ -1069,18 +1003,15 @@ export default function GenerativeAIInfrastructurePage() {
               }}
               viewport={{ once: true }}
             >
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-                06 / AI SECURITY
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+     
+              <h2 className="hyi-h1 hyi-white">
                 Control every
-                <span className="block text-[#bda8f4]">
+                <span className="block hyi-blue">
                   infrastructure layer.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[600px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[600px] hyi-p">
                 Security architecture for generative AI extends
                 across identities, applications, model endpoints,
                 retrieval systems, networks and underlying cloud
@@ -1117,18 +1048,18 @@ export default function GenerativeAIInfrastructurePage() {
                     borderColor:
                       "rgba(112,70,230,.4)",
                   }}
-                  className="min-h-[260px] rounded-[27px] border border-white/[0.07] bg-[#080609] p-7"
+                  className=" rounded-[27px] border border-white/[0.07] bg-[#080609] p-7"
                 >
                   <Icon
                     size={17}
                     className="text-[#b69df4]"
                   />
 
-                  <h3 className="mt-12 text-xl font-medium">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[11px] leading-6 text-white/[0.42]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -1141,24 +1072,20 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           PRINCIPLES
       ===================================================== */}
-      <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070508] py-28 md:py-36">
-        <PurpleGlow className="-left-[400px] top-1/2 h-[800px] w-[800px] -translate-y-1/2" />
+      <section className="relative overflow-hidden py-10">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
-              <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-                07 / DESIGN PRINCIPLES
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-6xl">
+     
+              <h2 className="hyi-h1 hyi-white">
                 Build the platform
-                <span className="block text-[#bda8f4]">
+                <span className="block hyi-blue">
                   behind AI.
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-[470px] text-[13px] leading-7 text-white/[0.45]">
+              <p className="mt-2 max-w-[470px] hyi-p">
                 Models will continue changing. Strong infrastructure
                 principles create a more durable foundation for
                 generative AI adoption.
@@ -1189,16 +1116,14 @@ export default function GenerativeAIInfrastructurePage() {
                     </div>
 
                     <div>
-                      <span className="font-mono text-[6px] tracking-[0.18em] text-[#9878ef]/60">
-                        PRINCIPLE 0{index + 1}
-                      </span>
+            
 
-                      <h3 className="mt-3 text-xl font-medium">
+                      <h3 className="mt-2 hyi-h3 hyi-white">
                         {title}
                       </h3>
                     </div>
 
-                    <p className="text-[12px] leading-7 text-white/[0.43]">
+                    <p className="hyi-p">
                       {text}
                     </p>
                   </motion.div>
@@ -1214,24 +1139,21 @@ export default function GenerativeAIInfrastructurePage() {
       {/* =====================================================
           USE CASES
       ===================================================== */}
-      <section className="relative overflow-hidden bg-[#030303] py-28 md:py-36">
-        <PurpleGlow className="-right-[400px] top-1/2 h-[900px] w-[900px] -translate-y-1/2" />
+      <section className="relative overflow-hidden">
 
-        <div className="relative mx-auto max-w-[1500px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1350px] px-5 md:px-10">
           <div className="mx-auto max-w-[1000px] text-center">
-            <p className="font-mono text-[7px] tracking-[0.28em] text-[#9878ef]">
-              08 / GENERATIVE AI USE CASES
-            </p>
+     
 
-            <h2 className="mt-6 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h2 className="hyi-h1 hyi-white">
               One foundation.
-              <span className="block text-[#bda8f4]">
+              <span className="block hyi-blue">
                 Many AI experiences.
               </span>
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {useCases.map(
               ({ Icon, tag, title, text }, index) => (
                 <motion.article
@@ -1253,7 +1175,7 @@ export default function GenerativeAIInfrastructurePage() {
                     borderColor:
                       "rgba(112,70,230,.4)",
                   }}
-                  className="min-h-[350px] rounded-[28px] border border-white/[0.07] bg-[#080609] p-7"
+                  className=" rounded-[28px] border border-white/[0.07] bg-[#080609] p-7"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/10">
@@ -1262,17 +1184,13 @@ export default function GenerativeAIInfrastructurePage() {
                         className="text-[#bba4f6]"
                       />
                     </div>
-
-                    <span className="font-mono text-[6px] tracking-[0.18em] text-[#9878ef]/65">
-                      {tag}
-                    </span>
                   </div>
 
-                  <h3 className="mt-16 text-2xl font-medium tracking-[-0.03em]">
+                  <h3 className="mt-2 hyi-h3 hyi-white">
                     {title}
                   </h3>
 
-                  <p className="mt-5 text-[12px] leading-7 text-white/[0.43]">
+                  <p className="mt-2 hyi-p">
                     {text}
                   </p>
                 </motion.article>
@@ -1282,69 +1200,7 @@ export default function GenerativeAIInfrastructurePage() {
         </div>
       </section>
 
-      {/* =====================================================
-          CLOSING
-      ===================================================== */}
-      <section className="relative overflow-hidden border-t border-white/[0.06] bg-[#050306] px-5 py-32 md:px-10 md:py-44">
-        <div className="absolute left-1/2 top-1/2 h-[900px] w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#390b44]/55 blur-[200px]" />
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 35,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          className="relative mx-auto max-w-[1250px] text-center"
-        >
-          <div className="mx-auto flex w-fit items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2">
-            <Server
-              size={10}
-              className="text-[#b69df4]"
-            />
-
-            <span className="font-mono text-[6px] tracking-[0.24em] text-white/[0.45]">
-              GENERATIVE AI INFRASTRUCTURE
-            </span>
-          </div>
-
-          <h2 className="mt-9 text-[clamp(4rem,8vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.075em]">
-            AI is only as strong
-            <span className="block text-[#cdbbf8]">
-              as what runs beneath it.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-9 max-w-[780px] text-[13px] leading-7 text-white/[0.46] md:text-[14px]">
-            Create the cloud infrastructure foundation that connects
-            accelerated compute, foundation models, enterprise
-            knowledge, secure inference and production operations.
-          </p>
-
-          <div className="mx-auto mt-14 h-px max-w-[720px] bg-gradient-to-r from-transparent via-[#7046e6]/55 to-transparent" />
-
-          <div className="mt-10 flex flex-wrap justify-center gap-x-9 gap-y-4">
-            {[
-              "COMPUTE",
-              "MODELS",
-              "KNOWLEDGE",
-              "INFERENCE",
-              "SECURITY",
-              "OPERATIONS",
-            ].map((item) => (
-              <span
-                key={item}
-                className="font-mono text-[6px] tracking-[0.22em] text-white/[0.25]"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </section>
 
       <Footer />
     </main>

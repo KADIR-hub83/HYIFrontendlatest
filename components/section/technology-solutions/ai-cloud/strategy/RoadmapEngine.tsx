@@ -40,23 +40,10 @@ export default function RoadmapEngine() {
                 index % 2 ? "md:col-start-2 md:ml-8" : "md:mr-8"
               }`}
             >
-              <div
-                className={`flex items-center gap-2 ${
-                  index % 2 ? "" : "md:justify-end"
-                }`}
-              >
-                {index === 0 ? (
-                  <CircleDot size={13} className="text-[#9878ef]" />
-                ) : (
-                  <CheckCircle2 size={13} className="text-[#9878ef]" />
-                )}
-                <span className="font-mono text-[7px] text-[#9878ef]">
-                  PHASE 0{index + 1}
-                </span>
-              </div>
+             
 
-              <h3 className="mt-4 text-[19px]">{title}</h3>
-              <p className="mt-3 text-[11px] leading-6 text-white/[0.4]">{text}</p>
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+              <p className="mt-2 hyi-p">{text}</p>
             </div>
           </motion.div>
         ))}

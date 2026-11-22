@@ -45,20 +45,16 @@ const stages = [
 
 export default function MLOpsWorkflow() {
   return (
-    <section className="bg-[#030303] py-28">
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
+    <section className="bg-[#000000] py-10">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
         <div className="mx-auto max-w-[950px] text-center">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            10 / OPERATING WORKFLOW
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             Experiment to production.
-            <span className="text-[#7046e6]"> Then repeat.</span>
+            <span className="hyi-blue"> Then repeat.</span>
           </h2>
         </div>
 
-        <div className="relative mt-16">
+        <div className="relative mt-5">
           <div className="absolute left-[8%] right-[8%] top-[45px] hidden h-px bg-[#7046e6]/25 lg:block" />
 
           <motion.span
@@ -75,17 +71,13 @@ export default function MLOpsWorkflow() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07 }}
-                className="relative z-10 min-h-[290px] rounded-[22px] border border-white/[0.07] bg-[#080808] p-5"
+                className="relative z-10  rounded-[22px] border border-white/[0.07] bg-[#080808] p-5"
               >
                 <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-[#7046e6]/30 bg-[#0a0710]">
                   <Icon size={14} className="text-[#c9b6ff]" />
                 </div>
-
-                <p className="mt-9 font-mono text-[5px] text-[#7046e6]">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-3 text-lg">{title}</h3>
-                <p className="mt-4 text-[10px] leading-6 text-white/[0.38]">
+                <h3 className="mt-1 hyi-h3 hyi-white">{title}</h3>
+                <p className="mt-1 hyi-p">
                   {text}
                 </p>
               </motion.article>

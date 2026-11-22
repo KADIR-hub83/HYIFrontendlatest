@@ -51,28 +51,26 @@ const layers = [
 
 export default function DataPlatformLayers() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#070707] py-28">
+    <section className="relative overflow-hidden   bg-[#070707] py-10">
       <div className="absolute left-[25%] top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#390b44]/25 blur-[170px]" />
 
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="max-w-[900px]">
-          <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-            03 / PLATFORM LAYERS
-          </p>
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="max-w-[900px] text-center mx-auto">
+       
 
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+          <h2 className="hyi-h1 hyi-white">
             A platform is more than
-            <span className="block text-[#7046e6]">a database.</span>
+            <span className="block hyi-blue">a database.</span>
           </h2>
 
-          <p className="mt-7 max-w-[720px] text-[13px] leading-7 text-white/[0.5]">
+          <p className="mt-2 max-w-[720px] hyi-p mx-auto">
             A complete data platform coordinates how information enters the
             organization, how it is processed, how it is governed and how it
             becomes useful to people and intelligent systems.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {layers.map(({ Icon, number, title, text }, index) => (
             <motion.article
               key={title}
@@ -84,21 +82,17 @@ export default function DataPlatformLayers() {
                 y: -6,
                 borderColor: "rgba(112,70,230,.35)",
               }}
-              className="min-h-[320px] rounded-[26px] border border-white/[0.07] bg-[#030303] p-7"
+              className=" rounded-[26px] border border-white/[0.07] bg-[#030303] p-7"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#7046e6]/25 bg-[#7046e6]/[0.08]">
                   <Icon size={16} className="text-[#a486f0]" />
                 </div>
-
-                <span className="font-mono text-[6px] tracking-[0.2em] text-[#7046e6]">
-                  {number}
-                </span>
               </div>
 
-              <h3 className="mt-14 text-2xl">{title}</h3>
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
 
-              <p className="mt-5 text-[12px] leading-7 text-white/[0.48]">
+              <p className="mt-1 hyi-p">
                 {text}
               </p>
             </motion.article>

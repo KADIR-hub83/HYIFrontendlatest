@@ -48,31 +48,28 @@ export default function GPUCloudOverview() {
   return (
     <section
       id="gpu-overview"
-      className="border-y border-white/[0.06] bg-[#070707] py-28"
+      className=" bg-[#070707] py-10"
     >
-      <div className="mx-auto max-w-[1500px] px-5 md:px-10">
-        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="max-w-[850px]">
-            <p className="font-mono text-[7px] tracking-[0.3em] text-[#9675ed]">
-              01 / GPU CLOUD SYSTEM
-            </p>
-
-            <h2 className="mt-6 text-4xl font-medium tracking-[-0.055em] md:text-7xl">
+      <div className="mx-auto max-w-[1350px] px-5 md:px-10">
+        <div className="flex flex-col text-center mx-auto">
+          <div className="max-w-[850px] mx-auto">
+          
+            <h2 className="hyi-h1 hyi-white mx-auto">
               GPUs are resources.
-              <span className="block text-[#7653df]">
+              <span className="block hyi-blue">
                 The cloud is the system.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-[470px] text-[12px] leading-7 text-white/[0.45]">
+          <p className="max-w-[670px] hyi-p mx-auto">
             A GPU cloud combines accelerated compute with scheduling, data,
             networking, orchestration and operations so teams can consume
             specialized capacity as an integrated AI platform.
           </p>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-6">
           <GPUClusterUniverse />
         </div>
 
@@ -85,11 +82,11 @@ export default function GPUCloudOverview() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
               whileHover={{ y: -5 }}
-              className="min-h-[245px] rounded-[24px] border border-white/[0.07] bg-[#030303] p-7"
+              className="rounded-[24px] border border-white/[0.07] bg-[#030303] p-7"
             >
               <Icon size={15} className="text-[#a98cf4]" />
-              <h3 className="mt-9 text-xl">{title}</h3>
-              <p className="mt-4 text-[11px] leading-6 text-white/[0.42]">
+              <h3 className="mt-2 hyi-h3 hyi-white">{title}</h3>
+              <p className="mt-2 hyi-p">
                 {text}
               </p>
             </motion.article>
