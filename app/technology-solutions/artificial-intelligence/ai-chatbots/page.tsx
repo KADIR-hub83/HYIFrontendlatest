@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AIServiceShell from "@/components/section/technology-solutions/artificial-intelligence/AIServiceShell";
-import { getAIService } from "@/data/ai-services.data";
+import { getAIService } from "@/components/data/ai-services.data";
 
 const service = getAIService("ai-chatbots");
 
