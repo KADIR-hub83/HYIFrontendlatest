@@ -4,13 +4,13 @@ import "./hyi-hire.css";
 import { Toaster } from "sonner";
 import Head from "next/head";
 
-import { Figtree } from "next/font/google";
+import "@fontsource-variable/figtree";
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+// const figtree = Figtree({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700"],
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title:
@@ -45,7 +45,7 @@ export default function RootLayout({
           property="og:image"
           content="https://www.hyi.ai/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFeature-Image.d17762ab.png&w=640&q=75"
         />
-        <meta property="og:url" content="https://www.hyi.ai/" />
+        <meta property="og:url" content="https://www.hyi.co.in/" />
         <meta property="og:site_name" content="Hyi.ai" />
         <meta property="og:type" content="website" />
 
@@ -66,7 +66,11 @@ export default function RootLayout({
 
         <meta charSet="UTF-8" />
       </Head>
-      <body className={`${figtree.className} antialiased`}>
+      {/* <body className={`${figtree.className} antialiased`}>
+        {children}
+        <Toaster richColors position="bottom-right" />
+      </body> */}
+       <body className="antialiased">
         {children}
         <Toaster richColors position="bottom-right" />
       </body>

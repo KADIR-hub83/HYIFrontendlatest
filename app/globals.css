@@ -123,6 +123,9 @@
 
   body {
     @apply bg-background text-foreground;
+
+  font-family: "Figtree Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
   }
 }
 
