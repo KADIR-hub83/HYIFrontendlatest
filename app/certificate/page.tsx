@@ -685,6 +685,644 @@
 
 
 
+// "use client";
+
+// import React, { useCallback, useEffect, useRef, useState } from "react";
+// import html2canvas from "html2canvas-pro";
+// import { jsPDF } from "jspdf";
+// import CertificateView, {
+//   ScaledCertificate,
+//   CertData,
+//   CLASS_OPTIONS,
+//   classLabel,
+//   formatDate,
+//   loadLogos,
+// } from "@/components/Certificate/CertificateView";
+
+// type EditLog = { editedAt: string; changes: { field: string; from: string; to: string }[] };
+// type Cert = CertData & {
+//   _id: string;
+//   createdAt: string;
+//   updatedAt: string;
+//   editCount: number;
+//   editLog: EditLog[];
+// };
+// type Stats = { total: number; edited: number; byClass: Record<string, number>; nextId: string; usedSeq: number[] };
+
+// const EMPTY_STATS: Stats = { total: 0, edited: 0, byClass: {}, nextId: "", usedSeq: [] };
+// const POLL_MS = 5000; // har 5 second mein auto-sync
+
+// const localToday = () =>
+//   new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+// const dt = (iso: string) =>
+//   new Date(iso).toLocaleString("en-IN", {
+//     day: "2-digit",
+//     month: "short",
+//     year: "numeric",
+//     hour: "2-digit",
+//     minute: "2-digit",
+//     hour12: true,
+//   });
+
+// const inputCls =
+//   "w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-100";
+
+// /* safe fetch: HTML error aaye toh bhi crash nahi, asli status milta hai */
+// async function api(url: string, init?: RequestInit) {
+//   try {
+//     const res = await fetch(url, { cache: "no-store", ...init });
+//     const text = await res.text();
+//     let data: any = {};
+//     try {
+//       data = text ? JSON.parse(text) : {};
+//     } catch {
+//       data = { error: `Server error (${res.status}). Check the terminal for errors.` };
+//     }
+//     return { ok: res.ok, status: res.status, data };
+//   } catch {
+//     return { ok: false, status: 0, data: { error: "Unable to connect to the server. Please check your internet connection or verify that the server is running." } };
+//   }
+// }
+
+// export default function CertificatePage() {
+//   const exportRef = useRef<HTMLDivElement>(null);
+//   const reqId = useRef(0);
+
+//   const [view, setView] = useState<"generate" | "history">("generate");
+//   const [items, setItems] = useState<Cert[]>([]);
+//   const [stats, setStats] = useState<Stats>(EMPTY_STATS);
+//   const [lastSync, setLastSync] = useState<Date | null>(null);
+//   const [filterClass, setFilterClass] = useState("all");
+//   const [search, setSearch] = useState("");
+//   const [expanded, setExpanded] = useState<string | null>(null);
+
+//   const [form, setForm] = useState({
+//     studentName: "",
+//     fatherName: "",
+//     studentClass: "10",
+//     age: "",
+//     certificateId: "",
+//     completionDate: localToday(),
+//   });
+//   const [idEdited, setIdEdited] = useState(false);
+//   const [editingId, setEditingId] = useState<string | null>(null);
+//   const [viewing, setViewing] = useState<Cert | null>(null);
+//   const [exportData, setExportData] = useState<CertData | null>(null);
+//   const [busy, setBusy] = useState(false);
+//   const [msg, setMsg] = useState<{ type: "ok" | "err"; text: string } | null>(null);
+
+//   const setF = (k: keyof typeof form, v: string) => setForm((p) => ({ ...p, [k]: v }));
+
+//   const flash = (type: "ok" | "err", text: string) => {
+//     setMsg({ type, text });
+//     setTimeout(() => setMsg(null), 4000);
+//   };
+
+//   /* ---------- load (latest request hi jeetegi, purana response ignore) ---------- */
+//   const load = useCallback(async () => {
+//     const id = ++reqId.current;
+//     const params = new URLSearchParams({ class: filterClass });
+//     if (search.trim()) params.set("q", search.trim());
+//     const { ok, data } = await api(`/api/certificates?${params}`);
+//     if (!ok || id !== reqId.current) return null;
+//     setItems(data.items || []);
+//     setStats({ ...EMPTY_STATS, ...(data.stats || {}) });
+//     setLastSync(new Date());
+//     return { ...EMPTY_STATS, ...(data.stats || {}) } as Stats;
+//   }, [filterClass, search]);
+
+//   // filter / search badalne par
+//   useEffect(() => {
+//     const t = setTimeout(load, 250);
+//     return () => clearTimeout(t);
+//   }, [load]);
+
+//   // auto-sync: har 5 sec, tab wapas khulne par, window focus par
+//   useEffect(() => {
+//     const tick = () => {
+//       if (!document.hidden) load();
+//     };
+//     const iv = setInterval(tick, POLL_MS);
+//     window.addEventListener("focus", tick);
+//     document.addEventListener("visibilitychange", tick);
+//     return () => {
+//       clearInterval(iv);
+//       window.removeEventListener("focus", tick);
+//       document.removeEventListener("visibilitychange", tick);
+//     };
+//   }, [load]);
+
+//   // certificate number auto-fill (jab tak user ne khud nahi badla aur edit mode nahi hai)
+//   useEffect(() => {
+//     if (!editingId && !idEdited && stats.nextId) setF("certificateId", stats.nextId);
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [stats.nextId, editingId, idEdited]);
+
+//   const resetForm = (nextId: string) => {
+//     setEditingId(null);
+//     setIdEdited(false);
+//     setForm({
+//       studentName: "",
+//       fatherName: "",
+//       studentClass: form.studentClass,
+//       age: "",
+//       certificateId: nextId,
+//       completionDate: localToday(),
+//     });
+//   };
+
+//   /* ---------- PDF (HD, exact A4 landscape) ---------- */
+//   const exportPDF = async (data: CertData) => {
+//     try {
+//       setExportData(data);
+//       await loadLogos();
+//       await document.fonts.ready;
+//       await new Promise((r) => setTimeout(r, 600));
+//       if (!exportRef.current) return;
+
+//       const canvas = await html2canvas(exportRef.current, {
+//         scale: 3.5,
+//         useCORS: true,
+//         backgroundColor: "#ffffff",
+//         width: 1280,
+//         height: 905,
+//         logging: false,
+//       });
+
+//       const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4", compress: true });
+//       pdf.addImage(canvas.toDataURL("image/jpeg", 0.95), "JPEG", 0, 0, 297, 210, undefined, "FAST");
+//       pdf.save(`${data.studentName}-${data.certificateId.replace(/\//g, "-")}.pdf`);
+//     } catch (e) {
+//       console.error(e);
+//       flash("err", "PDF generation failed. Please try again.");
+//     }
+//   };
+
+//   /* ---------- save / update ---------- */
+//   const save = async (download: boolean, force = false): Promise<void> => {
+//     setBusy(true);
+//     try {
+//       const url = editingId ? `/api/certificates?id=${editingId}` : "/api/certificates";
+//       const { ok, status, data } = await api(url, {
+//         method: editingId ? "PUT" : "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ ...form, force }),
+//       });
+
+//       if (status === 409 && data.code === "DUPLICATE_STUDENT") {
+//         if (confirm(`${data.error}.\n\nDo you still want to create a new certificate?`)) {
+//           return await save(download, true);
+//         }
+//         return;
+//       }
+//       if (!ok) return flash("err", data.error || "Not Saved");
+
+//        const saved: Cert = data.item;
+//       flash("ok", data.unchanged ? "Not Found Any Changes" : editingId ? "Certificate updated" : "Certificate Saved");
+
+//       // turant list mein dikhao (bina wait kiye)
+//       reqId.current++;
+//       setItems((prev) =>
+//         editingId
+//           ? prev.map((i) => (i._id === saved._id ? saved : i))
+//           : (filterClass === "all" || filterClass === saved.studentClass) && !search.trim()
+//           ? [saved, ...prev]
+//           : prev
+//       );
+
+//       // ⬇️ YE NAYA BLOCK: certificate number turant update
+//       const old = editingId ? items.find((i) => i._id === editingId) : null;
+//       setStats((s) => {
+//         const used = s.usedSeq.filter((n) => !old || n !== seqOf(old.certificateId));
+//         const ns = seqOf(saved.certificateId);
+//         if (ns && !used.includes(ns)) used.push(ns);
+//         return { ...s, total: editingId ? s.total : s.total + 1, usedSeq: used, nextId: buildNext(used) };
+//       });
+
+//       if (download) await exportPDF(saved);
+//       const s = await load();
+//       resetForm(s?.nextId || "");
+//     } finally {
+//       setBusy(false);
+//     }
+//   };
+
+//   const startEdit = (c: Cert) => {
+//     setEditingId(c._id);
+//     setIdEdited(true);
+//     setForm({
+//       studentName: c.studentName,
+//       fatherName: c.fatherName,
+//       studentClass: c.studentClass,
+//       age: String(c.age),
+//       certificateId: c.certificateId,
+//       completionDate: c.completionDate,
+//     });
+//     setView("generate");
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+//   };
+
+//   const seqOf = (id: string) => {
+//   const m = id.match(/^HYI\/TRM\/(\d{4})\/(\d+)$/);
+//   return m && Number(m[1]) === new Date().getFullYear() ? Number(m[2]) : 0;
+// };
+
+// const buildNext = (used: number[]) => {
+//   const set = new Set(used);
+//   let n = 1;
+//   while (set.has(n)) n++;
+//   return `HYI/TRM/${new Date().getFullYear()}/${String(n).padStart(2, "0")}`;
+// };
+
+//   /* ---------- delete (turant list se hatao, fail ho toh wapas lao) ---------- */
+// const remove = async (c: Cert) => {
+//   if (!confirm(`${c.studentName} (${c.certificateId}) Are you sure you want to delete this certificate?`)) return;
+
+//   reqId.current++; // in-flight purane response ko ignore karo
+//   const prevItems = items;
+//   const prevStats = stats;
+
+//   setItems((p) => p.filter((i) => i._id !== c._id));
+//   setStats((s) => {
+//     const used = s.usedSeq.filter((n) => n !== seqOf(c.certificateId));
+//     return {
+//       ...s,
+//       total: Math.max(0, s.total - 1),
+//       edited: c.editCount > 0 ? Math.max(0, s.edited - 1) : s.edited,
+//       byClass: { ...s.byClass, [c.studentClass]: Math.max(0, (s.byClass[c.studentClass] || 0) - 1) },
+//       usedSeq: used,
+//       nextId: buildNext(used),
+//     };
+//   });
+//   if (expanded === c._id) setExpanded(null);
+
+//   const { ok, status, data } = await api(`/api/certificates?id=${c._id}`, { method: "DELETE" });
+
+//   if (!ok && !(status === 404 && data.code === "ALREADY_DELETED")) {
+//     setItems(prevItems);
+//     setStats(prevStats);
+//     return flash("err", `Not Deleted: ${data.error || status}`);
+//   }
+
+//   flash("ok", "Certificate Deleted Successfully");
+//   const s = await load();
+//   if (editingId === c._id) resetForm(s?.nextId || "");
+// };
+//   const canSave =
+//     !busy &&
+//     form.studentName.trim() &&
+//     form.fatherName.trim() &&
+//     form.age &&
+//     form.certificateId.trim() &&
+//     form.completionDate;
+
+//   const previewData: CertData = form;
+
+//   /* ================= UI ================= */
+//   return (
+//     <div className="flex min-h-screen bg-[#f2effb]">
+//       {/* SIDEBAR */}
+//       <aside className="sticky top-0 flex h-screen w-[230px] shrink-0 flex-col border-r border-purple-100 bg-white p-4">
+//         <div className="mb-6 text-center">
+//           <img src="/logo-icon.svg" alt="HYI AI" className="mx-auto h-auto w-[90px]" />
+//           <p className="mt-2 text-[11px] font-bold uppercase tracking-[2px] text-purple-700">
+//             Certificate Dashboard
+//           </p>
+//         </div>
+
+//         <nav className="flex flex-col gap-2">
+//           <button
+//             onClick={() => setView("generate")}
+//             className={`rounded-xl px-4 py-3 text-left text-sm font-bold transition ${
+//               view === "generate" ? "bg-gradient-to-r from-[#6412d4] to-[#9414ec] text-white shadow-md" : "text-[#281065] hover:bg-purple-50"
+//             }`}
+//           >
+//             ✏️ New Certificate
+//           </button>
+//           <button
+//             onClick={() => setView("history")}
+//             className={`flex items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-bold transition ${
+//               view === "history" ? "bg-gradient-to-r from-[#6412d4] to-[#9414ec] text-white shadow-md" : "text-[#281065] hover:bg-purple-50"
+//             }`}
+//           >
+//             <span>🕘 History</span>
+//             <span className={`rounded-full px-2 py-0.5 text-xs ${view === "history" ? "bg-white/25" : "bg-purple-100 text-purple-700"}`}>
+//               {stats.total}
+//             </span>
+//           </button>
+//         </nav>
+
+//         <div className="mt-auto rounded-2xl bg-purple-50 p-4 text-center">
+//           <p className="text-3xl font-extrabold text-[#35117c]">{stats.total}</p>
+//           <p className="text-xs font-semibold text-purple-700">Certificates Distributed</p>
+//           {lastSync && (
+//             <p className="mt-2 flex items-center justify-center gap-1 text-[10px] text-gray-500">
+//               <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
+//               Live • {lastSync.toLocaleTimeString("en-IN")}
+//             </p>
+//           )}
+//         </div>
+//       </aside>
+
+//       {/* MAIN */}
+//       <main className="min-w-0 flex-1 px-4 py-6 md:px-8">
+//         {msg && (
+//           <div
+//             className={`fixed right-6 top-6 z-50 max-w-[360px] rounded-xl px-5 py-3 text-sm font-semibold shadow-lg ${
+//               msg.type === "ok" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+//             }`}
+//           >
+//             {msg.text}
+//           </div>
+//         )}
+
+//         {/* ================= GENERATE ================= */}
+//         {view === "generate" && (
+//           <div className="mx-auto max-w-[1100px]">
+//             <div className="mb-5 text-center">
+//               <div className="mb-2 inline-flex rounded-full border border-purple-200 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-[2px] text-purple-700">
+//                 HYI.AI Certificate Generator
+//               </div>
+//               <h1 className="text-3xl font-extrabold tracking-tight text-[#25105f]">
+//                 {editingId ? "Edit Certificate" : "Generate Certificate"}
+//               </h1>
+//             </div>
+
+//             {/* STUDENT INFO */}
+//             <section className="mb-4 rounded-3xl border border-purple-100 bg-white p-5 shadow-sm">
+//               <h2 className="mb-4 text-center font-bold text-[#281065]">Student Information</h2>
+//               <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+//                 <div className="md:col-span-2">
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Student Name</label>
+//                   <input className={inputCls} value={form.studentName} onChange={(e) => setF("studentName", e.target.value)} placeholder="Enter student name" />
+//                 </div>
+//                 <div className="md:col-span-2">
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Father Name</label>
+//                   <input className={inputCls} value={form.fatherName} onChange={(e) => setF("fatherName", e.target.value)} placeholder="Enter father name" />
+//                 </div>
+//                 <div className="md:col-span-2">
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Class</label>
+//                   <select className={inputCls} value={form.studentClass} onChange={(e) => setF("studentClass", e.target.value)}>
+//                     {CLASS_OPTIONS.map((c) => (
+//                       <option key={c} value={c}>{classLabel(c)}</option>
+//                     ))}
+//                   </select>
+//                 </div>
+//                 <div className="md:col-span-2">
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Age</label>
+//                   <input type="number" min={4} max={60} className={inputCls} value={form.age} onChange={(e) => setF("age", e.target.value)} placeholder="Enter age" />
+//                 </div>
+//               </div>
+//             </section>
+
+//             {/* CERTIFICATE DETAILS */}
+//             <section className="mb-4 rounded-3xl border border-purple-100 bg-white p-5 shadow-sm">
+//               <h2 className="mb-4 text-center font-bold text-[#281065]">Certificate Details</h2>
+//               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+//                 <div>
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Certificate Number</label>
+//                   <input
+//                     className={inputCls}
+//                     value={form.certificateId}
+//                     onChange={(e) => {
+//                       setIdEdited(true);
+//                       setF("certificateId", e.target.value);
+//                     }}
+//                     placeholder="HYI/TRM/2026/01"
+//                   />
+//                 </div>
+//                 <div>
+//                   <label className="mb-2 block text-sm font-semibold text-gray-700">Completion Date</label>
+//                   <input type="date" className={inputCls} value={form.completionDate} onChange={(e) => setF("completionDate", e.target.value)} />
+//                 </div>
+//               </div>
+
+//               <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+//                 <button
+//                   onClick={() => save(true)}
+//                   disabled={!canSave}
+//                   className="rounded-xl bg-gradient-to-r from-[#6412d4] to-[#9414ec] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-200 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
+//                 >
+//                   {busy ? "Please wait..." : editingId ? "⬇ Update & Download PDF" : "⬇ Save & Download PDF"}
+//                 </button>
+//                 <button
+//                   onClick={() => save(false)}
+//                   disabled={!canSave}
+//                   className="rounded-xl border border-purple-300 bg-white px-6 py-3 text-sm font-bold text-purple-700 transition hover:bg-purple-50 disabled:cursor-not-allowed disabled:opacity-50"
+//                 >
+//                   {editingId ? "Update Only" : "Save Only"}
+//                 </button>
+//                 {editingId && (
+//                   <button
+//                     onClick={() => resetForm(stats.nextId)}
+//                     className="rounded-xl px-5 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100"
+//                   >
+//                     Cancel Edit
+//                   </button>
+//                 )}
+//               </div>
+//             </section>
+
+//             {/* PREVIEW */}
+//             <section className="text-center">
+//               <div className="mb-3 flex items-center justify-center gap-3">
+//                 <h2 className="font-bold text-[#281065]">Certificate Preview</h2>
+//                 <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700">A4 Landscape</span>
+//               </div>
+//               <ScaledCertificate data={previewData} />
+//             </section>
+//           </div>
+//         )}
+
+//         {/* ================= HISTORY ================= */}
+//         {view === "history" && (
+//           <div className="mx-auto max-w-[1100px]">
+//             <div className="mb-5 text-center">
+//               <h1 className="text-3xl font-extrabold tracking-tight text-[#25105f]">Certificate History</h1>
+//               <p className="mt-1 text-sm text-gray-600">Saare distribute hue certificates, edits aur class-wise record</p>
+//             </div>
+
+//             <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+//               <Stat label="Total Distributed" value={stats.total} />
+//               <Stat label="Edited Certificates" value={stats.edited} />
+//               <Stat label="Showing" value={items.length} />
+//               <Stat label="Classes Covered" value={Object.values(stats.byClass).filter((n) => n > 0).length} />
+//             </div>
+
+//             <div className="mb-3 flex flex-wrap justify-center gap-2">
+//               <Chip active={filterClass === "all"} onClick={() => setFilterClass("all")}>
+//                 All ({stats.total})
+//               </Chip>
+//               {CLASS_OPTIONS.map((c) => (
+//                 <Chip key={c} active={filterClass === c} onClick={() => setFilterClass(c)}>
+//                   {classLabel(c)} ({stats.byClass[c] || 0})
+//                 </Chip>
+//               ))}
+//             </div>
+
+//             <div className="mx-auto mb-4 max-w-[480px]">
+//               <input className={inputCls} placeholder="Search name, father name ya certificate no" value={search} onChange={(e) => setSearch(e.target.value)} />
+//             </div>
+
+//             <div className="flex flex-col gap-3">
+//               {items.length === 0 && (
+//                 <div className="rounded-2xl bg-white p-10 text-center text-sm text-gray-500">No certificate found.</div>
+//               )}
+
+//               {items.map((c) => (
+//                 <div key={c._id} className="rounded-2xl border border-purple-100 bg-white p-4 shadow-sm">
+//                   <div className="flex flex-wrap items-center justify-between gap-3">
+//                     <div className="min-w-0">
+//                       <p className="truncate text-lg font-extrabold text-[#35117c]">{c.studentName}</p>
+//                       <p className="text-sm text-gray-600">
+//                         S/o · D/o {c.fatherName} • {classLabel(c.studentClass)} • Age {c.age}
+//                       </p>
+//                       <p className="mt-1 text-xs text-gray-500">
+//                         <b>{c.certificateId}</b> • Completed {formatDate(c.completionDate)}
+//                       </p>
+//                       <p className="text-xs text-gray-500">
+//                         Created {dt(c.createdAt)}
+//                         {c.editCount > 0 && <> • Last edited {dt(c.updatedAt)}</>}
+//                       </p>
+//                     </div>
+
+//                     <div className="flex flex-wrap items-center justify-center gap-2">
+//                       <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-bold text-purple-700">
+//                         {c.editCount} edit{c.editCount === 1 ? "" : "s"}
+//                       </span>
+//                       <Btn onClick={() => setViewing(c)}>View</Btn>
+//                       <Btn onClick={() => startEdit(c)}>Edit</Btn>
+//                       <Btn danger onClick={() => remove(c)}>Delete</Btn>
+//                       {c.editCount > 0 && (
+//                         <Btn onClick={() => setExpanded(expanded === c._id ? null : c._id)}>
+//                           {expanded === c._id ? "Hide Log" : "Edit Log"}
+//                         </Btn>
+//                       )}
+//                     </div>
+//                   </div>
+
+//                   {expanded === c._id && (
+//                     <div className="mt-3 rounded-xl bg-purple-50 p-3 text-left">
+//                       {[...c.editLog].reverse().map((log, i) => (
+//                         <div key={i} className="mb-2 border-b border-purple-100 pb-2 last:mb-0 last:border-0 last:pb-0">
+//                           <p className="text-xs font-bold text-purple-800">Edited on {dt(log.editedAt)}</p>
+//                           <ul className="mt-1 text-xs text-gray-700">
+//                             {log.changes.map((ch, j) => (
+//                               <li key={j}>
+//                                 <b>{ch.field}:</b> <span className="text-red-600 line-through">{ch.from}</span> → <span className="text-green-700">{ch.to}</span>
+//                               </li>
+//                             ))}
+//                           </ul>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   )}
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         )}
+//       </main>
+
+//       {/* VIEW MODAL */}
+//       {viewing && (
+//         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setViewing(null)}>
+//           <div className="max-h-[95vh] w-full max-w-[1000px] overflow-auto rounded-3xl bg-white p-4" onClick={(e) => e.stopPropagation()}>
+//             <ScaledCertificate data={viewing} />
+//             <div className="mt-4 flex justify-center gap-3">
+//               <button
+//                 onClick={() => exportPDF(viewing)}
+//                 className="rounded-xl bg-gradient-to-r from-[#6412d4] to-[#9414ec] px-6 py-3 text-sm font-bold text-white"
+//               >
+//                 ⬇ Download PDF
+//               </button>
+//               <button onClick={() => setViewing(null)} className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700">
+//                 Close
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* OFFSCREEN EXPORT COPY (full 1280x905, sirf PDF ke liye) */}
+//       <div style={{ position: "fixed", left: -10000, top: 0, pointerEvents: "none" }} aria-hidden>
+//         <div ref={exportRef} style={{ width: 1280, height: 905 }}>
+//           <CertificateView data={exportData || previewData} />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// /* ---------- small helpers ---------- */
+// function Stat({ label, value }: { label: string; value: number }) {
+//   return (
+//     <div className="rounded-2xl border border-purple-100 bg-white p-4 text-center shadow-sm">
+//       <p className="text-2xl font-extrabold text-[#35117c]">{value}</p>
+//       <p className="text-xs font-semibold text-gray-500">{label}</p>
+//     </div>
+//   );
+// }
+
+// function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+//   return (
+//     <button
+//       onClick={onClick}
+//       className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
+//         active ? "bg-gradient-to-r from-[#6412d4] to-[#9414ec] text-white shadow" : "border border-purple-200 bg-white text-purple-700 hover:bg-purple-50"
+//       }`}
+//     >
+//       {children}
+//     </button>
+//   );
+// }
+
+// function Btn({ children, onClick, danger }: { children: React.ReactNode; onClick: () => void; danger?: boolean }) {
+//   return (
+//     <button
+//       onClick={onClick}
+//       className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+//         danger ? "bg-red-50 text-red-600 hover:bg-red-100" : "bg-purple-50 text-purple-700 hover:bg-purple-100"
+//       }`}
+//     >
+//       {children}
+//     </button>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -710,7 +1348,7 @@ type Cert = CertData & {
 type Stats = { total: number; edited: number; byClass: Record<string, number>; nextId: string; usedSeq: number[] };
 
 const EMPTY_STATS: Stats = { total: 0, edited: 0, byClass: {}, nextId: "", usedSeq: [] };
-const POLL_MS = 5000; // har 5 second mein auto-sync
+const POLL_MS = 5000; // auto-sync every 5 seconds
 
 const localToday = () =>
   new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
@@ -728,10 +1366,30 @@ const dt = (iso: string) =>
 const inputCls =
   "w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-100";
 
+/* certificate number helpers */
+const seqOf = (id: string) => {
+  const m = id.match(/^HYI\/TRM\/(\d{4})\/(\d+)$/);
+  return m && Number(m[1]) === new Date().getFullYear() ? Number(m[2]) : 0;
+};
+
+const buildNext = (used: number[]) => {
+  const set = new Set(used);
+  let n = 1;
+  while (set.has(n)) n++;
+  return `HYI/TRM/${new Date().getFullYear()}/${String(n).padStart(2, "0")}`;
+};
+
 /* safe fetch: HTML error aaye toh bhi crash nahi, asli status milta hai */
 async function api(url: string, init?: RequestInit) {
   try {
     const res = await fetch(url, { cache: "no-store", ...init });
+
+    // login expire ho gaya toh login page par bhejo
+    if (res.status === 401) {
+      window.location.href = "/login";
+      return { ok: false, status: 401, data: { error: "Login required" } };
+    }
+
     const text = await res.text();
     let data: any = {};
     try {
@@ -741,7 +1399,11 @@ async function api(url: string, init?: RequestInit) {
     }
     return { ok: res.ok, status: res.status, data };
   } catch {
-    return { ok: false, status: 0, data: { error: "Unable to connect to the server. Please check your internet connection or verify that the server is running." } };
+    return {
+      ok: false,
+      status: 0,
+      data: { error: "Unable to connect to the server. Please check your internet connection or verify that the server is running." },
+    };
   }
 }
 
@@ -777,6 +1439,11 @@ export default function CertificatePage() {
   const flash = (type: "ok" | "err", text: string) => {
     setMsg({ type, text });
     setTimeout(() => setMsg(null), 4000);
+  };
+
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "/login";
   };
 
   /* ---------- load (latest request hi jeetegi, purana response ignore) ---------- */
@@ -878,7 +1545,7 @@ export default function CertificatePage() {
       }
       if (!ok) return flash("err", data.error || "Not Saved");
 
-       const saved: Cert = data.item;
+      const saved: Cert = data.item;
       flash("ok", data.unchanged ? "Not Found Any Changes" : editingId ? "Certificate updated" : "Certificate Saved");
 
       // turant list mein dikhao (bina wait kiye)
@@ -891,7 +1558,7 @@ export default function CertificatePage() {
           : prev
       );
 
-      // ⬇️ YE NAYA BLOCK: certificate number turant update
+      // certificate number turant update
       const old = editingId ? items.find((i) => i._id === editingId) : null;
       setStats((s) => {
         const used = s.usedSeq.filter((n) => !old || n !== seqOf(old.certificateId));
@@ -923,52 +1590,41 @@ export default function CertificatePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const seqOf = (id: string) => {
-  const m = id.match(/^HYI\/TRM\/(\d{4})\/(\d+)$/);
-  return m && Number(m[1]) === new Date().getFullYear() ? Number(m[2]) : 0;
-};
-
-const buildNext = (used: number[]) => {
-  const set = new Set(used);
-  let n = 1;
-  while (set.has(n)) n++;
-  return `HYI/TRM/${new Date().getFullYear()}/${String(n).padStart(2, "0")}`;
-};
-
   /* ---------- delete (turant list se hatao, fail ho toh wapas lao) ---------- */
-const remove = async (c: Cert) => {
-  if (!confirm(`${c.studentName} (${c.certificateId}) Are you sure you want to delete this certificate?`)) return;
+  const remove = async (c: Cert) => {
+    if (!confirm(`${c.studentName} (${c.certificateId}) Are you sure you want to delete this certificate?`)) return;
 
-  reqId.current++; // in-flight purane response ko ignore karo
-  const prevItems = items;
-  const prevStats = stats;
+    reqId.current++; // in-flight purane response ko ignore karo
+    const prevItems = items;
+    const prevStats = stats;
 
-  setItems((p) => p.filter((i) => i._id !== c._id));
-  setStats((s) => {
-    const used = s.usedSeq.filter((n) => n !== seqOf(c.certificateId));
-    return {
-      ...s,
-      total: Math.max(0, s.total - 1),
-      edited: c.editCount > 0 ? Math.max(0, s.edited - 1) : s.edited,
-      byClass: { ...s.byClass, [c.studentClass]: Math.max(0, (s.byClass[c.studentClass] || 0) - 1) },
-      usedSeq: used,
-      nextId: buildNext(used),
-    };
-  });
-  if (expanded === c._id) setExpanded(null);
+    setItems((p) => p.filter((i) => i._id !== c._id));
+    setStats((s) => {
+      const used = s.usedSeq.filter((n) => n !== seqOf(c.certificateId));
+      return {
+        ...s,
+        total: Math.max(0, s.total - 1),
+        edited: c.editCount > 0 ? Math.max(0, s.edited - 1) : s.edited,
+        byClass: { ...s.byClass, [c.studentClass]: Math.max(0, (s.byClass[c.studentClass] || 0) - 1) },
+        usedSeq: used,
+        nextId: buildNext(used),
+      };
+    });
+    if (expanded === c._id) setExpanded(null);
 
-  const { ok, status, data } = await api(`/api/certificates?id=${c._id}`, { method: "DELETE" });
+    const { ok, status, data } = await api(`/api/certificates?id=${c._id}`, { method: "DELETE" });
 
-  if (!ok && !(status === 404 && data.code === "ALREADY_DELETED")) {
-    setItems(prevItems);
-    setStats(prevStats);
-    return flash("err", `Not Deleted: ${data.error || status}`);
-  }
+    if (!ok && !(status === 404 && data.code === "ALREADY_DELETED")) {
+      setItems(prevItems);
+      setStats(prevStats);
+      return flash("err", `Not Deleted: ${data.error || status}`);
+    }
 
-  flash("ok", "Certificate Deleted Successfully");
-  const s = await load();
-  if (editingId === c._id) resetForm(s?.nextId || "");
-};
+    flash("ok", "Certificate Deleted Successfully");
+    const s = await load();
+    if (editingId === c._id) resetForm(s?.nextId || "");
+  };
+
   const canSave =
     !busy &&
     form.studentName.trim() &&
@@ -1023,6 +1679,13 @@ const remove = async (c: Cert) => {
             </p>
           )}
         </div>
+
+        <button
+          onClick={logout}
+          className="mt-3 w-full rounded-xl border border-red-200 bg-white px-4 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-50"
+        >
+          ⎋ Logout
+        </button>
       </aside>
 
       {/* MAIN */}
