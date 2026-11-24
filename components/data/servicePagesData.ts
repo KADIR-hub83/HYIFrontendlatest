@@ -30,7 +30,7 @@ export type ServicePageConfig = {
 export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
   "application-development": {
     eyebrow: "APPLICATION DEVELOPMENT",
-    hero: ["Build software", "that fits how", "your business works."],
+    hero: ["Build software that fits how","", "your business works."],
     intro:
       "Design, build and maintain web, mobile and enterprise applications around real user needs, clean architecture and long-term maintainability.",
     statementTitle: "Good software starts with a clear problem.",
@@ -64,7 +64,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "integrate-ai": {
     eyebrow: "INTEGRATE AI",
-    hero: ["Bring AI into", "the systems you", "already run."],
+    hero: ["Bring AI into the systems you", "","already run."],
     intro:
       "Embed AI capabilities into existing products, workflows and data platforms with clear use cases, governance and measurable value.",
     statementTitle: "AI creates value when it fits the workflow.",
@@ -98,7 +98,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   gcc: {
     eyebrow: "GLOBAL CAPABILITY CENTER",
-    hero: ["Build a global", "capability center", "that delivers."],
+    hero: ["Build a global capability center", "","that delivers."],
     intro:
       "Set up and scale a Global Capability Center that brings engineering, analytics and operations talent closer to your business strategy.",
     statementTitle: "A GCC is a strategic capability, not just a cost center.",
@@ -132,7 +132,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "artificial-intelligence": {
     eyebrow: "ARTIFICIAL INTELLIGENCE",
-    hero: ["Turn data into", "intelligent", "business action."],
+    hero: ["Turn data into intelligent", "","business action."],
     intro:
       "Develop machine learning, generative AI and analytics solutions that solve defined business problems and can be trusted in production.",
     statementTitle: "Useful AI is built on data, evaluation and trust.",
@@ -166,7 +166,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "cloud-infrastructure": {
     eyebrow: "CLOUD INFRASTRUCTURE",
-    hero: ["Build cloud", "infrastructure", "designed to evolve."],
+    hero: ["Build cloud infrastructure", "","designed to evolve."],
     intro:
       "Design, automate and operate secure, resilient and cost-aware cloud environments that match your workloads and growth.",
     statementTitle: "Principles come before products.",
@@ -200,7 +200,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "ai-cloud": {
     eyebrow: "AI CLOUD",
-    hero: ["Run AI on a", "cloud built for", "intelligent workloads."],
+    hero: ["Run AI on a cloud built for", "", "intelligent workloads."],
     intro:
       "Create cloud platforms optimized for training, serving and governing AI, with the compute, data and security those workloads need.",
     statementTitle: "AI workloads need infrastructure built for them.",
@@ -234,7 +234,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "digital-transformation": {
     eyebrow: "DIGITAL TRANSFORMATION",
-    hero: ["Transform how", "your business", "creates value."],
+    hero: ["Transform how your business", "", "creates value."],
     intro:
       "Modernize processes, technology and ways of working so your organization becomes faster, more connected and more responsive to change.",
     statementTitle: "Transformation is a change in how the business operates.",
@@ -268,7 +268,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "robotic-design-development": {
     eyebrow: "ROBOTIC DESIGN & DEVELOPMENT",
-    hero: ["Design robots", "that work in", "the real world."],
+    hero: ["Design robots that work in", "","the real world."],
     intro:
       "Engineer robotic systems from concept to deployment, combining mechanical design, embedded control, perception and intelligent software.",
     statementTitle: "Robotics succeeds where hardware and software meet.",
@@ -302,7 +302,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "ab-testing": {
     eyebrow: "A/B TESTING",
-    hero: ["Make decisions", "backed by", "real evidence."],
+    hero: ["Make decisions backed by", "","real evidence."],
     intro:
       "Design and run controlled experiments that show what actually improves conversion, engagement and product outcomes.",
     statementTitle: "Opinions are guesses. Experiments are evidence.",
@@ -336,7 +336,7 @@ export const servicePages: Record<ServicePageKey, ServicePageConfig> = {
 
   "finance-risk-intelligence": {
     eyebrow: "FINANCE & RISK INTELLIGENCE",
-    hero: ["See financial", "risk clearly", "before it grows."],
+    hero: ["See financial risk clearly", "", "before it grows."],
     intro:
       "Combine analytics, monitoring and AI to give finance and risk teams timely, trustworthy insight into exposure, compliance and performance.",
     statementTitle: "Better risk decisions need better visibility.",

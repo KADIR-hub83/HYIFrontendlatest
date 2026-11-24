@@ -265,7 +265,7 @@ export default function Footer() {
         />
 
         <div className="flex w-full flex-col gap-4 py-5 md:gap-8 md:pb-10 md:pt-6">
-          <section className="grid w-full grid-cols-7 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-7">
+          <section className="grid w-full grid-cols-7 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-6  lg:grid-cols-5">
             {footer.dynamicLinks.map((key, index) => {
               const section = footerSections[key];
 

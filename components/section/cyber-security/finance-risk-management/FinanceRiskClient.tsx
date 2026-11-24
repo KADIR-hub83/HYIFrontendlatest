@@ -97,8 +97,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "CYBER RISK MANAGEMENT",
     index: "01 / 11",
 
-    heroLine1: "Turn cyber",
-    heroLine2: "uncertainty into",
+    heroLine1: "Turn Cyber Uncertainty Into",
+    heroLine2: "",
     heroLine3: "business decisions.",
 
     intro:
@@ -260,8 +260,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "ENTERPRISE RISK MANAGEMENT",
     index: "02 / 11",
 
-    heroLine1: "See risk",
-    heroLine2: "across the",
+    heroLine1: "See Risk Across The",
+    heroLine2: "",
     heroLine3: "whole enterprise.",
 
     intro:
@@ -423,8 +423,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "THIRD-PARTY RISK MANAGEMENT",
     index: "03 / 11",
 
-    heroLine1: "Your ecosystem",
-    heroLine2: "extends beyond",
+    heroLine1: "Your Ecosystem Extends Beyond ",
+    heroLine2: "",
     heroLine3: "your perimeter.",
 
     intro:
@@ -586,8 +586,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "FRAUD RISK MANAGEMENT",
     index: "04 / 11",
 
-    heroLine1: "Understand how",
-    heroLine2: "trust can be",
+    heroLine1: "Understand How Trust Can Be",
+    heroLine2: "",
     heroLine3: "misused.",
 
     intro:
@@ -749,8 +749,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "RISK ANALYTICS",
     index: "05 / 11",
 
-    heroLine1: "Turn risk data",
-    heroLine2: "into decision",
+    heroLine1: "Turn Risk Data Into Decision",
+    heroLine2: "",
     heroLine3: "intelligence.",
 
     intro:
@@ -912,8 +912,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "BUSINESS CONTINUITY MANAGEMENT",
     index: "06 / 11",
 
-    heroLine1: "Keep critical",
-    heroLine2: "business services",
+    heroLine1: "Keep Critical Business Services",
+    heroLine2: "",
     heroLine3: "moving.",
 
     intro:
@@ -1075,8 +1075,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "FINANCIAL RISK ASSESSMENT",
     index: "07 / 11",
 
-    heroLine1: "Understand exposure",
-    heroLine2: "behind financial",
+    heroLine1: "Understand Exposure Behind Financial",
+    heroLine2: "",
     heroLine3: "decisions.",
 
     intro:
@@ -1172,8 +1172,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "OPERATIONAL RISK MANAGEMENT",
     index: "08 / 11",
 
-    heroLine1: "Strengthen the",
-    heroLine2: "systems behind",
+    heroLine1: "Strengthen The Systems Behind",
+    heroLine2: "",
     heroLine3: "daily operations.",
 
     intro:
@@ -1245,8 +1245,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "TECHNOLOGY RISK MANAGEMENT",
     index: "09 / 11",
 
-    heroLine1: "Manage technology",
-    heroLine2: "as business",
+    heroLine1: "Manage Technology As Business",
+    heroLine2: "",
     heroLine3: "dependency.",
 
     intro:
@@ -1318,8 +1318,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "REGULATORY RISK MANAGEMENT",
     index: "10 / 11",
 
-    heroLine1: "Turn obligations",
-    heroLine2: "into manageable",
+    heroLine1: "Turn Obligations Into Manageable",
+    heroLine2: "",
     heroLine3: "requirements.",
 
     intro:
@@ -1391,8 +1391,8 @@ const pages: Record<RiskPageKey, PageConfig> = {
     eyebrow: "RISK MONITORING & REPORTING",
     index: "11 / 11",
 
-    heroLine1: "See risk",
-    heroLine2: "as it",
+    heroLine1: "See Risk As It",
+    heroLine2: "",
     heroLine3: "changes.",
 
     intro:
@@ -1602,7 +1602,7 @@ function Hero({ page }: { page: PageConfig }) {
   const opacity = useTransform(scrollY, [0, 650], [1, 0.15]);
 
   return (
-    <section className="relative  overflow-hidden border-b border-white/[0.06] bg-black">
+    <section className="relative  overflow-hidden  bg-black">
       <AmbientBackground />
 
       <motion.div
@@ -1611,7 +1611,7 @@ function Hero({ page }: { page: PageConfig }) {
       >
    
 
-        <div className="mt-3">
+        <div className="mt-3 text-center">
           {[page.heroLine1, page.heroLine2, page.heroLine3].map(
             (line, index) => (
               <div key={line} className="overflow-hidden">
@@ -1623,7 +1623,7 @@ function Hero({ page }: { page: PageConfig }) {
                     delay: 0.1 + index * 0.11,
                     ease,
                   }}
-                  className={`text-[52px] hyi-h1  leading-[0.91] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px] ${
+                  className={` hyi-h1  ] ${
                     index === 2
                       ? "hyi-blue"
                       : "hyi-white"
@@ -1636,14 +1636,14 @@ function Hero({ page }: { page: PageConfig }) {
           )}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.55,
             duration: 0.8,
           }}
-          className="mt-6 grid gap-8 border-t border-white/[0.08] pt-8 lg:grid-cols-[1fr_520px]"
+          className="mt-6 grid gap-8  pt-8 lg:grid-cols-[1fr_520px]"
         >
           <div className="flex items-center gap-3">
             <CircleDot className="h-4.5 w-4.5 hyi-blue-icon" />
@@ -1656,7 +1656,7 @@ function Hero({ page }: { page: PageConfig }) {
           <p className="hyi-p">
             {page.intro}
           </p>
-        </motion.div>
+        </motion.div> */}
 
       </motion.div>
     </section>
@@ -1714,19 +1714,15 @@ function Statement({ page }: { page: PageConfig }) {
             / POINT OF VIEW
           </p> */}
 
-          <h2 className="mt-12 max-w-[1100px] text-[42px] hyi-h1 hyi-white font-medium leading-[1.03] tracking-[-0.055em]  md:text-[66px] lg:text-[72px]">
-            {page.statement}
-            <span className="block text-white/25">
-              {page.statementAccent}
-            </span>
+          <h2 className="mt-6 hyi-h1 hyi-white text-center">
+            {page.statement} {page.statementAccent}
+          
           </h2>
 
-          <div className="mt-8 grid border-t border-white/[0.08] pt-8 lg:grid-cols-2">
-            <span className="hyi-h3 ">
-              RISK / CONTEXT / DECISION
-            </span>
+          <div className="mt-2 g">
+        
 
-            <p className=" max-w-[580px] hyi-p">
+            <p className=" text-center hyi-p">
               {page.philosophy}
             </p>
           </div>
@@ -1742,20 +1738,20 @@ function Statement({ page }: { page: PageConfig }) {
 
 function Pillars({ page }: { page: PageConfig }) {
   return (
-    <section className=" bg-[#030303] px-5 py-10 md:px-10 lg:px-20 ">
+    <section className=" bg-[#030303] px-5  md:px-10 lg:px-20 ">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
 
 
-          <h2 className="mt-3 max-w-[750px] text-[38px] font-medium hyi-h1 leading-[1.06] tracking-[-0.05em] md:text-[55px]">
+          <h2 className="mt-3 hyi-h1 text-center">
             Structure uncertainty
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               before making decisions.
             </span>
           </h2>
         </Reveal>
 
-        <div className="mt-8 grid border-l border-t border-white/[0.07] md:grid-cols-2">
+        <div className="mt-4 grid border-l border-t border-white/[0.07] md:grid-cols-2">
           {page.pillars.map((item, index) => (
             <motion.article
               key={item.number}
@@ -1770,7 +1766,7 @@ function Pillars({ page }: { page: PageConfig }) {
                 y: -8,
                 backgroundColor: "rgba(124,58,237,.04)",
               }}
-              className="group relative  overflow-hidden border-b border-r border-white/[0.07] p-7 md:p-9"
+              className="group relative  overflow-hidden border-b border-r border-white/[0.07] p-4  md:p-5"
             >
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -1784,7 +1780,7 @@ function Pillars({ page }: { page: PageConfig }) {
                 {item.title}
               </h3>
 
-              <p className="mt-2 max-w-[480px] hyi-p ">
+              <p className="mt-1 max-w-[480px] hyi-p ">
                 {item.description}
               </p>
 
@@ -1792,7 +1788,7 @@ function Pillars({ page }: { page: PageConfig }) {
                 whileHover={{ x: 5 }}
                 className="absolute bottom-8 right-8"
               >
-                <ArrowRight className="h-6 w-6 hyi-white-icon group-hover:text-[#a78bfa]" />
+                <ArrowRight className="h-6 w-6 hyi-blue-icon group-hover:text-[#a78bfa]" />
               </motion.div>
             </motion.article>
           ))}
@@ -1811,19 +1807,19 @@ function Lifecycle({ page }: { page: PageConfig }) {
     <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5  md:px-10 lg:px-20">
       <div className="absolute right-[-150px] top-[100px] h-[450px] w-[450px] rounded-full bg-[#6d28d9]/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-[1350px]">
+      <div className="relative mx-auto max-w-[1350px] text-center">
         <Reveal>
   
 
-          <h2 className="mt-3 text-[38px] font-medium hyi-h1 hyi-white tracking-[-0.05em] md:text-[50px]">
+          <h2 className="mt-3  hyi-h1 hyi-white ">
             A continuous process.
-            <span className="block text-white/25">
+            <span className="block hyi-blue">
               Not a one-time assessment.
             </span>
           </h2>
         </Reveal>
 
-        <div className="mt-8">
+        <div className="mt-4">
           {page.lifecycle.map((item, index) => (
             <motion.article
               key={item.number}
@@ -1868,19 +1864,19 @@ function FocusAreas({ page }: { page: PageConfig }) {
   return (
     <section className=" bg-[#030303] px-5 py-10 md:px-10 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
-        <div className="grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
+        <div className="flex flex-col gap-4">
           <Reveal>
-            <div className="lg:sticky lg:top-32">
+            <div className="text-center ">
         
 
-              <h2 className=" max-w-[450px] text-[38px] font-medium hyi-h1 hyi-white leading-[1.07] tracking-[-0.05em] md:text-[50px]">
+              <h2 className="  hyi-h1 hyi-white">
                 Focus on what
-                <span className="block text-white/25">
+                <span className="block hyi-blue">
                   changes decisions.
                 </span>
               </h2>
 
-              <p className="mt-3 max-w-[430px] hyi-p">
+              <p className="mt-3  hyi-p">
                 Risk programs become more useful when analysis is centered on
                 the information decision-makers genuinely need.
               </p>
@@ -1899,7 +1895,7 @@ function FocusAreas({ page }: { page: PageConfig }) {
                   y: -8,
                   backgroundColor: "rgba(124,58,237,.04)",
                 }}
-                className="group  border border-white/[0.07] p-7"
+                className="group  border border-white/[0.07] p-4"
               >
             
 
@@ -1959,12 +1955,12 @@ function FocusAreas({ page }: { page: PageConfig }) {
 
 function Principles({ page }: { page: PageConfig }) {
   return (
-    <section className="border-b border-white/[0.06] bg-[#030303] px-5  md:px-10 lg:px-20">
+    <section className=" bg-[#030303] px-5  md:px-10 lg:px-20">
       <div className="mx-auto max-w-[1100px]">
         <Reveal className="text-center">
 
 
-          <h2 className="mx-auto  max-w-[700px] text-[38px] hyi-h1 hyi-white font-medium leading-[1.07] tracking-[-0.05em] md:text-[50px]">
+          <h2 className="mx-auto  max-w-[700px]  hyi-h1 hyi-white ">
             Better risk management
             <span className="block hyi-blue">
               starts with better habits.
@@ -2013,14 +2009,14 @@ function Principles({ page }: { page: PageConfig }) {
 
 function Outcomes({ page }: { page: PageConfig }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black px-5 py-10 md:px-10 lg:px-20">
+    <section className="relative overflow-hidden  bg-black px-5 pt-10 md:px-10 lg:px-20">
       <div className="absolute left-[-200px] top-1/2 h-[450px] w-[450px] rounded-full bg-[#7c3aed]/10 blur-[160px]" />
 
-      <div className="relative mx-auto max-w-[1320px]">
+      <div className="relative mx-auto max-w-[1320px] text-center">
         <Reveal>
 
 
-          <h2 className=" max-w-[680px] text-[38px] font-medium hyi-h1 hyi-white leading-[1.07] tracking-[-0.05em] md:text-[55px]">
+          <h2 className=" hyi-h1 hyi-white">
             Turn risk understanding
             <span className="block hyi-blue">
               into practical capability.

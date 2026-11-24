@@ -76,7 +76,7 @@ export default function AiShell({
               <span className="hyi-pulse inline-block h-2.5 w-2.5 rounded-full bg-[#4f9dff]" />
               {AI_META.kicker}
             </p> */}
-            <SplitHeading as="h1" text={title} accent={accent} className="hyi-h1 lg:text-[120px] md:text-[80px] text-[60px] hyi-white text-center" delay={50} />
+            <SplitHeading as="h1" text={title} accent={accent} className="hyi-h1  hyi-white text-center" delay={50} />
             <p className="hyi-h1 hyi-white mx-auto mt-3 max-w-2xl">{subtitle}</p>
             {/* <div className="mt-12 flex items-center justify-center gap-4">
               <div className="hyi-mouse" />

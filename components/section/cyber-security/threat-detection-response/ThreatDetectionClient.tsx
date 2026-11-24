@@ -1103,6 +1103,8 @@ const pages: Record<ThreatPageKey, PageConfig> = {
 /* -------------------------------------------------------------------------- */
 
 const ease = [0.22, 1, 0.36, 1] as const;
+/* NOTE: file ke upar ke imports, types (ThreatPageKey, PageConfig), `pages`, `ease`
+   aur `Eyebrow` jaise pehle the waise hi rakhna. Neeche sirf wo code hai jo badla hai. */
 
 function Reveal({
   children,
@@ -1123,21 +1125,6 @@ function Reveal({
     >
       {children}
     </motion.div>
-  );
-}
-
-function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2">
-      <motion.span
-        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.3, 0.8] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="h-1.5 w-1.5 rounded-full bg-[#a78bfa] shadow-[0_0_14px_rgba(167,139,250,.9)]"
-      />
-      <span className="font-mono text-[11px] tracking-[0.2em] text-white/60">
-        {children}
-      </span>
-    </div>
   );
 }
 
@@ -1190,21 +1177,13 @@ function Hero({ page }: { page: PageConfig }) {
   const opacity = useTransform(scrollY, [0, 700], [1, 0.15]);
 
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06] bg-black">
+    <section className="relative overflow-hidden bg-black">
       <DetectionBackground />
 
       <motion.div
         style={{ y, opacity }}
         className="relative mx-auto flex max-w-[1450px] flex-col justify-center px-5 pb-10 pt-30 max-md:pt-20 md:px-10 lg:px-20"
       >
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Eyebrow>{page.eyebrow}</Eyebrow>
-        </motion.div>
-
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
           <div>
             {[page.heroTop, page.heroMain, page.heroAccent].map(
@@ -1218,7 +1197,7 @@ function Hero({ page }: { page: PageConfig }) {
                       delay: 0.1 + index * 0.12,
                       ease,
                     }}
-                    className={`hyi-h1 text-[52px] leading-[0.92] tracking-[-0.065em] sm:text-[68px] md:text-[88px] lg:text-[80px] ${
+                    className={`hyi-h1 ${
                       index === 2 ? "hyi-blue" : "hyi-white"
                     }`}
                   >
@@ -1248,7 +1227,7 @@ function Hero({ page }: { page: PageConfig }) {
               className="hyi-white mt-6 inline-flex items-center gap-3 text-[14px] font-semibold"
             >
               Explore detection approach
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 hyi-white-icon" />
             </motion.a>
           </motion.div>
         </div>
@@ -1281,8 +1260,8 @@ function SignalTicker({ items }: { items: string[] }) {
       >
         {[...items, ...items].map((item, index) => (
           <div key={`${item}-${index}`} className="flex items-center gap-4 px-8">
-            <Activity className="h-4 w-4 text-[#8b5cf6]" />
-            <span className="font-mono text-[12px] tracking-[0.24em] text-white/75">
+            <Activity className="h-4 w-4 hyi-blue-icon" />
+            <span className="font-mono text-[12px] tracking-[0.24em] text-white">
               {item}
             </span>
           </div>
@@ -1311,7 +1290,7 @@ function SignalStatement({ page }: { page: PageConfig }) {
             <span className="hyi-h3 hyi-white">SIGNAL / 001</span>
           </div>
 
-          <h2 className="hyi-h1 hyi-white mt-6 max-w-[1000px] text-[40px] font-medium leading-[1.04] tracking-[-0.055em] md:text-[60px] lg:text-[66px]">
+          <h2 className="hyi-h1 hyi-white mt-6 max-w-[1000px]">
             {page.signalTitle}
           </h2>
 
@@ -1334,9 +1313,9 @@ function Capabilities({ page }: { page: PageConfig }) {
     <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[55px]">
+          <h2 className="hyi-h1 max-w-[750px]">
             <span className="hyi-white">Build visibility around</span>
-            <span className="block text-white/25">meaningful signals.</span>
+            <span className="block hyi-blue">meaningful signals.</span>
           </h2>
         </Reveal>
 
@@ -1389,11 +1368,9 @@ function DetectionFlow({ page }: { page: PageConfig }) {
         <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
           <Reveal>
             <div className="lg:sticky lg:top-32">
-              <h2 className="hyi-h1 max-w-[450px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[50px]">
+              <h2 className="hyi-h1 max-w-[450px]">
                 <span className="hyi-white">Signal becomes</span>
-                <span className="block text-white/25">
-                  useful through context.
-                </span>
+                <span className="block hyi-blue">useful through context.</span>
               </h2>
 
               <p className="hyi-p mt-4 max-w-[430px]">
@@ -1452,9 +1429,9 @@ function InvestigationQuestions({ page }: { page: PageConfig }) {
     <section className="bg-[#030303] px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal>
-          <h2 className="hyi-h1 max-w-[750px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+          <h2 className="hyi-h1 max-w-[750px]">
             <span className="hyi-white">Ask better questions</span>
-            <span className="block text-white/25">before taking action.</span>
+            <span className="block hyi-blue">before taking action.</span>
           </h2>
         </Reveal>
 
@@ -1497,7 +1474,7 @@ function Disciplines({ page }: { page: PageConfig }) {
     <section className="bg-black px-5 py-10 md:px-10 md:py-14 lg:px-20">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="text-center">
-          <h2 className="hyi-h1 mx-auto max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+          <h2 className="hyi-h1 mx-auto max-w-[700px]">
             <span className="hyi-white">Detection works</span>
             <span className="block hyi-blue">as a connected practice.</span>
           </h2>
@@ -1542,7 +1519,7 @@ function Outcomes({ page }: { page: PageConfig }) {
 
       <div className="relative mx-auto max-w-[1320px]">
         <Reveal>
-          <h2 className="hyi-h1 max-w-[700px] text-[38px] font-medium leading-[1.06] tracking-[-0.05em] md:text-[52px]">
+          <h2 className="hyi-h1 max-w-[700px]">
             <span className="hyi-white">Turn detection</span>
             <span className="block hyi-blue">into defensive outcomes.</span>
           </h2>
