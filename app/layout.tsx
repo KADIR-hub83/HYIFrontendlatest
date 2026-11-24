@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import Head from "next/head";
 
 import "@fontsource-variable/figtree";
+import GlobalPrefetch from "@/components/GlobalPrefetch";
 
 // const figtree = Figtree({
 //   subsets: ["latin"],
@@ -71,6 +72,7 @@ export default function RootLayout({
         <Toaster richColors position="bottom-right" />
       </body> */}
        <body className="antialiased">
+         <GlobalPrefetch />
         {children}
         <Toaster richColors position="bottom-right" />
       </body>
