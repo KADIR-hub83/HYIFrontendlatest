@@ -12,9 +12,9 @@ export default function SOCArchitecture({
   return (
     <section
       id="operations"
-      className=" bg-[#ffffff]"
+      className=" bg-[#000000]"
     >
-      <div className="mx-auto max-w-[1450px] px-5  py-10 md:px-8 lg:px-12 ">
+      <div className="mx-auto max-w-[1350px] px-5  py-10 md:px-8 lg:px-12 ">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
            

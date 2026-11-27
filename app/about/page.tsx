@@ -235,12 +235,12 @@ function Hero() {
         style={{ y, opacity: o }}
         className="relative mx-auto max-w-[1450px] px-5 pb-12 pt-30 max-md:pt-20 md:px-10 lg:px-20"
       >
-        <Label>HYI.AI / About us</Label>
+        {/* <Label>HYI.AI / About us</Label> */}
 
         {/* the ONE h1 of the page, keyword-rich for SEO */}
         <h1 id="about-title" className="mt-6">
           {[
-            ["About HYI.AI:", "hyi-white"],
+            ["About HYI.AI:","", "hyi-white"],
             ["The world’s talent,", "hyi-white"],
             ["on demand.", "hyi-blue"],
           ].map(([line, cls], i) => (

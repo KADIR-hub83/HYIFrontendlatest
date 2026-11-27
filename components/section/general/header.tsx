@@ -376,6 +376,7 @@ export default function Header() {
     headerData.nav[2],
     headerData.nav[4],
     headerData.nav[5],
+    headerData.nav[6],
   ] as unknown as MobileNavProps["companyData"];
 
   return (
@@ -460,7 +461,7 @@ export default function Header() {
             {headerData.nav[4].title}
           </HeaderLinks>
 
-          {/* Resources */}
+          {/* ABOUT US */}
           <HeaderLinks
             navItems={headerData.nav[5]}
             gapBetweendropDown="gap-0.5"
@@ -469,6 +470,15 @@ export default function Header() {
           >
             {headerData.nav[5].title}
           </HeaderLinks>
+          {/* Resources */}
+<HeaderLinks
+  navItems={headerData.nav[6]}
+  gapBetweendropDown="gap-0.5"
+  gridColumn="grid-cols-2"
+  css="right-0 lg:max-w-[600px]"
+>
+  {headerData.nav[6].title}
+</HeaderLinks>
         </section>
 
         {/* =========================================================

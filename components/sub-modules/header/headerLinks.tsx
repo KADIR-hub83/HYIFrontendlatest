@@ -720,7 +720,7 @@ export default function HeaderLinks({
         onMouseEnter={() => setDropDown(true)}
         onMouseLeave={() => setDropDown(false)}
       >
-        <span className="w-fit flex text-sm font-medium text-dark_mode-300">
+        <span className="w-fit flex text-[13px] font-medium text-dark_mode-300">
           {children}
         </span>
 

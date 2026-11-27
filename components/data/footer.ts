@@ -420,7 +420,7 @@ export const footerSections = {
     heading: "Cyber Security",
     links: [
       [
-        "Cybersecurity Assessment & Consulting",
+        "Security Consulting",
         "/cyber-security/assessment-consulting/risk-assessment",
       ],
       [
@@ -428,7 +428,7 @@ export const footerSections = {
         "/cyber-security/managed-security-services/mdr",
       ],
       [
-        "Security Operations Center (SOC)",
+        "(SOC)",
         "/cyber-security/security-operations-center/24-7-monitoring",
       ],
       ["Endpoint Security", "/cyber-security/endpoint-security/edr"],
@@ -441,11 +441,11 @@ export const footerSections = {
         "/cyber-security/cloud-security/security-assessment",
       ],
       [
-        "Vulnerability Assessment & Penetration Testing",
+        "(VAPT)",
         "/cyber-security/vulnerability-assessment/network-penetration-testing",
       ],
       [
-        "Finance and Risk Management",
+        "Finance & Management",
         "/cyber-security/finance-risk-management/cyber-risk-management",
       ],
       [
@@ -453,19 +453,85 @@ export const footerSections = {
         "/cyber-security/threat-detection-response/threat-intelligence",
       ],
       [
-        "Security Compliance & Risk Management",
+        "Compliance & Risk ",
         "/cyber-security/compliance-risk-management/iso-27001",
       ],
       [
-        "Incident Response & Digital Forensics",
+        "Incident & Forensics",
         "/cyber-security/incident-response-forensics/cyber-incident-response",
       ],
       [
-        "Security Awareness & Training",
+        "Security Training",
         "/cyber-security/security-awareness-training/cybersecurity-awareness",
       ],
     ],
   },
+
+  // ==================================================
+// 7. AI MASTERY
+// ==================================================
+
+// AIMastery: {
+//   heading: "AI Mastery",
+//   links: [
+//     ["AI Advisory", "/ai/ai-lab"],
+
+//     [
+//       "Corporate AI Training",
+//       "/ai-training/corporate/executive-ai-programs",
+//     ],
+
+//     [
+//       "College & University Programs",
+//       "/ai-training/college-university/ai-certification-programs",
+//     ],
+
+//     [
+//       "School AI Programs",
+//       "/ai-training/school/ai-foundations-for-students",
+//     ],
+
+//     [
+//       "Rural & Urban AI Programs",
+//       "/ai-training/rural-urban/rural-ai-skill-development",
+//     ],
+
+//     [
+//       "Government & Public Sector",
+//       "/ai-training/government/ai-workforce-development",
+//     ],
+
+//     [
+//       "AI Certifications & Assessments",
+//       "/ai-training/certifications/agi-foundation-certification",
+//     ],
+
+//     [
+//       "AI Labs & Innovation",
+//       "/ai-training/labs-innovation/agi-innovation-labs",
+//     ],
+
+//     [
+//       "AI Trainer & Faculty Development",
+//       "/ai-training/trainer-faculty-development/train-the-trainer-programs",
+//     ],
+//   ],
+// },
+
+GCC: {
+  heading: "GCC",
+  links : [
+     ["Technology & Engineering Center" , "/gcc/technology-engineering-center"],
+     ["BPS" , "/gcc/business-process-services"],
+     ["GCC Strategy & Advisory" , "/gcc/strategy-advisory"],
+     ["Entity Setup & Expansion Support" , "/gcc/entity-setup-expansion"],
+     ["Agile Talent And Workforce Solution" , "/gcc/managed-talent-pool"],
+     ["GCC Bot Model" , "/gcc/model"],
+     ["GCC Operations & Managed Services" , "/gcc/operations-managed-services"],
+     ["AI And & Analytics Centers" , "/gcc/ai-data-analytics-centres"],
+     ["Digital & Innovation Centers" , "/gcc/service"],
+  ]
+},
 
   // ==================================================
   // 6. RESOURCES
@@ -475,18 +541,30 @@ export const footerSections = {
     heading: "Resources",
     links: [
       ["About HYI", "/about"],
-      ["Leadership", "/leadership"],
+      // ["Leadership", "/leadership"],
       ["Investor", "/investor"],
-      ["Finance", "/finance"],
-      ["Client", "/client"],
+      // ["Finance", "/finance"],
+      // ["Client", "/client"],
       ["Case Study", "/case-studies"],
       ["Career", "/career"],
       ["Help", "/help"],
       ["Blogs", "/blogs"],
       ["Media", "/media"],
-      ["Contact Us", "/help"],
+      ["Contact Us", "/contact-us/whats-on-your-mind"],
       ["Our Expert", "/talk-to-our-expert"],
     ],
+  },
+  HireTalent: {
+    heading: "Hire Talent",
+    links: [
+        ["Hire Devloper" , "/hire-developer"],
+        ["Hire Designer" , "/hire-designer"],
+        ["Product Manager" , "/project-manager"],
+        ["Product Designer", "/hire/product-designer"],
+        ["Hire Finance Consultant" , "/hire/hire-finance-consultant"],
+        ["Hire CXO" , "/hire/hire-cxo"],
+        ["Build Your Team" , "/hire/build-your-team"]
+    ]
   },
 
   // ==================================================
@@ -516,12 +594,19 @@ export const footerSections = {
 
 export const footer = {
   dynamicLinks: [
-    "ForTalents",
+    "HireTalent",
+      "ForTalents",
     "ForCompanies",
     "IntegrateAI",
     "TechnologySolutions",
+      "GCC",
     "CyberSecurity",
+
+    //  "AIMastery",
+   
+      
     "Resources",
-    "Compliance",
+     "Compliance",
+   
   ] as (keyof typeof footerSections)[],
 };

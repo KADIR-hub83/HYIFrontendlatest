@@ -1986,6 +1986,48 @@ export const headerData: HeaderDataProps = {
   ],
 },
 
+{
+  value: "about",
+  title: "About Us",
+  heading: "About Us",
+  paragraph:
+    "HYI.AI empowers talent and businesses through AI-driven solutions, technology services, and digital innovation.",
+  outerPadding: "large",
+
+  links: [
+    {
+      label: "Who We Are",
+      href: "/about/who-we-are",
+      text: "",
+    },
+    {
+      label: "Our Story",
+      href: "/about/our-story",
+      text: "",
+    },
+    {
+      label: "Vision & Mission",
+      href: "/about/vision-mission",
+      text: "",
+    },
+    {
+      label: "Our Founder",
+      href: "/about/our-founder",
+      text: "",
+    },
+    {
+      label: "Our Values",
+      href: "/about/our-values",
+      text: "",
+    },
+    {
+      label: "Our Future",
+      href: "/about/our-future",
+      text: "",
+    },
+  ],
+},
+
     // ==================================================
     // 6. RESOURCES
     // ==================================================
@@ -1999,36 +2041,36 @@ export const headerData: HeaderDataProps = {
   outerPadding: "large",
 
   links: [
-    {
-      label: "About Us",
-      text: "",
-      children: [
-        {
-          label: "Who We Are",
-          href: "/about/who-we-are",
-        },
-        {
-          label: "Our Story",
-          href: "/about/our-story",
-        },
-        {
-          label: "Vision & Mission",
-          href: "/about/vision-mission",
-        },
-        {
-          label: "Our Founder",
-          href: "/about/our-founder",
-        },
-        {
-          label: "Our Values",
-          href: "/about/our-values",
-        },
-        {
-          label: "Our Future",
-          href: "/about/our-future",
-        },
-      ],
-    },
+    // {
+    //   label: "About Us",
+    //   text: "",
+    //   children: [
+    //     {
+    //       label: "Who We Are",
+    //       href: "/about/who-we-are",
+    //     },
+    //     {
+    //       label: "Our Story",
+    //       href: "/about/our-story",
+    //     },
+    //     {
+    //       label: "Vision & Mission",
+    //       href: "/about/vision-mission",
+    //     },
+    //     {
+    //       label: "Our Founder",
+    //       href: "/about/our-founder",
+    //     },
+    //     {
+    //       label: "Our Values",
+    //       href: "/about/our-values",
+    //     },
+    //     {
+    //       label: "Our Future",
+    //       href: "/about/our-future",
+    //     },
+    //   ],
+    // },
     // {
     //   label: "Leadership",
     //   href: "/leadership",
@@ -2067,6 +2109,11 @@ export const headerData: HeaderDataProps = {
     {
       label: "Help",
       href: "/help",
+      text: "",
+    },
+    {
+      label: "Contact Us",
+      href: "/contact-us/whats-on-your-mind",
       text: "",
     },
   ],

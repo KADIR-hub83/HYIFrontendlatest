@@ -8,19 +8,19 @@ export type Project = {
 
 /** Icon per category (edit freely) */
 export const CATEGORY_ICON: Record<string, string> = {
-  "Government & AI": "🏛️",
-  Enterprise: "🏢",
-  "Dating & Social": "💞",
-  "E-commerce": "🛒",
-  Transport: "🚕",
-  "Food & Delivery": "🍔",
-  Education: "🎓",
-  Healthcare: "💊",
-  "Business & Manufacturing": "🏭",
-  Marketplace: "🏬",
-  Directories: "📇",
-  Communication: "🎧",
-  "Apps & Software": "📱",
+  "Government & AI": "",
+  Enterprise: "",
+  "Dating & Social": "",
+  "E-commerce": "",
+  Transport: "",
+  "Food & Delivery": "",
+  Education: "",
+  Healthcare: "",
+  "Business & Manufacturing": "",
+  Marketplace: "",
+  Directories: "",
+  Communication: "",
+  "Apps & Software": "",
 };
 
 // [name, description, category, url?]  — source: Client_Project_Portfolio.xlsx (Sr. No. 15 is missing in the sheet)

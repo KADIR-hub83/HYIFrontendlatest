@@ -13,7 +13,7 @@ import { Suspense } from "react";
 export default async function CaseStudiesPage() {
   const data = await CaseStudyAPI.getAllCaseStudy();
   return (
-    <section className="relative z-10 flex w-full flex-col items-center justify-center md:px-6">
+    <section className="relative z-10 flex w-full flex-col items-center justify-center md:px-6 py-20 md:py-30">
       {/* fuchsia radial glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[300px] bg-[radial-gradient(ellipse_at_40%_top,rgba(217,70,239,0.6)_0%,rgba(217,70,239,0.25)_35%,transparent_70%)] bg-no-repeat" />

@@ -2285,7 +2285,7 @@ export default function HeroExperience({
           />
 
           {/* Content grid */}
-          <div className="relative z-10 mt-15 md:mt-30 grid w-full items-center gap-5 md:py-30 max-md:pt-30 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:py-30">
+          <div className="relative z-10 mt-15 md:mt-30 grid w-full  gap-5 md:py-30 max-md:pt-30 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:py-30">
             {/* LEFT */}
             <div className="w-full text-center lg:text-left">
               <TypingAnimation />

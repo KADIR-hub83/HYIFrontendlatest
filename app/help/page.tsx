@@ -15,6 +15,7 @@ import Header from "@/components/section/general/header";
 import CustomWrapper from "@/components/shared/customWrapper";
 import { Mail, Phone, Sparkle } from "lucide-react";
 import star from "@/assets/shared/star-with-tick-purple.svg";
+import indiaFlag from "@/assets/common/indiaFlag.png";
 import indonesiaFlag from "@/assets/common/IndonesiaFlag.svg";
 import ukFlag from "@/assets/common/ukFlag.svg";
 import usaFlag from "@/assets/common/usaFlag.svg";
@@ -83,40 +84,78 @@ const Page = () => {
             />
 
             <h3 className="hyi-h3">Grievance & Compliance</h3>
-            <p className="hyi-p">
-              For any compliance-related questions or to raise a support ticket,
-              please contact our compliance team at grievance@hyi.ai and for
-              payment dispute nodal@hyi.ai.
-            </p>
+       <p className="hyi-p">
+  For any compliance-related questions or to raise a support ticket,
+  please contact our compliance team at{" "}
+  <a
+    href="mailto:grievance@hyi.ai"
+    className="hyi-blue"
+  >
+    grievance@hyi.ai
+  </a>{" "}
+  and for payment disputes{" "}
+  <a
+    href="mailto:nodal@hyi.ai"
+    className="hyi-blue"
+  >
+    nodal@hyi.ai
+  </a>
+</p>
           </Card>
 
           {/* Card 2  */}
-          <Card>
-            <Image
-              className="hidden md:block"
-              src={star}
-              alt="star"
-              width={28}
-              height={28}
-            />
+{/* Card 2 */}
+<Card>
+  <Image
+    className="hidden md:block"
+    src={star}
+    alt="HYI.AI"
+    width={28}
+    height={28}
+  />
 
-            <h3 className="hyi-h3">HYI.AI Head Office</h3>
-            <p className="hyi-p">
-              2nd Floor, Second Cross, 80 Feet Rd, K.R garden, Koramangala,
-              Bengaluru, Karnataka India 560034.
-            </p>
+  <h3 className="hyi-h3">HYI.AI Head Office</h3>
 
-            <div className="flex flex-wrap gap-3">
-              <p className="hyi-p">Our Global Offices</p>
-              <div className="flex gap-3">
-                <Image src={indonesiaFlag} alt="star" width={24} height={24} />
-                <Image src={ukFlag} alt="star" width={24} height={24} />
-                <Image src={usaFlag} alt="star" width={24} height={24} />
-                <Image src={vietnamFlag} alt="star" width={24} height={24} />
-                <Image src={polandFlag} alt="star" width={24} height={24} />
-              </div>
-            </div>
-          </Card>
+  {/* Office Address */}
+  <p className="hyi-p">
+    2nd Floor, Second Cross, 80 Feet Road, K.R. Garden,
+    Koramangala, Bengaluru, Karnataka, India – 560034.
+  </p>
+
+  {/* General Enquiries */}
+  <div className="flex gap-2 ">
+    <p className="hyi-p font-medium">General Enquiries</p>
+
+    <a
+      href="mailto:info@hyi.ai"
+      className="hyi-p hyi-blue"
+    >
+      info@hyi.ai
+    </a>
+
+    <a
+      href="mailto:support@hyi.ai"
+      className="hyi-p hyi-blue flex"
+    >
+
+      support@hyi.ai
+    </a>
+  </div>
+
+  {/* Global Offices */}
+  <div className="flex gap-3 ">
+    <p className="hyi-p font-medium">Our Global Offices</p>
+
+    <div className="flex flex-wrap items-center gap-3">
+      <Image src={indiaFlag} alt="India" width={24} height={24} />
+      <Image src={indonesiaFlag} alt="Indonesia" width={24} height={24} />
+      <Image src={ukFlag} alt="United Kingdom" width={24} height={24} />
+      <Image src={usaFlag} alt="United States" width={24} height={24} />
+      <Image src={vietnamFlag} alt="Vietnam" width={24} height={24} />
+      <Image src={polandFlag} alt="Poland" width={24} height={24} />
+    </div>
+  </div>
+</Card>
 
           {/* Card 3  */}
           <Card className="h-full min-w-[300px]">
@@ -140,10 +179,15 @@ const Page = () => {
                     +91 9741968220
                   </div>
 
-                  <div className="flex items-center gap-2 hyi-p text-nowrap">
-                    <Mail size={16} />
-                    payout@hyi.ai
-                  </div>
+              <div className="flex items-center gap-2 hyi-p text-nowrap">
+  <Mail size={16} />
+  <a
+    href="mailto:payout@hyi.ai"
+    className="hyi-blue hover:opacity-80 transition-opacity"
+  >
+    payout@hyi.ai
+  </a>
+</div>
                 </div>
               </div>
 
@@ -156,10 +200,15 @@ const Page = () => {
                     +91 7349129333
                   </div>
 
-                  <div className="flex items-center gap-2 hyi-p text-nowrap">
-                    <Mail size={16} />
-                    billing@hyi.ai
-                  </div>
+             <div className="flex items-center gap-2 hyi-p text-nowrap">
+  <Mail size={16} />
+  <a
+    href="mailto:billing@hyi.ai"
+    className="hyi-blue hover:opacity-80 transition-opacity"
+  >
+    billing@hyi.ai
+  </a>
+</div>
                 </div>
               </div>
             </div>
@@ -178,10 +227,15 @@ const Page = () => {
             />
 
             <h3 className="hyi-h3">Sales Enquiries</h3>
-            <p className="hyi-p">
-              For sales inquiries or to connect with our sales team, email us at
-              business@hyi.ai.
-            </p>
+          <p className="hyi-p">
+  For sales inquiries or to connect with our sales team, email us at{" "}
+  <a
+    href="mailto:business@hyi.ai"
+    className="hyi-blue hover:opacity-80 transition-opacity"
+  >
+    business@hyi.ai
+  </a>
+</p>
             <p className="hyi-p">
               Share your requirements, and we&apos;ll get in touch.
             </p>
@@ -198,10 +252,15 @@ const Page = () => {
             />
 
             <h3 className="hyi-h3">Work at HYI.AI</h3>
-            <p className="hyi-p">
-              Are you interested in joining our remote team? Contact us at
-              recruitment@hyi.ai.
-            </p>
+          <p className="hyi-p">
+  Are you interested in joining our remote team? Contact us at{" "}
+  <a
+    href="mailto:recruitment@hyi.ai"
+    className="hyi-blue hover:opacity-80 transition-opacity"
+  >
+    recruitment@hyi.ai
+  </a>
+</p>
             <p className="hyi-p">
               We welcome talented individuals who are passionate about
               innovation.

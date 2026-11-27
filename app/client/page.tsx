@@ -96,11 +96,11 @@ export default function PortfolioPage() {
         <Directory />
 
         {/* Category breakdown */}
-        <StickySplit eyebrow="Breakdown" title="Projects by Category" accent={["Category"]}>
+        {/* <StickySplit eyebrow="Breakdown" title="Projects by Category" accent={["Category"]}>
           <Card variant="glass" tilt={false}>
             <CategoryBars />
           </Card>
-        </StickySplit>
+        </StickySplit> */}
 {/* 
         <Reveal from="zoom">
           <div className="mt-6 flex flex-col items-center gap-6 text-center">

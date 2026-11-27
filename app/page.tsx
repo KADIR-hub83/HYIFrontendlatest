@@ -264,17 +264,17 @@ export default function Home() {
 
       <section className="flex w-full flex-col items-center justify-center overflow-hidden px-4 py-6 md:px-6 lg:py-8">
         <div className="relative isolate flex w-full max-w-[1280px] flex-col gap-8 bg-background md:gap-10">
-          <MotionReveal y={25} duration={0.7} className="w-full">
+
             <div className="mx-auto flex w-full flex-col gap-1.5 text-center lg:w-[55%]">
               <h2 className="hyi-h2">{connectWithDeveloperData.heading}</h2>
 
               <p className="hyi-p">{connectWithDeveloperData.paragraph}</p>
             </div>
-          </MotionReveal>
 
-          <MotionReveal y={45} delay={0.1} duration={0.8} className="w-full">
+
+
             <ConnectWithDevelopers />
-          </MotionReveal>
+
         </div>
       </section>
 
@@ -283,15 +283,15 @@ export default function Home() {
       {/* ----------
       
       -------------------------------------- */}
-          <MotionReveal y={50} duration={0.85} className="w-full">
+
         <FirstSection />
-      </MotionReveal>
 
 
-      <MotionReveal y={55} duration={0.85} className="w-full mb-10">
+
+
         <CybersecurityLanding />
         <AITrainingLanding />
-      </MotionReveal>
+
 
       {/* ------------------------------------------------ */}
       {/* FIRST SECTION */}
@@ -303,35 +303,30 @@ export default function Home() {
       {/* SECOND SECTION + TESTIMONIALS */}
       {/* ------------------------------------------------ */}
 
-      <MotionReveal y={50} duration={0.85} className="w-full">
+
         <SecondSection />
         <TestimonialSection />
-      </MotionReveal>
+
 
       {/* ------------------------------------------------ */}
       {/* THIRD SECTION */}
       {/* ------------------------------------------------ */}
 
-      <MotionReveal y={50} duration={0.85} className="w-full">
         <ThirdSection />
-      </MotionReveal>
+
 
       {/* ------------------------------------------------ */}
       {/* CLIENTS + TECHNOLOGIES */}
       {/* ------------------------------------------------ */}
 
-      <MotionReveal y={45} duration={0.8} className="w-full">
         {/* <ClientSection /> */}
         <Technologies />
-      </MotionReveal>
 
       {/* ------------------------------------------------ */}
       {/* FOOTER */}
       {/* ------------------------------------------------ */}
 
-      <MotionReveal y={25} duration={0.7} className="w-full">
         <Footer />
-      </MotionReveal>
     </section>
   );
 }

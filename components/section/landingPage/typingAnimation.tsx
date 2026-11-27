@@ -1,30 +1,30 @@
-// "use client";
+"use client";
 
-// import CustomMultiTypingHeadings from "@/components/shared/customMultiTypingHeading";
-// import React, { useEffect, useState } from "react";
+import CustomMultiTypingHeadings from "@/components/shared/customMultiTypingHeading";
+import React, { useEffect, useState } from "react";
 
-// // const textSets = [
-// //   [
-// //     "Hire Top  Virtual Assistance",
-// //     "for Your  Startup Success.",
-// //     "Streamline Your Operations, Save Time, and Focus on What Matters Most",
-// //   ],
-// //   [
-// //     "Hire Top Verified Talent",
-// //     "Globally",
-// //     "Trusted Experts. Instant Access, Smart, Secure and Precision Hiring Powered by AI",
-// //   ],
-// //   [
-// //     "Build Your Remote Team,",
-// //     "Just a Click Away",
-// //     "Access a global workforce and elevate your business with world-class remote professionals.",
-// //   ],
-// //   [
-// //     "Real-time Workflow Progress",
-// //     "Monitoring And Tracking.",
-// //     "24/7 dedicated support, easy communication, and productivity reports.",
-// //   ],
-// // ];
+// const textSets = [
+//   [
+//     "Hire Top  Virtual Assistance",
+//     "for Your  Startup Success.",
+//     "Streamline Your Operations, Save Time, and Focus on What Matters Most",
+//   ],
+//   [
+//     "Hire Top Verified Talent",
+//     "Globally",
+//     "Trusted Experts. Instant Access, Smart, Secure and Precision Hiring Powered by AI",
+//   ],
+//   [
+//     "Build Your Remote Team,",
+//     "Just a Click Away",
+//     "Access a global workforce and elevate your business with world-class remote professionals.",
+//   ],
+//   [
+//     "Real-time Workflow Progress",
+//     "Monitoring And Tracking.",
+//     "24/7 dedicated support, easy communication, and productivity reports.",
+//   ],
+// ];
 
 // const textSets = [
 //   [
@@ -49,32 +49,79 @@
 //   ],
 // ];
 
-// export default function TypingAnimation() {
-//   const [mounted, setMounted] = useState(false);
-//   useEffect(() => setMounted(true), []);
-//   return (
-//     <div>
-//       {mounted ? (
-//         <CustomMultiTypingHeadings textSets={textSets} />
-//       ) : (
-//         <div className="flex flex-col gap-2">
-//           <h2 className="flex flex-col text-2xl font-semibold capitalize cursor-default gap-2 lg:text-3xl">
-//             <span className="bg-gradient-to-t from-brand-600 to-brand-500 bg-clip-text text-transparent">
-//               Hire Top Virtual Assistance
-//             </span>
-//             <span className="bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
-//               for Your Startup Success.
-//             </span>
-//           </h2>
-//           <p className="text-sm text-dark_mode-300 md:text-base">
-//             Streamline Your Operations, Save Time, and Focus on What Matters
-//             Most
-//           </p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+const textSets = [
+  // Main Service — Virtual Assistant
+   [
+    "Transform Your AI",
+    "Workflow With HYI.",
+    "Bringing AI Intelligence Into Every Step Of Development.",
+  ],
+
+  // AI-Powered Cybersecurity
+  [
+  "Redefine Cyber Defense.",
+"Intelligent AI Security.",
+   "AI-Powered Cyber Defense & Real-Time Threat Response",
+  ],
+
+  // Virtual Assistance
+  [
+    "Hire Top",
+    "Virtual Assistants.",
+    "Skilled virtual assistance to streamline operations, manage tasks, and help your business grow.",
+  ],
+
+  // Digital Transformation
+  [
+    "Transform Your",
+    "Business Digitally.",
+    "Modern technology. Smarter workflows. Better results.",
+  ],
+
+  // Build Your LLM
+  [
+    "Build your Own",
+    "Custom LLM.",
+    "Powerful language models. Built around your business needs.",
+  ],
+
+  // Deploy Your Code
+  [
+    "Deploy Your Code",
+    "with Confidence.",
+    "Secure, scalable apps. Seamless cloud integration.",
+  ],
+
+  // Build Your AI
+  
+];
+
+export default function TypingAnimation() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return (
+    <div>
+      {mounted ? (
+        <CustomMultiTypingHeadings textSets={textSets} />
+      ) : (
+        <div className="flex flex-col gap-2">
+          <h2 className="flex flex-col text-2xl font-semibold capitalize cursor-default gap-2 lg:text-3xl">
+            <span className="bg-gradient-to-t from-brand-600 to-brand-500 bg-clip-text text-transparent">
+              Hire Top Virtual Assistance
+            </span>
+            <span className="bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
+              for Your Startup Success.
+            </span>
+          </h2>
+          <p className="text-sm text-dark_mode-300 md:text-base">
+            Streamline Your Operations, Save Time, and Focus on What Matters
+            Most
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 
 
@@ -277,83 +324,83 @@
 
 
 
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
-import CustomMultiFlipHeadings, {
-  getLineStyle,
-} from "@/components/shared/customMultiTypingHeading";
+// import React, { useEffect, useState } from "react";
+// import CustomMultiFlipHeadings, {
+//   getLineStyle,
+// } from "@/components/shared/customMultiTypingHeading";
 
-// [white line, brand-colour line, subtitle]
-const textSets = [
-  // Main Service — Virtual Assistant
-   [
-    "Transform Your AI",
-    "Workflow With HYI.",
-    "Bringing AI Intelligence Into Every Step Of Development.",
-  ],
+// // [white line, brand-colour line, subtitle]
+// const textSets = [
+//   // Main Service — Virtual Assistant
+//    [
+//     "Transform Your AI",
+//     "Workflow With HYI.",
+//     "Bringing AI Intelligence Into Every Step Of Development.",
+//   ],
 
-  // AI-Powered Cybersecurity
-  [
-  "Redefine Cyber Defense.",
-"Intelligent AI Security.",
-   "AI-Powered Cyber Defense & Real-Time Threat Response",
-  ],
+//   // AI-Powered Cybersecurity
+//   [
+//   "Redefine Cyber Defense.",
+// "Intelligent AI Security.",
+//    "AI-Powered Cyber Defense & Real-Time Threat Response",
+//   ],
 
-  // Virtual Assistance
-  [
-    "Hire Top",
-    "Virtual Assistants.",
-    "Skilled virtual assistance to streamline operations, manage tasks, and help your business grow.",
-  ],
+//   // Virtual Assistance
+//   [
+//     "Hire Top",
+//     "Virtual Assistants.",
+//     "Skilled virtual assistance to streamline operations, manage tasks, and help your business grow.",
+//   ],
 
-  // Digital Transformation
-  [
-    "Transform Your",
-    "Business Digitally.",
-    "Modern technology. Smarter workflows. Better results.",
-  ],
+//   // Digital Transformation
+//   [
+//     "Transform Your",
+//     "Business Digitally.",
+//     "Modern technology. Smarter workflows. Better results.",
+//   ],
 
-  // Build Your LLM
-  [
-    "Build your Own",
-    "Custom LLM.",
-    "Powerful language models. Built around your business needs.",
-  ],
+//   // Build Your LLM
+//   [
+//     "Build your Own",
+//     "Custom LLM.",
+//     "Powerful language models. Built around your business needs.",
+//   ],
 
-  // Deploy Your Code
-  [
-    "Deploy Your Code",
-    "with Confidence.",
-    "Secure, scalable apps. Seamless cloud integration.",
-  ],
+//   // Deploy Your Code
+//   [
+//     "Deploy Your Code",
+//     "with Confidence.",
+//     "Secure, scalable apps. Seamless cloud integration.",
+//   ],
 
-  // Build Your AI
+//   // Build Your AI
   
-];
+// ];
 
-export default function TypingAnimation() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+// export default function TypingAnimation() {
+//   const [mounted, setMounted] = useState(false);
+//   useEffect(() => setMounted(true), []);
 
-  return (
-    <div className="w-full">
-      {mounted ? (
-        <CustomMultiFlipHeadings
-          textSets={textSets}
-          interval={4000}
-          stagger={0.15}
-        />
-      ) : (
-        // SSR fallback: exact same styling as the flip component (no layout jump)
-        <div className="flex flex-col">
-          {textSets[0].map((line, i) => (
-            <div key={i} className={getLineStyle(i)}>
-              {line}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+//   return (
+//     <div className="w-full">
+//       {mounted ? (
+//         <CustomMultiFlipHeadings
+//           textSets={textSets}
+//           interval={4000}
+//           stagger={0.15}
+//         />
+//       ) : (
+//         // SSR fallback: exact same styling as the flip component (no layout jump)
+//         <div className="flex flex-col">
+//           {textSets[0].map((line, i) => (
+//             <div key={i} className={getLineStyle(i)}>
+//               {line}
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// }

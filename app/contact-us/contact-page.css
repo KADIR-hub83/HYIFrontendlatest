@@ -1,0 +1,93 @@
+/* ===== contact-page.css — contact.css ke BAAD load hota hai, isliye ye purani rules ko override karta hai ===== */
+
+.hc-contact { background: #060606; }
+
+/* ---------- Hero (chhota aur compact) ---------- */
+.hc-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 56px 0 20px; }
+.hc-hero-text { display: flex; flex-direction: column; gap: 18px; }
+.hc-eyebrow { font-size: 14px; letter-spacing: .2em; font-weight: 700; color: var(--hc-accent); margin-bottom: 2px; }
+
+/* map + gif ek ke upar ek, same size me */
+.hc-hero-visual { position: relative; width: 100%; aspect-ratio: 950 / 446; max-height: 340px; justify-self: end; }
+.hc-hero-map, .hc-hero-gif { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; border-radius: 0; max-height: none; }
+.hc-hero-map { opacity: .9; }
+.hc-hero-gif { mix-blend-mode: screen; }
+
+/* ---------- Cards ---------- */
+.hc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 0 0 28px; }
+.hc-card {
+  height: auto; min-height: 120px; align-items: flex-start; justify-content: flex-start; text-align: left; gap: 12px;
+  padding: 22px 20px; border-radius: 20px; background: #0a0a0c; border: 1px solid rgba(255,255,255,.08);
+  transition: border-color .25s, background .25s, transform .25s;
+}
+.hc-card:hover { border-color: rgba(139,92,246,.5); background: rgba(139,92,246,.06); transform: translateY(-4px); }
+.hc-card svg { width: 40px; height: 40px; stroke: var(--hc-link); margin-bottom: 6px; }
+.hc-card h3 { font-size: 24px; font-weight: 600; margin: 0; }
+.hc-card p { font-size: 16px; line-height: 1.55; color: var(--hc-muted); margin: 0; font-weight: 400; }
+.hc-card-go { margin-top: auto; padding-top: 10px; font-size: 16px; font-weight: 600; color: var(--hc-accent); display: inline-flex; gap: 8px; }
+.hc-card:hover .hc-card-go span { transform: translateX(4px); }
+.hc-card-go span { transition: transform .2s; }
+
+/* ---------- Quick contact strip ---------- */
+.hc-quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 8px 0 56px; }
+.hc-quick-item {
+  display: flex; align-items: center; gap: 16px; padding: 18px 22px; border-radius: 16px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); color: #fff; text-decoration: none; transition: border-color .2s;
+}
+a.hc-quick-item:hover { border-color: rgba(139,92,246,.5); }
+.hc-quick-ico { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 12px; background: rgba(139,92,246,.12); }
+.hc-quick-ico svg { width: 22px; height: 22px; stroke: var(--hc-accent); fill: none; }
+.hc-quick-item small { display: block; font-size: 13px; color: var(--hc-muted); margin-bottom: 2px; }
+.hc-quick-item strong { font-size: 17px; font-weight: 600; }
+
+/* ---------- Looking for something else ---------- */
+.hc-else { border-top: 1px solid rgba(255,255,255,.08); padding-top: 40px; }
+.hc-else h3 { font-size: 22px; margin: 0 0 28px; }
+.hc-else-links { padding-bottom: 64px; gap: 20px; }
+.hc-else-links a { font-size: 20px; }
+.hc-arrow { width: 44px; height: 44px; font-size: 18px; }
+
+/* ---------- Map section ---------- */
+.hc-presence { border-radius: 24px; overflow: hidden; padding-top: 48px; background: #0a0a0c; border: 1px solid rgba(255,255,255,.08); }
+.hc-presence .hc-container { padding-left: 32px; padding-right: 32px; }
+.hc-presence h2 { font-size: clamp(24px, 3vw, 40px); }
+.hc-tab { font-size: 17px; }
+.hc-tabs { gap: 22px; }
+.hc-map-wrap { height: 600px; }
+.hc-map, .hc-map .leaflet-container { background: #1c1c1c; }
+
+/* pins dark map par white dikhen */
+.hc-pin--single { background: #fff; }
+.hc-pin--sel { background: var(--hc-accent); transform: scale(1.25); transform-origin: bottom center; }
+.hc-map .leaflet-tile-pane { filter: none; }
+
+/* ---------- Map ke andar ka office panel ---------- */
+.hc-side {
+  position: absolute; left: 24px; top: 24px; z-index: 1000; width: 300px; max-height: calc(100% - 48px); overflow: auto;
+  background: rgba(10,10,14,.94); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 18px; backdrop-filter: blur(8px);
+}
+.hc-side h4 { margin: 0 0 10px; font-size: 19px; font-weight: 600; padding-right: 24px; }
+.hc-side p { margin: 6px 0; font-size: 15px; color: var(--hc-muted); }
+.hc-side a { color: #fff; }
+.hc-office-item { display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid rgba(255,255,255,.08); color: #fff; padding: 11px 4px; cursor: pointer; font-family: inherit; font-size: 16px; }
+.hc-office-item small { display: block; color: var(--hc-muted); font-size: 13px; }
+.hc-office-item:hover { color: var(--hc-accent); }
+.hc-office-card { position: absolute; }
+.hc-close { position: absolute; right: 12px; top: 8px; background: none; border: 0; color: #fff; font-size: 26px; cursor: pointer; line-height: 1; }
+.hc-dir { display: inline-block; margin-top: 12px; padding: 10px 18px; font-size: 14px; border-radius: 999px; border: 1px solid #fff; text-decoration: none; }
+.hc-dir:hover { background: #fff; color: #000 !important; }
+
+.hc-map-hint {
+  position: absolute; inset: 0; z-index: 900; display: grid; place-items: center; pointer-events: none;
+  background: rgba(0,0,0,.55); color: #fff; font-size: 18px; text-align: center; padding: 20px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hc-hero { grid-template-columns: 1fr; padding: 32px 0 24px; }
+  .hc-hero-visual { justify-self: stretch; }
+  .hc-cards, .hc-quick { grid-template-columns: 1fr; }
+  .hc-else-links { flex-direction: column; }
+  .hc-map-wrap { height: 480px; }
+  .hc-side { left: 12px; right: 12px; top: auto; bottom: 90px; width: auto; max-height: 45%; }
+}
